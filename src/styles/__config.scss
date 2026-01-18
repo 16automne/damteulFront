@@ -1,0 +1,63 @@
+// 서식 적용 방법
+// [ 글자 ]
+// .title {
+//     @include fontHead01;
+//     color: $colorPrimary;
+// }
+// [ 그림자 ]
+// .header {
+//     box-shadow: $bottomShadow;
+//     background-color: $colorWhite;
+// }
+
+
+// 1. 폰트 서식
+$fontMain: 'Inter', sans-serif;
+$weightBold: 700;
+$weightSemibold: 600;
+$weightMedium: 500;
+$weightRegular: 400;
+
+// 기본 폰트 설정 믹스인
+@mixin font-style($size, $weight, $color: $colorDKGray) {
+    font-family: $fontMain;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    line-height: 1.4;
+}
+
+// 2. 컬러 서식
+$colorPrimary: #58A563;
+$colorSecond: #FFCE44;
+$colorSub: #2D4356;
+
+$colorWhite: #fff;
+$colorLgGray: #F2F5F2;
+$colorSmGray: #D7D7D7;
+$colorMdGray: #6B6B6B;
+$colorDKGray: #1A1C19;
+
+$colorEtcRed: #E06868;
+$colorEtcOrange: #EE955E;
+$colorEtcYellow: #EEC75E;
+$colorEtcLgGreen: #82BC62;
+$colorEtcSkyBlue: #62A1BC;
+$colorEtcBlue: #6277BC;
+$colorEtcPurple: #AA62BC;
+
+// 3. 타이포그래피 프리셋 (요청하신 규격 반영)
+@mixin fontHead01 { @include font-style(24px, $weightBold); }
+@mixin fontHead02 { @include font-style(20px, $weightSemibold); }
+@mixin fontText01 { @include font-style(18px, $weightBold); }
+@mixin fontText02 { @include font-style(16px, $weightMedium); }
+@mixin fontText03 { @include font-style(14px, $weightRegular); }
+@mixin fontText04 { @include font-style(12px, $weightRegular); }
+@mixin fontText05 { @include font-style(9px, $weightRegular); }
+
+// 4. 그림자 서식 (Figma 값 반영)
+$topShadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);    // 하단 네비게이션용
+$bottomShadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);  // 상단 헤더용
+
+// 5. 공통 레이아웃 가이드
+$mobile-width: 390px; // iPhone 기준 해상도
