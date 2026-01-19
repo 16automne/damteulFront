@@ -1,0 +1,35 @@
+// src/app/router/routes.js
+
+// 고정할 헤더 푸터 (경우의 수)
+import TabsLayout from "layouts/TabsLayout";
+import NoTabsLayout from "layouts/NoTabsLayout";
+import NoHeaderLayout from "layouts/NoHeaderLayout";
+
+// 하단탭 있는 화면들
+import HomePage from "pages/home/HomePage";
+
+export const routes = [
+  // ✅ 1) 하단탭 있는 화면들 (TabsLayout)
+  {
+    element: <TabsLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+    ],
+  },
+
+  // ✅ 2) 하단탭 없는 화면들 (NoTabsLayout)
+  {
+    element: <NoTabsLayout />,
+    children: [
+
+    ],
+  },
+
+  // ✅ 3) 헤더도 없는 특수 화면 (NoHeaderLayout)
+  {
+    element: <NoHeaderLayout />,
+    children: [
+      
+    ],
+  },
+];
