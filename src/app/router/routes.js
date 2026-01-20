@@ -7,6 +7,7 @@ import NoHeaderLayout from "layouts/NoHeaderLayout";
 
 // 하단탭 있는 화면들
 import HomePage from "pages/home/HomePage";
+import Login from "pages/login/Login";
 
 export const routes = [
   // ✅ 1) 하단탭 있는 화면들 (TabsLayout)
@@ -14,6 +15,7 @@ export const routes = [
     element: <TabsLayout />,
     children: [
       { path: "/", element: <HomePage /> },
+      { path: "/login", element: <Login /> },
     ],
   },
 
@@ -32,4 +34,6 @@ export const routes = [
       
     ],
   },
+
+
 ];
