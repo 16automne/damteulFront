@@ -8,9 +8,11 @@ const MainLayout = () => {
   return (
     <div>
       <LogoHeader />
-      <main>
+
+      <div>
         <Outlet />
-      </main> 
+      </div>
+      
       <HaveNavi />
     </div>
   );

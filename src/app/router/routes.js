@@ -4,12 +4,13 @@
 import TabsLayout from "layouts/TabsLayout";
 import NoTabsLayout from "layouts/NoTabsLayout";
 import NoHeaderLayout from "layouts/NoHeaderLayout";
+import AdminIndex from "layouts/AdminIndex";
 
 // 하단탭 있는 화면들
 import HomePage from "pages/home/HomePage";
 
 export const routes = [
-  // ✅ 1) 하단탭 있는 화면들 (TabsLayout)
+  // 1) 하단탭 있는 화면들 (TabsLayout)
   {
     element: <TabsLayout />,
     children: [
@@ -17,7 +18,7 @@ export const routes = [
     ],
   },
 
-  // ✅ 2) 하단탭 없는 화면들 (NoTabsLayout)
+  // 2) 하단탭 없는 화면들 (NoTabsLayout)
   {
     element: <NoTabsLayout />,
     children: [
@@ -25,11 +26,19 @@ export const routes = [
     ],
   },
 
-  // ✅ 3) 헤더도 없는 특수 화면 (NoHeaderLayout)
+  // 3) 헤더도 없는 특수 화면 (NoHeaderLayout)
   {
     element: <NoHeaderLayout />,
     children: [
       
+    ],
+  },
+
+  // 4) 관리자 페이지 (AdminPage)
+  {
+    element: <AdminHeader />,
+    children: [
+      {path: "/admin", element: <AdminIndex />},
     ],
   },
 ];
