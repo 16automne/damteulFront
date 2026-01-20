@@ -19,7 +19,7 @@ $weightMedium: 500;
 $weightRegular: 400;
 
 // 기본 폰트 설정 믹스인
-@mixin font-style($size, $weight, $color: $colorDKGray) {
+@mixin fontStyle($size, $weight, $color: $colorDKGray) {
     font-family: $fontMain;
     font-size: $size;
     font-weight: $weight;
@@ -46,18 +46,36 @@ $colorEtcSkyBlue: #62A1BC;
 $colorEtcBlue: #6277BC;
 $colorEtcPurple: #AA62BC;
 
-// 3. 타이포그래피 프리셋 (요청하신 규격 반영)
-@mixin fontHead01 { @include font-style(24px, $weightBold); }
-@mixin fontHead02 { @include font-style(20px, $weightSemibold); }
-@mixin fontText01 { @include font-style(18px, $weightBold); }
-@mixin fontText02 { @include font-style(16px, $weightMedium); }
-@mixin fontText03 { @include font-style(14px, $weightRegular); }
-@mixin fontText04 { @include font-style(12px, $weightRegular); }
-@mixin fontText05 { @include font-style(9px, $weightRegular); }
+// 3. 앱용 타이포그래피 프리셋 (mobile 기준)
+@mixin fontHead01 { @include fontStyle(1.5rem, $weightBold); }       // 24px
+@mixin fontHead02 { @include fontStyle(1.25rem, $weightSemibold); }  // 20px
+@mixin fontText01 { @include fontStyle(1.125rem, $weightBold); }     // 18px
+@mixin fontText02 { @include fontStyle(1rem, $weightMedium); }       // 16px
+@mixin fontText03 { @include fontStyle(0.875rem, $weightRegular); }  // 14px
+@mixin fontText04 { @include fontStyle(0.75rem, $weightRegular); }   // 12px
+@mixin fontText05 { @include fontStyle(0.5625rem, $weightRegular); } // 9px
 
-// 4. 그림자 서식 (Figma 값 반영)
-$topShadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);    // 하단 네비게이션용
-$bottomShadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);  // 상단 헤더용
+// 2. 관리자용 타이포그래피 프리셋 (PC/Web 기준)
+@mixin webFontHead01 { @include fontStyle(2rem, $weightBold); }         // 32px Head01: 페이지 대제목 (Dashboard, 회원 관리 등)
+@mixin webFontHead02 { @include fontStyle(1.5rem, $weightSemibold); }   // 24px Head02: 섹션 제목 (운영 현황, 일자별 요약 등)
+@mixin webFontText01 { @include fontStyle(1.25rem, $weightBold); }      // 20px Text01: 카드 내 강조 숫자, 큰 버튼 텍스트
+@mixin webFontText02 { @include fontStyle(1rem, $weightSemibold); }     // 16px Text02: 테이블 헤더(th), 메뉴 이름
+@mixin webFontText03 { @include fontStyle(0.875rem, $weightRegular); }  // 14px Text03: 일반 본문, 테이블 내용(td) - 가장 많이 사용됨
+@mixin webFontText04 { @include fontStyle(0.8125rem, $weightRegular); } // 13px Text04: 부가 설명, 캡션, 입력창(Input) 라벨
+@mixin webFontText05 { @include fontStyle(0.6875rem, $weightRegular); } // 11px Text05: 아주 작은 정보 (푸터 저작권, 데이터 날짜 등)
+
+// 4. 그림자 서식]
+$topShadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
+$bottomShadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
 
 // 5. 공통 레이아웃 가이드
-$mobile-width: 390px; // iPhone 기준 해상도
+$mobileWidth: 360px; // iPhone 기준 해상도
+
+$pcMinWidth: 1280px;    $pcMaxWidth: 1920px;
+$sidebarWidth: 260px; // 왼쪽 메뉴 바 고정 너비
+@mixin pcContainer {
+    min-width: $pcMinWidth;
+    max-width: $pcMaxWidth;
+    display: flex;
+    margin: 0 auto;
+}
