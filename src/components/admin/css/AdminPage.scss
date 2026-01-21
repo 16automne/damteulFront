@@ -1,0 +1,175 @@
+@use '../../../styles/_config' as *; 
+
+.adminPage {
+  padding: 20px;
+  overflow-y: auto;
+  background-color: $colorLgGray;
+
+  // 제목
+  h2 {
+    @include webFontHead02;
+    margin-bottom: 20px;
+    color: $colorPrimary;
+  }
+
+  // 필터 바
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    input {
+      @include webFontText03;
+      padding: 6px 12px;
+      border: 1px solid $colorSmGray;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    select {
+      @include webFontText03;
+      padding: 6px 12px;
+      border: 1px solid $colorSmGray;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    button {
+      @include webFontText03;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: $colorPrimary;
+      color: $colorWhite;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($colorPrimary, 10%);
+      }
+    }
+  }
+
+  // 테이블
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid $colorSmGray;
+      @include webFontText03;
+    }
+
+    th {
+      background-color: $colorLgGray;
+    }
+
+    tr:hover {
+      background-color: lighten($colorLgGray, 5%);
+    }
+
+    button {
+      padding: 4px 8px;
+      border: none;
+      border-radius: 4px;
+      background-color: $colorSecond;
+      color: $colorWhite;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($colorSecond, 10%);
+      }
+    }
+  }
+
+  // 모달
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal {
+      background-color: $colorWhite;
+      border-radius: 8px;
+      padding: 20px;
+      min-width: 400px;
+      max-width: 600px;
+      box-shadow: $bottomShadow;
+
+      h3 {
+        @include webFontHead02;
+        margin-bottom: 16px;
+      }
+
+      p {
+        @include webFontText03;
+        margin-bottom: 8px;
+      }
+
+      .modal-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+
+        button {
+          @include webFontText03;
+          padding: 6px 12px;
+          border-radius: 4px;
+          border: none;
+          cursor: pointer;
+
+          &:nth-child(1) {
+            background-color: $colorPrimary;
+            color: $colorWhite;
+          }
+
+          &:nth-child(2) {
+            background-color: $colorEtcRed;
+            color: $colorWhite;
+          }
+
+          &:nth-child(3) {
+            background-color: $colorSmGray;
+          }
+        }
+      }
+    }
+  }
+
+  // 페이지네이션
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      @include webFontText03;
+    }
+
+    button {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid $colorSmGray;
+      background-color: $colorWhite;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $colorLgGray;
+      }
+    }
+  }
+}
+
+

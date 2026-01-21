@@ -1,0 +1,21 @@
+@use '../../../styles/_config' as *;
+
+.adminIndex {
+  display: flex;           // 가로 배치
+  height: 100vh;           // 화면 전체 높이
+
+  // 사이드바
+  > .adminSidebar {
+    width: 250px;                       // 사이드바 고정 너비
+    border-right: 1px solid $colorSmGray; // 구분선
+    background-color: $colorWhite;      // 배경색
+  }
+
+  // 메인 페이지 영역
+  > .adminPage {
+    flex: 1;                             // 남은 공간 모두 차지
+    padding: 20px;                       // 내부 여백
+    overflow-y: auto;                    // 스크롤 가능
+    background-color: $colorLgGray;      // 배경색
+  }
+}
