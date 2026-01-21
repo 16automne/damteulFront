@@ -6,9 +6,10 @@ const AdminIndex = () => {
   return (
     <div className='adminIndex'>
       <AdminSidebar />
-      
+
       <AdminPage />
 
+      {/* 테스트 */}
     </div>
   );
 };
