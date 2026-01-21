@@ -1,0 +1,43 @@
+@import '../../../styles/_config';
+
+.naviContainer {
+  max-width: 767px;
+  position: fixed; bottom: 0; left: 0; right: 0;// 아래에 고정
+  margin: 0 auto;
+  width: 100%;
+  height: 64px;
+
+  background-color: $colorEtcLgGreen;
+  border-top: 1px solid $colorLgGray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 100;
+
+  .naviWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: $colorDKGray;
+
+    .navIcon {
+      @include fontHead02;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navLabel {
+      @include fontText04;
+    }
+
+    &.active { //클릭되면 색 변경
+      color: $colorPrimary; 
+      .navIcon {
+        color: $colorPrimary;
+      }
+    }
+  }
+}

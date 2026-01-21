@@ -1,0 +1,47 @@
+.naviContainer {
+  max-width: 767px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 64px;
+  background-color: #82BC62;
+  border-top: 1px solid #F2F5F2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 100;
+}
+.naviContainer .naviWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #1A1C19;
+}
+.naviContainer .naviWrap .navIcon {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+}
+.naviContainer .naviWrap .navLabel {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.naviContainer .naviWrap.active {
+  color: #58A563;
+}
+.naviContainer .naviWrap.active .navIcon {
+  color: #58A563;
+}/*# sourceMappingURL=nav.css.map */

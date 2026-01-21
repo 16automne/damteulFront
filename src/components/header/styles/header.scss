@@ -1,0 +1,38 @@
+@import '../../../styles/_config';
+
+.logoHeader {
+  position: sticky; top: 0; left: 0; right: 0; //위에 고정
+  width: 100%; height: 2.5rem;
+  display: flex;
+  align-items: center; //left, right 가운데 정렬
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: $colorLgGray;
+  box-sizing: border-box; //내용물 넘치지 않게하기
+  z-index: 100; //가려지지 않게 index값 줌
+
+  .headerLeft, .headerRight {
+    width: 40px; 
+    display: flex;
+    align-items: center; //각 내용물들도 가운데 정렬
+
+    img { //로고
+      max-height: 28px;
+      object-fit: contain; //로고 다 보이게 하기
+    }
+  }
+
+  .headerRight {justify-content: flex-end;} //오른쪽으로 ~
+
+  // 아이콘들 서식
+  .headerIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    svg { //알림 아이콘 크기 조정
+      font-size: 1.5rem;
+    }
+  }
+}

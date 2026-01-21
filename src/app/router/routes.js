@@ -37,11 +37,7 @@ export const routes = [
     ],
   },
 
-<<<<<<< HEAD
   // 4) 관리자 페이지 (AdminPage)
-=======
-  // 4) 관리자 페이지 (추가된 부분)
->>>>>>> 293a7b4f37d6fe25dd8a7b72d677516469440ba1
   {
     path: "/admin",
     element: <AdminIndex />,
