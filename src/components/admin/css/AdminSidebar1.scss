@@ -1,0 +1,132 @@
+@use '../../../styles/_config' as *; 
+
+.sidebar {
+  width: 260px;
+  height: 100vh; // 전체 세로 길이
+  background-color: $colorDKGray;
+  color: $colorWhite;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: space-between; // 상단 메뉴와 하단 메뉴 분리
+}
+
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 30px;
+
+  img {
+    max-width: 150px;
+    height: auto;
+  }
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+
+  .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  .profile-info {
+    .name {
+      @include fontText03;
+      font-weight: $weightBold;
+      color: $colorWhite;
+      margin-bottom: 4px;
+    }
+
+    .role {
+      @include fontText04;
+      color: $colorSmGray;
+    }
+  }
+}
+
+.sidebar-menu {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 8px;
+      padding: 12px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background-color: $colorMdGray;
+      }
+    }
+  }
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 8px;
+      @include fontText03;
+      line-height: 1.4;
+
+      &.settings {
+        padding: 10px;
+        color: $colorWhite;
+        background-color: transparent;
+
+        &:hover {
+          background-color: $colorMdGray;
+        }
+      }
+    }
+
+    button.logout {
+      margin-right: 15px;
+      @include fontText03;
+      border-radius: 2px;
+      border: 1px solid $colorSmGray;
+      padding: 2px 7px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+
+      &:hover {
+        background-color: $colorLgGray;
+        color: $colorDKGray;
+      }
+    }
+  }
+}
+
+// 관리자 레이아웃
+.admin-layout {
+  display: flex;
+
+  .admin-content {
+    flex: 1;
+    padding: 20px;
+  }
+}
+
+// 그림자 예제 적용
+.sidebar, .sidebar-bottom li.settings {
+  box-shadow: $bottomShadow;
+}

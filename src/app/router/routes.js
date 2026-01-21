@@ -4,7 +4,7 @@
 import TabsLayout from "layouts/TabsLayout";
 import NoTabsLayout from "layouts/NoTabsLayout";
 import NoHeaderLayout from "layouts/NoHeaderLayout";
-import AdminIndex from "layouts/AdminIndex";
+import AdminIndex from "pages/admin/AdminIndex";
 
 // 하단탭 있는 화면들
 import HomePage from "pages/home/HomePage";
@@ -44,14 +44,10 @@ export const routes = [
     element: <AdminIndex />,
     children: [
       // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
-      // { index: true, element: <AdminDashboard /> }, 
-
-      // 이렇게 적으면 부모 무시하고 /notice로 접속
-      // { path: "/notice", element: <AdminNotice /> },
-
-      // 이렇게 적으면 부모포함해서 /admin/notice로 접속
-      // { path: "notice", element: <AdminNotice /> },
-
+      { index: true, element: <AdminDashboard /> }, 
     ],
   },
+
+  // 4) 관리자 페이지 (AdminPage)
+
 ];
