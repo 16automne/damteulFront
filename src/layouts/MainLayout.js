@@ -6,14 +6,14 @@ import HaveNavi from '../components/nav/HaveNavi'
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className='bodyParent'>
+      <div className='bodyChild'>
       <LogoHeader />
 
-      <div>
         <Outlet />
-      </div>
-      
+
       <HaveNavi />
+      </div>
     </div>
   );
 };
