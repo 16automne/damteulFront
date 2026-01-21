@@ -10,6 +10,7 @@ const AdminIndex = () => {
       <AdminPage />
 
       {/* 테스트 */}
+      {/* 테스트 */}
     </div>
   );
 };
