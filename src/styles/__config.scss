@@ -69,11 +69,36 @@ $topShadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
 $bottomShadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
 
 // 5. 공통 레이아웃 가이드
+// 5-1. 모바일 레이아웃 변수
 $mobileWidth: 360px; // iPhone 기준 해상도
 $mobileMaxWidth: 767px; // 모바일 최대 너비
+$mobileBaseWidth: 92%; // 모바일 평균 너비
+// 모바일 부모 레이아웃
+@mixin mobileParentLayout {
+    width: 100%;
+    max-width: $mobileMaxWidth;
+    margin: 0 auto;
+}
 
+// 모바일 자식 기본 레이아웃
+@mixin mobileChildBaseLaytout{
+    width: $mobileBaseWidth;
+    min-width: $mobileWidth;
+    margin: 0 auto;
+}
+
+// 모바일 자식 꽉차는 레이아웃
+@mixin mobileChildFullLayout{
+    width: 100vw;
+    max-width: $mobileMaxWidth;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+// 5-2. pc 레이아웃 변수
 $pcMinWidth: 1280px;    $pcMaxWidth: 1920px;
 $sidebarWidth: 260px; // 왼쪽 메뉴 바 고정 너비
+// pc 레이아웃
 @mixin pcContainer {
     min-width: $pcMinWidth;
     max-width: $pcMaxWidth;

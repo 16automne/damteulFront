@@ -8,8 +8,8 @@ import AdminIndex from "pages/admin/AdminIndex";
 
 // 하단탭 있는 화면들
 import HomePage from "pages/home/HomePage";
-import Login from "pages/login/Login";
-
+import Login from "pages/auth/login/Login";
+import Register from "pages/auth/register/Register";
 
 export const routes = [
   // 1) 하단탭 있는 화면들 (TabsLayout)
@@ -33,14 +33,21 @@ export const routes = [
   {
     element: <NoHeaderLayout />,
     children: [
-      {
-        path: "/admin",
-        element: <AdminIndex />,
-        children: [
-          // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
-          // { index: true, element: <AdminDashboard /> }, 
-        ],
-      },
+      
+    ],
+  },
+
+<<<<<<< HEAD
+  // 4) 관리자 페이지 (AdminPage)
+=======
+  // 4) 관리자 페이지 (추가된 부분)
+>>>>>>> 293a7b4f37d6fe25dd8a7b72d677516469440ba1
+  {
+    path: "/admin",
+    element: <AdminIndex />,
+    children: [
+      // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
+      { index: true, element: <AdminDashboard /> }, 
     ],
   },
 
