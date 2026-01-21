@@ -1,0 +1,36 @@
+@use '../../../styles/__config' as *;
+@use '../../../styles/__config2' as *;
+
+main{
+  width: 100%;
+}
+.authForm{
+  > legend{font-size: 0px;}
+  > fieldset{
+    .formTextWrapper{
+      margin: 10px 0;
+      label{@include fontText02; line-height: 30px;}
+      input{
+        @include formTypeText;
+      }
+    }
+    .formButtonWrapper{
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 10px;
+      align-items: center;
+      height: 70px;
+      a{
+        @include linkButtonHalf($colorMdGray);
+        display: inline-block;
+        line-height: 50px;
+        text-align: center;
+      }
+      input{
+        @include linkButtonHalf($colorPrimary);
+        cursor: pointer;
+      }
+    }
+  }
+}

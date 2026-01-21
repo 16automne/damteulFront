@@ -1,0 +1,68 @@
+main {
+  width: 100%;
+}
+
+.authForm > legend {
+  font-size: 0px;
+}
+.authForm > fieldset .formTextWrapper {
+  margin: 10px 0;
+}
+.authForm > fieldset .formTextWrapper label {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+  line-height: 30px;
+}
+.authForm > fieldset .formTextWrapper input {
+  width: 100%;
+  height: 50px;
+  padding: 10px 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  text-indent: 10px;
+}
+.authForm > fieldset .formButtonWrapper {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 10px;
+  align-items: center;
+  height: 70px;
+}
+.authForm > fieldset .formButtonWrapper a {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #6B6B6B;
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
+}
+.authForm > fieldset .formButtonWrapper input {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
+  cursor: pointer;
+}/*# sourceMappingURL=auth.css.map */
