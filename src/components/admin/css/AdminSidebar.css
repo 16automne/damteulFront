@@ -1,3 +1,5 @@
+
+
 .sidebar {
     width: 260px;
     height: 100vh;
@@ -53,38 +55,14 @@
 
 .sidebar-menu li {
     margin-bottom: 8px;
-}
-
-.sidebar-menu li,
-.submenu-title {
     padding: 12px 10px;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s;
 }
 
-.sidebar-menu li:hover,
-.submenu-title:hover {
+.sidebar-menu li:hover {
     background-color: #374151;
-}
-
-/* 서브 메뉴 */
-.submenu {
-    list-style: none;
-    padding-left: 20px;
-    margin-top: 5px;
-}
-
-
-.submenu li {
-    font-size: 14px;
-    padding: 8px 10px;
-    border-radius: 6px;
-}
-
-
-.submenu li:hover {
-    background-color: #4b5563;
 }
 
 /* 하단 메뉴 */
@@ -94,18 +72,19 @@
 }
 
 .sidebar-bottom ul {
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 */
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
+  }
+  
 .sidebar-bottom li {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s;
     margin-bottom: 8px;
-    text-align: right;
-    /* 우측 정렬 */
     font-size: 14px;
     /* 글자 크기 통일 */
     line-height: 1.4;
@@ -114,9 +93,13 @@
 
 /* 환경설정 버튼 */
 .sidebar-bottom li.settings {
-    padding: 10px 12px;
+    padding: 10px;
     /* 버튼 패딩으로 높이 맞춤 */
     background-color: transparent;
+}
+
+.sidebar-bottom button.logout{
+    margin-right: 15px;
 }
 
 .sidebar-bottom li.settings:hover {
@@ -124,14 +107,21 @@
     /* 호버 시 어두운 배경 */
 }
 
-/* 로그아웃 글자만 회색 */
-.sidebar-bottom li.logout .logout-text {
-    color: #d1d5db;
-    text-align: right;
-    font-size: 14px;
-}
+.sidebar-bottom button.logout:hover {
+    background-color: #d8d9db;
+    color: #202022;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 2px 7px;
+    border: 1px solid #8a8a8b
+  }
 
-.sidebar-bottom li.logout:hover {
-    background-color: #9ca3af;
-    /* 호버 시 조금 어두운 회색 */
-}
+.admin-layout {
+    display: flex;
+  }
+  
+  .admin-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
