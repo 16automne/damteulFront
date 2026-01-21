@@ -14,6 +14,8 @@ const AdminIndex = () => {
         <AdminPage />
       </div>
     </div>
+
+    //테스트
   );
 };
 
