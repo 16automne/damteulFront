@@ -36,11 +36,17 @@ export const routes = [
     ],
   },
 
+<<<<<<< HEAD
   // 4) 관리자 페이지 (AdminPage)
+=======
+  // 4) 관리자 페이지 (추가된 부분)
+>>>>>>> 293a7b4f37d6fe25dd8a7b72d677516469440ba1
   {
-    element: <AdminHeader />,
+    path: "/admin",
+    element: <AdminIndex />,
     children: [
-      {path: "/admin", element: <AdminIndex />},
+      // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
+      { index: true, element: <AdminDashboard /> }, 
     ],
   },
 ];
