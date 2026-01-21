@@ -8,8 +8,8 @@ import AdminIndex from "pages/admin/AdminIndex";
 
 // 하단탭 있는 화면들
 import HomePage from "pages/home/HomePage";
-import Login from "pages/auth/login/Login";
-import Register from "pages/auth/register/Register";
+import Login from "pages/auth/Login";
+import Register from "pages/auth/Register";
 
 export const routes = [
   // 1) 하단탭 있는 화면들 (TabsLayout)
@@ -18,6 +18,7 @@ export const routes = [
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
 

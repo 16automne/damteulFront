@@ -1,0 +1,29 @@
+@use '__config' as *;
+
+// input태그 type='text'
+@mixin formTypeText {
+  width: 100%; height: 50px;
+  padding: 10px 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+  box-shadow: $bottomShadow;
+  text-indent: 10px;
+  
+}
+
+// 하단 버튼(2개일때
+@mixin linkButtonHalf($background) {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  @include fontText01;
+  color: $colorLgGray;
+  border: none;
+  background-color: $background;
+}
+// ⬆Link(a)태그일때는 아래 항목 추가
+// display: inline-block;
+// line-height: 50px;
+// text-align: center;
