@@ -44,7 +44,7 @@ export const routes = [
     element: <AdminIndex />,
     children: [
       // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
-      { index: true, element: <AdminDashboard /> }, 
+      // { index: true, element: <AdminDashboard /> }, 
     ],
   },
 
