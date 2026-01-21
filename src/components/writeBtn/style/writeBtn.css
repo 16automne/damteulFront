@@ -1,0 +1,21 @@
+.writeCategory {
+  width: 120px;
+  height: 135px;
+  position: fixed;
+  bottom: 185px;
+  right: 15px;
+  border-radius: 10px;
+  border: none;
+  background: #fff;
+  text-align: center;
+}
+.writeCategory > a {
+  display: block;
+  border-bottom: 1px solid #D7D7D7;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 12px;
+}
+.writeCategory > a:last-child {
+  border-bottom: none;
+}/*# sourceMappingURL=writeBtn.css.map */

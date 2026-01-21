@@ -1,0 +1,84 @@
+* {
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  color: #333;
+}
+
+.btnContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+  background: #F2F5F2;
+}
+.btnContainer > button {
+  width: 70px;
+  height: 35px;
+  border: none;
+  border-radius: 17.5px;
+  background: none;
+  font-size: 14px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.btnContainer .btnActive {
+  background: #58A563;
+  color: #fff;
+}
+
+.goodsList {
+  background: none;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #D7D7D7;
+  display: flex;
+  gap: 20px;
+}
+.goodsList > img {
+  width: 130px;
+  height: 130px;
+  border-radius: 7px;
+}
+.goodsList .goodsArea {
+  width: 100%;
+  position: relative;
+}
+.goodsList .goodsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.goodsList .goodsInfo > h3 {
+  font-size: 16px;
+}
+.goodsList .goodsInfo > span {
+  font-size: 12px;
+}
+.goodsList .goodsInfo > p {
+  font-size: 18px;
+}
+.goodsList .goodsReaction {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.writeBtn {
+  border-radius: 50%;
+  background: #58A563;
+  width: 34px;
+  height: 34px;
+  position: fixed;
+  z-index: 999;
+  bottom: 140px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.writeBtn .plusIcon {
+  color: #fff;
+}/*# sourceMappingURL=main.css.map */
