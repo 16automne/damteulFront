@@ -70,6 +70,7 @@ $bottomShadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
 
 // 5. 공통 레이아웃 가이드
 $mobileWidth: 360px; // iPhone 기준 해상도
+$mobileMaxWidth: 767px; // 모바일 최대 너비
 
 $pcMinWidth: 1280px;    $pcMaxWidth: 1920px;
 $sidebarWidth: 260px; // 왼쪽 메뉴 바 고정 너비
