@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import './style/writeBtn.scss';
+import './styles/writeBtn.css';
 
 function WriteBtn(props) {
 
@@ -16,7 +16,7 @@ function WriteBtn(props) {
 			</div>
 			{isOpen &&(
 				<div className='writeCategory'>
-				<Link>중고거래</Link>
+				<Link to='/goodstrade'>중고거래</Link>
 				<Link>나눔</Link>
 				<Link>커뮤니티</Link>
 				</div>

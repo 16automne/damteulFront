@@ -5,8 +5,9 @@ import './styles/nav.css';
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { PiNoteDuotone, PiNoteFill } from "react-icons/pi";
 import { IoGiftOutline, IoGift  } from "react-icons/io5";
-import { PiChatTeardropTextBold, PiChatTeardropTextFill  } from "react-icons/pi";
-import { RiUserSmileLine, RiUserSmileFill  } from "react-icons/ri";
+import { PiChatTeardropText, PiChatTeardropTextFill  } from "react-icons/pi";
+import { PiUser,PiUserFill } from "react-icons/pi";
+
 
 const HaveNavi = () => {
   // 메뉴들을 배열화 해주기
@@ -18,9 +19,9 @@ const HaveNavi = () => {
     { to: "/share", label: "나눔/이벤트", 
       icon: <IoGiftOutline />, activeIcon: <IoGift /> },
     { to: "/chat", label: "대화", 
-      icon: <PiChatTeardropTextBold />, activeIcon: <PiChatTeardropTextFill /> },
+      icon: <PiChatTeardropText />, activeIcon: <PiChatTeardropTextFill /> },
     { to: "/mypage", label: "내 정보", 
-      icon: <RiUserSmileLine />, activeIcon: <RiUserSmileFill /> },
+      icon: <PiUser />, activeIcon: <PiUserFill /> },
   ];
 
   return (

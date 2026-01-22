@@ -1,0 +1,40 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+
+// 글쓰기 버튼 서식
+.writeBtn{
+	border-radius: 50%;
+	background: $colorPrimary;
+	width: 34px; height: 34px;
+	position: fixed;
+	z-index: 999;
+	bottom:100px; right: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	.plusIcon{
+		// 폰트색상 변경 안되면 이미지나 svg가져오겠습니다
+		color: $colorWhite;
+	}
+}
+// 글쓰기 버튼 클릭 시 서식
+.writeCategory{
+	width: 120px; height: 135px;
+	position: fixed;
+	bottom: 145px; right: 15px;
+	border-radius: 10px;
+	border: none;
+	background: $colorWhite;
+	text-align: center;
+	cursor: pointer;
+	
+	>a{
+		display: block;
+		border-bottom: 1px solid $colorSmGray;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		font-size: 12px;
+	}
+	>a:last-child{border-bottom: none;}
+}
