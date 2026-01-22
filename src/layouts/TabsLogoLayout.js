@@ -4,11 +4,11 @@ import { Outlet } from 'react-router-dom';
 import LogoHeader from '../components/header/LogoHeader'
 import HaveNavi from '../components/nav/HaveNavi'
 
-const TabsLayout = () => {
+const TabsLogoLayout = () => {
   return (
     <div className='bodyParent'>
       <div className='bodyChild'>
-      {/* 헤더가 있는 */}
+      {/* 로고 헤더가 있는 */}
       <LogoHeader />
 
         <Outlet />
@@ -20,4 +20,4 @@ const TabsLayout = () => {
   );
 };
 
-export default TabsLayout;
+export default TabsLogoLayout;

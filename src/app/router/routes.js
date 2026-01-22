@@ -1,8 +1,8 @@
 // src/app/router/routes.js
 
 // 고정할 헤더 푸터 (경우의 수)
-import TabsLayout from "layouts/TabsLayout";
-import NoTabsLayout from "layouts/NoTabsLayout";
+import TabsLayout from "layouts/TabsLogoLayout";
+import NoTabsLayout from "layouts/NoTabsBackLayout";
 import NoHeaderLayout from "layouts/NoHeaderLayout";
 import AdminIndex from "pages/admin/AdminIndex";
 
@@ -47,7 +47,5 @@ export const routes = [
       // { index: true, element: <AdminDashboard /> }, 
     ],
   },
-
-  // 4) 관리자 페이지 (AdminPage)
 
 ];

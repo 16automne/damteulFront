@@ -8,15 +8,15 @@ function AllowHeader() {
   return (
     <div className="logoHeader">
       {/* 왼쪽: 로고 */}
-      <div className="logoHeaderLeft">
-        <Link className="logoHeaderBack">
+      <div className="headerLeft">
+        <Link className="headerIcon">
           <FaAngleLeft />
         </Link>
       </div>
 
       {/* 오른쪽: 알림 아이콘 */}
-      <div className="logoHeaderRight">
-        <Link className="logoHeaderBell">
+      <div className="headerRight">
+        <Link className="headerIcon">
           <TbBell />
         </Link>
       </div>

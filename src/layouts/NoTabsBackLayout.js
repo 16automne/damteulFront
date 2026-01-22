@@ -1,10 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import AllowHeader from '../components/header/AllowHeader'
+
 const NoTabsLayout = () => {
   return (
     <div>
-      <h2>헤더가 있는</h2>
+      {/* 뒤로가기버튼 헤더가 있는 */}
+      <AllowHeader />
       
       <Outlet />
 
