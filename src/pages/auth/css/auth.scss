@@ -1,6 +1,6 @@
 @use '../../../styles/__config' as *;
 @use '../../../styles/__config2' as *;
-
+.bodyChild{position: relative;}
 main{
   width: 100%;
 }
@@ -13,14 +13,20 @@ main{
       input{
         @include formTypeText;
       }
+      .errMassage{
+        @include fontText04;
+        color: $colorEtcRed;
+        line-height: 30px;
+      }
     }
     .formButtonWrapper{
       display: flex;
       justify-content: space-between;
-      position: fixed;
+      position: absolute;
       bottom: 10px;
       align-items: center;
       height: 70px;
+      width: 100%;
       a{
         @include linkButtonHalf($colorMdGray);
         display: inline-block;

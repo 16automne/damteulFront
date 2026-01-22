@@ -1,0 +1,38 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+
+
+// 글목록
+.goodsList{
+	background: none;
+	margin-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid $colorSmGray;
+	display: flex;
+	gap: 20px;
+	> img{
+		width: 130px; height: 130px;
+		border-radius: 7px;
+	}
+	.goodsArea{
+		width: 100%;
+		position: relative;
+	}
+	// 텍스트영역
+	.goodsInfo{
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		>h3{font-size: 16px;}
+		>span{font-size: 12px;}
+		>p{font-size: 18px;}
+	}
+	// 좋아요, 댓글 수
+	.goodsReaction{
+		position: absolute;
+		bottom: 0px; right: 0px;
+		display: flex;
+		gap: 10px;
+		font-size: 12px;
+	}
+}

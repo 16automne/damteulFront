@@ -1,0 +1,41 @@
+.writeForm {
+  width: 100%;
+}
+.writeForm > p label {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 5px;
+}
+.writeForm #categorySelect {
+  width: 100%;
+}
+
+.fileWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  background: #58A563;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.fileWrapper .file {
+  display: none;
+}
+.fileWrapper .uploadBtn {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #fff;
+}/*# sourceMappingURL=goodsTrade.css.map */

@@ -18,6 +18,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Chat from "pages/chat/Chat";
   import MyPage from "pages/my/MyPage";
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
+  import GoodsTrade from "pages/goods/GoodsTrade";
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
@@ -43,7 +44,7 @@ export const routes = [
   {
     element: <NoTabsTitleLayout />,
     children: [
-      
+      {path:"/goodstrade", element: <GoodsTrade />}
     ],
   },
 

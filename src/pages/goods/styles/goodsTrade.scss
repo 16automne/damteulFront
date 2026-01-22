@@ -1,0 +1,44 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+
+// 글쓰기 서식
+.writeForm{
+	width: 100%;
+
+	>p label{
+		@include fontText02;
+		display: block;
+		margin-bottom: 5px;
+	}
+	#categorySelect{
+		width: 100%;
+	}
+}
+
+// 이미지업로드 버튼 서식
+.fileWrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 50px; height: 50px;
+	background: $colorPrimary;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	// type=file 지운겁니다
+	.file{
+		display: none;
+	}
+
+	// uploadBtn 버튼 서식
+	.uploadBtn{
+		@include fontText04;
+		color: $colorWhite;
+
+		
+	}
+	
+}
