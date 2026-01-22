@@ -55,11 +55,17 @@
   margin: 0;
 }
 .sidebar-menu ul li {
+  color: #fff;
   margin-bottom: 8px;
   padding: 12px 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
+}
+.sidebar-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
 }
 .sidebar-menu ul li:hover {
   background-color: #6B6B6B;

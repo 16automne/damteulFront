@@ -1,0 +1,20 @@
+@use '../../../styles/_config' as *; 
+
+.adminIndex {
+  display: flex;        // ✅ 가로 배치 핵심
+  width: 100%;
+  height: 100vh;
+
+  .adminSidebar {
+    width: $sidebarWidth;        // 260px (config 기준)
+    background-color: $colorWhite;
+    border-right: 1px solid $colorSmGray;
+  }
+
+  .adminPage {
+    flex: 1;                       // 남은 영역 전부
+    padding: 20px;
+    overflow-y: auto;
+    background-color: $colorLgGray;
+  }
+}

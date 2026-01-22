@@ -80,6 +80,13 @@ export const routes = [
     children: [
       // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
       // { index: true, element: <AdminDashboard /> }, 
+      {index: true, element:<DashboardPage />},
+      {path: "users", element:<UserAdminPage />},
+      {path: "posts", element:<PostAdminPage />},
+      {path: "reports", element:<ReportAdminPage />},
+      {path: "trades", element:<TradeAdminPage />},
+      {path: "events", element:<EventAdminPage />},
+      {path: "community", element:<CommunityAdminPage />}
     ],
   },
 
