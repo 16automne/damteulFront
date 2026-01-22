@@ -1,9 +1,11 @@
 // src/app/router/routes.js
 
 // 고정할 헤더 푸터 (경우의 수)
-import TabsLayout from "layouts/TabsLayout";
-import NoTabsLayout from "layouts/NoTabsLayout";
+import TabsLayout from "layouts/TabsLogoLayout";
+import NoTabsTitleLayout from "layouts/NoTabsTitleLayout";
+import NoTabsBackLayout from "layouts/NoTabsBackLayout";
 import NoHeaderLayout from "layouts/NoHeaderLayout";
+import FullLayout from "layouts/FullLayout";
 import AdminIndex from "pages/admin/AdminIndex";
 
 // 하단탭 있는 화면들
@@ -11,8 +13,11 @@ import HomePage from "pages/home/HomePage";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 
+// 하단탭 없는 화면들
+import GoodsTrade from 'pages/goods/GoodsTrade';
+
 export const routes = [
-  // 1) 하단탭 있는 화면들 (TabsLayout)
+  // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
   {
     element: <TabsLayout />,
     children: [
@@ -20,16 +25,23 @@ export const routes = [
     ],
   },
 
-  // 2) 하단탭 없는 화면들 (NoTabsLayout)
+  // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
   {
-    element: <NoTabsLayout />,
+    element: <NoTabsTitleLayout />,
     children: [
-      { path: "/login", element: <Login /> },
-      { path: "/register", element: <Register /> },
+      {path:"/goodstrade", element: <GoodsTrade />}
     ],
   },
 
-  // 3) 헤더도 없는 특수 화면 (NoHeaderLayout)
+  // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
+  {
+    element: <NoTabsBackLayout />,
+    children: [
+      
+    ],
+  },
+
+  // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   {
     element: <NoHeaderLayout />,
     children: [
@@ -37,7 +49,15 @@ export const routes = [
     ],
   },
 
-  // 4) 관리자 페이지 (AdminPage)
+  // 5) 상단헤더X + 하단탭X (FullLayout)
+  {
+    element: <FullLayout />,
+    children: [
+      
+    ],
+  },
+
+  // 5) 관리자 페이지 (AdminPage)
   {
     path: "/admin",
     element: <AdminIndex />,
@@ -46,7 +66,5 @@ export const routes = [
       // { index: true, element: <AdminDashboard /> }, 
     ],
   },
-
-  // 4) 관리자 페이지 (AdminPage)
 
 ];

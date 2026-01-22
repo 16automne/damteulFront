@@ -1,0 +1,39 @@
+.goodsList {
+  background: none;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #D7D7D7;
+  display: flex;
+  gap: 20px;
+}
+.goodsList > img {
+  width: 130px;
+  height: 130px;
+  border-radius: 7px;
+}
+.goodsList .goodsArea {
+  width: 100%;
+  position: relative;
+}
+.goodsList .goodsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.goodsList .goodsInfo > h3 {
+  font-size: 16px;
+}
+.goodsList .goodsInfo > span {
+  font-size: 12px;
+}
+.goodsList .goodsInfo > p {
+  font-size: 18px;
+}
+.goodsList .goodsReaction {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+}/*# sourceMappingURL=goodsList.css.map */
