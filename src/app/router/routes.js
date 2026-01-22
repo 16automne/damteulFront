@@ -53,7 +53,8 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
 
