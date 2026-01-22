@@ -16,7 +16,7 @@ const HaveNavi = () => {
       icon: <GoHome />, activeIcon: <GoHomeFill /> },
     { to: "/community", label: "커뮤니티", 
       icon: <PiNoteDuotone />, activeIcon: <PiNoteFill /> },
-    { to: "/share", label: "나눔/이벤트", 
+    { to: "/nanum", label: "나눔/이벤트", 
       icon: <IoGiftOutline />, activeIcon: <IoGift /> },
     { to: "/chat", label: "대화", 
       icon: <PiChatTeardropText />, activeIcon: <PiChatTeardropTextFill /> },
@@ -26,18 +26,19 @@ const HaveNavi = () => {
 
   return (
     <nav className="naviContainer">
-      {navItems.map((item) => (
-        <NavLink 
-          key={item.to} 
-          to={item.to} 
+      {navItems.map((item) => ( //navItems(홈, 커뮤, 나눔, 대화, 내정보)를 하나씩 반복
+        <NavLink //누르면 해당 장소로 이동
+          key={item.to} //이름표
+          to={item.to} //클릭시 도착할 목적지
           className={({ isActive }) => isActive ? "navItem active" : "navItem"}
         >
           {({ isActive }) => (
             <div className='naviWrap'>
-              <div className="navIcon">
+              <div className="navIcon"> {/* 아이콘 */}
+                {/* 내가 선택한 메뉴에 있다면 fillicon보여주고 아니면 그냥icon */}
                 {isActive ? item.activeIcon : item.icon}
               </div>
-              <span className="navLabel">{item.label}</span>
+              <span className="navLabel">{item.label}</span> {/* 탭 이름 */}
             </div>
           )}
         </NavLink>

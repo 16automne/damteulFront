@@ -7,8 +7,10 @@ const NoTabsLayout = () => {
   return (
     <div className='bodyParent'>
       <div className='bodyChild'>
-        <h2>헤더가 있는</h2> 
-      <Outlet />
+        {/* 뒤로가기버튼 헤더가 있는 */}
+        <AllowHeader />
+        
+        <Outlet />
       </div>
     </div>
   );
