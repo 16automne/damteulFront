@@ -22,6 +22,7 @@ import TradeAdminPage from "components/admin/TradeAdminPage";
 import EventAdminPage from "components/admin/EventAdminPage";
 import CommunityAdminPage from "components/admin/CommunityAdminPage";
 
+import GoodsTrade from "pages/goods/GoodsTrade";
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
