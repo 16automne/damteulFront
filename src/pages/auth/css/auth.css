@@ -1,3 +1,7 @@
+.bodyChild {
+  position: relative;
+}
+
 main {
   width: 100%;
 }
@@ -26,13 +30,23 @@ main {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   text-indent: 10px;
 }
+.authForm > fieldset .formTextWrapper .errMassage {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #E06868;
+  line-height: 30px;
+}
 .authForm > fieldset .formButtonWrapper {
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  position: absolute;
   bottom: 10px;
   align-items: center;
   height: 70px;
+  width: 100%;
 }
 .authForm > fieldset .formButtonWrapper a {
   width: 48%;

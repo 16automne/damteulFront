@@ -22,8 +22,6 @@ export const routes = [
     element: <TabsLayout />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/login", element: <Login /> },
-      { path: "/register", element: <Register /> },
     ],
   },
 
