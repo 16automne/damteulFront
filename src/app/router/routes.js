@@ -25,6 +25,13 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Login from "pages/auth/Login";
   import Register from "pages/auth/Register";
   // 6) 관리자 페이지 (AdminPage)
+  import DashboardPage from "components/admin/DashboardPage"
+  import UserAdminPage from "components/admin/UserAdminPage"
+  import PostAdminPage from "components/admin/PostAdminPage"
+  import ReportAdminPage from "components/admin/ReportAdminPage"
+  import TradeAdminPage from "components/admin/TradeAdminPage"
+  import EventAdminPage from "components/admin/EventAdminPage"
+  import CommunityAdminPage from "components/admin/CommunityAdminPage"
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
