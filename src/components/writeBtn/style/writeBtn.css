@@ -1,13 +1,32 @@
+.writeBtn {
+  border-radius: 50%;
+  background: #58A563;
+  width: 34px;
+  height: 34px;
+  position: fixed;
+  z-index: 999;
+  bottom: 100px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.writeBtn .plusIcon {
+  color: #fff;
+}
+
 .writeCategory {
   width: 120px;
   height: 135px;
   position: fixed;
-  bottom: 185px;
+  bottom: 145px;
   right: 15px;
   border-radius: 10px;
   border: none;
   background: #fff;
   text-align: center;
+  cursor: pointer;
 }
 .writeCategory > a {
   display: block;

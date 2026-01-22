@@ -11,6 +11,9 @@ import HomePage from "pages/home/HomePage";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 
+// 하단탭 없는 화면들
+import GoodsTrade from 'pages/goods/GoodsTrade';
+
 export const routes = [
   // 1) 하단탭 있는 화면들 (TabsLayout)
   {
@@ -26,7 +29,7 @@ export const routes = [
   {
     element: <NoTabsLayout />,
     children: [
-
+      {path:"/goodstrade", element: <GoodsTrade />}
     ],
   },
 
