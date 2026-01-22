@@ -5,11 +5,10 @@
   position: fixed; bottom: 0; left: 0; right: 0;// 아래에 고정
   margin: 0 auto;
   width: 100%;
-  height: 64px;
+  height: 4rem;
   padding-bottom: env(safe-area-inset-bottom); //하단 홈 바 여유공간
 
   background-color: $colorWhite;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -22,6 +21,7 @@
     align-items: center;
     text-decoration: none;
     color: $colorDKGray;
+    width: 3.75rem; height: 3rem;
 
     .navIcon {
       @include fontHead02;

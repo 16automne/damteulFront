@@ -8,10 +8,22 @@ import NoHeaderLayout from "layouts/NoHeaderLayout";
 import FullLayout from "layouts/FullLayout";
 import AdminIndex from "pages/admin/AdminIndex";
 
-// 하단탭 있는 화면들
-import HomePage from "pages/home/HomePage";
-import Login from "pages/auth/Login";
-import Register from "pages/auth/Register";
+
+// path모음
+  // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
+  import HomePage from "pages/home/HomePage";
+  import Community from "pages/community/Community";
+  import Event from "pages/event/Event";
+  import Nanum from "pages/nanum/Nanum";
+  import Chat from "pages/chat/Chat";
+  import MyPage from "pages/my/MyPage";
+  // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
+  // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
+  // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
+  // 5) 상단헤더X + 하단탭X (FullLayout)
+  import Login from "pages/auth/Login";
+  import Register from "pages/auth/Register";
+  // 6) 관리자 페이지 (AdminPage)
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
@@ -19,8 +31,11 @@ export const routes = [
     element: <TabsLayout />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/login", element: <Login /> },
-      { path: "/register", element: <Register /> },
+      { path: "/community", element: <Community /> }, 
+      { path: "/nanum", element: <Nanum /> },  
+      { path: "/event", element: <Event /> },  
+      { path: "/chat", element: <Chat /> }, 
+      { path: "/mypage", element: <MyPage /> }, 
     ],
   },
 
@@ -28,7 +43,7 @@ export const routes = [
   {
     element: <NoTabsTitleLayout />,
     children: [
-
+      
     ],
   },
 
@@ -52,11 +67,12 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
 
-  // 5) 관리자 페이지 (AdminPage)
+  // 6) 관리자 페이지 (AdminPage)
   {
     path: "/admin",
     element: <AdminIndex />,
