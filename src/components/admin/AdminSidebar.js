@@ -1,33 +1,19 @@
-import React, { useState } from "react";
-// import { Outlet } from "react-router-dom";
-
-import '../admin/css/AdminSidebar1.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import '../admin/styles/AdminSidebar1.css';
 
 function AdminSidebar() {
-  const [openMenu, setOpenMenu] = useState(null);
-
-  const toggleMenu = (menu) => {
-    setOpenMenu(openMenu === menu ? null : menu);
-  };
-
   const handleLogout = () => {
-    // 예시: 토큰 삭제
     localStorage.removeItem("accessToken");
-  
-    // 로그인 페이지로 이동 (react-router)
     window.location.href = "/login";
   };
-  
 
   return (
-    <>
     <aside className="sidebar">
-      {/* 상단 로고 */}
       <div className="sidebar-logo">
         <img src={`${process.env.PUBLIC_URL}/images/logo1.png`} alt="Logo" />
       </div>
 
-      {/* 관리자 프로필 */}
       <div className="sidebar-profile">
         <img src={`${process.env.PUBLIC_URL}/images/admin.png`} alt="admin" className="profile-img" />
         <div className="profile-info">
@@ -36,32 +22,84 @@ function AdminSidebar() {
         </div>
       </div>
 
-      {/* 메뉴 */}
       <nav className="sidebar-menu">
-        <ul>
-          <li>대시보드</li>
-          <li>사용자 관리</li>
-          <li>게시글 관리</li>
-          <li>신고 관리</li>
-          <li>거래 관리</li>
-          <li>이벤트 관리 / 공지사항</li>
-          <li>커뮤니티 관리</li>
-        </ul>
-      </nav>
+  <ul>
+    {/* NavLink: 클릭 시 해당 페이지로 이동, isActive: 현재 선택된 링크 표시 */}
+    <li>
+      <NavLink 
+        to="dashboard" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        대시보드
+      </NavLink>
+    </li>
 
-      {/* 하단 메뉴 */}
+    <li>
+      <NavLink 
+        to="users" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        사용자 관리
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="posts" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        게시글 관리
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="reports" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        신고 관리
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="trades" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        거래 관리
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="events" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        이벤트 관리 / 공지사항
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="community" 
+        className={({ isActive }) => isActive ? 'active' : ''}
+      >
+        커뮤니티 관리
+      </NavLink>
+    </li>
+  </ul>
+</nav>
+
+
       <div className="sidebar-bottom">
         <ul>
           <li className="settings">⚙️ 환경설정</li>
           <li>
-            <button className="logout" onClick={handleLogout}>
-              로그아웃
-            </button>
+            <button className="logout" onClick={handleLogout}>로그아웃</button>
           </li>
         </ul>
       </div>
     </aside>
-    </>
   );
 }
 

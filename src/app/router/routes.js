@@ -13,8 +13,20 @@ import HomePage from "pages/home/HomePage";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 
+<<<<<<< HEAD
+// 관리자 페이지 레이아웃
+import DashboardPage from "components/admin/DashboardPage";
+import UserAdminPage from "components/admin/UserAdminPage";
+import PostAdminPage from "components/admin/PostAdminPage";
+import ReportAdminPage from "components/admin/ReportAdminPage";
+import TradeAdminPage from "components/admin/TradeAdminPage";
+import EventAdminPage from "components/admin/EventAdminPage";
+import CommunityAdminPage from "components/admin/CommunityAdminPage";
+
+=======
 // 하단탭 없는 화면들
 import GoodsTrade from 'pages/goods/GoodsTrade';
+>>>>>>> 540876e1296c9b98072673675d944e0eb1907dfc
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
@@ -65,6 +77,13 @@ export const routes = [
     children: [
       // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
       // { index: true, element: <AdminDashboard /> }, 
+      {index: true, element:<DashboardPage />},
+      {path: "users", element:<UserAdminPage />},
+      {path: "posts", element:<PostAdminPage />},
+      {path: "reports", element:<ReportAdminPage />},
+      {path: "trades", element:<TradeAdminPage />},
+      {path: "events", element:<EventAdminPage />},
+      {path: "community", element:<CommunityAdminPage />}
     ],
   },
 

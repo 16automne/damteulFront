@@ -56,11 +56,18 @@
     margin: 0;
 
     li {
-      margin-bottom: 8px;
-      padding: 12px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s;
+      color: $colorWhite; // ❗ 추가
+              margin-bottom: 8px;
+        padding: 12px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s;
+      a {
+        color: $colorWhite; // ❗ NavLink 텍스트 흰색 지정
+        text-decoration: none; // 링크 밑줄 제거
+        display: block; // li 전체 영역 클릭 가능
+      }
+
 
       &:hover {
         background-color: $colorMdGray;

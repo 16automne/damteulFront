@@ -1,16 +1,19 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import AdminSidebar from 'components/admin/AdminSidebar';
-import AdminPage from 'components/admin/AdminPage';
+
+import 'components/admin/styles/AdminIndex.css';
 
 const AdminIndex = () => {
   return (
     <div className='adminIndex'>
-      <AdminSidebar />
+      <div className="adminSidebar">
+        <AdminSidebar />
+      </div>
 
-      <AdminPage />
-
-      {/* 테스트 */}
-      {/* 테스트 */}
+      <div className="adminPage">
+        <Outlet />
+      </div>
     </div>
   );
 };
