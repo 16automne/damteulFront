@@ -11,6 +11,16 @@ import HomePage from "pages/home/HomePage";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 
+// 관리자 페이지 레이아웃
+import DashboardPage from "components/admin/DashboardPage";
+import UserAdminPage from "components/admin/UserAdminPage";
+import PostAdminPage from "components/admin/PostAdminPage";
+import ReportAdminPage from "components/admin/ReportAdminPage";
+import TradeAdminPage from "components/admin/TradeAdminPage";
+import EventAdminPage from "components/admin/EventAdminPage";
+import CommunityAdminPage from "components/admin/CommunityAdminPage";
+
+
 export const routes = [
   // 1) 하단탭 있는 화면들 (TabsLayout)
   {
@@ -45,6 +55,13 @@ export const routes = [
     children: [
       // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
       // { index: true, element: <AdminDashboard /> }, 
+      {index: true, element:<DashboardPage />},
+      {path: "users", element:<UserAdminPage />},
+      {path: "posts", element:<PostAdminPage />},
+      {path: "reports", element:<ReportAdminPage />},
+      {path: "trades", element:<TradeAdminPage />},
+      {path: "events", element:<EventAdminPage />},
+      {path: "community", element:<CommunityAdminPage />}
     ],
   },
 

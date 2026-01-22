@@ -1,0 +1,137 @@
+@use '../../../styles/_config' as *;
+
+.adminPageContainer {
+  padding: 20px;
+  background-color: $colorLgGray;
+  min-height: 100vh;
+
+  .adminHeader {
+    margin-bottom: 20px;
+
+    .adminTitle {
+      @include webFontHead01;
+      color: $colorPrimary;
+    }
+
+    .adminDesc {
+      @include webFontText03;
+      color: $colorMdGray;
+    }
+  }
+
+  .filterBar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .searchBox {
+      position: relative;
+      flex: 1;
+
+      input {
+        width: 100%;
+        padding: 8px 12px 8px 30px; // 왼쪽에 아이콘 공간 확보
+        border: 1px solid $colorSmGray;
+        border-radius: 4px;
+        @include webFontText02;
+      }
+
+
+    select {
+      padding: 8px 12px;
+      border: 1px solid $colorSmGray;
+      border-radius: 4px;
+      @include webFontText02;
+      background-color: $colorWhite;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: $colorPrimary;
+      color: $colorWhite;
+      cursor: pointer;
+      @include webFontText02;
+
+      &.danger {
+        background-color: $colorEtcRed;
+      }
+    }
+  }
+
+  .adminTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $colorWhite;
+    box-shadow: $bottomShadow;
+    border-radius: 6px;
+    overflow: hidden;
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid $colorSmGray;
+      @include webFontText03;
+    }
+
+    th {
+      background-color: $colorLgGray;
+    }
+
+    tbody tr:hover {
+      background-color: $colorSmGray;
+    }
+
+    .statusBadge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: $colorWhite;
+
+      &.new {
+        background-color: $colorEtcLgGreen;
+      }
+
+      &.used {
+        background-color: $colorEtcOrange;
+      }
+    }
+
+    .btn-sm {
+      padding: 4px 8px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 4px;
+      font-size: 0.875rem;
+      @include webFontText03;
+      background-color: $colorSkyBlue;
+      color: $colorWhite;
+
+      &.danger {
+        background-color: $colorEtcRed;
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    button {
+      padding: 6px 12px;
+      border: 1px solid $colorSmGray;
+      border-radius: 4px;
+      background-color: $colorWhite;
+      cursor: pointer;
+    }
+  }
+}
+}
