@@ -1,14 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import HaveNavi from '../components/nav/HaveNavi'
+
 const NoHeaderLayout = () => {
   return (
     <div>
-      <h2>헤더가 없는</h2>
+      {/* 헤더가 없는 */}
       
       <Outlet />
 
-      <h2>푸터가 있는</h2> 
+      
+      {/* 푸터가 있는 */}
+      <HaveNavi />
     </div>
   );
 };
