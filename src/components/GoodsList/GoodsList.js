@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // CSS 서식
-import './style/goodsList.scss';
+import './style/goodsList.css';
 import { FaRegComment } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 
