@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/goodsTrade.scss';
+import './styles/goodsTrade.css';
 
 function GoodsTrade(props) {
 	return (
