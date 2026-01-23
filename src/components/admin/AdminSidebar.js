@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import '../admin/styles/AdminSidebar1.css';
+import '../admin/styles/AdminSidebar.css';
 
 function AdminSidebar() {
   const handleLogout = () => {
@@ -10,12 +10,22 @@ function AdminSidebar() {
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-logo">
+
+      <NavLink 
+        to="/admin" 
+        className={({ isActive }) =>
+           // isActive === true면 현재 경로와 to 경로가 일치
+          isActive ? 'active' : ''} // 경로가 일치하면 'active' 클래스 적용, 아니면 빈 문자열
+      >
+        <div className="sidebar-logo">
         <img src={`${process.env.PUBLIC_URL}/images/logo1.png`} alt="Logo" />
       </div>
+      </NavLink>
+      
+
 
       <div className="sidebar-profile">
-        <img src={`${process.env.PUBLIC_URL}/images/admin.png`} alt="admin" className="profile-img" />
+        <img src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt="admin" className="profile-img" />
         <div className="profile-info">
           <p className="name">관리자 이름</p>
           <p className="role">관리자</p>
@@ -27,8 +37,10 @@ function AdminSidebar() {
     {/* NavLink: 클릭 시 해당 페이지로 이동, isActive: 현재 선택된 링크 표시 */}
     <li>
       <NavLink 
-        to="dashboard" 
-        className={({ isActive }) => isActive ? 'active' : ''}
+        to="/admin" 
+        className={({ isActive }) =>
+           // isActive === true면 현재 경로와 to 경로가 일치
+          isActive ? 'active' : ''} // 경로가 일치하면 'active' 클래스 적용, 아니면 빈 문자열
       >
         대시보드
       </NavLink>
