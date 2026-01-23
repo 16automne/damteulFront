@@ -1,125 +1,217 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './css/auth.css';
-import api from 'app/api/axios';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./css/auth.css";
+
+// axios
+import api from "app/api/axios";
 
 export default function Register() {
+  // navigate
   const navigate = useNavigate();
 
-  // 에러를 개별 상태가 아닌 하나의 객체로 관리하여 동시 업데이트 용이하게 처리
-  const [errors, setErrors] = useState({
-    user_name: '',
-    user_nickname: '',
-    user_phone: '',
-    server: ''
-  });
+  // 에러 발생시 나오게할 상태값 (phone, name, nick)
+  const [phoneError, setPhoneError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [nickError, setNickError] = useState("");
 
+  // 연결 실패 에러 상태값
+  const [regError, setRegError] = useState("");
+
+  // 회원가입 폼 상태값
   const [registerForm, setRegisterForm] = useState({
-    user_name: '',
-    user_nickname: '',
-    user_phone: ''
+    user_name: "",
+    user_nickname: "",
+    user_phone: "",
   });
 
+  // 회원가입 폼 변환 상태값
   const onChangeRegister = (e) => {
     const { name, value } = e.target;
-    setRegisterForm(prev => ({ ...prev, [name]: value }));
-    // 입력 시 해당 필드의 에러 메세지 초기화
-    setErrors(prev => ({ ...prev, [name]: '', server: '' }));
+    setRegisterForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // 폼입력시 해동 폼 에러 삭제
+    if (name === "user_phone") setPhoneError("");
+    if (name === "user_name") setNameError("");
+    if (name === "user_nickname") setNickError("");
+    setRegError("");
   };
 
-  // 공통 텍스트 검증 (이름, 닉네임)
-  const validateText = (text, label) => {
-    const v = text.trim();
-    if (v.length === 0) return `* ${label}을 입력해주세요.`;
-    if (/\s/.test(text)) return `* ${label}에 공백(띄어쓰기)을 포함할 수 없습니다.`;
+  // 전화번호 검증 함수
+  const validatePhone = (phone) => {
+    if (phone.length === 0) {
+      return "* 전화번호를 입력해주세요";
+    }
 
+    // 숫자만인지
+    if (!/^\d+$/.test(phone)) {
+      return "* 전화번호는 숫자만 입력해주세요.";
+    }
+
+    // 10~11자리인지
+    if (phone.length < 10 || phone.length > 11) {
+      return "* 전화번호는 10~11자리여야 합니다.";
+    }
+
+    return "";
+  };
+
+  // 이름, 닉네임 검증 함수
+  const validateText = (text, label) => {
+  if (/\s/.test(text)) {
+    return "* 띄어쓰기 없이 작성해주세요";
+  }
+    const v = text.trim();
+
+    if (v.length === 0) return `* ${label}을 입력해주세요`;
+
+    // 한글만
     const koreanRegex = /^[가-힣]+$/;
+    // 영어만
     const englishRegex = /^[A-Za-z]+$/;
 
+    // 한글 이름
     if (koreanRegex.test(v)) {
-      if (v.length > 25) return '* 한글은 최대 25자까지 가능합니다.';
-      return '';
+      if (v.length > 25) return "* 한글은 최대 25자까지 입력 가능합니다";
+      return "";
     }
+
+    // 영어 이름
     if (englishRegex.test(v)) {
-      if (v.length > 50) return '* 영어는 최대 50자까지 가능합니다.';
-      return '';
+      if (v.length > 50) return "* 영어은 최대 50자까지 입력 가능합니다";
+      return "";
     }
-    return `* ${label}은 한글 또는 영어만 입력 가능합니다 (혼합 불가).`;
+
+    return `* ${label}은 한글만 또는 영어만 입력 가능합니다 (혼합 불가)`;
   };
 
-  const validatePhone = (phone) => {
-    if (phone.length === 0) return '* 전화번호를 입력해주세요.';
-    if (/\s/.test(phone)) return '* 전화번호에 공백을 포함할 수 없습니다.';
-    if (!/^\d+$/.test(phone)) return '* 숫자만 입력해주세요.';
-    if (phone.length < 10 || phone.length > 11) return '* 10~11자리여야 합니다.';
-    return '';
-  };
-
+  // 회원가입 눌렀을때
   const onSubmitRegister = async (e) => {
     e.preventDefault();
 
-    // 1. 프론트엔드 1차 유효성 검사
-    const newErrors = {
-      user_name: validateText(registerForm.user_name, '이름'),
-      user_nickname: validateText(registerForm.user_nickname, '닉네임'),
-      user_phone: validatePhone(registerForm.user_phone, '전화번호'),
-      server: ''
-    };
+    // 유효성및 작성 검사
+    const phoneErr = validatePhone(registerForm.user_phone);
+    const nameErr = validateText(registerForm.user_name, "이름");
+    const nickErr = validateText(registerForm.user_nickname, "닉네임");
 
-    setErrors(newErrors);
+    setPhoneError(phoneErr);
+    setNameError(nameErr);
+    setNickError(nickErr);
 
-    // 프론트 에러가 있으면 중단 (필요하다면 이 부분을 주석 처리하여 서버로 강제 전송 가능)
-    if (newErrors.user_name || newErrors.user_nickname || newErrors.user_phone) return;
+    // 하나라도 있으면
+    if (phoneErr || nameErr || nickErr) {
+      return;
+    }
 
     try {
-      const { data } = await api.post('/api/user/register', registerForm);
-      if (data?.ok) navigate('/login');
+      const { data } = await api.post("/api/user/register", registerForm);
+
+      if (data?.ok) {
+        localStorage.setItem('userToken', data.userToken);  // 토큰저장
+        // 메인으로 이동
+        navigate("/",{ 
+          replace: true,
+          state: {
+            showWelcome: true,
+            from:'login'
+          }
+        });
+      }
     } catch (err) {
       if (!err.response) {
-        setErrors(prev => ({ ...prev, server: '* 서버와 통신할 수 없습니다.' }));
+        setRegError("* 서버 통신에 실패했습니다. 잠시 후 다시 시도해주세요");
         return;
       }
 
       const { status, data } = err.response;
-      // 2. 서버에서 온 다중 에러 처리 (중복 등)
-      if ((status === 409 || status === 400) && data.errors) {
-        setErrors(prev => ({
-          ...prev,
-          ...data.errors // 서버에서 온 에러들을 기존 에러 객체에 덮어씌움
-        }));
-      } else {
-        setErrors(prev => ({ ...prev, server: '* 알 수 없는 오류가 발생했습니다.' }));
+
+      // ✅ 409 중복 에러(동시에 출력)
+      if (status === 409 && data?.code === "DUPLICATE") {
+        // 서버에서 내려준 errors: { user_phone: "...", user_nickname: "..." }
+        const serverErrors = data?.errors || {};
+
+        setPhoneError(serverErrors.user_phone ? `* ${serverErrors.user_phone}` : "");
+        setNickError(serverErrors.user_nickname ? `* ${serverErrors.user_nickname}` : "");
+
+        // 이름은 중복체크 안 하니까 보통 비워둠(혹시 확장 대비)
+        setNameError(serverErrors.user_name ? `* ${serverErrors.user_name}` : "");
+
+        return;
       }
+
+      // 기타 중복(최종 방어선) - 백엔드가 message만 주는 경우 대비
+      if (status === 409) {
+        setRegError(data?.message ? `* ${data.message}` : "* 이미 사용 중인 값이 있습니다.");
+        return;
+      }
+
+      setRegError("* 서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요");
     }
   };
 
   return (
     <main>
-      <form className='authForm' onSubmit={onSubmitRegister}>
+      <form className="authForm" onSubmit={onSubmitRegister}>
         <legend>회원가입폼</legend>
+
         <fieldset>
+          {/* 이름 */}
           <div className="formTextWrapper">
             <label htmlFor="regUserName">이름</label>
-            <input type='text' id='regUserName' name='user_name' onChange={onChangeRegister} value={registerForm.user_name} />
-            {errors.user_name && <p className='errMassage'>{errors.user_name}</p>}
+            <input
+              type="text"
+              id="regUserName"
+              name="user_name"
+              value={registerForm.user_name}
+              onChange={onChangeRegister}
+              placeholder="이름을 입력해주세요"
+              maxLength={50}
+            />
+            {nameError && <p className="errMassage">{nameError}</p>}
           </div>
 
+          {/* 닉네임 */}
           <div className="formTextWrapper">
             <label htmlFor="regNickName">닉네임</label>
-            <input type='text' id='regNickName' name='user_nickname' onChange={onChangeRegister} value={registerForm.user_nickname} />
-            {errors.user_nickname && <p className='errMassage'>{errors.user_nickname}</p>}
+            <input
+              type="text"
+              id="regNickName"
+              name="user_nickname"
+              value={registerForm.user_nickname}
+              onChange={onChangeRegister}
+              placeholder="사용할 닉네임을 입력해주세요"
+              maxLength={50}
+            />
+            {nickError && <p className="errMassage">{nickError}</p>}
           </div>
 
+          {/* 전화번호 */}
           <div className="formTextWrapper">
             <label htmlFor="regUserPhone">전화번호</label>
-            <input type='tel' id='regUserPhone' name='user_phone' onChange={onChangeRegister} value={registerForm.user_phone} />
-            {errors.user_phone && <p className='errMassage'>{errors.user_phone}</p>}
+            <input
+              type="tel"
+              inputMode="numeric"
+              maxLength={11}
+              id="regUserPhone"
+              name="user_phone"
+              value={registerForm.user_phone}
+              onChange={onChangeRegister}
+              placeholder="'-'없이 번호만 입력해주세요"
+            />
+            {phoneError && <p className="errMassage">{phoneError}</p>}
           </div>
 
-          {errors.server && <p className='errMassage' style={{ textAlign: 'center' }}>{errors.server}</p>}
+          {regError && (
+            <p className="errMassage" style={{ textAlign: "center" }}>
+              {regError}
+            </p>
+          )}
 
           <div className="formButtonWrapper">
-            <Link to='/intro'>처음으로</Link>
+            <Link to="/intro" title="처음으로 돌아가기">
+              처음으로
+            </Link>
             <input type="submit" value="완료" />
           </div>
         </fieldset>
