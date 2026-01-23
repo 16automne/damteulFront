@@ -10,7 +10,9 @@ function GoodsTrade(props) {
 						<label htmlFor='categorySelect'>카테고리</label>
 						<select
 						id='categorySelect'
-						name='categorySelect'>
+						name='categorySelect'
+						className='inputForm'
+						required>
 							<option value=''>카테고리를 선택해주세요</option>
 							<option value=''>티켓/교환권</option>
 							<option value=''>의류</option>
@@ -20,43 +22,65 @@ function GoodsTrade(props) {
 					</p>
 					<p>
 						<label>제품명</label>
-						<input type='text'/>
+						<input type='text'
+						className='inputForm'
+						placeholder='제품명을 입력해주세요'
+						required/>
 					</p>
 					<p>
 						<label>대화여부</label>
-						<select>
+						<select className='inputForm'
+						required>
 							<option value='대화가능'>대화가능</option>
 							<option value='대화불가'>대화불가</option>
 						</select>
 					</p>
 					<p>
-						<label>자세한 설명</label>
-						<input type='textarea'/>
+						<label htmlFor=''>자세한 설명</label>
+						<textarea  type='textarea'
+						className='inputForm'
+						placeholder='자세한 설명을 입력해주세요'
+						maxLength='500'
+						required>
+						</textarea>
 					</p>
-					<div className='fileWrapper'>
+					<label className='fileWrapper' 
+					htmlFor='fileUpload'>
 						<input 
 						type='file'
 						id='fileUpload'
-						className='file'/>
+						className='file'
+						required/>
 							<img src='https://placehold.co/30x30' alt=''/>
-						<label 
-						htmlFor='fileUpload'
-						className='uploadBtn'>
-							n/10</label>
-					</div>
+							n/10
+					</label>
 					<p>
 						<label>제품 상태</label>
-						<select>
+						<select className='inputForm'
+						required>
 							<option>중고제품</option>
 							<option>새제품</option>
 						</select>
 					</p>
 					{/* 제품상태 - 중고제품 선택했을 때 나오는 영역 */}
-					<div>
-						<input type='file'/>
+					<div className='writeForm'>
+						<label className='fileWrapper fileOrange' 
+						htmlFor='fileUpload'>
+						<input type='file'
+						id='fileUpload'
+						className='file'
+						required/>
+							<img src='https://placehold.co/30x30' alt=''/>
+							n/5
+					</label>
 						<p>
-						<label>자세한 설명</label>
-						<input type='textarea'/>
+						<label htmlFor=''>자세한 설명</label>
+						<textarea  type='textarea'
+						className='inputForm'
+						placeholder='자세한 설명을 입력해주세요'
+						maxLength='500'
+						required>
+						</textarea>
 						</p>
 					</div>
 					<p>
@@ -65,7 +89,12 @@ function GoodsTrade(props) {
 					</p>
 					<p>
 						<label>금액</label>
-						<input type='number'/>원
+						<div className='tradePrice'>
+						<input type='number'
+						className='inputForm'
+						required/>
+						<span>원</span>
+						</div>
 					</p>
 
 				</form>

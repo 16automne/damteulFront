@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './styles/writeBtn.css';
+import { FaPlus } from "react-icons/fa6";
+
 
 function WriteBtn(props) {
 
@@ -12,7 +12,7 @@ function WriteBtn(props) {
 		<>
 			<div className='writeBtn'
 			onClick={()=>setIsOpen(!isOpen)}>
-				<FontAwesomeIcon icon={faPlus} className='plusIcon'/>
+				<FaPlus fill='#fff'/>
 			</div>
 			{isOpen &&(
 				<div className='writeCategory'>

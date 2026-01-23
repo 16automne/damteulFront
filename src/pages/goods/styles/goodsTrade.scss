@@ -4,15 +4,38 @@
 // 글쓰기 서식
 .writeForm{
 	width: 100%;
-
+	background: $colorLgGray;
+	>p{margin-bottom: 20px;}
 	>p label{
 		@include fontText02;
 		display: block;
 		margin-bottom: 5px;
 	}
-	#categorySelect{
+
+	.inputForm{
 		width: 100%;
+		border: none;
+		border-radius: 8px;
+		height: 50px;
+		box-shadow: $bottomShadow;
+		text-indent: 10px;
 	}
+	// 입력 항목 placeholder 서식
+	input{
+		&::placeholder{
+			@include fontText03;
+			color: $colorMdGray;
+		}
+	}
+	>p select{
+		@include fontText03;
+		color: $colorMdGray;
+	}
+// '자세한 설명'서식
+textarea{
+	resize: none;
+	height: 100px !important;
+	padding: auto 24px;
 }
 
 // 이미지업로드 버튼 서식
@@ -21,24 +44,37 @@
 	flex-direction: column;
 	align-items: center;
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	width: 50px; height: 50px;
 	background: $colorPrimary;
 	border: none;
 	border-radius: 5px;
 	text-align: center;
+	@include fontText04;
+		color: $colorWhite;
 	cursor: pointer;
-	// type=file 지운겁니다
+	// type=file 지움
 	.file{
 		display: none;
 	}
-
-	// uploadBtn 버튼 서식
-	.uploadBtn{
-		@include fontText04;
-		color: $colorWhite;
-
-		
+}
+.fileOrange{
+	background: $colorEtcOrange;
+}
+	// 입력항목 마지막 '금액' 서식
+	.tradePrice{
+		display: flex;
+		position: relative;
+		>span{
+			@include fontText02;
+			color: $colorDKGray;
+			position: absolute;
+			right: 15px;
+			top: 50%; transform: translateY(-50%);
+		}
 	}
-	
+
+
+
+
 }

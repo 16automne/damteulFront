@@ -13,10 +13,6 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	.plusIcon{
-		// 폰트색상 변경 안되면 이미지나 svg가져오겠습니다
-		color: $colorWhite;
-	}
 }
 // 글쓰기 버튼 클릭 시 서식
 .writeCategory{

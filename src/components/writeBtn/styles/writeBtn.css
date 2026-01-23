@@ -12,9 +12,6 @@
   justify-content: center;
   cursor: pointer;
 }
-.writeBtn .plusIcon {
-  color: #fff;
-}
 
 .writeCategory {
   width: 120px;
