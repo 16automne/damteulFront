@@ -60,7 +60,7 @@ const ReportAdminPage = () => {
         <div className="searchBox">
           <input
             type="text"
-            placeholder="🔍 신고자/신고 대상 검색"
+            placeholder=" 신고자/신고 대상 검색"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />

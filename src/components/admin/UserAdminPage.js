@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import '../admin/styles/PostAdminPage.css'; // 통일된 스타일 적용
+import React, { useState, useEffect } from 'react';
+import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
 
-// 사용자 등급별 이미지와 설명 매핑
+/* -------------------------------------------------
+   사용자 등급 정보 매핑
+   - key: 등급 이름 (user.grade와 반드시 동일해야 함)
+   - value: 이미지 경로 + 설명
+   - public/images 기준 절대경로 사용
+------------------------------------------------- */
 const gradeInfo = {
-  '조심스러운 이웃': { img: '/images/leve01.png', desc: '조심스럽게 활동하는 사용자' },
-  '반가운 이웃': { img: '/images/leve02.png', desc: '친근하게 다가오는 사용자' },
-  '다정한 이웃': { img: '/images/leve03.png', desc: '다정하고 친절한 사용자' },
-  '듬직한 이웃': { img: '/images/leve04.png', desc: '믿음직한 사용자' },
-  '신뢰 깊은 이웃': { img: '/images/leve05.png', desc: '신뢰할 수 있는 사용자' },
-  '존경 받는 이웃': { img: '/images/leve06.png', desc: '커뮤니티에서 존경받는 사용자' },
+  '조심스러운 이웃': { img: '/images/level01.png', desc: '조심스럽게 활동하는 사용자' },
+  '반가운 이웃': { img: '/images/level02.png', desc: '친근하게 다가오는 사용자' },
+  '다정한 이웃': { img: '/images/level03.png', desc: '다정하고 친절한 사용자' },
+  '듬직한 이웃': { img: '/images/level04.png', desc: '믿음직한 사용자' },
+  '신뢰 깊은 이웃': { img: '/images/level05.png', desc: '신뢰할 수 있는 사용자' },
+  '존경 받는 이웃': { img: '/images/level06.png', desc: '커뮤니티에서 존경받는 사용자' },
 };
 
-// 샘플 사용자 데이터 20명 생성
+/* -------------------------------------------------
+   샘플 사용자 데이터
+   - 실제 API 연동 시 이 배열만 서버 데이터로 교체하면 됨
+------------------------------------------------- */
 const sampleUsers = [
   { id: 'user020', nickname: '별님', grade: '존경 받는 이웃', reportScore: 0 },
   { id: 'user019', nickname: '달님', grade: '신뢰 깊은 이웃', reportScore: 1 },
@@ -36,22 +44,42 @@ const sampleUsers = [
 ];
 
 const UserAdminPage = () => {
-  const [keyword, setKeyword] = useState(''); // 검색어 상태
-  const [statusFilter, setStatusFilter] = useState(''); // 전체 상태 필터 (등급)
-  const [currentPage, setCurrentPage] = useState(1); // 페이지네이션 현재 페이지
-  const usersPerPage = 5; // 한 페이지당 5명
+  /* -------------------- 상태 관리 -------------------- */
+  const [keyword, setKeyword] = useState('');        // 검색어 (ID, 닉네임)
+  const [statusFilter, setStatusFilter] = useState(''); // 등급 필터
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const usersPerPage = 5; // 페이지당 사용자 수
 
-  // 최신 ID가 상단에 오도록 내림차순 정렬
-  const usersDescending = [...sampleUsers].sort((a, b) => b.id.localeCompare(a.id));
+  /* -------------------------------------------------
+     🔥 핵심 수정 포인트
+     - 검색어 또는 등급 필터가 변경되면
+     - 페이지네이션을 무조건 1페이지로 초기화
+     - 필터 결과가 적을 때 "사용자가 없습니다" 오류 방지
+  ------------------------------------------------- */
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [keyword, statusFilter]);
 
-  // 필터링: 등급 + 키워드 (ID, 닉네임)
+  /* -------------------- 정렬 --------------------
+     - 최신 ID가 위로 오도록 내림차순 정렬
+     - 원본 배열 보호를 위해 spread 사용
+  ----------------------------------------------- */
+  const usersDescending = [...sampleUsers].sort((a, b) =>
+    b.id.localeCompare(a.id)
+  );
+
+  /* -------------------- 필터링 --------------------
+     1. 등급 필터
+     2. 검색어 필터 (ID 또는 닉네임 포함)
+  ----------------------------------------------- */
   const filteredUsers = usersDescending.filter(user => {
-    const matchStatus = statusFilter ? user.grade === statusFilter : true; // 등급 필터
-    const matchKeyword = user.id.includes(keyword) || user.nickname.includes(keyword); // 검색어 필터
+    const matchStatus = statusFilter ? user.grade === statusFilter : true;
+    const matchKeyword =
+      user.id.includes(keyword) || user.nickname.includes(keyword);
     return matchStatus && matchKeyword;
   });
 
-  // 페이지네이션 계산
+  /* -------------------- 페이지네이션 계산 -------------------- */
   const indexOfLast = currentPage * usersPerPage;
   const indexOfFirst = indexOfLast - usersPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirst, indexOfLast);
@@ -59,18 +87,18 @@ const UserAdminPage = () => {
 
   return (
     <div className="adminPageContainer">
-      {/* 페이지 헤더 */}
+      {/* -------------------- 헤더 -------------------- */}
       <div className="adminHeader">
         <h2 className="adminTitle">사용자 관리</h2>
         <span className="adminDesc">사용자 정보와 신고 점수를 관리합니다</span>
       </div>
 
-      {/* 검색창 + 상태 필터 */}
+      {/* -------------------- 검색 / 필터 영역 -------------------- */}
       <div className="filterBar">
         <div className="searchBox">
           <input
             type="text"
-            placeholder="🔍 ID/닉네임 검색"
+            placeholder=" ID / 닉네임 검색"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
@@ -83,15 +111,25 @@ const UserAdminPage = () => {
         >
           <option value="">전체 상태</option>
           {Object.keys(gradeInfo).map(grade => (
-            <option key={grade} value={grade}>{grade}</option>
+            <option key={grade} value={grade}>
+              {grade}
+            </option>
           ))}
         </select>
 
-        <button>검색</button>
-        <button onClick={() => { setKeyword(''); setStatusFilter(''); }}>초기화</button>
+        {/* 실시간 필터링이라 버튼은 UX용 */}
+        <button onClick={() => setCurrentPage(1)}>검색</button>
+        <button
+          onClick={() => {
+            setKeyword('');
+            setStatusFilter('');
+          }}
+        >
+          초기화
+        </button>
       </div>
 
-      {/* 테이블 */}
+      {/* -------------------- 테이블 -------------------- */}
       <table className="adminTable">
         <thead>
           <tr>
@@ -108,32 +146,41 @@ const UserAdminPage = () => {
               <td colSpan="5">사용자가 없습니다.</td>
             </tr>
           ) : (
-            currentUsers.map(user => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.nickname}</td>
-                <td>
-                  {/* 상태: 등급 이미지 + 이름 + 설명 */}
-                  <div className="gradeContainer">
-                    <img src={gradeInfo[user.grade].img} alt={user.grade} className="gradeImg" />
-                    <div>
-                      <div>{user.grade}</div>
-                      <small>{gradeInfo[user.grade].desc}</small>
-                    </div>
-                  </div>
-                </td>
-                <td>{user.reportScore} / 5</td> {/* 신고 점수 최대 5점 */}
-                <td>
-                  <button className="btn-sm">경고</button>
-                  <button className="btn-sm danger">삭제</button>
-                </td>
-              </tr>
-            ))
+            currentUsers.map(user => {
+              const grade = gradeInfo[user.grade]; // 안전한 접근
+
+              return (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.nickname}</td>
+                  <td>
+                    {grade && (
+                      <div className="gradeContainer">
+                        <img
+                          src={grade.img}
+                          alt={user.grade}
+                          className="gradeImg"
+                        />
+                        <div>
+                          <div>{user.grade}</div>
+                          <small>{grade.desc}</small>
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  <td>{user.reportScore} / 15</td>
+                  <td>
+                    <button className="btn-sm">경고</button>
+                    <button className="btn-sm danger">삭제</button>
+                  </td>
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>
 
-      {/* 페이지네이션 */}
+      {/* -------------------- 페이지네이션 -------------------- */}
       <div className="pagination">
         <button
           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -141,10 +188,12 @@ const UserAdminPage = () => {
         >
           {'<'}
         </button>
-        <span>{currentPage} / {totalPages}</span>
+
+        <span>{currentPage} / {totalPages || 1}</span>
+
         <button
           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages || totalPages === 0}
         >
           {'>'}
         </button>
