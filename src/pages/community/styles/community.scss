@@ -1,2 +1,112 @@
 @import '../../../styles/_config';
 
+@mixin iconBoarder($color) {
+  border: 0.2rem solid $color;
+}
+
+.commCateList {
+  max-width: 767px;
+  margin: 0 auto;
+  width: 100%;
+  height: 4rem;
+  padding-bottom: env(safe-area-inset-bottom); //하단 홈 바 여유공간
+
+  background-color: $colorLgGray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 100;
+
+  .commCateWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: $colorDKGray;
+    border: 1px solid #f00;
+    width: 3.75rem; height: 3rem;
+
+    .commCateIcon {
+      @include fontHead02;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 50%;
+
+    }
+    &:nth-child(1) .commCateIcon {@include iconBoarder($colorEtcRed)};
+    &:nth-child(2) .commCateIcon {@include iconBoarder($colorEtcOrange)};
+    &:nth-child(3) .commCateIcon {@include iconBoarder($colorEtcYellow)};
+    &:nth-child(4) .commCateIcon {@include iconBoarder($colorEtcLgGreen)};
+    &:nth-child(5) .commCateIcon {@include iconBoarder($colorEtcSkyBlue)};
+    &:nth-child(6) .commCateIcon {@include iconBoarder($colorEtcBlue)};
+    &:nth-child(7) .commCateIcon {@include iconBoarder($colorEtcPurple)};
+
+    .commCateLabel {
+      @include fontText04;
+    }
+
+    &.active { //클릭되면 색 변경
+      color: $colorPrimary; 
+      .navIcon {
+        color: $colorPrimary;
+      }
+    }
+  }
+}
+
+
+.comTitle{ //숨기기
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+.comFeedSection{
+  @include mobileChildFullLayout;
+  margin: 0 auto;
+}
+.comFeedWrap {
+  display: flex;
+  flex-wrap: wrap; // 아래로 계속 추가되도록 설정
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #f00;
+
+  .comFeedItem {
+    width: calc(49.9%);
+    
+    .imgBox { //이미지
+      position: relative; //feedInfo의 기준
+      width: 100%;
+      overflow: hidden;
+
+      img { // 이미지 꽉 차게
+        width: 100%; height: 100%; 
+        object-fit: cover;
+        display: block;
+      } 
+
+      .feedInfo { //이미지 + 이미지 아이콘, 숫자
+        position: absolute; bottom: 1rem; right: 1rem; //imgBox
+        display: flex; flex-direction: column;
+        gap: 0.5rem;
+
+        span { //이미지 아이콘, 숫자
+          @include fontText04;
+          display: flex;
+          align-items: center; justify-content: flex-end;
+          gap: 3px;
+          color: $colorWhite;
+          svg { //아이콘
+            fill: $colorWhite; 
+            color: $colorWhite;
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}
