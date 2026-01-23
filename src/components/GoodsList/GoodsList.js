@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment } from '@fortawesome/free-regular-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
 // CSS 서식
 import './style/goodsList.scss';
+import { FaRegComment } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa6";
+
+
 
 function GoodsList(props) {
 	return (
@@ -21,8 +22,8 @@ function GoodsList(props) {
 								</div>
 								{/* 좋아요 / 댓글 */}
 								<div className='goodsReaction'>
-									<p><FontAwesomeIcon icon={faComment}/>n</p>
-									<p><FontAwesomeIcon icon={faHeart}/>n</p>
+									<p><FaRegComment /><span>n</span></p>
+									<p><FaRegHeart /><span>n</span></p>
 								</div>
 							</div>
 						</Link>

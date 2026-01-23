@@ -30,9 +30,16 @@
 	// 좋아요, 댓글 수
 	.goodsReaction{
 		position: absolute;
-		bottom: 0px; right: 0px;
+		bottom: 0px; right: 5px;
 		display: flex;
 		gap: 10px;
 		font-size: 12px;
+		p{
+			@include fontText04;
+		}
+		p>span{
+			margin-left: 5px;
+			@include fontText04;
+		}
 	}
 }
