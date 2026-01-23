@@ -14,6 +14,9 @@
   display: block;
   margin-bottom: 5px;
 }
+.writeForm > p:first-of-type {
+  margin-top: 20px;
+}
 .writeForm .inputForm {
   width: 100%;
   border: none;

@@ -10,7 +10,9 @@ import { FaRegHeart } from "react-icons/fa6";
 function GoodsList(props) {
 	return (
 		<div>
-			<Link className='goodsList'>
+			<Link 
+			to='/goodsdetail'
+			className='goodsList'>
 							{/* 상품이미지 영역 */}
 							<img src='https://placehold.co/130x130' alt='product'/>
 							<div className='goodsArea'>

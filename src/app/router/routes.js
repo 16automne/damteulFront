@@ -18,8 +18,9 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Chat from "pages/chat/Chat";
   import MyPage from "pages/my/MyPage";
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
-  import GoodsTrade from "pages/goods/GoodsTrade";
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
+  import GoodsTrade from "pages/goods/GoodsTrade";
+  import GoodsDetail from 'pages/goods/GoodsDetail';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import Login from "pages/auth/Login";
@@ -51,14 +52,15 @@ export const routes = [
   {
     element: <NoTabsTitleLayout />,
     children: [
-      {path:"/goodstrade", element: <GoodsTrade />}
     ],
   },
-
+  
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   {
     element: <NoTabsBackLayout />,
     children: [
+      {path:"/goodstrade", element: <GoodsTrade />},
+      {path:"/goodsdetail", element: <GoodsDetail />}
       
     ],
   },
