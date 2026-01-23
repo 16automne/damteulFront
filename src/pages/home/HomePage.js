@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './styles/main.scss';
+import './styles/main.css';
 // 글쓰기버튼
 import WriteBtn from 'components/writeBtn/WriteBtn';
 // 상품목록

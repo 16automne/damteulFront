@@ -1,0 +1,119 @@
+@use '../../../styles/_config' as *;
+
+// -------------------- 2. 대시보드 컨테이너 --------------------
+.dashboardContainer{
+  padding:20px;
+  background-color:$colorLgGray;
+  min-height: 100vh;
+}
+
+// -------------------- 3. KPI 섹션 --------------------
+.kpiSection {
+  margin-bottom: 30px;
+
+  .sectionTitle{
+    @include webFontHead02;
+    margin-bottom: 15px;
+  }
+
+  .kpiCards{
+    display: flex; 
+    gap: 20px;
+
+      .kpiCard{
+        flex: 1; 
+        background-color: $colorWhite;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: $bottomShadow;
+        display: flex;
+        flex-direction:column;
+        justify-content: space-between;
+
+        h4{
+          @include webFontText01;
+          margin-bottom:10px;
+        }
+
+        p{
+          margin: 4px 0;
+
+          &.today{
+            @include webFontText01;
+            color: $colorPrimary;
+          }
+
+          &.month{
+            @include webFontText04;
+          }
+        }
+      }  
+    }
+  }
+
+  // -------------------- 4. 하단 영역 --------------------
+  .lowerSection{
+    display:flex; 
+    gap: 20px;
+
+    .summaryBox, .eventBox{
+      background-color: $colorWhite;
+      padding: 20px;
+      border-radius:8px;
+      box-shadow:$bottomShadow;
+    }
+
+    //좌측 요약 
+    .summaryBox{
+      flex: 1; 
+
+      h3{
+        @include webFontText01; 
+        margin-bottom: 15px; 
+      }
+
+      ul{
+        list-style: none;
+        padding: 0;
+
+        li{
+          @include webFontText04;
+          margin-bottom:8px;
+        }
+      }
+    }
+
+    //우측 이벤트 / 공지사항 테이블 
+    .eventBox{
+      flex: 2;
+
+      h3{
+        @include webFontText01;
+        margin-bottom:15px;
+      }
+
+      table{
+        width: 100%;
+        border-collapse: collapse; 
+        
+        th, td{
+          padding: 10px;
+          text-align: left; 
+          border-bottom: 1px solid $colorSmGray;
+        }
+
+        th{
+          background-color: $colorLgGray; 
+          @include webFontText03;
+        }
+
+        td{
+          @include webFontText04;
+        }
+ 
+      }
+
+    }
+
+  }
+

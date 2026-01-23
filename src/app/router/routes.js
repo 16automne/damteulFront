@@ -32,7 +32,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import PostAdminPage from "components/admin/PostAdminPage"
   import ReportAdminPage from "components/admin/ReportAdminPage"
   import TradeAdminPage from "components/admin/TradeAdminPage"
-  import EventAdminPage from "components/admin/EventAdminPage"
+  import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
 
 export const routes = [
@@ -95,7 +95,7 @@ export const routes = [
       {path: "posts", element:<PostAdminPage />},
       {path: "reports", element:<ReportAdminPage />},
       {path: "trades", element:<TradeAdminPage />},
-      {path: "events", element:<EventAdminPage />},
+      {path: "events", element:<NoticeEventAdminPage />},
       {path: "community", element:<CommunityAdminPage />}
     ],
   },
