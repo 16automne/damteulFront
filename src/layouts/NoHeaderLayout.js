@@ -5,14 +5,15 @@ import HaveNavi from '../components/nav/HaveNavi'
 
 const NoHeaderLayout = () => {
   return (
-    <div>
+    <div className='bodyParent'>
+      <div className='bodyChild'>
       {/* 헤더가 없는 */}
       
       <Outlet />
-
       
       {/* 푸터가 있는 */}
       <HaveNavi />
+      </div>
     </div>
   );
 };

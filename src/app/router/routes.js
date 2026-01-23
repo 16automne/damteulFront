@@ -22,8 +22,10 @@ import AdminIndex from "pages/admin/AdminIndex";
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
+  import FirstPage from "pages/intro/FirstPage";
   import Login from "pages/auth/Login";
   import Register from "pages/auth/Register";
+  
   // 6) 관리자 페이지 (AdminPage)
   import DashboardPage from "components/admin/DashboardPage"
   import UserAdminPage from "components/admin/UserAdminPage"
@@ -75,6 +77,7 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
+      { path: "/login", element: <FirstPage /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
     ],
