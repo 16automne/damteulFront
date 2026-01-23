@@ -16,10 +16,6 @@ function GoodsDetail(props) {
 
 	// 더보기버튼 상태변수
 	const [isOpen, setIsOpen] = useState(false);
-	// 삭제하기 팝업 상태변수
-	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	// 삭제하기 버튼 클릭 시 (추가예정)
 
 	return (
 		<main>
