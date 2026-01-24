@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .dashboardContainer {
   padding: 20px;
   background-color: #F2F5F2;
@@ -28,19 +29,65 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  /* ---------------- 상단 (제목 + 화살표) ---------------- */
+  /* ---------------- KPI 수치 영역 ---------------- */
 }
-.kpiSection .kpiCards .kpiCard h4 {
+.kpiSection .kpiCards .kpiCard:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+.kpiSection .kpiCards .kpiCard .kpiHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.kpiSection .kpiCards .kpiCard .kpiHeader h4 {
   font-family: "Inter", sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: #1A1C19;
   line-height: 1.4;
-  margin-bottom: 10px;
 }
-.kpiSection .kpiCards .kpiCard p {
+.kpiSection .kpiCards .kpiCard .kpiHeader .arrowButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  position: relative;
+}
+.kpiSection .kpiCards .kpiCard .kpiHeader .arrowButton::after {
+  content: ">";
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #6B6B6B;
+  line-height: 1;
+  transform: scale(1.1);
+  transition: all 0.18s ease;
+}
+.kpiSection .kpiCards .kpiCard .kpiHeader .arrowButton:hover {
+  background-color: #F2F5F2;
+}
+.kpiSection .kpiCards .kpiCard .kpiHeader .arrowButton:hover::after {
+  color: #58A563;
+  transform: translateX(4px) scale(1.1);
+}
+.kpiSection .kpiCards .kpiCard .kpiHeader .arrowButton:active::after {
+  transform: translateX(2px) scale(1.05);
+}
+.kpiSection .kpiCards .kpiCard .kpiBody {
+  margin-top: 10px;
+}
+.kpiSection .kpiCards .kpiCard .kpiBody p {
   margin: 4px 0;
 }
-.kpiSection .kpiCards .kpiCard p.today {
+.kpiSection .kpiCards .kpiCard .kpiBody p.today {
   font-family: "Inter", sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -48,7 +95,7 @@
   line-height: 1.4;
   color: #58A563;
 }
-.kpiSection .kpiCards .kpiCard p.month {
+.kpiSection .kpiCards .kpiCard .kpiBody p.month {
   font-family: "Inter", sans-serif;
   font-size: 0.8125rem;
   font-weight: 400;
@@ -60,7 +107,8 @@
   display: flex;
   gap: 20px;
 }
-.lowerSection .summaryBox, .lowerSection .eventBox {
+.lowerSection .summaryBox,
+.lowerSection .eventBox {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -104,9 +152,9 @@
   width: 100%;
   border-collapse: collapse;
 }
-.lowerSection .eventBox table th, .lowerSection .eventBox table td {
+.lowerSection .eventBox table th,
+.lowerSection .eventBox table td {
   padding: 10px;
-  text-align: left;
   border-bottom: 1px solid #D7D7D7;
 }
 .lowerSection .eventBox table th {
@@ -123,4 +171,25 @@
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
+}
+.lowerSection .eventBox table td.clickableCell {
+  position: relative;
+  cursor: pointer;
+  padding-right: 28px;
+}
+.lowerSection .eventBox table td.clickableCell::after {
+  content: "›";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.lowerSection .eventBox table td.clickableCell:hover {
+  background-color: rgba(88, 165, 99, 0.05);
+}
+.lowerSection .eventBox table td.clickableCell:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(2px);
 }/*# sourceMappingURL=Dashboard.css.map */

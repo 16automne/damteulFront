@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import '../admin/styles/PostAdminPage.css'; // 통일된 스타일
+import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
 
-// 샘플 커뮤니티 게시글 20개 생성, 상태는 '진행중'과 '종료' 섞음
+/* ===========================
+   1️⃣ 샘플 커뮤니티 데이터
+=========================== */
+
 const sampleCommunities = [
   { id: 120, category: '재활용/나눔', title: '동네 나눔 장터', date: '2026-01-23', status: '진행중' },
   { id: 119, category: '반려동물', title: '강아지 산책 모임', date: '2026-01-22', status: '종료' },
@@ -13,74 +16,133 @@ const sampleCommunities = [
   { id: 113, category: '직업', title: '취업 정보 공유', date: '2026-01-16', status: '종료' },
   { id: 112, category: '유아/교육', title: '영어 놀이 모임', date: '2026-01-15', status: '진행중' },
   { id: 111, category: '중고 거래', title: '중고 가전 판매', date: '2026-01-14', status: '종료' },
-  { id: 110, category: '재활용/나눔', title: '옷 나눔 모임', date: '2026-01-13', status: '진행중' },
-  { id: 109, category: '반려동물', title: '반려동물 용품 교환', date: '2026-01-12', status: '종료' },
-  { id: 108, category: '직업', title: '코딩 스터디', date: '2026-01-11', status: '진행중' },
-  { id: 107, category: '유아/교육', title: '아이 그림 그리기 모임', date: '2026-01-10', status: '종료' },
-  { id: 106, category: '중고 거래', title: '중고 스마트폰 나눔', date: '2026-01-09', status: '진행중' },
-  { id: 105, category: '재활용/나눔', title: '책 무료 나눔', date: '2026-01-08', status: '종료' },
-  { id: 104, category: '반려동물', title: '강아지 용품 교환', date: '2026-01-07', status: '진행중' },
-  { id: 103, category: '직업', title: '디자인 워크샵', date: '2026-01-06', status: '종료' },
-  { id: 102, category: '유아/교육', title: '유아 놀이 모임', date: '2026-01-05', status: '진행중' },
-  { id: 101, category: '중고 거래', title: '중고 장난감 교환', date: '2026-01-04', status: '종료' },
 ];
 
+/* ===========================
+   2️⃣ CommunityAdminPage
+=========================== */
+
 const CommunityAdminPage = () => {
-  const [keyword, setKeyword] = useState(''); // 검색어 상태
-  const [statusFilter, setStatusFilter] = useState(''); // 전체 상태 필터 (진행중/종료)
-  const [currentPage, setCurrentPage] = useState(1); // 페이지네이션 현재 페이지
-  const communitiesPerPage = 5; // 한 페이지당 5개 게시글
+  /* ===========================
+     🔹 입력용 상태 (타이핑만)
+  =========================== */
+  const [inputKeyword, setInputKeyword] = useState('');
+  const [inputStatus, setInputStatus] = useState('');
 
-  // 최신 ID가 상단에 오도록 내림차순 정렬
-  const communitiesDescending = [...sampleCommunities].sort((a, b) => b.id - a.id);
+  /* ===========================
+     🔹 실제 검색 적용 상태
+     (검색 버튼 클릭 시에만 변경)
+  =========================== */
+  const [keyword, setKeyword] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
 
-  // 필터링: 상태 + 키워드 (제목, 카테고리)
-  const filteredCommunities = communitiesDescending.filter(item => {
-    const matchStatus = statusFilter ? item.status === statusFilter : true; // 상태 필터
-    const matchKeyword = item.title.includes(keyword) || item.category.includes(keyword); // 검색어 필터
+  /* ===========================
+     🔹 페이지네이션 상태
+  =========================== */
+  const [currentPage, setCurrentPage] = useState(1);
+  const communitiesPerPage = 5;
+
+  /* ===========================
+     3️⃣ 검색 버튼 클릭 로직
+     - 검색 조건 적용
+     - 페이지 1로 초기화
+  =========================== */
+  const handleSearch = () => {
+    setKeyword(inputKeyword);
+    setStatusFilter(inputStatus);
+    setCurrentPage(1);
+  };
+
+  /* ===========================
+     4️⃣ 최신글 우선 정렬
+  =========================== */
+  const sortedCommunities = [...sampleCommunities].sort(
+    (a, b) => b.id - a.id
+  );
+
+  /* ===========================
+     5️⃣ 필터링 로직
+     - 상태 필터
+     - 제목/카테고리 검색
+  =========================== */
+  const filteredCommunities = sortedCommunities.filter(item => {
+    const matchStatus = statusFilter
+      ? item.status === statusFilter
+      : true;
+
+    const matchKeyword = keyword
+      ? item.title.includes(keyword) ||
+      item.category.includes(keyword)
+      : true;
+
     return matchStatus && matchKeyword;
   });
 
-  // 페이지네이션 계산
+  /* ===========================
+     6️⃣ 페이지네이션 계산
+  =========================== */
   const indexOfLast = currentPage * communitiesPerPage;
   const indexOfFirst = indexOfLast - communitiesPerPage;
-  const currentCommunities = filteredCommunities.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(filteredCommunities.length / communitiesPerPage);
+  const currentCommunities = filteredCommunities.slice(
+    indexOfFirst,
+    indexOfLast
+  );
+  const totalPages = Math.ceil(
+    filteredCommunities.length / communitiesPerPage
+  );
 
   return (
     <div className="adminPageContainer">
-      {/* 페이지 헤더 */}
+      {/* 헤더 */}
       <div className="adminHeader">
         <h2 className="adminTitle">커뮤니티 관리</h2>
-        <span className="adminDesc">커뮤니티 게시글과 모임 상태를 관리합니다</span>
+        <span className="adminDesc">
+          커뮤니티 게시글과 모임 상태를 관리합니다
+        </span>
       </div>
 
-      {/* 검색창 + 상태 필터 */}
+      {/* ===========================
+         🔍 검색 / 필터 영역
+      =========================== */}
       <div className="filterBar">
         <div className="searchBox">
           <input
             type="text"
-            placeholder=" 제목/카테고리 검색"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
+            placeholder=" 카테고리 / 제목 검색"
+            value={inputKeyword}
+            onChange={(e) => setInputKeyword(e.target.value)}
           />
         </div>
 
-        {/* 상태 필터 추가 */}
         <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
+          value={inputStatus}
+          onChange={(e) => setInputStatus(e.target.value)}
         >
           <option value="">전체 상태</option>
           <option value="진행중">진행중</option>
           <option value="종료">종료</option>
         </select>
 
-        <button>검색</button>
-        <button onClick={() => { setKeyword(''); setStatusFilter(''); }}>초기화</button>
+        {/* 🔹 검색 버튼 클릭 시에만 실제 검색 */}
+        <button onClick={handleSearch}>검색</button>
+
+        {/* 🔹 입력값 + 검색 조건 + 페이지 초기화 */}
+        <button
+          onClick={() => {
+            setInputKeyword('');
+            setInputStatus('');
+            setKeyword('');
+            setStatusFilter('');
+            setCurrentPage(1);
+          }}
+        >
+          초기화
+        </button>
       </div>
 
-      {/* 테이블 */}
+      {/* ===========================
+         📋 커뮤니티 테이블
+      =========================== */}
       <table className="adminTable">
         <thead>
           <tr>
@@ -105,8 +167,10 @@ const CommunityAdminPage = () => {
                 <td>{item.title}</td>
                 <td>{item.date}</td>
                 <td>
-                  {/* 상태 표시 배지 */}
-                  <span className={`statusBadge ${item.status === '진행중' ? 'new' : 'used'}`}>
+                  <span
+                    className={`statusBadge ${item.status === '진행중' ? 'new' : 'used'
+                      }`}
+                  >
                     {item.status}
                   </span>
                 </td>
@@ -120,7 +184,9 @@ const CommunityAdminPage = () => {
         </tbody>
       </table>
 
-      {/* 페이지네이션 */}
+      {/* ===========================
+         📄 페이지네이션
+      =========================== */}
       <div className="pagination">
         <button
           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -128,9 +194,11 @@ const CommunityAdminPage = () => {
         >
           {'<'}
         </button>
-        <span>{currentPage} / {totalPages}</span>
+        <span>{currentPage} / {totalPages || 1}</span>
         <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          onClick={() =>
+            setCurrentPage(prev => Math.min(prev + 1, totalPages))
+          }
           disabled={currentPage === totalPages}
         >
           {'>'}
