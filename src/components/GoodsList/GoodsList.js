@@ -15,9 +15,9 @@ function GoodsList(props) {
 			className='goodsList'>
 							{/* 상품이미지 영역 */}
 							<img src='https://placehold.co/130x130' alt='product'/>
-							<div className='goodsArea'>
+							<div className='goodsListArea'>
 								{/* 텍스트 영역 */}
-								<div className='goodsInfo'>
+								<div className='goodsListInfo'>
 								<h3>Title</h3>
 								<span>cate | 새제품</span>
 								<p>00,000</p>
