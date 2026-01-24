@@ -1,0 +1,126 @@
+.dashboardContainer {
+  padding: 20px;
+  background-color: #F2F5F2;
+  min-height: 100vh;
+}
+
+.kpiSection {
+  margin-bottom: 30px;
+}
+.kpiSection .sectionTitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+.kpiSection .kpiCards {
+  display: flex;
+  gap: 20px;
+}
+.kpiSection .kpiCards .kpiCard {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.kpiSection .kpiCards .kpiCard h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.kpiSection .kpiCards .kpiCard p {
+  margin: 4px 0;
+}
+.kpiSection .kpiCards .kpiCard p.today {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #58A563;
+}
+.kpiSection .kpiCards .kpiCard p.month {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+
+.lowerSection {
+  display: flex;
+  gap: 20px;
+}
+.lowerSection .summaryBox, .lowerSection .eventBox {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+.lowerSection .summaryBox {
+  flex: 1;
+}
+.lowerSection .summaryBox h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+.lowerSection .summaryBox ul {
+  list-style: none;
+  padding: 0;
+}
+.lowerSection .summaryBox ul li {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.lowerSection .eventBox {
+  flex: 2;
+}
+.lowerSection .eventBox h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+.lowerSection .eventBox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.lowerSection .eventBox table th, .lowerSection .eventBox table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #D7D7D7;
+}
+.lowerSection .eventBox table th {
+  background-color: #F2F5F2;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.lowerSection .eventBox table td {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}/*# sourceMappingURL=Dashboard.css.map */

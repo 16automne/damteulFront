@@ -62,7 +62,7 @@ const TradeAdminPage = () => {
         <div className="searchBox">
           <input
             type="text"
-            placeholder="🔍 상품명/구매자/판매자 검색"
+            placeholder=" 상품명/구매자/판매자 검색"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />

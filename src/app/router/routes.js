@@ -23,15 +23,17 @@ import AdminIndex from "pages/admin/AdminIndex";
   import GoodsDetail from 'pages/goods/GoodsDetail';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
+  import FirstPage from "pages/intro/FirstPage";
   import Login from "pages/auth/Login";
   import Register from "pages/auth/Register";
+  
   // 6) 관리자 페이지 (AdminPage)
   import DashboardPage from "components/admin/DashboardPage"
   import UserAdminPage from "components/admin/UserAdminPage"
   import PostAdminPage from "components/admin/PostAdminPage"
   import ReportAdminPage from "components/admin/ReportAdminPage"
   import TradeAdminPage from "components/admin/TradeAdminPage"
-  import EventAdminPage from "components/admin/EventAdminPage"
+  import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
 
 export const routes = [
@@ -77,6 +79,7 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
+      { path: "/login", element: <FirstPage /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
     ],
@@ -94,7 +97,7 @@ export const routes = [
       {path: "posts", element:<PostAdminPage />},
       {path: "reports", element:<ReportAdminPage />},
       {path: "trades", element:<TradeAdminPage />},
-      {path: "events", element:<EventAdminPage />},
+      {path: "events", element:<NoticeEventAdminPage />},
       {path: "community", element:<CommunityAdminPage />}
     ],
   },

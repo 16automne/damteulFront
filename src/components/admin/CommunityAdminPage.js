@@ -60,7 +60,7 @@ const CommunityAdminPage = () => {
         <div className="searchBox">
           <input
             type="text"
-            placeholder="🔍 제목/카테고리 검색"
+            placeholder=" 제목/카테고리 검색"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />

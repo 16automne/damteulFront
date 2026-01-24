@@ -15,34 +15,41 @@ const HomePage = () => {
 
 	// 로그인,회원가입에서 home 방문시 로그인완료 뜨게하기
 	const [loginSuccess, setLoginSuccess] = useState(false);
-	const loginMessageStyle={
-		position:'fixed',
-		bottom:'150px',
-		left:'50%',
-		transform:'translateX(-50%)',
-		background: 'rgb(26, 28, 25)',
-		padding: '5px 10px',
-		borderRadius: '30px',
-		fontSize: '12px',
-		color: '#fff'
-	};
+
+	// 천천히 사라지게
+	const [fadeOut, setFadeOut] = useState(false);
 
 	useEffect(()=>{
 		if(location.state?.showWelcome){
 			setLoginSuccess(true);
+			setFadeOut(false);
 
-			const timer = setTimeout(()=>{
+			// 2초후 -> 서서히 사라지기 시작
+			const fadeTimer = setTimeout(()=>{
+				setFadeOut(true);
+			},2000)
+
+			const removeTimer = setTimeout(()=>{
 				setLoginSuccess(false);
-			},2000);
+			},2500);
 
-			return () => clearTimeout(timer);
+			// 타이머 지우기
+			return () => {
+				clearTimeout(fadeTimer);
+				clearTimeout(removeTimer);
+			};
 		}
 	},[location.state?.showWelcome]);
 
 
 	return (
 		<main>
-			{loginSuccess && <p style={loginMessageStyle}>로그인 성공</p>}
+			{/* 로그인 성공시 나오는 메시지 */}
+			{loginSuccess && (
+				<p className={`loginMessage ${fadeOut ? 'fadeOut' : ''}`}>
+					로그인 성공
+				</p>
+			)}
 
 			<section>
 					<div className='btnContainer'>
@@ -51,6 +58,10 @@ const HomePage = () => {
 					</div>
           {/* 상품목록 (map필요)*/}
           <GoodsList />
+          <GoodsList />
+          <GoodsList />
+
+
 						
 						
 						{/* 글쓰기 버튼 */}

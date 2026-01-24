@@ -4,6 +4,24 @@
   color: #333;
 }
 
+.loginMessage {
+  position: fixed;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1A1C19;
+  padding: 5px 10px;
+  border-radius: 30px;
+  font-size: 12px;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.loginMessage.fadeOut {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+}
+
 .btnContainer {
   margin-top: 20px;
   margin-bottom: 20px;

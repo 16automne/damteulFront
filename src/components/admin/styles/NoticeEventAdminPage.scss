@@ -1,0 +1,32 @@
+@use '../../../styles/_config' as *;
+
+.noticeEventPage {
+
+  .tabContainer {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    .tabButton {
+      flex: 1;      
+      padding: 10px 24px;
+      border-radius: 12px;
+      border: 1px solid $colorSmGray;
+      background-color: $colorWhite;
+      cursor: pointer;
+      @include webFontText02;
+      transition: all 0.2s ease;
+
+      &.active {
+        background-color: $colorPrimary;
+        color: $colorWhite;
+        border-color: $colorPrimary;
+      }
+
+      &:hover:not(.active) {
+        background-color: $colorLgGray;
+      }
+    }
+  }
+
+}
