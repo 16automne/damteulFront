@@ -56,6 +56,7 @@
 .bottomBtn {
   display: flex;
   justify-content: center;
+  background: #F2F5F2;
   gap: 10px;
   z-index: 10;
   position: fixed;
@@ -65,6 +66,34 @@
   left: 0px;
   box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
   padding-top: 10px;
+}
+.bottomBtn button:first-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #6B6B6B;
+}
+.bottomBtn button:last-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
 }
 
 .writeForm {

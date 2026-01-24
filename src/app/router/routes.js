@@ -21,6 +21,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';
+  import NanumPost from 'pages/nanum/NanumPost';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
@@ -35,6 +36,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import TradeAdminPage from "components/admin/TradeAdminPage"
   import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
+import NanumDetail from 'pages/nanum/NanumDetail';
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
@@ -62,7 +64,9 @@ export const routes = [
     element: <NoTabsBackLayout />,
     children: [
       {path:"/goodstrade", element: <GoodsTrade />},
-      {path:"/goodsdetail", element: <GoodsDetail />}
+      {path:"/goodsdetail", element: <GoodsDetail />},
+      {path:"/nanumpost", element:<NanumPost />},
+      {path:"/nanumdetail", element:<NanumDetail />}
       
     ],
   },

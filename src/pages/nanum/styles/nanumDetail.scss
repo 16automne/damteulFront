@@ -1,0 +1,12 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
+
+// 하단 fixed 버튼 가려져서 넣음
+main{padding-bottom: 80px;}
+
+.nanumBtnCustom{
+	button{
+		@include linkButtonHalf($colorEtcRed);
+	}
+}

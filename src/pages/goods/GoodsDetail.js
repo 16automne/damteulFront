@@ -7,7 +7,6 @@ import { IoIosMore } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 // 댓글
 import { FaRegComment } from "react-icons/fa";
-import DeleteModal from 'components/DeleteModal/DeleteModal';
 
 
 
@@ -19,9 +18,7 @@ function GoodsDetail(props) {
 
 	return (
 		<main>
-			<section>
-				{/* 삭제확인 모달 영역으로 제작 완료 시 컴포넌트 폴더로 옮길 예정 */}
-				<DeleteModal/>
+			<section className='goodsDetail'>
 
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
@@ -30,7 +27,6 @@ function GoodsDetail(props) {
 					<img src='https://placehold.co/100x100' alt='회원등급'/>
 					<IoIosMore className='moreBtn'
 					onClick={()=>{setIsOpen(!isOpen)}}/>
-					{/* 더보기 버튼클릭 시 팝업 영역으로 제작 완료시 컴포넌트 폴더로 옮길 예정 */}
 					{isOpen && 
 					<div className='moreAction'>
 					<p>관심없음</p>

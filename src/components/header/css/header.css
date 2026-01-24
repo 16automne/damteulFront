@@ -1,0 +1,44 @@
+.logoHeader {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(2.5rem + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) 1rem 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F2F5F2;
+  box-sizing: border-box;
+  z-index: 100;
+}
+.logoHeader .headerLeft, .logoHeader .headerRight {
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
+.logoHeader .headerLeft img, .logoHeader .headerRight img {
+  max-height: 28px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.logoHeader .headerRight {
+  justify-content: flex-end;
+}
+.logoHeader .headerTitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.logoHeader .headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.logoHeader .headerIcon svg {
+  font-size: 1.5rem;
+}/*# sourceMappingURL=header.css.map */

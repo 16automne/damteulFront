@@ -47,6 +47,8 @@
 		display: none;
 	}
 	.goodsItem{
+		display: flex;
+		justify-content: center;
 		flex: 0 0 100%;
 		scroll-snap-align: start;
 		img{
