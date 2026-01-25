@@ -106,9 +106,16 @@ function GoodsDetail(props) {
 						<h3>Title</h3>
 						<p>txttxt원</p>
 					</div>
-					
-
+					<div className='relevanceItem'>
+						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
+						<h3>Title</h3>
+						<p>txttxt원</p>
+					</div>
 				</div>
+				</div>
+				<div className='bottomBtn'>
+					<button>채팅하기</button>
+					<button>결제하기</button>
 				</div>
 			</section>
 		</main>

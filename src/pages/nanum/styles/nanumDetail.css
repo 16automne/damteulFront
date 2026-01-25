@@ -56,6 +56,7 @@
 .bottomBtn {
   display: flex;
   justify-content: center;
+  background: #F2F5F2;
   gap: 10px;
   z-index: 10;
   position: fixed;
@@ -66,7 +67,82 @@
   box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
   padding-top: 10px;
 }
+.bottomBtn button:first-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #6B6B6B;
+}
+.bottomBtn button:last-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
+}
 
-main {
-  padding-bottom: 80px;
+.nanumDetail .nanumBtnCustom > button {
+  width: 90%;
+  background: #E06868;
+}
+
+.clearedModalWrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clearedModalWrapper .clearedModal {
+  width: 90%;
+  height: 120px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.clearedModalWrapper .clearedModal > p {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.clearedModalWrapper .clearedModal > button {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
+  width: 90%;
 }/*# sourceMappingURL=nanumDetail.css.map */

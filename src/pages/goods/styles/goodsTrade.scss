@@ -59,7 +59,9 @@ textarea{
 	cursor: pointer;
 	// type=file 지움
 	.file{
-		display: none;
+		opacity: 0;
+		position: absolute;
+		width: 0; height: 0;
 	}
 }
 .fileOrange{
@@ -81,4 +83,4 @@ textarea{
 
 
 // 하단 fixed 버튼 가려져서 넣음
-main{padding-bottom: 80px;}
+main{padding-bottom: 100px;}

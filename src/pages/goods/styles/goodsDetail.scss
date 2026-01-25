@@ -1,6 +1,8 @@
 @use "../../../styles/_config" as *;
 @use "../../../styles/_config2" as *;
 
+
+
 .postUser{
 	position: relative;
 	// bodychild 너비제한 때문에 넣었읍니다
@@ -195,5 +197,13 @@
 		color: $colorEtcRed;
 	}
 }
-
-// 삭제확인 모달서식 제작 완료 시 컴포넌트 폴더로 옮길 예정
+.goodsDetail{
+  // 하단 버튼서식
+	>.bottomBtn>button:first-child{
+		background: $colorEtcYellow;
+	}
+	>.bottomBtn>button:last-child{
+		background: $colorEtcRed;
+	}
+}
+	

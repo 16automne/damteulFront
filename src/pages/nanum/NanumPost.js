@@ -29,7 +29,7 @@ function NanumPost(props) {
 						id='fileUpload'
 						className='file'
 						required/>
-							<img src='https://placehold.co/30x30' alt=''/>
+							<img src='https://placehold.co/30x30' alt='선택한 이미지'/>
 							n/10
 					</label>
 					<p style={{color:'6B6B6B',fontSize:'14px'}}>&middot;게시한 시점으로부터 12시간동안 응모가 진행됩니다.</p>

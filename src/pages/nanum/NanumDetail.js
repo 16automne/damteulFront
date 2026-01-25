@@ -8,9 +8,22 @@ function NanumDetail(props) {
 
 		// 더보기버튼 상태변수
 		const [isOpen, setIsOpen] = useState(false);
+		
+		// 응모완료 상태변수
+		const [clearIsOpen, setClearIsOpen] = useState(false);
 	return (
 		<main>
-			<section>
+			{/* 응모완료 모달 */}
+			{clearIsOpen&&
+				<div className='clearedModalWrapper'>
+					<div className='clearedModal'>
+						<p>응모가 완료되었습니다!</p>
+						<button onClick={()=>setClearIsOpen(false)}>확인</button>
+					</div>
+				</div>
+			}
+				
+			<section className='nanumDetail'>
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
 					<img src='https://placehold.co/100x100' alt='사용자 프로필'/>
@@ -54,15 +67,16 @@ function NanumDetail(props) {
 				</div>
 
 				<div className='usedInfo'>
-					<p>중고상품일시 표시되는 영역으로 퍼블리싱 끝나면 데이터 받아올 자리입니다
-						
-						중고상품일시 표시되는 영역으로 퍼블리싱 끝나면 데이터 받아올 자리입니다
+					<p>
+						나눔페이지 상세설명 영역
 					</p>
 				</div>
 
 				<div className='bottomBtn nanumBtnCustom'>
-					<button>취소하기</button>
+					<button onClick={()=>setClearIsOpen(true)}>응모하기</button>
 					</div>
+
+				
 			</section>
 		</main>
 	);
