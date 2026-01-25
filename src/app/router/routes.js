@@ -37,6 +37,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
 import NanumDetail from 'pages/nanum/NanumDetail';
+import MyProfile from 'pages/my/MyProfile';
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
@@ -49,6 +50,7 @@ export const routes = [
       { path: "/event", element: <Event /> },  
       { path: "/chat", element: <Chat /> }, 
       { path: "/mypage", element: <MyPage /> }, 
+      { path: "/myprofile", element: <MyProfile />},
     ],
   },
 
