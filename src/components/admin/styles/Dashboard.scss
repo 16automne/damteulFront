@@ -1,0 +1,200 @@
+@use '../../../styles/_config' as *;
+
+// -------------------- 대시보드 컨테이너 --------------------
+.dashboardContainer {
+  padding: 20px;
+  background-color: $colorLgGray;
+  min-height: 100vh;
+}
+
+// -------------------- KPI 섹션 --------------------
+.kpiSection {
+  margin-bottom: 30px;
+
+  .sectionTitle {
+    @include webFontHead02;
+    margin-bottom: 15px;
+  }
+
+  .kpiCards {
+    display: flex;
+    gap: 20px;
+
+    .kpiCard {
+      flex: 1;
+      background-color: $colorWhite;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: $bottomShadow;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+      }
+
+      /* ---------------- 상단 (제목 + 화살표) ---------------- */
+      .kpiHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 {
+          @include webFontText01;
+        }
+
+        .arrowButton {
+          width: 32px;
+          height: 32px;
+          border-radius: 6px;
+          border: none;
+          background-color: transparent;
+
+          cursor: pointer;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          transition: all 0.18s ease;
+
+          // 👉 가상 요소 기준점
+          position: relative;
+
+          &::after {
+            content: '>';
+            font-size: 1.4rem;
+            font-weight: $weightBold;
+            color: $colorMdGray;
+            line-height: 1;
+            transform: scale(1.1);
+            transition: all 0.18s ease;
+          }
+
+          &:hover {
+            background-color: $colorLgGray;
+
+            &::after {
+              color: $colorPrimary;
+              transform: translateX(4px) scale(1.1);
+            }
+          }
+
+          &:active::after {
+            transform: translateX(2px) scale(1.05);
+          }
+        }
+
+      }
+
+      /* ---------------- KPI 수치 영역 ---------------- */
+      .kpiBody {
+        margin-top: 10px;
+
+        p {
+          margin: 4px 0;
+
+          &.today {
+            @include webFontText01;
+            color: $colorPrimary;
+          }
+
+          &.month {
+            @include webFontText04;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------- 하단 영역 --------------------
+.lowerSection {
+  display: flex;
+  gap: 20px;
+
+  .summaryBox,
+  .eventBox {
+    background-color: $colorWhite;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: $bottomShadow;
+  }
+
+  .summaryBox {
+    flex: 1;
+
+    h3 {
+      @include webFontText01;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        @include webFontText04;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .eventBox {
+    flex: 2;
+
+    h3 {
+      @include webFontText01;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid $colorSmGray;
+      }
+
+      th {
+        background-color: $colorLgGray;
+        @include webFontText03;
+      }
+
+      td {
+        @include webFontText04;
+
+        // -------------------- 클릭 가능한 셀 --------------------
+        &.clickableCell {
+          position: relative;
+          cursor: pointer;
+          padding-right: 28px; // 화살표 자리 확보
+
+          &::after {
+            content: '›';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+          }
+
+          &:hover {
+            background-color: rgba(88, 165, 99, 0.05);
+          }
+
+          &:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(2px);
+          }
+        }
+      }
+    }
+  }
+}

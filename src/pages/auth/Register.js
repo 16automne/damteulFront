@@ -133,10 +133,6 @@ export default function Register() {
 
         setPhoneError(serverErrors.user_phone ? `* ${serverErrors.user_phone}` : "");
         setNickError(serverErrors.user_nickname ? `* ${serverErrors.user_nickname}` : "");
-
-        // 이름은 중복체크 안 하니까 보통 비워둠(혹시 확장 대비)
-        setNameError(serverErrors.user_name ? `* ${serverErrors.user_name}` : "");
-
         return;
       }
 
