@@ -47,78 +47,22 @@ $colorEtcBlue: #6277BC;
 $colorEtcPurple: #AA62BC;
 
 // 3. 앱용 타이포그래피 프리셋 (mobile 기준)
-@mixin fontHead01 {
-    @include fontStyle(1.5rem, $weightBold);
-}
-
-// 24px
-@mixin fontHead02 {
-    @include fontStyle(1.25rem, $weightSemibold);
-}
-
-// 20px
-@mixin fontText01 {
-    @include fontStyle(1.125rem, $weightBold);
-}
-
-// 18px
-@mixin fontText02 {
-    @include fontStyle(1rem, $weightMedium);
-}
-
-// 16px
-@mixin fontText03 {
-    @include fontStyle(0.875rem, $weightRegular);
-}
-
-// 14px
-@mixin fontText04 {
-    @include fontStyle(0.75rem, $weightRegular);
-}
-
-// 12px
-@mixin fontText05 {
-    @include fontStyle(0.5625rem, $weightRegular);
-}
-
-// 9px
+@mixin fontHead01 { @include fontStyle(1.5rem, $weightBold); }       // 24px
+@mixin fontHead02 { @include fontStyle(1.25rem, $weightSemibold); }  // 20px
+@mixin fontText01 { @include fontStyle(1.125rem, $weightBold); }     // 18px
+@mixin fontText02 { @include fontStyle(1rem, $weightMedium); }       // 16px
+@mixin fontText03 { @include fontStyle(0.875rem, $weightRegular); }  // 14px
+@mixin fontText04 { @include fontStyle(0.75rem, $weightRegular); }   // 12px
+@mixin fontText05 { @include fontStyle(0.5625rem, $weightRegular); } // 9px
 
 // 2. 관리자용 타이포그래피 프리셋 (PC/Web 기준)
-@mixin webFontHead01 {
-    @include fontStyle(2rem, $weightBold);
-}
-
-// 32px Head01: 페이지 대제목 (Dashboard, 회원 관리 등)
-@mixin webFontHead02 {
-    @include fontStyle(1.5rem, $weightSemibold);
-}
-
-// 24px Head02: 섹션 제목 (운영 현황, 일자별 요약 등)
-@mixin webFontText01 {
-    @include fontStyle(1.25rem, $weightBold);
-}
-
-// 20px Text01: 카드 내 강조 숫자, 큰 버튼 텍스트
-@mixin webFontText02 {
-    @include fontStyle(1rem, $weightSemibold);
-}
-
-// 16px Text02: 테이블 헤더(th), 메뉴 이름
-@mixin webFontText03 {
-    @include fontStyle(0.875rem, $weightRegular);
-}
-
-// 14px Text03: 일반 본문, 테이블 내용(td) - 가장 많이 사용됨
-@mixin webFontText04 {
-    @include fontStyle(0.8125rem, $weightRegular);
-}
-
-// 13px Text04: 부가 설명, 캡션, 입력창(Input) 라벨
-@mixin webFontText05 {
-    @include fontStyle(0.6875rem, $weightRegular);
-}
-
-// 11px Text05: 아주 작은 정보 (푸터 저작권, 데이터 날짜 등)
+@mixin webFontHead01 { @include fontStyle(2rem, $weightBold); }         // 32px Head01: 페이지 대제목 (Dashboard, 회원 관리 등)
+@mixin webFontHead02 { @include fontStyle(1.5rem, $weightSemibold); }   // 24px Head02: 섹션 제목 (운영 현황, 일자별 요약 등)
+@mixin webFontText01 { @include fontStyle(1.25rem, $weightBold); }      // 20px Text01: 카드 내 강조 숫자, 큰 버튼 텍스트
+@mixin webFontText02 { @include fontStyle(1rem, $weightSemibold); }     // 16px Text02: 테이블 헤더(th), 메뉴 이름
+@mixin webFontText03 { @include fontStyle(0.875rem, $weightRegular); }  // 14px Text03: 일반 본문, 테이블 내용(td) - 가장 많이 사용됨
+@mixin webFontText04 { @include fontStyle(0.8125rem, $weightRegular); } // 13px Text04: 부가 설명, 캡션, 입력창(Input) 라벨
+@mixin webFontText05 { @include fontStyle(0.6875rem, $weightRegular); } // 11px Text05: 아주 작은 정보 (푸터 저작권, 데이터 날짜 등)
 
 // 4. 그림자 서식]
 $topShadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
@@ -129,27 +73,22 @@ $bottomShadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
 $mobileWidth: 360px; // iPhone 기준 해상도
 $mobileMaxWidth: 767px; // 모바일 최대 너비
 $mobileBaseWidth: 92%; // 모바일 평균 너비
-$mobileBaseHeight: 645px;
-
 // 모바일 부모 레이아웃
 @mixin mobileParentLayout {
     width: 100%;
-    height: 100vh;
-    min-height: $mobileBaseHeight;
     max-width: $mobileMaxWidth;
     margin: 0 auto;
 }
 
 // 모바일 자식 기본 레이아웃
-@mixin mobileChildBaseLaytout {
+@mixin mobileChildBaseLaytout{
     width: $mobileBaseWidth;
-    height: 100%;
     min-width: $mobileWidth;
     margin: 0 auto;
 }
 
 // 모바일 자식 꽉차는 레이아웃
-@mixin mobileChildFullLayout {
+@mixin mobileChildFullLayout{
     width: 100vw;
     max-width: $mobileMaxWidth;
     margin-left: calc(50% - 50vw);
@@ -157,10 +96,8 @@ $mobileBaseHeight: 645px;
 }
 
 // 5-2. pc 레이아웃 변수
-$pcMinWidth: 1280px;
-$pcMaxWidth: 1920px;
+$pcMinWidth: 1280px;    $pcMaxWidth: 1920px;
 $sidebarWidth: 260px; // 왼쪽 메뉴 바 고정 너비
-
 // pc 레이아웃
 @mixin pcContainer {
     min-width: $pcMinWidth;
