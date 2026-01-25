@@ -1,0 +1,53 @@
+@use '../../../styles/__config' as *;
+
+.firstPageWrap{
+  height: 100dvh;
+  .firstPage{
+    position: relative;
+    transform: translateY(-50%);
+    top: 40%;
+    h1{
+      width: 50%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 40px;
+      >img{width: 100%;}
+    }
+    .firstPageTxt{
+      width: 100%;
+      h2,p{text-align: center;}
+      h2{
+        @include fontHead02;
+        color: $colorDKGray;
+        margin-bottom: 10px;
+      }
+      p{@include fontText02; color: $colorMdGray}
+    }
+  }
+
+  .firstPageBtn{
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    a{
+      @include fontText01;
+      display: block;
+      width: 100%;
+      line-height: 50px;
+      text-align: center;
+      margin-top: 10px;
+      box-sizing: border-box;
+      border-radius: 8px;
+    }
+    a:first-child{
+      background-color: $colorPrimary;
+      color: $colorWhite;
+    }
+    a:last-child{
+      background-color: $colorLgGray;
+      color: $colorPrimary;
+      border: 2px solid $colorPrimary;
+    }
+  }
+}

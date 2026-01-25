@@ -77,7 +77,7 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      { path: "/login", element: <FirstPage /> },
+      { path: "/damteul", element: <FirstPage /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
     ],
