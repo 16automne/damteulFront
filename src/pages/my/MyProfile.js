@@ -49,6 +49,15 @@ function MyProfile(props) {
 				</div>
 				<div className='userReviewWrapper'>
 					<h3>거래후기</h3>
+					{/* CLASS userReview MAP */}
+					<div className='userReview'>
+						<img src='https://placehold.co/600x400' alt='리뷰어 이미지'/>
+						<div className='userReviewContent'>
+							<h4>유저네임</h4>
+							<span>구매자</span>
+							<p>온라인 티켓구매가 처음이었는데. 자세히 설명해주셔서 감사했어요.</p>
+						</div>
+					</div>
 					<div className='userReview'>
 						<img src='https://placehold.co/600x400' alt='리뷰어 이미지'/>
 						<div className='userReviewContent'>

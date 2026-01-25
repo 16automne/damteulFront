@@ -204,9 +204,8 @@
 }
 .myProfile .userReviewWrapper {
   border-radius: 20px;
-  height: 170px;
   background: #fff;
-  padding: 10px 5%;
+  padding: 30px 5%;
   margin: 20px auto;
 }
 .myProfile .userReviewWrapper > h3 {
@@ -229,4 +228,10 @@
 }
 .myProfile .userReviewWrapper .userReview .userReviewContent > p {
   margin-top: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D7D7D7;
+}
+.myProfile .userReviewWrapper .userReview:last-of-type .userReviewContent > P {
+  border-bottom: none;
 }/*# sourceMappingURL=myProfile.css.map */
