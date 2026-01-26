@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/myProfile.css';
 import { CiCircleInfo } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 
 function MyProfile(props) {
@@ -26,6 +27,8 @@ function MyProfile(props) {
             <img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용등급'/>
 					</div>
 					<p>0000년00월 00일 가입</p>
+					<Link to='/myprofileedit' title='프로필 수정페이지로 이동'
+					className='myProfileEdit'>프로필 수정</Link>
 				</div>
 				{/* 유저 사용등급 영역 */}
 				<div className='myUserClass myContainer'>

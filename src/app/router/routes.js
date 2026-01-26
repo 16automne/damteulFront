@@ -22,6 +22,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';
   import NanumPost from 'pages/nanum/NanumPost';
+  import MyProfileEdit from 'pages/my/MyProfileEdit';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
@@ -68,8 +69,8 @@ export const routes = [
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
-      {path:"/nanumdetail", element:<NanumDetail />}
-      
+      {path:"/nanumdetail", element:<NanumDetail />},
+      {path:"/myprofileedit", element:<MyProfileEdit/>}
     ],
   },
 

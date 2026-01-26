@@ -119,6 +119,35 @@
   height: 67px;
   margin-top: 5%;
 }
+.myProfile .myProfileCheck > a {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #F2F5F2;
+  display: block;
+  line-height: 50px;
+  text-align: center;
+  color: #1A1C19;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+  width: 90%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .myProfile .myProfileCheck .myProfileCheckAlign {
   display: flex;
   align-items: center;

@@ -15,11 +15,26 @@
 		padding-bottom: 30px;
 		margin: 20px auto;
 	}
+	// 회원 프로필정보 영역 서식
 	.myProfileCheck{
 		@include fontText04;
 		>h3 img{
 		width: 67px; height: 67px;
 		margin-top: 5%;
+		}
+		>a{
+			@include linkButtonHalf($colorLgGray);
+			display: block;
+			line-height: 50px;
+			text-align: center;
+			color: $colorDKGray;
+			box-shadow: $bottomShadow;
+			@include fontText02;
+			width: 90%;
+			margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		.myProfileCheckAlign{
 			display: flex;
