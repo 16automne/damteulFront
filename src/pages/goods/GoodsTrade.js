@@ -97,7 +97,12 @@ function GoodsTrade(props) {
 						</div>
 					</p>
 
+					<div className='bottomBtn'>
+					<button>취소하기</button>
+					<button>완료</button>
+					</div>
 				</form>
+				
 			</section>
 		</main>
 	);

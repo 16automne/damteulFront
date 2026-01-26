@@ -1,0 +1,39 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
+
+.nanumDetail{
+	.nanumBtnCustom{
+		>button{
+			width: 90%;
+			background: $colorEtcRed;
+		}
+	}
+}
+
+// 응모완료 모달
+.clearedModalWrapper{
+	position: fixed;
+	width: 100%; height: 100%;
+	top: 0;left: 0;
+	z-index: 999;
+	background: rgba(0,0,0,0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.clearedModal{
+		width: 90%; height: 120px;
+		border-radius: 8px;
+		background: $colorWhite;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		>p{@include fontText02;}
+		>button{
+			@include linkButtonHalf($colorPrimary);
+			width: 90%;
+		}
+	}
+}

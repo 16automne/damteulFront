@@ -11,22 +11,22 @@
   height: 130px;
   border-radius: 7px;
 }
-.goodsList .goodsArea {
+.goodsList .goodsListArea {
   width: 100%;
   position: relative;
 }
-.goodsList .goodsInfo {
+.goodsList .goodsListInfo {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.goodsList .goodsInfo > h3 {
+.goodsList .goodsListInfo > h3 {
   font-size: 16px;
 }
-.goodsList .goodsInfo > span {
+.goodsList .goodsListInfo > span {
   font-size: 12px;
 }
-.goodsList .goodsInfo > p {
+.goodsList .goodsListInfo > p {
   font-size: 18px;
 }
 .goodsList .goodsReaction {

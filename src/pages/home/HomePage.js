@@ -41,6 +41,31 @@ const HomePage = () => {
 		}
 	},[location.state?.showWelcome]);
 
+	// 더미 데이터(추후삭제예정)
+	const dummyData = [
+  {
+    id: 1,
+    path: "/goodsdetail",
+    title: "빈티지 우드 체어",
+    status: "중고상품",
+    price: "45,000"
+  },
+  {
+    id: 2,
+    path: "/goodsdetail",
+    title: "미개봉 조말론 향수",
+    status: "새제품",
+    price: "82,000"
+  },
+  {
+    id: 3,
+    path: "/goodsdetail",
+    title: "친환경 에코백",
+    status: "이벤트상품",
+    price: "20,000"
+  }
+];
+
 
 	return (
 		<main>
@@ -57,9 +82,16 @@ const HomePage = () => {
 						<button>최신글</button>
 					</div>
           {/* 상품목록 (map필요)*/}
-          <GoodsList />
-          <GoodsList />
-          <GoodsList />
+					{dummyData.map((item)=>(
+						<GoodsList key={item.id}
+						title={item.title}
+						status={item.status}
+						price={item.price}
+						linkTo={item.path}
+					/>
+					))}
+          
+
 
 
 						

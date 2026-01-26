@@ -96,108 +96,139 @@
   background-color: #58A563;
 }
 
-.writeForm {
-  width: 100%;
-  background: #F2F5F2;
+.myPageUserWrapper {
+  border-radius: 20px;
+  background: #fff;
+  text-align: center;
+  height: 320px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-.writeForm > p {
+.myPageUserWrapper .myPageUser {
+  height: 60%;
+  color: #1A1C19;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.myPageUserWrapper .myPageUser > h3 img {
+  width: 108px;
+  height: 108px;
+  margin-top: 5%;
   margin-bottom: 20px;
 }
-.writeForm > p label {
+.myPageUserWrapper .myPageUser .profileCheck {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.myPageUserWrapper .myPageUser .profileCheck > svg {
+  position: absolute;
+  right: 0px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  fill: #58A563;
+}
+.myPageUserWrapper .myWallet {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 15px auto;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   color: #1A1C19;
   line-height: 1.4;
-  display: block;
-  margin-bottom: 5px;
 }
-.writeForm > p:first-of-type {
-  margin-top: 20px;
+.myPageUserWrapper .myWallet .myWalletAlign {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.writeForm .inputForm {
-  width: 100%;
-  border: none;
-  border-radius: 8px;
+.myPageUserWrapper .myWallet .myWalletAlign > svg {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  fill: #58A563;
+}
+.myPageUserWrapper > button {
+  width: 48%;
+  min-width: 170px;
   height: 50px;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  text-indent: 10px;
-}
-.writeForm input::-moz-placeholder {
+  border-radius: 8px;
   font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 700;
   color: #1A1C19;
   line-height: 1.4;
-  color: #6B6B6B;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
+  width: 45%;
+  margin: auto 10px;
 }
-.writeForm input::placeholder {
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #6B6B6B;
+
+.myPageGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 15px 0px;
+  place-items: center;
 }
-.writeForm > p select {
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #6B6B6B;
-}
-.writeForm textarea {
-  resize: none;
-  height: 100px !important;
-  padding: auto 24px;
-}
-.writeForm .fileWrapper {
+.myPageGrid .myPageMenu {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  width: 50px;
-  height: 50px;
-  background: #58A563;
-  border: none;
-  border-radius: 5px;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
   text-align: center;
+  border-radius: 8px;
+}
+.myPageGrid .myPageMenu > a svg {
+  stroke: #fff;
+  fill: #fff;
+  font-size: 2rem;
+}
+.myPageGrid .myPageMenu > a p {
   font-family: "Inter", sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-  color: #fff;
-  cursor: pointer;
+  color: #F2F5F2;
 }
-.writeForm .fileWrapper .file {
-  opacity: 0;
-  position: absolute;
-  width: 0;
-  height: 0;
+.myPageGrid .myPageMenu:first-of-type {
+  background: #E06868;
 }
-.writeForm .fileOrange {
+.myPageGrid .myPageMenu:nth-of-type(2) {
   background: #EE955E;
 }
-.writeForm .tradePrice {
-  display: flex;
-  position: relative;
+.myPageGrid .myPageMenu:nth-of-type(3) {
+  background: #EEC75E;
 }
-.writeForm .tradePrice > span {
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #1A1C19;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
+.myPageGrid .myPageMenu:nth-of-type(4) {
+  background: #82BC62;
 }
-
-main {
-  padding-bottom: 100px;
-}/*# sourceMappingURL=goodsTrade.css.map */
+.myPageGrid .myPageMenu:nth-of-type(5) {
+  background: #58A563;
+}
+.myPageGrid .myPageMenu:nth-of-type(6) {
+  background: #62A1BC;
+}
+.myPageGrid .myPageMenu:nth-of-type(7) {
+  background: #6277BC;
+}
+.myPageGrid .myPageMenu:last-of-type {
+  background: #AA62BC;
+}/*# sourceMappingURL=myPage.css.map */
