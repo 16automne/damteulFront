@@ -31,6 +31,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import FirstPage from "pages/intro/FirstPage";
   import Login from "pages/auth/Login";
   import Register from "pages/auth/Register";
+  import AddressSearch from "pages/auth/AddressSearch";
   
   // 6) 관리자 페이지 (AdminPage)
   import DashboardPage from "components/admin/DashboardPage"
@@ -88,9 +89,10 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      { path: "/login", element: <FirstPage /> },
+      { path: "/damteul", element: <FirstPage /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/address", element: <AddressSearch /> },
     ],
   },
 

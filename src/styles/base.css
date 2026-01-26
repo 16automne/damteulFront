@@ -13,11 +13,13 @@ body .bodyParent {
   min-height: 100dvh;
   max-width: 767px;
   margin: 0 auto;
+  overflow: hidden;
   background-color: #F2F5F2;
 }
 body .bodyParent .bodyChild {
   width: 92%;
   height: 100%;
+  min-height: 100dvh;
   min-width: 360px;
   margin: 0 auto;
 }

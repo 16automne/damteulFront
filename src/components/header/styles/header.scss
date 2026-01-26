@@ -1,7 +1,9 @@
 @import '../../../styles/_config';
 
 .logoHeader {
-  position: sticky; top: 0; left: 0; right: 0; //위에 고정
+  max-width: 767px;
+  position: fixed; top: 0; left: 0; right: 0;// 아래에 고정
+  margin: 0 auto;
   width: 100%;
   height: calc(2.5rem + env(safe-area-inset-top)); //상단 노치
   padding: env(safe-area-inset-top) 1rem 0 1rem; //노치에 가려지지 않도록 상단 패딩 조절

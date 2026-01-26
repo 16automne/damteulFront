@@ -5,5 +5,8 @@ import { router } from "./app/router/routerIndex";
 import './styles/reset.css';
 import './styles/base.css';
 export default function App() {
-  return <RouterProvider router={router} />;
+  return(
+    
+    <RouterProvider router={router} />
+  );
 }

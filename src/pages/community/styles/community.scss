@@ -1,109 +1,163 @@
 @import '../../../styles/_config';
 
-@mixin iconBoarder($color) {
-  border: 0.2rem solid $color;
+.communityContainer {
+  width: 100%; height: 100vh;
+  max-width: $mobileMaxWidth; // 767px
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // 전체 화면 스크롤 방지
 }
 
+.commRecSection, .commCateList {
+  flex-shrink: 0; // 상단 추천 문구와 카테고리는 스크롤되지 않고 고정됨
+}
+
+.comFeedSection {
+  @include mobileChildFullLayout; 
+  flex-grow: 1; // 남은 화면 높이를 모두 차지하게 하고 내부에서만 스크롤
+  overflow-y: auto; // 상하 스크롤
+  padding-bottom: 5rem; 
+}
+
+/* 카테고리 */
 .commCateList {
-  max-width: 767px;
-  margin: 0 auto;
   width: 100%;
-  height: 4rem;
-  padding-bottom: env(safe-area-inset-bottom); //하단 홈 바 여유공간
-
-  background-color: $colorLgGray;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-sizing: border-box;
-  z-index: 100;
+  overflow-x: auto; // 가로 스크롤 허용
+  white-space: nowrap; // 줄바꿈 방지
+  padding: 2rem 0 1.8rem;
+  gap: 1rem;
+  -webkit-overflow-scrolling: touch; // 모바일 부드러운 스크롤
 
-  .commCateWrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: $colorDKGray;
-    border: 1px solid #f00;
-    width: 3.75rem; height: 3rem;
+  &::-webkit-scrollbar { display: none; } // 스크롤바 숨기기
 
-    .commCateIcon {
-      @include fontHead02;
-      margin-bottom: 0.2rem;
+  .commCate {
+    flex: 0 0 auto; // 크기 고정 및 슬라이드 유지
+    
+    .commCateWrap {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      padding: 0.5rem;
-      border-radius: 50%;
-
-    }
-    &:nth-child(1) .commCateIcon {@include iconBoarder($colorEtcRed)};
-    &:nth-child(2) .commCateIcon {@include iconBoarder($colorEtcOrange)};
-    &:nth-child(3) .commCateIcon {@include iconBoarder($colorEtcYellow)};
-    &:nth-child(4) .commCateIcon {@include iconBoarder($colorEtcLgGreen)};
-    &:nth-child(5) .commCateIcon {@include iconBoarder($colorEtcSkyBlue)};
-    &:nth-child(6) .commCateIcon {@include iconBoarder($colorEtcBlue)};
-    &:nth-child(7) .commCateIcon {@include iconBoarder($colorEtcPurple)};
-
-    .commCateLabel {
-      @include fontText04;
+      width: 4.5rem;
+      
+      .commCateIcon {
+        width: 3.5rem; height: 3.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0.2rem solid $colorSmGray; // 기본 테두리
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
     }
 
-    &.active { //클릭되면 색 변경
-      color: $colorPrimary; 
-      .navIcon {
-        color: $colorPrimary;
+    /* 카테고리별 테두리 및 아이콘 색상 */
+    &:nth-child(1).active {
+      .commCateIcon { 
+        border-color: $colorEtcRed;
+        svg { color: $colorEtcRed; fill: $colorEtcRed; } 
+      }
+    }
+    &:nth-child(2).active {
+      .commCateIcon { 
+        border-color: $colorEtcOrange;
+        svg { color: $colorEtcOrange; fill: $colorEtcOrange; } 
+      }
+    }
+    &:nth-child(3).active {
+      .commCateIcon { 
+        border-color: $colorEtcYellow;
+        svg { color: $colorEtcYellow; fill: $colorEtcYellow; } 
+      }
+    }
+    &:nth-child(4).active {
+      .commCateIcon { 
+        border-color: $colorEtcLgGreen;
+        svg { color: $colorEtcLgGreen; fill: $colorEtcLgGreen; } 
+      }
+    }
+    &:nth-child(5).active {
+      .commCateIcon { 
+        border-color: $colorEtcSkyBlue;
+        svg { color: $colorEtcSkyBlue; fill: $colorEtcSkyBlue; } 
+      }
+    }
+    &:nth-child(6).active {
+      .commCateIcon { 
+        border-color: $colorEtcBlue;
+        svg { color: $colorEtcBlue; fill: $colorEtcBlue; } 
+      }
+    }
+    &:nth-child(7).active {
+      .commCateIcon { 
+        border-color: $colorEtcPurple;
+        svg { color: $colorEtcPurple; fill: $colorEtcPurple; } 
       }
     }
   }
 }
 
-
-.comTitle{ //숨기기
-  position: absolute;
-  width: 1px; height: 1px;
-  margin: -1px;
-  overflow: hidden;
-}
-.comFeedSection{
+/* 이미지 피드 */
+.comFeedSection {
   @include mobileChildFullLayout;
-  margin: 0 auto;
-}
-.comFeedWrap {
-  display: flex;
-  flex-wrap: wrap; // 아래로 계속 추가되도록 설정
-  justify-content: center;
-  padding: 0;
-  border: 1px solid #f00;
-
-  .comFeedItem {
-    width: calc(49.9%);
+  &::-webkit-scrollbar {
+    width: 0; // 스크롤바 숨기기
+  }
+  
+  .comFeedWrap {
+    width: 100%;
+    display: flex; flex-wrap: wrap;
     
-    .imgBox { //이미지
-      position: relative; //feedInfo의 기준
-      width: 100%;
-      overflow: hidden;
+    .comFeedItem {
+      width: 50%; // 2열 구성
+      box-sizing: border-box;
+      
+      .imgBox {
+        position: relative; // .feedInfo의 기준
+        width: 100%;
+        aspect-ratio: 1 / 1; // 이미지 박스 정사각형
+        overflow: hidden;
 
-      img { // 이미지 꽉 차게
-        width: 100%; height: 100%; 
-        object-fit: cover;
-        display: block;
-      } 
+        img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          display: block; // 이미지 하단 미세 여백 제거
+        }
 
-      .feedInfo { //이미지 + 이미지 아이콘, 숫자
-        position: absolute; bottom: 1rem; right: 1rem; //imgBox
-        display: flex; flex-direction: column;
-        gap: 0.5rem;
+        /* 더보기 버튼 */
+        .moreIcon{
+          width: 1rem; height: 1rem;
+          overflow: hidden;
+          position: absolute; 
+          top: 0.8rem; right: 0.8rem;
+          z-index: 10;
+        }
 
-        span { //이미지 아이콘, 숫자
+        /* 하트, 댓글 */
+        .feedInfo {
+          overflow: hidden;
+          position: absolute; 
+          bottom: 0.8rem; left: 0.8rem;
+          display: flex; flex-direction: column; // 세로
+          gap: 0.3rem; //위아래 간격
+          z-index: 10;
+
+        }
+        .feedInfo span, .moreIcon span {
           @include fontText04;
-          display: flex;
-          align-items: center; justify-content: flex-end;
-          gap: 3px;
           color: $colorWhite;
-          svg { //아이콘
-            fill: $colorWhite; 
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 4px;
+          /* 밝은 이미지 위에서도 잘 보이도록 그림자 추가 */
+          text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
+
+          svg {
+            @include fontText03;
             color: $colorWhite;
-            font-size: 1.1rem;
+            fill: $colorWhite; // 아이콘 색상 강제 적용
           }
         }
       }
