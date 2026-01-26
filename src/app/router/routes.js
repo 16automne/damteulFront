@@ -17,12 +17,15 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Nanum from "pages/nanum/Nanum";
   import Chat from "pages/chat/Chat";
   import MyPage from "pages/my/MyPage";
+  import MyProfile from 'pages/my/MyProfile';
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';
   import NanumPost from 'pages/nanum/NanumPost';
+  import NanumDetail from 'pages/nanum/NanumDetail';
   import MyProfileEdit from 'pages/my/MyProfileEdit';
+  import MyBuynSell from 'pages/my/MyBuynSell';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
@@ -37,8 +40,6 @@ import AdminIndex from "pages/admin/AdminIndex";
   import TradeAdminPage from "components/admin/TradeAdminPage"
   import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
-import NanumDetail from 'pages/nanum/NanumDetail';
-import MyProfile from 'pages/my/MyProfile';
 
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
@@ -70,7 +71,8 @@ export const routes = [
       {path:"/goodsdetail", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
       {path:"/nanumdetail", element:<NanumDetail />},
-      {path:"/myprofileedit", element:<MyProfileEdit/>}
+      {path:"/myprofileedit", element:<MyProfileEdit/>},
+      {path:'/mypage/mybuynsell:type', element:<MyBuynSell/>}
     ],
   },
 

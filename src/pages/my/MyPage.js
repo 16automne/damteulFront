@@ -56,7 +56,7 @@ const MyPage = () => {
         {/* 사용자 메뉴영역 */}
         <div className='myPageGrid'>
           <div className='myPageMenu'>
-            <Link to='' title='판매내역'>
+            <Link to='/mypage/mybuynsell' title='판매내역'>
             <GrShop />
             <p>판매내역</p>
             </Link>
