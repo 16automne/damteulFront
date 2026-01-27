@@ -62,31 +62,34 @@ const MyPage = () => {
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='구매내역'>
+            <Link to='/mypage/mybuynsell' title='구매내역'
+            state={{activeTab:'buy'}}>
             <TfiReceipt />
             <p>구매내역</p>
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='작성글'>
+            <Link to='/mypage/myhistory' title='작성글'>
             <ImBooks />
             <p>작성글</p>
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='작성댓글'>
+            <Link to='/mypage/myhistory' title='작성댓글'
+            state={{activeTab:'mycomment'}}>
             <MdOutlineInsertComment />
             <p>작성댓글</p>
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='관심목록'>
+            <Link to='/mypage/mywishlist' title='관심목록'>
             <FaRegHeart />
             <p>관심목록</p>
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='최근 본 글'>
+            <Link to='/mypage/mywishlist' title='최근 본 글'
+            state={{activeTab:'recent'}}>
             <FaRegClock />
             <p>최근 본 글</p>
             </Link>
