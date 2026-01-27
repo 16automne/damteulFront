@@ -3,9 +3,13 @@
   gap: 12px;
   margin-bottom: 20px;
 }
-.noticeEventPage .tabContainer .tabButton {
-  flex: 1;
+.noticeEventPage .tabContainer .tabButton1 {
+  padding: 10px 31px;
+}
+.noticeEventPage .tabContainer .tabButton2 {
   padding: 10px 24px;
+}
+.noticeEventPage .tabContainer .tabButton1, .noticeEventPage .tabContainer .tabButton2 {
   border-radius: 12px;
   border: 1px solid #D7D7D7;
   background-color: #fff;
@@ -17,11 +21,11 @@
   line-height: 1.4;
   transition: all 0.2s ease;
 }
-.noticeEventPage .tabContainer .tabButton.active {
+.noticeEventPage .tabContainer .tabButton1.active, .noticeEventPage .tabContainer .tabButton2.active {
   background-color: #58A563;
   color: #fff;
   border-color: #58A563;
 }
-.noticeEventPage .tabContainer .tabButton:hover:not(.active) {
+.noticeEventPage .tabContainer .tabButton1:hover:not(.active), .noticeEventPage .tabContainer .tabButton2:hover:not(.active) {
   background-color: #F2F5F2;
 }/*# sourceMappingURL=NoticeEventAdminPage.css.map */

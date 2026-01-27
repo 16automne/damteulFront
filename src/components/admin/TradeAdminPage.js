@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
+import TradeAdminModal from '../admin/TradeAdminModal';
+
 
 /* -------------------------------------------------
    샘플 거래 데이터
@@ -19,6 +21,12 @@ const sampleTransactions = [
 ];
 
 const TradeAdminPage = () => {
+
+  /* =================================================
+   0️⃣ 모달 상태
+================================================= */
+  const [selectedTrade, setSelectedTrade] = useState(null);
+
   /* =================================================
      1️⃣ 입력 전용 상태 (UI 상태)
      - input에만 바인딩
@@ -161,7 +169,12 @@ const TradeAdminPage = () => {
                 <td>{trx.price.toLocaleString()}원</td>
                 <td>{trx.completed}</td>
                 <td>
-                  <button className="btn-sm">완료 처리</button>
+                  <button
+                    className="btn-sm"
+                    onClick={() => setSelectedTrade(trx)}
+                  >
+                    관리
+                  </button>
                   <button className="btn-sm danger">삭제</button>
                 </td>
               </tr>
@@ -188,6 +201,21 @@ const TradeAdminPage = () => {
           {'>'}
         </button>
       </div>
+
+        {/* ==========================
+            거래 관리 모달
+        ========================== */}
+        {selectedTrade && (
+          <TradeAdminModal
+            trade={selectedTrade}
+            onClose={() => setSelectedTrade(null)}
+            onComplete={(id) => {
+              alert(`거래 ${id} 완료 처리`);
+              setSelectedTrade(null);
+            }}
+          />
+        )}
+
     </div>
   );
 };
