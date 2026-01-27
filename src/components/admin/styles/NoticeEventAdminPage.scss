@@ -7,9 +7,12 @@
     gap: 12px;
     margin-bottom: 20px;
 
-    .tabButton {
-      flex: 1;      
-      padding: 10px 24px;
+    .tabButton1 { 
+      padding: 10px 31px;}
+    .tabButton2 { 
+      padding: 10px 24px;}
+
+    .tabButton1, .tabButton2 {
       border-radius: 12px;
       border: 1px solid $colorSmGray;
       background-color: $colorWhite;
