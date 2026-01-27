@@ -96,11 +96,10 @@
   background-color: #58A563;
 }
 
-.myBuynSell {
+.myHistory {
   margin-top: 40px;
 }
-
-.myTabMenu {
+.myHistory .myHistoryTabMenu {
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
@@ -109,8 +108,8 @@
   margin: 0 calc(-50vw + 50%);
   border-bottom: 2px solid #58A563;
 }
-.myTabMenu > li {
-  width: 33%;
+.myHistory .myHistoryTabMenu > li {
+  width: 50%;
   height: 50px;
   text-align: center;
   background: #F2F5F2;
@@ -125,8 +124,50 @@
   line-height: 50px;
   cursor: pointer;
 }
-
-.active {
-  background: #58A563 !important;
-  color: #fff !important;
-}/*# sourceMappingURL=myBuynSell.css.map */
+.myHistory .myComment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 1vh;
+  border-bottom: 1px solid #D7D7D7;
+}
+.myHistory .myComment > div {
+  display: flex;
+  gap: 3vw;
+  align-items: center;
+}
+.myHistory .myComment > div > div p:first-child {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+}
+.myHistory .myComment > div > div p:last-child {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #6B6B6B;
+}
+.myHistory .myComment > div > img {
+  width: 45px;
+  height: 45px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2px;
+}
+.myHistory .myComment > p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+}
+.myHistory .myComment:last-child {
+  border-bottom: none;
+}/*# sourceMappingURL=myHistory.css.map */

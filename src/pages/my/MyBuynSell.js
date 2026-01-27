@@ -1,26 +1,64 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useLocation } from 'react-router-dom';
 import './styles/myBuynSell.css';
 import GoodsList from 'components/GoodsList/GoodsList';
-import { Link, useParams } from 'react-router-dom';
+
+
+const dummyData = {
+  // 판매중 (selling)
+  selling: [
+    { num: 1, title: '아이패드 에어 5세대', status: '판매중', price: '750,000' },
+    { num: 2, title: '로지텍 MX Master 3S', status: '판매중', price: '120,000' },
+    { num: 3, title: '소니 WH-1000XM5', status: '판매중', price: '320,000' }
+  ],
+  
+  // 구매 (buy)
+  buy: [
+    { num: 10, title: '닌텐도 스위치 OLED', status: '구매완료', price: '380,000' },
+    { num: 11, title: '맥북 에어 M2', status: '구매완료', price: '1,450,000' },
+    { num: 12, title: '킨들 페이퍼화이트', status: '구매완료', price: '150,000' }
+  ],
+  
+  // 거래 완료 (soldout)
+  soldout: [
+    { num: 21, title: '에어팟 프로 2세대', status: '중고제품', soldout: '' },
+    { num: 22, title: '필코 기계식 키보드', status: '중고제품', soldout: '' },
+    { num: 23, title: '다이슨 에어랩', status: '새제품', soldout: '' }
+  ]
+};
+
 function MyBuynSell(props) {
+	const location = useLocation();
+	const [type, setType] = useState(location.state?.activeTab ||'selling');
+
 	
-	const {type} = useParams();
+
 	return (
 		<main>
-			<section>
+			<section className='myBuynSell'>
 				<ul className='myTabMenu'>
-					<li className={type === 'selling'?'active':''}>
-						<Link to='/buynsell/selling' title='판매중인 상품'>판매중</Link>
+					<li className={type === 'selling'?'active':''}
+					onClick={()=>setType('selling')}>
+				판매중
 					</li>
-					<li className={type === 'buy'?'active':''}>
-						<Link to='/buynsell/buy' title='구매한 상품'>구매</Link>
+					<li className={type === 'buy'?'active':''}
+					onClick={()=>setType('buy')}>
+						구매
 					</li>
-					<li className={type === 'soldout'?'active':''}>
-						<Link to='/buynsell/soldout' title='판매완료'>거래 완료</Link>
+					<li className={type === 'soldout'?'active':''}
+					onClick={()=>setType('soldout')}>
+						거래 완료
 					</li>
-					
 				</ul>
-				<GoodsList type={type}/>
+				{dummyData[type].map((item)=>(
+					<GoodsList type={type}
+					key={item.num}
+					title={item.title}
+					status={item.status}
+					price={type==='soldout'?null:item.price}
+					soldout={type ==='soldout'}
+					/>
+				))}
 			</section>
 		</main>
 	);
