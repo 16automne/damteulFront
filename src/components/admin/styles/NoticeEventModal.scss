@@ -1,0 +1,214 @@
+/* src/components/admin/styles/NoticeEventModal.scss */
+@use '../../../styles/_config' as *;
+
+/* ===========================
+   🔹 모달 오버레이
+=========================== */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); // 배경 반투명
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ===========================
+   🔹 모달 본문
+=========================== */
+.modalContent {
+  background-color: $colorLgGray;
+  width: 600px;
+  max-width: 90vw;
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: $bottomShadow;
+}
+
+/* ===========================
+   🔹 닫기 버튼
+=========================== */
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+
+  &:hover {
+    color: #000;
+    }
+}
+
+/* ===========================
+   🔹 헤더
+=========================== */
+.adminHeader {
+  margin-bottom: 20px;
+
+  .adminTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .adminDesc {
+    font-size: 0.875rem;
+    color: #666;
+  }
+}
+
+/* ===========================
+   🔹 내용 카드
+=========================== */
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: $colorWhite;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: $bottomShadow;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+
+    h4 {
+      @include webFontText02;
+      color: $colorDKGray;
+    }
+
+    input, select, textarea {
+      padding: 10px 12px;
+      display: flex;
+      margin-bottom: 6px;
+  
+      border-radius: 8px;
+      border: 1px solid $colorPrimary;
+      background-color: $colorWhite;
+  
+      @include webFontText03;
+      color: $colorDKGray;
+
+    &:focus {
+      outline: none;
+      border-color: $colorPrimary;
+    }
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+
+  label {
+    @include webFontText03;
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    padding: 8px 10px;
+    border: 1px solid $colorSmGray;
+    border-radius: 4px;
+    @include webFontText03;
+  }
+}
+
+/* ===========================
+   🔹 버튼 그룹
+=========================== */
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+
+  button {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+
+    &.primary {
+      background-color: #58A563;
+      color: #fff;
+
+      &:hover {
+        background-color: #4c9953;
+      }
+    }
+
+    &.danger {
+      background-color: #E06868;
+      color: #fff;
+
+      &:hover {
+        background-color: #c95a5a;
+      }
+    }
+  }
+}
+
+// 글쓰기 버튼 
+
+.writeButtonWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -36px;
+}
+
+.writeButton {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4a6cf7;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3957d6;
+  }
+}
+
+//  이미지 미리 보기 
+
+.previewBox {
+  display: flex;
+  gap: 8px;
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid $colorSmGray;
+  }
+}
+
+
+
