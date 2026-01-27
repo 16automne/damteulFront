@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import api from "app/api/axios";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './css/addressSearch.css';
 // 돋보기 아이콘
 import { FaSearch } from "react-icons/fa";
@@ -20,6 +20,7 @@ function useDebouncedValue(value, delay = 250) {
 }
 
 export default function AddressSearch() {
+  const navitgate = useNavigate();
   /** ✅ input 값 */
   const [query, setQuery] = useState("");
 
@@ -202,8 +203,8 @@ export default function AddressSearch() {
 
       {/* 뒤로가기, 다음버튼 */}
       <div className="formButtonWrapper">
-        <Link to='/intro' title='처음으로 돌아가기'>처음으로</Link>
-        <button style={fixedMode ? { color: '#fff', background: '#58A563' } : { color: '#fff', background: '#D7D7D7' }} disabled={fixedMode ? false : true}>완료</button>
+        <Link to='/intro' title='처음으로 돌아가기' replace>처음으로</Link>
+        <button onClick={()=>navitgate("/register",{state:{address:query}})} style={fixedMode ? { color: '#fff', background: '#58A563' } : { color: '#fff', background: '#D7D7D7' }} disabled={fixedMode ? false : true}>완료</button>
       </div>
     </main>
   );

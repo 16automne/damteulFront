@@ -79,7 +79,7 @@
       }
       .checkBtn{
         font-size: 16px;
-        svg{color:$colorPrimary}
+        svg{fill:$colorPrimary}
       }
       &::after {
         content: '';

@@ -89,7 +89,7 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      { path: "/damteul", element: <FirstPage /> },
+      { path: "/intro", element: <FirstPage /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/address", element: <AddressSearch /> },

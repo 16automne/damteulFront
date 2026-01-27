@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./css/auth.css";
 
 // axios
@@ -8,6 +8,16 @@ import api from "app/api/axios";
 export default function Register() {
   // navigate
   const navigate = useNavigate();
+
+  // addressSearch에서 받아온 값 없으면 address로 넘어가게
+  const { state } = useLocation();
+  const address = state.address;
+  if(!address){
+    navigate('/address');
+  }
+  // console.log(address);
+
+
 
   // 에러 발생시 나오게할 상태값 (phone, name, nick)
   const [phoneError, setPhoneError] = useState("");
@@ -105,7 +115,7 @@ export default function Register() {
     }
 
     try {
-      const { data } = await api.post("/api/user/register", registerForm);
+      const { data } = await api.post("/api/user/register", {...registerForm,address});
 
       if (data?.ok) {
         localStorage.setItem('userToken', data.userToken);  // 토큰저장
@@ -205,7 +215,7 @@ export default function Register() {
           )}
 
           <div className="formButtonWrapper">
-            <Link to="/intro" title="처음으로 돌아가기">
+            <Link to="/intro" title="처음으로 돌아가기" replace>
               처음으로
             </Link>
             <input type="submit" value="완료" />

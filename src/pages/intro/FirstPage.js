@@ -17,7 +17,7 @@ const FirstPage = () => {
         </div>
         <div className='firstPageBtn'>
           <Link to='/login' title='시작하기'>시작하기</Link>
-          <Link to='/adress' title='가입하기'>가입하기</Link>
+          <Link to='/address' title='가입하기'>가입하기</Link>
         </div>
       </main>
     </>
