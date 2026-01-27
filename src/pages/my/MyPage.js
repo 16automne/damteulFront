@@ -82,13 +82,14 @@ const MyPage = () => {
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='관심목록'>
+            <Link to='/mypage/mywishlist' title='관심목록'>
             <FaRegHeart />
             <p>관심목록</p>
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='최근 본 글'>
+            <Link to='/mypage/mywishlist' title='최근 본 글'
+            state={{activeTab:'recent'}}>
             <FaRegClock />
             <p>최근 본 글</p>
             </Link>

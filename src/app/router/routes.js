@@ -27,6 +27,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyProfileEdit from 'pages/my/MyProfileEdit';
   import MyBuynSell from 'pages/my/MyBuynSell';
   import MyHistory from 'pages/my/MyHistory';
+  import MyWishlist from 'pages/my/MyWishlist';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
@@ -75,7 +76,8 @@ export const routes = [
       {path:"/nanumdetail", element:<NanumDetail />},
       {path:"/myprofileedit", element:<MyProfileEdit/>},
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
-      {path:"/mypage/myhistory", element:<MyHistory/>}
+      {path:"/mypage/myhistory", element:<MyHistory/>},
+      {path:"/mypage/mywishlist", element:<MyWishlist/>}
     ],
   },
 
