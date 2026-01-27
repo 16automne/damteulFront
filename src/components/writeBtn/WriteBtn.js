@@ -18,7 +18,7 @@ function WriteBtn(props) {
 				<div className='writeCategory'>
 				<Link to='/goodstrade'>중고거래</Link>
 				<Link>나눔</Link>
-				<Link>커뮤니티</Link>
+				<Link to='/community/write'>커뮤니티</Link>
 				</div>
 			)}	
 		</>

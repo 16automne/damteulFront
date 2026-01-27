@@ -1,46 +1,50 @@
-.logoHeader {
-  max-width: 767px;
+.headerWrap {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  margin: 0 auto;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow-x: hidden;
   height: calc(2.5rem + env(safe-area-inset-top));
   padding: env(safe-area-inset-top) 1rem 0 1rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   background-color: #F2F5F2;
   box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
   z-index: 100;
 }
-.logoHeader .headerLeft, .logoHeader .headerRight {
+.headerWrap.hide {
+  transform: translateY(-100%);
+}
+.headerWrap .headerLeft, .headerWrap .headerRight {
   width: 40px;
   display: flex;
   align-items: center;
 }
-.logoHeader .headerLeft img, .logoHeader .headerRight img {
+.headerWrap .headerLeft img, .headerWrap .headerRight img {
   max-height: 28px;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.logoHeader .headerRight {
+.headerWrap .headerRight {
   justify-content: flex-end;
 }
-.logoHeader .headerTitle {
+.headerWrap .headerTitle {
   font-family: "Inter", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   color: #1A1C19;
   line-height: 1.4;
 }
-.logoHeader .headerIcon {
+.headerWrap .headerIcon {
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
 }
-.logoHeader .headerIcon svg {
+.headerWrap .headerIcon svg {
   font-size: 1.5rem;
 }/*# sourceMappingURL=header.css.map */

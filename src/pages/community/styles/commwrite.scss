@@ -1,0 +1,133 @@
+// commwrite.scss
+@import '../../../styles/_config';
+
+.commWriteContainer {
+  width: 100%; height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3.5rem; 
+
+  /* 1. 이미지 삽입 */
+  .imageUploadSection {
+    width: 100%;
+    aspect-ratio: 1 / 1; // 정사각형 비율 유지
+    background-color: $colorDKGray; // 시안과 동일한 검정 배경
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .uploadPlace {
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        
+        svg {
+          font-size: 5rem;
+          color: $colorWhite;
+        }
+      }
+
+      input[type=file] {
+        display: none; // 실제 파일 선택창은 숨김
+      }
+    }
+  }
+
+  /* 2. 상세 내용 기입 */
+  .contentInputSection {
+    flex: 1;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; // 각 입력 박스 간의 간격
+
+    // 공통 라벨 스타일 (카테고리, 제목, 내용 글자)
+    label {
+      display: block;
+      @include fontText04; // 12px 정도의 작은 폰트
+      font-weight: bold;
+      color: $colorBlack;
+      margin-bottom: 0.6rem;
+    }
+
+    // 카테고리 셀렉트 박스 커스텀
+    .categorySelectBox {
+      .selectWrapper {
+        position: relative;
+        width: 100%;
+
+        select {
+          width: 100%;
+          padding: 1rem;
+          border: 1px solid $colorLgGray;
+          border-radius: 10px;
+          outline: none;
+          @include fontText02;
+          appearance: none; // 브라우저 기본 화살표 제거
+          background-color: $colorWhite;
+          color: $colorBlack;
+
+          &:invalid, & option[value=""] {
+            color: $colorMdGray;
+          }
+        }
+
+        // 커스텀 화살표 아이콘 (CSS로 삼각형 만들기)
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: 1.2rem;
+          transform: translateY(-50%);
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 6px solid $colorBlack; // 아래 방향 화살표
+          pointer-events: none; // 화살표 클릭 시에도 셀렉트 박스 작동하도록
+        }
+      }
+    }
+
+    // 제목 및 내용 박스 스타일 보정
+    .titleInputBox, .contentInputBox {
+      width: 100%;
+      
+      input, textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid $colorLgGray;
+        border-radius: 10px;
+        outline: none;
+        @include fontText02;
+        
+        &::placeholder {
+          color: $colorMdGray;
+        }
+      }
+      
+      textarea {
+        height: 12rem;
+        resize: none;
+      }
+    }
+  }
+
+  /* 3. 하단 버튼 영역 */
+  .writeBtnGroup {
+    padding: 1rem 1.5rem 2rem; // 하단 여백 충분히
+    display: flex;
+    gap: 1rem;
+    background-color: $colorWhite;
+
+    button {
+      flex: 1;
+      height: 3.5rem;
+      border-radius: 8px;
+      border: none;
+      @include fontText02;
+      font-weight: bold;
+    }
+  }
+}

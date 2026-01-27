@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import './styles/header.css';
 import { TbBell } from "react-icons/tb";
 import { FaAngleLeft } from "react-icons/fa6";
+import { useScrollDirection } from './hooks/useScrollDirection'; 
 
 function AllowHeader() {
+  const isVisible = useScrollDirection();
+  
   return (
-    <div className="logoHeader">
+    <div className={`headerWrap ${isVisible ? '' : 'hide'}`}>
       {/* 왼쪽: 로고 */}
       <div className="headerLeft">
         <Link className="headerIcon">
