@@ -124,6 +124,10 @@
   line-height: 50px;
   cursor: pointer;
 }
+.myHistory .myHistoryTabMenu .active {
+  background: #58A563 !important;
+  color: #fff !important;
+}
 .myHistory .myComment {
   display: flex;
   justify-content: space-between;

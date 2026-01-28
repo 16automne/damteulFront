@@ -76,7 +76,7 @@ const HomePage = () => {
 				</p>
 			)}
 
-			<section>
+			<section className='homePage'>
 					<div className='btnContainer'>
 						<button className='btnActive'>전체</button>
 						<button>최신글</button>
@@ -90,15 +90,8 @@ const HomePage = () => {
 						linkTo={item.path}
 					/>
 					))}
-          
-
-
-
-						
-						
 						{/* 글쓰기 버튼 */}
-            <WriteBtn />
-						
+            <WriteBtn />			
 			</section>
 		</main>
 	);

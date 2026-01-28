@@ -96,6 +96,9 @@
   background-color: #58A563;
 }
 
+.myProfile {
+  margin-top: 60px;
+}
 .myProfile .myContainer {
   border-radius: 20px;
   background: #fff;

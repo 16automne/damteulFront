@@ -99,6 +99,7 @@
 .writeForm {
   width: 100%;
   background: #F2F5F2;
+  margin-top: 60px;
 }
 .writeForm > p {
   margin-bottom: 20px;

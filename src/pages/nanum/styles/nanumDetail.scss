@@ -3,10 +3,11 @@
 @use "../../../styles/_config2" as *;
 
 .nanumDetail{
+	margin-top: 40px;
 	.nanumBtnCustom{
 		>button{
-			width: 90%;
-			background: $colorEtcRed;
+			width: 90% !important;
+			background: $colorEtcRed !important;
 		}
 	}
 }
