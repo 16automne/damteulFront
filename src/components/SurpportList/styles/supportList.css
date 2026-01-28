@@ -124,6 +124,24 @@
   justify-content: space-between;
   line-height: 60px;
 }
+.supportList ul li .question .setting {
+  position: relative;
+}
+.supportList ul li .question .setting p {
+  line-height: 30px !important;
+}
+.supportList ul li .question .setting p:last-child {
+  font-family: "Inter", sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  position: absolute;
+  top: 1rem;
+}
+.supportList ul li .question .setting span {
+  color: #58A563;
+}
 .supportList ul li span {
   width: 4rem;
 }

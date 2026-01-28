@@ -101,7 +101,7 @@ const MyPage = () => {
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='앱 설정'>
+            <Link to='/mypage/setting' title='앱 설정'>
             <MdOutlineSettings />
             <p>앱 설정</p>
             </Link>

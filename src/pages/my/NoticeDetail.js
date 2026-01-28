@@ -9,7 +9,7 @@ function NoticeDetail(props) {
 			style={{marginTop:'60px',gap:'0px'}}
 			>
 				<div className='postUser'>
-					<p>닉네임영역asdasdasda</p>
+					<p>관리자명</p>
 				</div>
 
 				<div className='mainImg swipeContainer'>
@@ -25,10 +25,14 @@ function NoticeDetail(props) {
 				</div>
 
 				<div className='goodsInfo'>
-									<h3>Title</h3>
-									<p>00분전 &#10072; cate</p>
-								</div>
-
+					<h3>Title</h3>
+					<p>00분전 &#10072; cate</p>
+				</div>
+				<div className='usedInfo'>
+					<p>
+						이벤트 문구 내용 들어가는 영역입니다.
+					</p>
+				</div>
 			</section>
 		</main>
 	);

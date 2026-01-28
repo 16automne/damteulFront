@@ -25,6 +25,18 @@
 				align-items: center;
 				justify-content: space-between;
 				line-height: 60px;
+				// Setting.js서식
+				.setting{
+					position: relative;
+					p{
+						line-height: 30px !important;
+					}
+					p:last-child{
+						@include fontText05;
+						position: absolute; top: 1rem;
+					}
+					span{color: $colorPrimary;}
+				}
 			}
 			span{width: 4rem;}
 			h4{
