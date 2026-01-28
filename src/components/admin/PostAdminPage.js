@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
+// import TradeAdminModal from './TradeAdminModal';
+
 
 /* ===========================
    1️⃣ 샘플 게시글 데이터

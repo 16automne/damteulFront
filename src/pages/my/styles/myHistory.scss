@@ -1,0 +1,71 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
+
+.myHistory{
+	margin-top: 40px;
+
+	// li의 .active는 myBuynSell에서 공동 사용 중
+	.myHistoryTabMenu{
+		margin-top: 20px;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 100vw;
+		margin: 0 calc(-50vw + 50%);
+		border-bottom: 2px solid $colorPrimary;
+		>li{
+			width: 50%; height: 50px;
+			text-align: center;
+			background: $colorLgGray;
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+			@include fontText01;
+			color: $colorMdGray;
+			line-height: 50px;
+			cursor: pointer;
+		}
+		// 탭메뉴 액티브 서식
+		.active{
+			background: $colorPrimary !important;
+			color: $colorWhite !important;
+		}
+	}
+
+	// 작성댓글 영역 서식
+	.myComment{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+		padding: 1vh;
+		border-bottom: 1px solid $colorSmGray;
+		>div{
+			display: flex;
+			gap: 3vw;
+			align-items: center;
+			>div{
+				p:first-child{
+					@include fontText03;
+					color: $colorDKGray;
+				}
+				p:last-child{
+					@include fontText04;
+					color: $colorMdGray;
+				}
+			}
+			>img{
+			width: 45px; height: 45px;
+			object-fit: cover;
+			border-radius: 2px;
+		}
+		}
+		>p{
+			@include fontText04;
+			color: $colorDKGray;
+		}
+	}
+	.myComment:last-child{
+		border-bottom: none;
+	}
+}

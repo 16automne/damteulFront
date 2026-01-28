@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
+import UserDetailModal from './UserDetailModal';
+import { gradeInfo } from './constants/gradeInfo';
 
-/* -------------------------------------------------
-   사용자 등급 정보 매핑
-------------------------------------------------- */
-const gradeInfo = {
-  '조심스러운 이웃': { img: '/images/level01.png', desc: '조심스럽게 활동하는 사용자' },
-  '반가운 이웃': { img: '/images/level02.png', desc: '친근하게 다가오는 사용자' },
-  '다정한 이웃': { img: '/images/level03.png', desc: '다정하고 친절한 사용자' },
-  '듬직한 이웃': { img: '/images/level04.png', desc: '믿음직한 사용자' },
-  '신뢰 깊은 이웃': { img: '/images/level05.png', desc: '신뢰할 수 있는 사용자' },
-  '존경 받는 이웃': { img: '/images/level06.png', desc: '커뮤니티에서 존경받는 사용자' },
-};
 
 /* -------------------------------------------------
    샘플 사용자 데이터
@@ -50,6 +41,13 @@ const UserAdminPage = () => {
 
   /* -------------------- 페이지네이션 -------------------- */
   const [currentPage, setCurrentPage] = useState(1);
+
+  // 선택된 사용자 정보
+const [selectedUser, setSelectedUser] = useState(null);
+
+// 사용자 정보 모달 열림 여부
+const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+
   const usersPerPage = 5;
 
   /* -------------------- 정렬 -------------------- */
@@ -72,6 +70,7 @@ const UserAdminPage = () => {
   const currentUsers = filteredUsers.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
+
   /* -------------------- 검색 버튼 클릭 -------------------- */
   const handleSearch = () => {
     setSearchKeyword(inputKeyword.trim());
@@ -87,6 +86,25 @@ const UserAdminPage = () => {
     setSearchStatus('');
     setCurrentPage(1);
   };
+
+/* -------------------- 경고 처리 -------------------- */
+const handleWarn = (userId) => {
+  console.log('경고 처리 사용자:', userId);
+
+  // TODO:
+  // - 경고 모달 띄우기
+  // - 신고 점수 증가
+  // - 서버 API 호출
+};
+
+/* -------------------- 삭제 처리 -------------------- */
+const handleDelete = (userId) => {
+  console.log('삭제 처리 사용자:', userId);
+
+  // TODO:
+  // - 삭제 확인(confirm)
+  // - 서버 API 호출
+};
 
   return (
     <div className="adminPageContainer">
@@ -129,7 +147,7 @@ const UserAdminPage = () => {
           <tr>
             <th>ID</th>
             <th>닉네임</th>
-            <th>상태</th>
+            <th>등급</th>
             <th>신고 점수</th>
             <th>관리</th>
           </tr>
@@ -143,7 +161,13 @@ const UserAdminPage = () => {
             currentUsers.map(user => {
               const grade = gradeInfo[user.grade];
               return (
-                <tr key={user.id}>
+                <tr key={user.id}
+                className="clickableRow"
+                onClick={() => {
+                  setSelectedUser(user);
+                  setIsUserModalOpen(true);
+                }}
+                >
                   <td>{user.id}</td>
                   <td>{user.nickname}</td>
                   <td>
@@ -159,8 +183,16 @@ const UserAdminPage = () => {
                   </td>
                   <td>{user.reportScore} / 15</td>
                   <td>
-                    <button className="btn-sm">경고</button>
-                    <button className="btn-sm danger">삭제</button>
+                    <button className="btn-sm"
+                      onClick={(e) => {
+                        e.stopPropagation(); // ⭐ 버튼 클릭 시 창 띄우기 중지
+                        handleWarn(user.id);
+                    }}>경고</button>
+                    <button className="btn-sm danger"
+                      onClick={(e) => {
+                        e.stopPropagation(); // ⭐ 버튼 클릭 시 창 띄우기 중지
+                        handleDelete(user.id);
+                      }}>삭제</button>
                   </td>
                 </tr>
               );
@@ -185,6 +217,15 @@ const UserAdminPage = () => {
           {'>'}
         </button>
       </div>
+
+          {/* 🔥 Modal */}
+    {isUserModalOpen && selectedUser && (
+      <UserDetailModal
+        user={selectedUser}
+        onClose={() => setIsUserModalOpen(false)}
+      />
+    )}
+
     </div>
   );
 };

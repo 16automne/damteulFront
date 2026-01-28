@@ -1,0 +1,114 @@
+@charset "UTF-8";
+@use '../../../styles/_config' as*;
+@use '../../../styles/_config2' as*;
+
+// 마이페이지 사용자 정보영역
+.myPage{margin-top: 60px;}
+.myPageUserWrapper{
+	border-radius: 20px;
+	background: $colorWhite;
+	text-align: center;
+	height: 320px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	.myPageUser{
+		height: 60%;
+		color: $colorDKGray;
+		padding-left: 5%;
+		padding-right: 5%;
+		>h3 img{
+		width: 108px; height: 108px;
+		margin-top: 5%;
+		margin-bottom: 20px;
+		}
+		.profileCheck{
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			@include fontText01;
+			>svg{
+				position: absolute;
+				right: 0px;
+				@include fontHead01;
+				fill: $colorPrimary;
+			}
+		}
+	}
+	// 담뜰페이
+	.myWallet{
+		display: flex;
+		justify-content: space-between;
+		padding-left: 5%;
+		padding-right: 5%;
+		margin:15px auto;
+		@include fontText02;
+		.myWalletAlign{
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			>svg{
+			@include fontHead01;
+			fill: $colorPrimary;
+		}
+		}
+		
+	}
+	>button{
+		@include linkButtonHalf($colorPrimary);
+		width: 45%;
+		margin: auto 10px;
+	}
+}
+
+// 마이페이지 카테고리 영역
+.myPageGrid{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr 1fr;
+	gap: 15px 0px;
+	place-items: center;
+	.myPageMenu{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 60px; height: 60px;
+		text-align: center;
+		border-radius: 8px;
+		>a{
+			svg{
+				stroke: $colorWhite;
+				fill: $colorWhite;
+				font-size: 2rem;
+			}
+			p{
+				@include fontText04;
+				color: $colorLgGray;
+			}
+			}
+	}
+	.myPageMenu:first-of-type{
+		background: $colorEtcRed;
+	}
+	.myPageMenu:nth-of-type(2){
+		background: $colorEtcOrange;
+	}
+	.myPageMenu:nth-of-type(3){
+		background: $colorEtcYellow;
+	}
+	.myPageMenu:nth-of-type(4){
+		background: $colorEtcLgGreen;
+	}
+	.myPageMenu:nth-of-type(5){
+		background: $colorPrimary;
+	}
+	.myPageMenu:nth-of-type(6){
+		background: $colorEtcSkyBlue;
+	}
+	.myPageMenu:nth-of-type(7){
+		background: $colorEtcBlue;
+	}
+	.myPageMenu:last-of-type{
+		background: $colorEtcPurple;
+	}
+}

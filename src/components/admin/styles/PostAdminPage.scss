@@ -1,66 +1,126 @@
 @use '../../../styles/_config' as *;
 
+/* ==================================================
+   관리자 페이지 공통 컨테이너
+================================================== */
 .adminPageContainer {
   padding: 20px;
   background-color: $colorLgGray;
   min-height: 100vh;
 
+  /* ==========================
+     상단 헤더 영역
+  ========================== */
   .adminHeader {
     margin-bottom: 20px;
 
     .adminTitle {
-      @include webFontHead01;
-      color: $colorPrimary;
+      @include webFontHead01; // 관리자 페이지 대제목
+      // color: $colorPrimary;
     }
 
     .adminDesc {
-      @include webFontText03;
+      @include webFontText03; // 부가 설명 텍스트
       color: $colorMdGray;
     }
   }
 
-  .filterBar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+  /* ==========================
+   필터 / 검색 바
+========================== */
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background-color: $colorWhite;
+  border-radius: 8px;
+  box-shadow: $bottomShadow;
 
-    .searchBox {
-      position: relative;
-      flex: 1;
+  /* ==========================
+     검색 input
+  ========================== */
+  .searchBox {
+    position: relative;
+    width: 300px;
+    margin-right: 25px;
 
-      input {
-        width: 100%;
-        padding: 8px 12px 8px 30px; // 왼쪽에 아이콘 공간 확보
-        border: 1px solid $colorSmGray;
-        border-radius: 4px;
-        @include webFontText02;
-      }
-
-
-    select {
-      padding: 8px 12px;
+    input {
+      width: 100%;
+      padding: 9px 12px;
       border: 1px solid $colorSmGray;
-      border-radius: 4px;
-      @include webFontText02;
+      border-radius: 6px;
       background-color: $colorWhite;
-    }
+      @include webFontText03;
 
-    button {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 4px;
-      background-color: $colorPrimary;
-      color: $colorWhite;
-      cursor: pointer;
-      @include webFontText02;
+      transition: border-color 0.2s, box-shadow 0.2s;
 
-      &.danger {
-        background-color: $colorEtcRed;
+      &:focus {
+        outline: none;
+        border-color: $colorPrimary;
+        box-shadow: 0 0 0 2px rgba($colorPrimary, 0.15);
       }
     }
   }
 
+  /* ==========================
+     상태 select 박스
+  ========================== */
+  select {
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid $colorSmGray;
+    border-radius: 6px;
+    background-color: $colorWhite;
+    cursor: pointer;
+    @include webFontText03;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $colorPrimary;
+      box-shadow: 0 0 0 2px rgba($colorPrimary, 0.15);
+    }
+  }
+
+  /* ==========================
+     검색 / 액션 버튼
+  ========================== */
+  button {
+    height: 40px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: $colorPrimary;
+    color: $colorWhite;
+    cursor: pointer;
+
+    transition: background-color 0.2s, transform 0.1s;
+
+    &:hover {
+      background-color: darken($colorPrimary, 6%);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &.danger {
+      background-color: $colorEtcRed;
+
+      &:hover {
+        background-color: darken($colorEtcRed, 6%);
+      }
+    }
+  }
+}
+
+
+  /* ==========================
+     관리자 테이블
+  ========================== */
   .adminTable {
     width: 100%;
     border-collapse: collapse;
@@ -69,7 +129,8 @@
     border-radius: 6px;
     overflow: hidden;
 
-    th, td {
+    th,
+    td {
       padding: 12px;
       text-align: left;
       border-bottom: 1px solid $colorSmGray;
@@ -80,36 +141,22 @@
       background-color: $colorLgGray;
     }
 
+    /* 행 hover 효과 */
     tbody tr:hover {
       background-color: $colorSmGray;
     }
 
-    .statusBadge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: $colorWhite;
 
-      &.new {
-        background-color: $colorEtcLgGreen;
-      }
 
-      &.used {
-        background-color: $colorEtcOrange;
-      }
-    }
-
+    /* 관리 버튼 (수정/삭제) */
     .btn-sm {
       padding: 4px 8px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       margin-right: 4px;
-      font-size: 0.875rem;
       @include webFontText03;
-      background-color: $colorSkyBlue;
+      background-color: $colorEtcSkyBlue;
       color: $colorWhite;
 
       &.danger {
@@ -118,11 +165,14 @@
     }
   }
 
+  /* ==========================
+     페이지네이션
+  ========================== */
   .pagination {
     margin-top: 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 
     button {
@@ -134,38 +184,3 @@
     }
   }
 }
-}
-
-
-
-//@import './variables';
-
-// .adminTabs {
-//   display: flex;          // ⭐ 절대 none 금지
-//   gap: 16px;
-//   margin-bottom: 24px;
-//   border-bottom: 1px solid $gray-200;
-
-//   .tab {
-//     padding: 10px 4px;
-//     font-size: 15px;
-//     color: $gray-500;
-//     cursor: pointer;
-//     position: relative;
-
-//     &.active {
-//       color: $primary;
-//       font-weight: 600;
-
-//       &::after {
-//         content: '';
-//         position: absolute;
-//         bottom: -1px;
-//         left: 0;
-//         width: 100%;
-//         height: 2px;
-//         background: $primary;
-//       }
-//     }
-//   }
-// }

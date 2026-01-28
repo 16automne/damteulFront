@@ -1,5 +1,7 @@
 .firstPageWrap {
-  height: 100dvh;
+  height: 100vh;
+  position: relative;
+  padding: 0;
 }
 .firstPageWrap .firstPage {
   position: relative;
@@ -42,7 +44,7 @@
 .firstPageWrap .firstPageBtn {
   position: absolute;
   width: 100%;
-  bottom: 50px;
+  bottom: 80px;
 }
 .firstPageWrap .firstPageBtn a {
   font-family: "Inter", sans-serif;

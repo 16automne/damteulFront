@@ -4,6 +4,10 @@
   color: #333;
 }
 
+.homePage {
+  margin-top: 60px;
+}
+
 .loginMessage {
   position: fixed;
   bottom: 150px;
@@ -30,7 +34,8 @@
   background: #F2F5F2;
 }
 .btnContainer > button {
-  width: 70px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   height: 35px;
   border: none;
   border-radius: 17.5px;

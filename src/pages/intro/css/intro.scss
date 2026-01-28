@@ -1,7 +1,9 @@
 @use '../../../styles/__config' as *;
 
 .firstPageWrap{
-  height: 100dvh;
+  height: 100vh;
+  position: relative;
+  padding: 0;
   .firstPage{
     position: relative;
     transform: translateY(-50%);
@@ -29,7 +31,7 @@
   .firstPageBtn{
     position: absolute;
     width: 100%;
-    bottom: 50px;
+    bottom: 80px;
     a{
       @include fontText01;
       display: block;

@@ -1,0 +1,240 @@
+@charset "UTF-8";
+/* ================================
+   모달 오버레이
+================================ */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+  color: #6B6B6B;
+}
+.modalCloseBtn:hover {
+  color: #1A1C19;
+}
+
+/* ================================
+   모달 컨텐츠
+================================ */
+.modalContent {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   관리자 페이지 레이아웃 (모달용)
+================================ */
+.modalContent .adminPageContainer {
+  min-height: auto;
+  padding: 32px;
+  background-color: #F2F5F2;
+}
+.modalContent .adminHeader {
+  margin-bottom: 24px;
+}
+.modalContent .adminHeader .adminTitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+}
+.modalContent .adminHeader .adminDesc {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #6B6B6B;
+}
+
+/* ================================
+   카드 영역
+================================ */
+.userEditCard {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ================================
+   사용자 요약
+================================ */
+.userSummary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.userSummary img {
+  width: 64px;
+  height: 64px;
+}
+.userSummary div {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+  line-height: 1.6;
+}
+
+/* ================================
+   섹션 공통
+================================ */
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+section h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+}
+section select {
+  width: 40%;
+}
+section input,
+section textarea {
+  width: 50%;
+}
+section input,
+section select,
+section textarea {
+  padding: 10px 12px;
+  display: flex;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  border: 1px solid #D7D7D7;
+  background-color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+}
+section input:disabled,
+section select:disabled,
+section textarea:disabled {
+  background-color: #F2F5F2;
+  color: #6B6B6B;
+}
+section input:focus,
+section select:focus,
+section textarea:focus {
+  outline: none;
+  border-color: #58A563;
+}
+section textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* ================================
+   신고 점수 컨트롤
+================================ */
+.scoreControl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.scoreControl span {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  width: 40px;
+  text-align: center;
+}
+.scoreControl button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background-color: #F2F5F2;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.scoreControl button:hover {
+  background-color: #58A563;
+  color: #fff;
+}
+
+/* ================================
+   하단 버튼 영역
+================================ */
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+.actionButtons button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  background-color: #D7D7D7;
+  color: #1A1C19;
+}
+.actionButtons button:hover {
+  background-color: #6B6B6B;
+  color: #fff;
+}
+.actionButtons button.primary {
+  background-color: #58A563;
+  color: #fff;
+}
+.actionButtons button.primary:hover {
+  opacity: 0.9;
+}
+.actionButtons button.danger {
+  background-color: #E06868;
+  color: #fff;
+}
+.actionButtons button.danger:hover {
+  opacity: 0.9;
+}/*# sourceMappingURL=UserDetailModal.css.map */

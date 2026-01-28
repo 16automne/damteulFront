@@ -17,15 +17,23 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Nanum from "pages/nanum/Nanum";
   import Chat from "pages/chat/Chat";
   import MyPage from "pages/my/MyPage";
+  import MyProfile from 'pages/my/MyProfile';
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
-  import GoodsTrade from "pages/goods/GoodsTrade";
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
-  import CommWrite from "pages/community/CommWrite";
+  import GoodsTrade from "pages/goods/GoodsTrade";
+  import GoodsDetail from 'pages/goods/GoodsDetail';
+  import NanumPost from 'pages/nanum/NanumPost';
+  import NanumDetail from 'pages/nanum/NanumDetail';
+  import MyProfileEdit from 'pages/my/MyProfileEdit';
+  import MyBuynSell from 'pages/my/MyBuynSell';
+  import MyHistory from 'pages/my/MyHistory';
+  import MyWishlist from 'pages/my/MyWishlist';
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
   import Login from "pages/auth/Login";
   import Register from "pages/auth/Register";
+  import AddressSearch from "pages/auth/AddressSearch";
   
   // 6) 관리자 페이지 (AdminPage)
   import DashboardPage from "components/admin/DashboardPage"
@@ -47,6 +55,7 @@ export const routes = [
       { path: "/event", element: <Event /> },  
       { path: "/chat", element: <Chat /> }, 
       { path: "/mypage", element: <MyPage /> }, 
+      { path: "/myprofile", element: <MyProfile />},
     ],
   },
 
@@ -54,15 +63,21 @@ export const routes = [
   {
     element: <NoTabsTitleLayout />,
     children: [
-      {path:"/goodstrade", element: <GoodsTrade />}
     ],
   },
-
+  
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   {
     element: <NoTabsBackLayout />,
     children: [
-      { path: "/community/write", element: <CommWrite /> }
+      {path:"/goodstrade", element: <GoodsTrade />},
+      {path:"/goodsdetail", element: <GoodsDetail />},
+      {path:"/nanumpost", element:<NanumPost />},
+      {path:"/nanumdetail", element:<NanumDetail />},
+      {path:"/myprofileedit", element:<MyProfileEdit/>},
+      {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
+      {path:"/mypage/myhistory", element:<MyHistory/>},
+      {path:"/mypage/mywishlist", element:<MyWishlist/>}
     ],
   },
 
@@ -78,9 +93,10 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      { path: "/damteul", element: <FirstPage /> },
+      { path: "/intro", element: <FirstPage /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/address", element: <AddressSearch /> },
     ],
   },
 

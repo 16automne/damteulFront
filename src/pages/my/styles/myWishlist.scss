@@ -1,0 +1,32 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
+
+.myWishlist{
+	margin-top: 60px;
+	.tabMenu{
+		margin-top: 20px;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 100vw;
+		margin: 0 calc(-50vw + 50%);
+		border-bottom: 2px solid $colorPrimary;
+		>li{
+			width: 50%; height: 50px;
+			text-align: center;
+			background: $colorLgGray;
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+			@include fontText01;
+			color: $colorMdGray;
+			line-height: 50px;
+			cursor: pointer;
+		}
+		// 탭메뉴 액티브 서식
+		.active{
+			background: $colorPrimary !important;
+			color: $colorWhite !important;
+		}
+	}
+}

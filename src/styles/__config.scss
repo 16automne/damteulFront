@@ -80,7 +80,7 @@ $mobileBaseWidth: 92%; // 모바일 평균 너비
     min-height: 100dvh;
     max-width: $mobileMaxWidth;
     margin: 0 auto;
-
+    overflow: hidden;
 }
 
 // 모바일 자식 기본 레이아웃

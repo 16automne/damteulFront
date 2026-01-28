@@ -1,0 +1,209 @@
+@use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
+
+
+
+.postUser{
+	position: relative;
+	// bodychild 너비제한 때문에 넣었읍니다
+	width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+	max-width: $mobileMaxWidth;
+	min-width: $mobileWidth;
+	padding-left: 25px;
+	height: 70px;
+	display: flex;
+	justify-content: start;
+	gap: 15px;
+	align-items: center;
+	@include fontText02;
+	color: $colorDKGray;
+	background: $colorWhite;
+	// 프로필 이미지 서식
+	img:first-of-type{
+		width: 50px; height: 50px;
+		border-radius: 50%;
+	}
+	img:last-of-type{
+		width: 20px; height: 20px;
+		margin-left: -5px;
+	}
+	.moreBtn{
+		width: 35px; height: 35px;
+		position: absolute;
+		right: 50px;
+	}
+}
+
+// 게시한 이미지 스와이프 서식
+.swipeContainer{
+	width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	&::-webkit-scrollbar{
+		display: none;
+	}
+	.goodsItem{
+		display: flex;
+		justify-content: center;
+		flex: 0 0 100%;
+		scroll-snap-align: start;
+		img{
+			width: 100%;
+			object-fit: cover;
+			display: block;
+			aspect-ratio: 390/430;
+			max-width: 600px;
+		}
+	}
+}
+
+
+// 제품상세정보 텍스트 영역
+.goodsInfo{
+	position: relative;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	>h3{
+		@include fontHead02;
+		margin-bottom: 10px;
+	}
+	>p:first-of-type{
+		@include fontText03;
+		color: $colorMdGray;
+		margin-bottom: 20px;
+	}
+	>p:nth-of-type(2){
+		@include fontText01;
+		color: $colorDKGray;
+		margin-bottom: 50px;
+	}
+	.reaction{
+		display: flex;
+		gap: 15px;
+		@include fontText04;
+		>p span{
+			margin-left: 5px;
+			transform: translateY(-2px);
+			display: inline-block;
+		}
+	}
+
+	// 찜하기 버튼
+	.favorite{
+		@include fontText02;
+		background: none;
+		border: none;
+		position: absolute;
+		top: 0px;
+		right: 5px;
+	}
+}
+
+// 중고상품일시 표시영역 서식
+.usedInfo{
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 25px;
+	overflow: visible;
+	.usedItem{
+		margin-top: 25px;
+		display: flex;
+		gap: 15px;
+		overflow-x: auto;
+		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+		scroll-behavior: smooth;
+		&::-webkit-scrollbar{display: none;}
+	}
+	>p{
+		width: 90%;
+		word-break: break-all;
+		white-space: pre-wrap;
+		line-height: 30px;
+	}
+	@include fontText03;
+	color: $colorDKGray;
+	img{
+		width: 100px; height: 100px;
+		border-radius: 5px;
+		object-fit: cover;
+		flex-shrink: 0
+	}
+}
+
+// 관련상품 영역서식
+.relevance{
+	>h3{
+		@include fontText01;
+		color: $colorDKGray;
+		margin-top: 50px;
+		margin-bottom: 15px;
+	}
+
+	// 상품 이미지/정보 영역 서식
+	.relevanceGrid{
+		width: 100%;
+		gap: 1rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		.relevanceItem{
+			width: 100%;
+			>img{
+				// width: 175px; height: 115px;
+				width: 100%;
+				aspect-ratio: 3/2;
+				border-radius: 5px;
+				object-fit: cover;
+			}
+			>h3{
+				@include fontText03;
+				color: $colorDKGray;
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			>p{margin: 0;}
+		}
+	}
+}
+
+
+// 더보기 버튼영역 옮길예정
+.moreAction{
+	width: 175px; height: 100px;
+	position: absolute;
+	z-index: 2;
+	background: #fff;
+	border-radius: 5px;
+	top: 90%; right: 10%;
+	text-align: center;
+	box-shadow: $bottomShadow;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	@include fontText03;
+	>span{
+		height: 1px;
+		background: $colorMdGray;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	>a{
+		color: $colorEtcRed;
+	}
+}
+.goodsDetail{
+  // 하단 버튼서식
+	>.bottomBtn>button:first-child{
+		background: $colorEtcYellow;
+	}
+	>.bottomBtn>button:last-child{
+		background: $colorEtcRed;
+	}
+}
+	
