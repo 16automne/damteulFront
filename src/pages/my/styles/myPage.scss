@@ -3,6 +3,7 @@
 @use '../../../styles/_config2' as*;
 
 // 마이페이지 사용자 정보영역
+.myPage{margin-top: 60px;}
 .myPageUserWrapper{
 	border-radius: 20px;
 	background: $colorWhite;

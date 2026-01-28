@@ -6,6 +6,7 @@
 .writeForm{
 	width: 100%;
 	background: $colorLgGray;
+	margin-top: 60px;
 	>p{margin-bottom: 20px;}
 	>p label{
 		@include fontText02;

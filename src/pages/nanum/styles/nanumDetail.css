@@ -96,9 +96,12 @@
   background-color: #58A563;
 }
 
+.nanumDetail {
+  margin-top: 40px;
+}
 .nanumDetail .nanumBtnCustom > button {
-  width: 90%;
-  background: #E06868;
+  width: 90% !important;
+  background: #E06868 !important;
 }
 
 .clearedModalWrapper {

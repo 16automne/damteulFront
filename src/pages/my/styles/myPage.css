@@ -96,6 +96,10 @@
   background-color: #58A563;
 }
 
+.myPage {
+  margin-top: 60px;
+}
+
 .myPageUserWrapper {
   border-radius: 20px;
   background: #fff;

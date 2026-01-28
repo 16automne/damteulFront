@@ -30,7 +30,7 @@ const Nanum = () => {
 ];
   return (
     <main>
-      <section>
+      <section style={{marginTop:'60px'}}>
           <div className='btnContainer'>
 						<button className='btnActive'>나눔</button>
 						<button>이벤트</button>

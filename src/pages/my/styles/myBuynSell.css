@@ -125,8 +125,7 @@
   line-height: 50px;
   cursor: pointer;
 }
-
-.active {
+.myTabMenu .active {
   background: #58A563 !important;
   color: #fff !important;
 }/*# sourceMappingURL=myBuynSell.css.map */

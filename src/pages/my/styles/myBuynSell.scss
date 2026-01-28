@@ -25,9 +25,10 @@
 		line-height: 50px;
 		cursor: pointer;
 	}
-}
-// 탭메뉴 액티브 서식
-.active{
-	background: $colorPrimary !important;
-	color: $colorWhite !important;
+	// 탭메뉴 액티브 서식
+	.active{
+		background: $colorPrimary !important;
+		color: $colorWhite !important;
+	}
+
 }

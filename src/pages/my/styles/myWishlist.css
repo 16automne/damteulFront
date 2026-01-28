@@ -123,4 +123,8 @@
   color: #6B6B6B;
   line-height: 50px;
   cursor: pointer;
+}
+.myWishlist .tabMenu .active {
+  background: #58A563 !important;
+  color: #fff !important;
 }/*# sourceMappingURL=myWishlist.css.map */
