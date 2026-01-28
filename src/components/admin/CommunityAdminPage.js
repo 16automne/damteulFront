@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
+import CommunityAdminModal from './CommunityAdminModal';
 
 /* ===========================
    1️⃣ 샘플 커뮤니티 데이터
@@ -40,6 +41,12 @@ const CommunityAdminPage = () => {
      🔹 페이지네이션 상태
   =========================== */
   const [currentPage, setCurrentPage] = useState(1);
+
+    /* ===========================
+     🔹 선택된 커뮤니티 (모달용)
+  =========================== */
+  const [selectedCommunity, setSelectedCommunity] = useState(null);
+
   const communitiesPerPage = 5;
 
   /* ===========================
@@ -175,7 +182,13 @@ const CommunityAdminPage = () => {
                   </span>
                 </td>
                 <td>
-                  <button className="btn-sm">완료 처리</button>
+                <button
+                  className="btn-sm"
+                  onClick={() => setSelectedCommunity(item)}
+                >
+                  관리
+                </button>
+
                   <button className="btn-sm danger">삭제</button>
                 </td>
               </tr>
@@ -204,6 +217,20 @@ const CommunityAdminPage = () => {
           {'>'}
         </button>
       </div>
+
+                <CommunityAdminModal
+            community={selectedCommunity}
+            onClose={() => setSelectedCommunity(null)}
+            onComplete={(id, status) => {
+              console.log(id, status);
+              setSelectedCommunity(null);
+            }}
+            onDelete={(id) => {
+              console.log(id);
+              setSelectedCommunity(null);
+            }}
+          />
+
     </div>
   );
 };

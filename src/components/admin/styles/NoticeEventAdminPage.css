@@ -28,4 +28,23 @@
 }
 .noticeEventPage .tabContainer .tabButton1:hover:not(.active), .noticeEventPage .tabContainer .tabButton2:hover:not(.active) {
   background-color: #F2F5F2;
+}
+
+.writeButtonWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -36px;
+}
+
+.writeButton {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4a6cf7;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.writeButton:hover {
+  background-color: #3957d6;
 }/*# sourceMappingURL=NoticeEventAdminPage.css.map */
