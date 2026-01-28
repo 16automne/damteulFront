@@ -1,6 +1,7 @@
 import SupportList from 'components/SurpportList/SupportList';
 import WriteBtn from 'components/writeBtn/WriteBtn';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // 나중에 삭제
 const contactData = [
@@ -32,7 +33,9 @@ function ContactUs(props) {
 	return (
 		<main>
 			<SupportList data={contactData}/>
+			<Link to='' title='문의 글 쓰기'>
 			<WriteBtn />
+			</Link>
 		</main>
 	);
 }

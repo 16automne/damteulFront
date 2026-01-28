@@ -23,7 +23,7 @@ const noticeData = [
 function Notice(props) {
 	return (
 		<main>
-			<Link>
+			<Link to='/mypage/support/notice/noticedetail' title='공지사항 상세페이지로 이동'>
 			<SupportList data={noticeData} type='notice' />
 			</Link>
 		</main>
