@@ -1,3 +1,19 @@
+.chatPageWrap {
+  margin-top: 100px;
+}
+.chatPageWrap .title3 {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  top: 100px;
+}
+.chatPageWrap .title3 h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+}
 .chatPageWrap .btnContainer {
   margin-top: 20px;
   margin-bottom: 20px;
