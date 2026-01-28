@@ -1,0 +1,22 @@
+@charset "UTF-8";
+@use "../../../styles/_config" as*;
+@use "../../../styles/_config2" as*;
+
+.support{
+	margin-top: 60px;
+	ul{
+		li{border-top: 1px solid $colorSmGray;}
+		li:last-child{border-bottom: 1px solid $colorSmGray;}
+		li a{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			@include fontText03;
+			color: $colorDKGray;
+			line-height: 60px;
+			svg{
+				@include fontHead01;
+			}
+		}
+	}
+}

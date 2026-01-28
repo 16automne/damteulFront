@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@use "../../../styles/_config" as*;
+@use "../../../styles/_config2" as*;
+
+.supportList{
+	margin-top: 60px;
+
+	ul{
+		li{
+			@include fontText03;
+			color: $colorDKGray;
+			cursor: pointer;
+			hr{
+				width: 100vw;
+				margin-left: calc(-50vw + 50%);
+				margin-right: calc(-50vw + 50%);
+				margin-top: 0;
+				margin-bottom: 0;
+				border: none;
+				background-color: $colorSmGray;
+				height: 1px;
+			}
+			.question{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				line-height: 60px;
+			}
+			span{width: 4rem;}
+			h4{
+				margin-right: auto;
+				@include fontText03;
+				color: $colorDKGray;
+			}
+			svg{
+				@include fontHead01;
+				fill: $colorMdGray;
+				transition: transform 0.5s ease;
+				&.transition{
+					transform: rotate(180deg);
+				}
+			}
+			// 질문 상세내용 영역 서식
+			.questionContent{
+				margin-left: 4rem;
+				margin-right: 1.5rem;
+				p{margin-bottom: 1rem;}
+				span{
+					@include fontText04;
+					color: $colorMdGray;
+				}
+			}
+			// 답변 들어갈 영역 서식
+			.faqAnswer{
+				margin-top: 0.5rem;
+				background: $colorWhite;
+				width: 100vw;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				margin-left: calc(-50vw + 50%);
+				margin-right: calc(-50vw + 50%);
+				border-top: 1px solid $colorSmGray;
+				p{
+					margin-left: 2rem;
+					margin-right: 1.5rem;
+				}
+				p:last-child{
+					@include fontText04;
+					color: $colorMdGray;
+					margin-top: 1rem;
+				}
+			}
+		}
+	}
+}

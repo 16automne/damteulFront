@@ -19,6 +19,11 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyPage from "pages/my/MyPage";
   import MyProfile from 'pages/my/MyProfile';
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
+  import Support from 'pages/my/Support';
+  import Faq from 'pages/my/Faq';
+  import ContactUs from 'pages/my/ContactUs';
+  import Reports from 'pages/my/Reports';
+  import Notice from 'pages/my/Notice';
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';
@@ -44,7 +49,9 @@ import AdminIndex from "pages/admin/AdminIndex";
   import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
 
-export const routes = [
+
+  
+  export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
   {
     element: <TabsLayout />,
@@ -63,6 +70,11 @@ export const routes = [
   {
     element: <NoTabsTitleLayout />,
     children: [
+      {path: "/mypage/support", element:<Support/>},
+      {path:"/mypage/support/faq", element:<Faq/>},
+      {path:"/mypage/support/contactus", element:<ContactUs />},
+      {path:"/mypage/support/reports", element:<Reports />},
+      {path:"/mypage/support/notice", element:<Notice />}
     ],
   },
   

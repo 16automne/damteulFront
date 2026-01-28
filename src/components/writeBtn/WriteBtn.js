@@ -21,6 +21,8 @@ function WriteBtn(props) {
 				<Link>커뮤니티</Link>
 				</div>
 			)}	
+
+			{/* 일대일 문의 사항영역 추가 필요 */}
 		</>
 	);
 }

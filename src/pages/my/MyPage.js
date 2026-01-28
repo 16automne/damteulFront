@@ -95,7 +95,7 @@ const MyPage = () => {
             </Link>
           </div>
           <div className='myPageMenu'>
-            <Link to='' title='문의'>
+            <Link to='/mypage/support' title='문의사항'>
             <IoMdHeadset />
             <p>문의</p>
             </Link>
