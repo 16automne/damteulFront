@@ -1,0 +1,238 @@
+@use '../../../styles/_config' as *;
+
+.userDetailModal{
+/* ==============================
+   모달 오버레이
+============================== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ==============================
+   모달 컨텐츠
+============================== */
+.modalContent {
+  width: 25%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: $colorWhite;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  box-shadow: $bottomShadow;
+}
+
+/* 닫기 버튼 */
+.modalCloseBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ==============================
+   헤더
+============================== */
+.adminHeader {
+  margin-bottom: 24px;
+}
+
+.adminTitle {
+  @include webFontHead02;
+}
+
+.adminDesc {
+  margin-top: 4px;
+  @include webFontText04;
+  color: $colorMdGray;
+}
+
+/* ==============================
+   카드 영역
+============================== */
+.userEditCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==============================
+   프로필
+============================== */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profileImg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid $colorSmGray;
+}
+
+/* ==============================
+   섹션 공통
+============================== */
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h4 {
+    @include webFontText02;
+  }
+}
+
+/* ==============================
+   입력 그룹
+============================== */
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  strong {
+    width: 90px;
+    @include webFontText04;
+  }
+
+  input,
+  select {
+    flex: 1;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid $colorSmGray;
+    border-radius: 6px;
+    @include webFontText03;
+  }
+}
+
+.disabledInput {
+  background-color: $colorLgGray;
+  cursor: not-allowed;
+}
+
+/* ==============================
+   등급
+============================== */
+.gradeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+}
+
+.userSummary {
+  display: flex;
+  align-items: center;
+}
+
+.gradeImg {
+  width: 40px;
+  height: 40px;
+}
+
+/* ==============================
+   상태 표시
+============================== */
+.statusRow {
+  margin-top: 8px;
+}
+
+.statusBadge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  @include webFontText04;
+  font-weight: $weightMedium;
+}
+
+/* 상태별 색상 */
+.정상 {
+  background-color: $colorEtcLgGreen;
+  color: $colorWhite;
+}
+
+.정지 {
+  background-color: $colorEtcOrange;
+  color: $colorWhite;
+}
+
+.탈퇴 {
+  background-color: $colorEtcRed;
+  color: $colorWhite;
+}
+
+/* ==============================
+   메모
+============================== */
+textarea {
+  min-height: 100px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid $colorSmGray;
+  resize: vertical;
+  @include webFontText03;
+}
+
+/* ==============================
+   하단 버튼 영역
+============================== */
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  width: 100%;   
+}
+
+.statusActions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ==============================
+   버튼
+============================== */
+.primary {
+  height: 40px;
+  padding: 0 16px;
+  background-color: $colorPrimary;
+  color: $colorWhite;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  @include webFontText03;
+}
+
+.saveBtn {
+  font-weight: $weightSemibold;
+}
+
+.banBtn {
+  height: 40px;
+  padding: 0 16px;
+  background-color: $colorEtcRed;
+  color: $colorWhite;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  @include webFontText03;
+}
+
+.mutedText {
+  @include webFontText04;
+  color: $colorMdGray;
+}
+
+}

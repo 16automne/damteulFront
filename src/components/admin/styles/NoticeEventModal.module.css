@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* src/components/admin/styles/NoticeEventModal.scss */
+/* src/components/admin/styles/NoticeEventModal.module.scss */
 /* ===========================
    🔹 모달 오버레이
 =========================== */
@@ -21,7 +21,7 @@
 =========================== */
 .modalContent {
   background-color: #F2F5F2;
-  width: 600px;
+  width: 28%;
   max-width: 90vw;
   border-radius: 12px;
   padding: 20px 30px;
@@ -170,25 +170,6 @@
   background-color: #c95a5a;
 }
 
-.writeButtonWrap {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -36px;
-}
-
-.writeButton {
-  padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
-  background-color: #4a6cf7;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-}
-.writeButton:hover {
-  background-color: #3957d6;
-}
-
 .previewBox {
   display: flex;
   gap: 8px;
@@ -200,4 +181,4 @@
      object-fit: cover;
   border-radius: 4px;
   border: 1px solid #D7D7D7;
-}/*# sourceMappingURL=NoticeEventModal.css.map */
+}/*# sourceMappingURL=NoticeEventModal.module.css.map */

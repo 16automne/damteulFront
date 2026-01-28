@@ -1,18 +1,23 @@
 @import '../../../styles/_config';
 
-.logoHeader {
-  max-width: 767px;
-  position: fixed; top: 0; left: 0; right: 0;// 아래에 고정
-  margin: 0 auto;
-  width: 100%;
+.headerWrap {
+  position: fixed; top: 0; left: 0; right: 0; //고정
+
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow-x : hidden;
+  
   height: calc(2.5rem + env(safe-area-inset-top)); //상단 노치
   padding: env(safe-area-inset-top) 1rem 0 1rem; //노치에 가려지지 않도록 상단 패딩 조절
   display: flex;
-  align-items: center; //left, right 가운데 정렬
   justify-content: space-between;
   background-color: $colorLgGray;
   box-sizing: border-box; //내용물 넘치지 않게하기
+  transition: transform 0.3s ease-in-out;
   z-index: 100; //가려지지 않게 index값 줌
+
+  &.hide {transform: translateY(-100%);} //숨겨졌을 때 위로 올리기
 
   .headerLeft, .headerRight {
     width: 40px; 

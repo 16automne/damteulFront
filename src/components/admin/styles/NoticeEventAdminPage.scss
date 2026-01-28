@@ -33,3 +33,25 @@
   }
 
 }
+
+// 글쓰기 버튼 
+
+.writeButtonWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -36px;
+}
+
+.writeButton {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4a6cf7;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3957d6;
+  }
+}
