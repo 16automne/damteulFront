@@ -18,6 +18,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Chat from "pages/chat/Chat";
   import MyPage from "pages/my/MyPage";
   import MyProfile from 'pages/my/MyProfile';
+
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
   import Support from 'pages/my/Support';
   import Faq from 'pages/my/Faq';
@@ -26,6 +27,8 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Notice from 'pages/my/Notice';
   import NoticeDetail from 'pages/my/NoticeDetail';
   import Setting from 'pages/my/Setting';
+  import ChatDetail from "pages/chat/ChatDetail";
+
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';

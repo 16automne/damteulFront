@@ -1,0 +1,247 @@
+@charset "UTF-8";
+.userDetailModal {
+  /* ==============================
+     모달 오버레이
+  ============================== */
+  /* ==============================
+     모달 컨텐츠
+  ============================== */
+  /* 닫기 버튼 */
+  /* ==============================
+     헤더
+  ============================== */
+  /* ==============================
+     카드 영역
+  ============================== */
+  /* ==============================
+     프로필
+  ============================== */
+  /* ==============================
+     섹션 공통
+  ============================== */
+  /* ==============================
+     입력 그룹
+  ============================== */
+  /* ==============================
+     등급
+  ============================== */
+  /* ==============================
+     상태 표시
+  ============================== */
+  /* 상태별 색상 */
+  /* ==============================
+     메모
+  ============================== */
+  /* ==============================
+     하단 버튼 영역
+  ============================== */
+  /* ==============================
+     버튼
+  ============================== */
+}
+.userDetailModal .modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.userDetailModal .modalContent {
+  width: 25%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+.userDetailModal .modalCloseBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.userDetailModal .adminHeader {
+  margin-bottom: 24px;
+}
+.userDetailModal .adminTitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .adminDesc {
+  margin-top: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #6B6B6B;
+}
+.userDetailModal .userEditCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.userDetailModal .profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.userDetailModal .profileImg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #D7D7D7;
+}
+.userDetailModal .formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.userDetailModal .formSection h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.userDetailModal .inputGroup strong {
+  width: 90px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .inputGroup input,
+.userDetailModal .inputGroup select {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #D7D7D7;
+  border-radius: 6px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .disabledInput {
+  background-color: #F2F5F2;
+  cursor: not-allowed;
+}
+.userDetailModal .gradeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+}
+.userDetailModal .userSummary {
+  display: flex;
+  align-items: center;
+}
+.userDetailModal .gradeImg {
+  width: 40px;
+  height: 40px;
+}
+.userDetailModal .statusRow {
+  margin-top: 8px;
+}
+.userDetailModal .statusBadge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.userDetailModal .정상 {
+  background-color: #82BC62;
+  color: #fff;
+}
+.userDetailModal .정지 {
+  background-color: #EE955E;
+  color: #fff;
+}
+.userDetailModal .탈퇴 {
+  background-color: #E06868;
+  color: #fff;
+}
+.userDetailModal textarea {
+  min-height: 100px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #D7D7D7;
+  resize: vertical;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.userDetailModal .statusActions {
+  display: flex;
+}
+.userDetailModal .primary {
+  height: 40px;
+  padding: 0 16px;
+  background-color: #58A563;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .saveBtn {
+  font-weight: 600;
+}
+.userDetailModal .banBtn {
+  height: 40px;
+  padding: 0 16px;
+  background-color: #E06868;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.userDetailModal .mutedText {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #6B6B6B;
+}/*# sourceMappingURL=UserDetailModal.module.css.map */

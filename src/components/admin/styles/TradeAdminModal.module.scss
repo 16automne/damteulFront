@@ -1,0 +1,178 @@
+@use '../../../styles/_config' as *;
+
+/* ===========================
+   🔹 모달 오버레이
+=========================== */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); // 배경 반투명
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ===========================
+   🔹 모달 본문
+=========================== */
+.modalContent {
+  background-color: $colorLgGray;
+  width: 24%;
+  max-width: 90vw;
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: $bottomShadow;
+}
+
+/* ===========================
+   🔹 닫기 버튼
+=========================== */
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+
+  &:hover {
+    color: #000;
+    }
+}
+
+/* ===========================
+   🔹 헤더
+=========================== */
+.adminHeader {
+  margin-bottom: 20px;
+
+  .adminTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .adminDesc {
+    font-size: 0.875rem;
+    color: #666;
+  }
+}
+
+/* ===========================
+    🔹 내용 카드 (정리 버전)
+=========================== */
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: $colorWhite;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: $bottomShadow;
+
+  section {
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+      @include webFontText02;
+      color: $colorDKGray;
+      margin-bottom: 15px; // 제목 아래 간격
+    }
+    
+    // 이 안의 개별 input 스타일은 .formGroup에서 공통 관리합니다.
+  }
+}
+
+/* ===========================
+    🔹 폼 그룹 (공통 스타일)
+=========================== */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  // margin-bottom: 0px;
+
+  label {
+    @include webFontText03;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: $colorDKGray;
+  }
+
+  // 공통 입력 요소 스타일 통합
+  input, select, textarea {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd; // 기본은 연한 테두리
+    background-color: $colorWhite;
+    @include webFontText03;
+    color: $colorDKGray;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $colorPrimary; // 포커스 시 테두리 강조
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      border-color: #e0e0e0;
+      color: #999;
+      cursor: not-allowed;
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+}
+/* ===========================
+   🔹 버튼 그룹
+=========================== */
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+
+  button {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+
+    &.primary {
+      background-color: #58A563;
+      color: #fff;
+
+      &:hover {
+        background-color: #44864a;
+      }
+    }
+
+    &.danger {
+      background-color: #E06868;
+      color: #fff;
+
+      &:hover {
+        background-color: #c95a5a;
+      }
+    }
+  }
+}
+
+
+

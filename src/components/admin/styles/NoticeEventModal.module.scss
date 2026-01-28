@@ -1,3 +1,4 @@
+/* src/components/admin/styles/NoticeEventModal.module.scss */
 @use '../../../styles/_config' as *;
 
 /* ===========================
@@ -21,7 +22,7 @@
 =========================== */
 .modalContent {
   background-color: $colorLgGray;
-  width: 600px;
+  width: 28%;
   max-width: 90vw;
   border-radius: 12px;
   padding: 20px 30px;
@@ -75,7 +76,7 @@
 .modalBody {
   display: flex;
   flex-direction: column;
-  // gap: 15px;
+  gap: 15px;
   background-color: $colorWhite;
   border-radius: 16px;
   padding: 28px;
@@ -84,7 +85,9 @@
   section {
     display: flex;
     flex-direction: column;
- 
+    gap: 12px;
+
+
     h4 {
       @include webFontText02;
       color: $colorDKGray;
@@ -93,7 +96,7 @@
     input, select, textarea {
       padding: 10px 12px;
       display: flex;
-      // margin-bottom: 6px;
+      margin-bottom: 6px;
   
       border-radius: 8px;
       border: 1px solid $colorPrimary;
@@ -118,6 +121,7 @@
 .formGroup {
   display: flex;
   flex-direction: column;
+  margin-bottom: 12px;
 
   label {
     @include webFontText03;
@@ -138,7 +142,7 @@
 =========================== */
 .actionButtons {
   display: flex;
-  // gap: 10px;
+  gap: 10px;
   margin-top: 10px;
 
   button {
@@ -154,7 +158,7 @@
       color: #fff;
 
       &:hover {
-        background-color: #44864a;
+        background-color: #4c9953;
       }
     }
 
@@ -166,6 +170,21 @@
         background-color: #c95a5a;
       }
     }
+  }
+}
+
+//  이미지 미리 보기 
+
+.previewBox {
+  display: flex;
+  gap: 8px;
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid $colorSmGray;
   }
 }
 

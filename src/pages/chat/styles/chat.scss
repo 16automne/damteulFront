@@ -1,0 +1,105 @@
+@use "../../../styles/_config" as *;
+.chatPageWrap {
+  margin-top: 70px;
+  width: 100%;
+  min-width: 360px;
+  // 상단 토글버튼 서식
+  .title {
+    @include fontHead02;
+  }
+  
+
+  .btnContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    background: $colorLgGray;
+
+    >button {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      height: 35px;
+      border: none;
+      border-radius: 17.5px;
+      background: none;
+      font-size: 14px;
+      box-shadow: $bottomShadow;
+      cursor: pointer;
+    }
+
+    .btnActive {
+      background: $colorPrimary;
+      color: $colorWhite;
+    }
+  }
+
+  .chatList {
+    >li {
+      width: 100%;
+      a{
+        width: 100dvw;
+        display: block;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        .chatParent{
+          width: 100%;
+          max-width: 767px;
+          margin: 0 auto;
+          .chatContWrap{
+            display: flex;
+            height: 100%;
+            margin: 0 auto;
+            min-width: 360px;
+            width: 92%;
+            justify-content: space-between;
+            align-items: center;
+            .chatCont {
+              height: 100%;
+              display: flex;
+              justify-content: space-between;
+              padding: 10px 0;
+              align-items: center;
+              .chatImg{
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: rgb(238, 255, 0);
+                overflow: hidden;
+                margin-right: 40px;
+                img{
+                  width: 60px;height: 60px
+                }
+              }
+              .chatTxt{
+                >div{
+                  display: flex;
+                  margin-bottom: 7px;
+                  h3{@include fontText03; color: $colorDKGray; margin-right: 1rem;}
+                  span{@include fontText04; color: $colorMdGray;}
+                }
+                p{
+                  @include fontText04;
+                  color: $colorMdGray;
+                }
+              }
+            }
+            .chatBadge{
+              @include fontText04;
+              display: inline-flex;         /* ✅ 글자 세로정렬 깔끔 */
+              align-items: center;
+              justify-content: center;
+              width: 20px;height: 20px;
+              text-align: center;
+              line-height: 1;
+              background-color: $colorEtcRed;
+              border-radius: 50%;
+              color: $colorWhite;
+            }
+          }
+        }
+      }
+    }
+  }
+}

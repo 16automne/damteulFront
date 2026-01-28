@@ -1,0 +1,96 @@
+@charset "UTF-8";
+.commWriteContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3.5rem;
+  /* 1. 이미지 삽입 */
+  /* 2. 상세 내용 기입 */
+  /* 3. 하단 버튼 영역 */
+}
+.commWriteContainer .imageUploadSection {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #1A1C19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.commWriteContainer .imageUploadSection .uploadPlace label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.commWriteContainer .imageUploadSection .uploadPlace label svg {
+  font-size: 5rem;
+  color: #fff;
+}
+.commWriteContainer .imageUploadSection .uploadPlace input[type=file] {
+  display: none;
+}
+.commWriteContainer .contentInputSection {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.commWriteContainer .contentInputSection .writeTitle {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #F2F5F2;
+  border-radius: 10px;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.commWriteContainer .contentInputSection .writeTitle::-moz-placeholder {
+  color: #6B6B6B;
+}
+.commWriteContainer .contentInputSection .writeTitle::placeholder {
+  color: #6B6B6B;
+}
+.commWriteContainer .contentInputSection .writeContent {
+  width: 100%;
+  flex: 1;
+  padding: 1.5rem 1rem;
+  border: 1px solid #F2F5F2;
+  border-radius: 10px;
+  resize: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.commWriteContainer .contentInputSection .writeContent::-moz-placeholder {
+  color: #6B6B6B;
+}
+.commWriteContainer .contentInputSection .writeContent::placeholder {
+  color: #6B6B6B;
+}
+.commWriteContainer .writeBtnGroup {
+  padding: 1rem 1.5rem 2rem;
+  display: flex;
+  gap: 1rem;
+  background-color: #fff;
+}
+.commWriteContainer .writeBtnGroup button {
+  flex: 1;
+  height: 3.5rem;
+  border-radius: 8px;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: bold;
+}/*# sourceMappingURL=CommWrite.css.map */

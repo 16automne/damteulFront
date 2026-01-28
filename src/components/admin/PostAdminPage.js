@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
-// import TradeAdminModal from './TradeAdminModal';
+import PostAdminModal from './PostAdminModal';
+
 
 
 /* ===========================
@@ -25,6 +26,10 @@ const samplePosts = [
 =========================== */
 
 const PostAdminPage = () => {
+
+// 상태
+const [selectedPost, setSelectedPost] = useState(null);
+
   /* ===========================
      🔹 검색 입력용 상태 (입력만)
   =========================== */
@@ -158,7 +163,10 @@ const PostAdminPage = () => {
                   </span>
                 </td>
                 <td>
-                  <button className="btn-sm">숨김</button>
+                
+                  <button className="btn-sm" onClick={() => setSelectedPost(post)}>
+                    관리
+                  </button>
                   <button className="btn-sm danger">삭제</button>
                 </td>
               </tr>
@@ -175,6 +183,16 @@ const PostAdminPage = () => {
         <span>{currentPage} / {totalPages || 1}</span>
         <button onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}>{'>'}</button>
       </div>
+      
+
+      {selectedPost && (
+        <PostAdminModal
+          post={selectedPost}
+          onClose={() => setSelectedPost(null)}
+          onDelete={(id) => console.log('삭제', id)}
+          onHide={(id) => console.log('숨김', id)}
+        />
+      )}
     </div>
   );
 };

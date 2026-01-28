@@ -1,0 +1,136 @@
+
+@charset "UTF-8";
+/* ===========================
+   🔹 모달 오버레이
+=========================== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ===========================
+   🔹 모달 본문
+=========================== */
+.modalContent {
+  background-color: #F2F5F2;
+  width: 28%;
+  max-width: 420px;
+  border-radius: 12px;
+  padding: 20px 30px;
+  position: relative;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   🔹 닫기 버튼
+=========================== */
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===========================
+   🔹 헤더
+=========================== */
+.adminHeader {
+  margin-bottom: 18px;
+}
+.adminHeader .adminTitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.adminHeader .adminDesc {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* ===========================
+   🔹 바디
+=========================== */
+.modalBody {
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+.modalBody section h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+/* ===========================
+   🔹 폼 그룹
+=========================== */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.formGroup label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.formGroup input,
+.formGroup select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+
+/* ===========================
+   🔹 버튼
+=========================== */
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.actionButtons button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #58A563;
+  color: #fff;
+}
+
+.danger {
+  background-color: #e06868;
+  color: #fff;
+}/*# sourceMappingURL=CommunityAdminModal.module.css.map */

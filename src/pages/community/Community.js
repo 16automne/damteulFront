@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 // import { NavLink } from 'react-router-dom';
 import './styles/community.css';
+import WriteBtn from 'components/writeBtn/WriteBtn';
 
 import { HiOutlineTicket, HiTicket } from "react-icons/hi2";
 import { TbShirt, TbShirtFilled } from "react-icons/tb";
@@ -61,36 +62,41 @@ const Community = () => {
 
   // 선택된 카테고리에 맞는 데이터만 필터링
   const filteredFeeds = allFeeds.filter(feed => feed.category === selectedCategory);
+  console.log("선택된 카테고리:", selectedCategory);
+  console.log("필터링된 데이터 개수:", filteredFeeds.length);
 
   return (
     <main className="communityContainer">
-      {/* 1. 추천 섹션 */}
-      <section className="commRecSection">
-        <h2><span>OOO님</span>에게 추천드리는 커뮤니티</h2>
-      </section>
-
-      {/* 2. 카테고리 메뉴 (가로 슬라이드) */}
-      <nav className='commCateList'>
-        {commCatea.map((item) => (
-          <div 
-            key={item.to} 
-            className={`commCate ${selectedCategory === item.to ? "active" : ""}`}
-            onClick={() => setSelectedCategory(item.to)}
-          >
-            <div className='commCateWrap'>
-              <div className="commCateIcon">
-                {selectedCategory === item.to ? item.activeIcon : item.icon}
+      <div className="commBaseLayout">
+        {/* 1. 추천 */}
+        <section className="commRecSection">
+          <h2><span>OOO님</span>에게 추천드리는 커뮤니티</h2>
+        </section>
+        
+        {/* 2. 카테고리 메뉴 */}
+        <nav className='commCateList'>
+          {commCatea.map((item) => (
+            <div 
+              key={item.to} 
+              className={`commCate ${selectedCategory === item.to ? "active" : ""}`}
+              onClick={() => setSelectedCategory(item.to)}
+            >
+              <div className='commCateWrap'>
+                <div className="commCateIcon">
+                  {selectedCategory === item.to ? item.activeIcon : item.icon}
+                </div>
+                <span className="commCateLabel">{item.label}</span>
               </div>
-              <span className="commCateLabel">{item.label}</span>
             </div>
-          </div>
-        ))}
-      </nav>
+          ))}
+        </nav>
+      </div>
 
-      {/* 3. 이미지 피드 리스트 (2열 그리드) */}
+      {/* 3. 이미지 피드 */}
       <section className="comFeedSection" ref={listRef}>
+        {/* ref={listRef}를 통해 나중에 스크롤 위치를 조절하거나 높이를 계산할 수 있도록 이름표를 달아둔 것 */}
         <ul className="comFeedWrap">
-          {filteredFeeds.map(feed => (
+          {filteredFeeds.map(feed => ( //데이터 매칭
             <li key={feed.id} className="comFeedItem">
               <div className="imgBox">
                 <img src={feed.img} alt={`피드 ${feed.id}`} />
@@ -108,6 +114,7 @@ const Community = () => {
       </section>
 
       {/* 글쓰기 버튼 */}
+      <WriteBtn />
     </main>
   );
 };
