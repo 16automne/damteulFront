@@ -1,96 +1,213 @@
 @charset "UTF-8";
-.commWriteContainer {
+.deletePopup {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  top: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  padding-top: 3.5rem;
-  /* 1. 이미지 삽입 */
-  /* 2. 상세 내용 기입 */
-  /* 3. 하단 버튼 영역 */
+  justify-content: center;
+  align-items: center;
 }
-.commWriteContainer .imageUploadSection {
+.deletePopup .deleteModal {
+  width: 92%;
+  height: 215px;
+  background: #fff;
+  border-radius: 20px;
+  text-align: center;
+  vertical-align: center;
+}
+.deletePopup .deleteModal > p {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.deletePopup .deleteModal .deleteBtn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.deletePopup .deleteModal .deleteBtn > button {
+  width: 40%;
+  min-width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.deletePopup .deleteModal .deleteBtn > button:first-child {
+  background: #D7D7D7;
+  color: #6B6B6B;
+}
+.deletePopup .deleteModal .deleteBtn > button:last-child {
+  background: #58A563;
+  color: #fff;
+}
+
+.bottomBtn {
+  display: flex;
+  justify-content: center;
+  background: #F2F5F2;
+  gap: 10px;
+  z-index: 10;
+  position: fixed;
   width: 100%;
-  aspect-ratio: 1/1;
+  height: 80px;
+  bottom: 0px;
+  left: 0px;
+  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
+  padding-top: 10px;
+}
+.bottomBtn button:first-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #6B6B6B;
+}
+.bottomBtn button:last-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
+}
+
+.commWritePage {
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  max-width: 767px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #fff;
+  padding-top: 3.5rem;
+  padding-bottom: 10rem;
+  overflow-x: hidden;
+  /* 1. 이미지 삽입 파트 (스와이프 서식 적용) */
+  /* 2. 내용 입력 영역 */
+}
+.commWritePage .commWriteContainer {
+  width: 100%;
+}
+.commWritePage .imageUploadSection.swipeContainer {
+  /* NanumDetail에서 가져온 핵심 서식 */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   background-color: #1A1C19;
+}
+.commWritePage .imageUploadSection.swipeContainer::-webkit-scrollbar {
+  display: none;
+}
+.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  aspect-ratio: 1/1;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.commWriteContainer .imageUploadSection .uploadPlace label {
+.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.commWriteContainer .imageUploadSection .uploadPlace label svg {
+.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace .previewImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace svg {
   font-size: 5rem;
   color: #fff;
 }
-.commWriteContainer .imageUploadSection .uploadPlace input[type=file] {
+.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace input {
   display: none;
 }
-.commWriteContainer .contentInputSection {
-  flex: 1;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap.dummy {
+  background-color: #1A1C19;
 }
-.commWriteContainer .contentInputSection .writeTitle {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #F2F5F2;
-  border-radius: 10px;
-  outline: none;
+.commWritePage .contentInputSection {
+  padding: 2.5rem 1.5rem;
+}
+.commWritePage .contentInputSection p {
+  margin-bottom: 24px;
+}
+.commWritePage .contentInputSection p label {
+  display: block;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   color: #1A1C19;
   line-height: 1.4;
-}
-.commWriteContainer .contentInputSection .writeTitle::-moz-placeholder {
-  color: #6B6B6B;
-}
-.commWriteContainer .contentInputSection .writeTitle::placeholder {
-  color: #6B6B6B;
-}
-.commWriteContainer .contentInputSection .writeContent {
-  width: 100%;
-  flex: 1;
-  padding: 1.5rem 1rem;
-  border: 1px solid #F2F5F2;
-  border-radius: 10px;
-  resize: none;
-  outline: none;
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #1A1C19;
-  line-height: 1.4;
+  margin-bottom: 8px;
 }
-.commWriteContainer .contentInputSection .writeContent::-moz-placeholder {
-  color: #6B6B6B;
-}
-.commWriteContainer .contentInputSection .writeContent::placeholder {
-  color: #6B6B6B;
-}
-.commWriteContainer .writeBtnGroup {
-  padding: 1rem 1.5rem 2rem;
-  display: flex;
-  gap: 1rem;
-  background-color: #fff;
-}
-.commWriteContainer .writeBtnGroup button {
-  flex: 1;
-  height: 3.5rem;
+.commWritePage .contentInputSection p select, .commWritePage .contentInputSection p .writeTitle, .commWritePage .contentInputSection p .writeContent {
+  width: 100%;
+  height: 50px;
+  padding: 10px 0;
+  box-sizing: border-box;
   border-radius: 8px;
   border: none;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  text-indent: 10px;
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-  font-weight: bold;
+  width: 100% !important;
+  height: 60px !important;
+  background-color: #fff;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  padding: 0 1.2rem;
+  box-sizing: border-box;
+  border-radius: 12px;
+  outline: none;
+}
+.commWritePage .contentInputSection p .writeContent {
+  height: 250px !important;
+  padding: 1.2rem;
+  resize: none;
+}
+
+.bottomBtn {
+  background-color: #fff !important;
+  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
 }/*# sourceMappingURL=CommWrite.css.map */
