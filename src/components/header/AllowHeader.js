@@ -10,18 +10,20 @@ function AllowHeader() {
   
   return (
     <div className={`headerWrap ${isVisible ? '' : 'hide'}`}>
-      {/* 왼쪽: 로고 */}
-      <div className="headerLeft">
-        <Link className="headerIcon">
-          <FaAngleLeft />
-        </Link>
-      </div>
-
-      {/* 오른쪽: 알림 아이콘 */}
-      <div className="headerRight">
-        <Link className="headerIcon">
-          <TbBell />
-        </Link>
+      <div className="headerInner">
+        {/* 왼쪽: 전페이지 */}
+        <div className="headerLeft">
+          <Link className="headerIcon">
+            <FaAngleLeft />
+          </Link>
+        </div>
+        
+        {/* 오른쪽: 알림 아이콘 */}
+        <div className="headerRight">
+          <Link className="headerIcon">
+            <TbBell />
+          </Link>
+        </div>
       </div>
     </div>
   );

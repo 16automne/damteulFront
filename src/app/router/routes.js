@@ -27,8 +27,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Notice from 'pages/my/Notice';
   import NoticeDetail from 'pages/my/NoticeDetail';
   import Setting from 'pages/my/Setting';
-  import ChatDetail from "pages/chat/ChatDetail";
-  import DeleteAccount from 'pages/my/DeleteAccount';
+  import ChatRoom from "pages/chat/ChatRoom";
 
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import CommWrite from "pages/community/CommWrite";
@@ -88,8 +87,7 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/mypage/support/notice", element:<Notice />},
       {path:"/mypage/support/notice/noticedetail", element:<NoticeDetail />},
       {path:"/mypage/setting", element:<Setting />},
-      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
-      {path:"/chat/chatdetail", element:<ChatDetail />}
+      {path:"/chat/chatRoom", element:<ChatRoom />},
     ],
   },
   
