@@ -16,8 +16,8 @@ function WriteBtn(props) {
 			</div>
 			{isOpen &&(
 				<div className='writeCategory'>
-				<Link to='/goodstrade' title='중고거래 글쓰기'>중고거래</Link>
-				<Link to='/nanumpost' title='나눔 글쓰기'>나눔</Link>
+				<Link to='/goodstrade'>중고거래</Link>
+				<Link to='nanumpost'>나눔</Link>
 				<Link to='/community/write'>커뮤니티</Link>
 				</div>
 			)}	

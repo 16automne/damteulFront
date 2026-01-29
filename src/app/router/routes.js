@@ -31,6 +31,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import DeleteAccount from 'pages/my/DeleteAccount';
 
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
+  import CommWrite from "pages/community/CommWrite";
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';
   import NanumPost from 'pages/nanum/NanumPost';
@@ -39,7 +40,9 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyBuynSell from 'pages/my/MyBuynSell';
   import MyHistory from 'pages/my/MyHistory';
   import MyWishlist from 'pages/my/MyWishlist';
+
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
+
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
   import Login from "pages/auth/Login";
@@ -85,7 +88,11 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/mypage/support/notice", element:<Notice />},
       {path:"/mypage/support/notice/noticedetail", element:<NoticeDetail />},
       {path:"/mypage/setting", element:<Setting />},
+<<<<<<< HEAD
       {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>}
+=======
+      {path:"/chat/chatdetail", element:<ChatDetail />}
+>>>>>>> 3382f553d219ab540bbf88407e9a44b8782542bd
     ],
   },
   
@@ -93,6 +100,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   {
     element: <NoTabsBackLayout />,
     children: [
+      {path:"/community/write", element: <CommWrite />},
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
