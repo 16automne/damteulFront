@@ -15,15 +15,16 @@
   padding-top: 70px;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn {
+  position: relative;
   width: 92%;
   min-width: 360px;
   margin: 0 auto;
 }
-
-.chatDate {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatDate {
   text-align: center;
+  margin-top: 30px;
 }
-.chatDate span {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatDate span {
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
@@ -35,30 +36,31 @@
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 30px;
 }
-
-.chatSeller {
-  padding-top: 40px;
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller {
+  padding-top: 10px;
   display: flex;
   align-items: flex-end;
 }
-.chatSeller .profile {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .profilePlaceholder,
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .profile {
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
   margin-right: 20px;
 }
-.chatSeller .profile img {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .profile {
+  border-radius: 50%;
+  overflow: hidden;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .profile img {
   width: 100%;
   height: 100%;
 }
-.chatSeller .messageBox {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .messageBox {
   max-width: 200px;
   border-radius: 8px 8px 8px 0;
   background-color: #F2F5F2;
   margin-right: 20px;
 }
-.chatSeller .messageBox > p {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .messageBox > p {
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
@@ -69,11 +71,91 @@
   word-break: break-word;
   white-space: pre-wrap;
 }
-.chatSeller .time {
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .time {
   font-family: "Inter", sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
   color: #fff;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer {
+  padding-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer .messageBox {
+  max-width: 200px;
+  border-radius: 8px 8px 0 8px;
+  background-color: #F2F5F2;
+  margin: 0 20px;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer .messageBox > p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+  padding: 5px 10px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer .time {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #fff;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox {
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter {
+  width: 100%;
+  max-width: 767px;
+  margin: 0 auto;
+  min-width: 390px;
+  background-color: #58A563;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner {
+  width: 92%;
+  min-width: 360px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 0;
+  justify-content: space-between;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner svg {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  fill: #F2F5F2;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner label {
+  display: none;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner input {
+  width: 85%;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-sizing: border-box;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner button:disabled {
+  cursor: default;
 }/*# sourceMappingURL=chatroom.css.map */

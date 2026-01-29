@@ -10,66 +10,160 @@
   left: 50%;
   background-color: $colorPrimary;
   top: 0px;
+
   .chatRoomOut {
     width: 100%;
     max-width: 767px;
     margin: 0 auto;
-    padding-top:70px;
+    padding-top: 70px;
+
     .chatRoomIn {
+      position: relative;
       width: 92%;
       min-width: 360px;
       margin: 0 auto;
+
+      // 날짜
+      .chatDate {
+        text-align: center;
+        margin-top: 30px;
+
+        span {
+          @include fontText03;
+          padding: 4px 10px;
+          line-height: 20px;
+          color: $colorMdGray;
+          background-color: rgba(255, 255, 255, .7);
+          border-radius: 30px;
+        }
+      }
+
+      // 판매자
+      .chatSeller {
+        padding-top: 10px;
+        display: flex;
+        align-items: flex-end;
+
+        .profilePlaceholder,
+        .profile {
+          width: 50px;
+          margin-right: 20px;
+        }
+
+        .profile {
+          border-radius: 50%;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .messageBox {
+          max-width: 200px;
+          border-radius: 8px 8px 8px 0;
+          background-color: $colorLgGray;
+          margin-right: 20px;
+
+          >p {
+            @include fontText03;
+            color: $colorDKGray;
+            padding: 5px 10px;
+            word-break: break-word;
+            white-space: pre-wrap;
+          }
+        }
+
+        .time {
+          @include fontText04;
+          color: $colorWhite;
+
+        }
+
+      }
+
+      // 구매자
+      .chatBuyer {
+        padding-top: 10px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: end;
+
+        .messageBox {
+          max-width: 200px;
+          border-radius: 8px 8px 0 8px;
+          background-color: $colorLgGray;
+          margin: 0 20px;
+
+          >p {
+            @include fontText03;
+            color: $colorDKGray;
+            padding: 5px 10px;
+            word-break: break-word;
+            white-space: pre-wrap;
+          }
+        }
+
+        .time {
+          @include fontText04;
+          color: $colorWhite;
+        }
+      }
+
+      .chatingBox {
+        position: fixed;
+        width: 100%;
+        left: 0px;
+        bottom: 0px;
+
+        .chatingBoxOuter {
+          width: 100%;
+          max-width: 767px;
+          margin: 0 auto;
+          min-width: 390px;
+          background-color: $colorPrimary;
+
+          .chatingBoxInner {
+            width: 92%;
+            min-width: 360px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            padding: 20px 0;
+            justify-content: space-between;
+
+            svg {
+              @include fontHead01;
+              fill: $colorLgGray;
+
+            }
+
+            label {
+              display: none;
+            }
+
+            input {
+              width: 85%;
+              height: 40px;
+              border-radius: 50px;
+              border: none;
+              box-sizing: border-box;
+            }
+
+            button {
+              background: none;
+              border: none;
+              cursor: pointer;
+
+              &:disabled {
+                cursor: default;
+              }
+            }
+          }
+        }
+      }
     }
   }
-}
-// 날짜
-.chatDate{
-  text-align: center;
-  span{
-    @include fontText03;
-    padding: 4px 10px;
-    line-height: 20px;
-    color: $colorMdGray;
-    background-color: rgba(255,255,255, .7);
-    border-radius: 30px;
-  }
-}
-
-// 판매자
-.chatSeller{
-  padding-top: 40px;
-  display: flex;
-  align-items: flex-end;
-  
-  .profile{
-    width: 50px;height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 20px;
-    img{width: 100%;height:100%;}
-  }
-  .messageBox{
-    max-width: 200px;
-    border-radius: 8px 8px 8px 0;
-    background-color: $colorLgGray;
-    margin-right: 20px;
-    >p{
-      @include fontText03;
-      color: $colorDKGray;
-      padding: 5px 10px;
-      word-break: break-word; 
-      white-space: pre-wrap;    
-    }
-  }
-  .time{
-    @include fontText04;
-    color: $colorWhite;
-
-  }
-
-}
-
-// 구매자
-.chatBuyer{
-  
 }
