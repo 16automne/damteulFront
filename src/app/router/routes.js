@@ -27,7 +27,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Notice from 'pages/my/Notice';
   import NoticeDetail from 'pages/my/NoticeDetail';
   import Setting from 'pages/my/Setting';
-  import ChatDetail from "pages/chat/ChatDetail";
+  import ChatRoom from "pages/chat/ChatRoom";
 
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import GoodsTrade from "pages/goods/GoodsTrade";
@@ -82,7 +82,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/mypage/support/reports", element:<Reports />},
       {path:"/mypage/support/notice", element:<Notice />},
       {path:"/mypage/support/notice/noticedetail", element:<NoticeDetail />},
-      {path:"/mypage/setting", element:<Setting />}
+      {path:"/mypage/setting", element:<Setting />},
+      {path:"/chat/chatRoom", element:<ChatRoom />},
     ],
   },
   

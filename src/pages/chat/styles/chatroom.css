@@ -1,0 +1,19 @@
+.chatRoomWrap {
+  height: 100%;
+  min-height: 100dvh;
+  width: 100dvw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  background-color: #58A563;
+}
+.chatRoomWrap .chatRoomOut {
+  width: 100%;
+  max-width: 767px;
+  margin: 0 auto;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn {
+  width: 92%;
+  min-width: 360px;
+  margin: 0 auto;
+}/*# sourceMappingURL=chatroom.css.map */

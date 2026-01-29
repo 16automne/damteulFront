@@ -5,7 +5,7 @@ const ChatList = () => {
     <>
       {/* 여기서부터 컴포넌트 */}
       <li>
-        <Link to='' title='채팅바로가기'>
+        <Link to='chatroom' title='채팅바로가기'>
           {/* 제일 최상위 */}
           <div className='chatParent'>
             {/* 채팅 컨텐츠 */}
