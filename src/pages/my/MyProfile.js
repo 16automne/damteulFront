@@ -28,14 +28,17 @@ function MyProfile(props) {
 					</div>
 					<p>0000년00월 00일 가입</p>
 					<Link to='/myprofileedit' title='프로필 수정페이지로 이동'
-					className='myProfileEdit'>프로필 수정</Link>
+					>프로필 수정</Link>
 				</div>
 				{/* 유저 사용등급 영역 */}
 				<div className='myUserClass myContainer'>
+					{/* 말풍선 영역 */}
+					<div></div>
 					<CiCircleInfo />
 					<img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용자 이미지'/>
 					<p>ㅇㅇㅇ님은 <span>준비된 이웃</span> 입니다</p>
 				</div>
+				{/* 판매물품 영역 */}
 				<div className='myContainer mySell'>
 					<h3>판매물품</h3>
 					<div className='mySwipeContainer'>

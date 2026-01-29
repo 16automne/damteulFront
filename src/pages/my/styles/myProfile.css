@@ -34,7 +34,7 @@
 }
 .deletePopup .deleteModal .deleteBtn > button {
   width: 40%;
-  min-width: 150px;
+  min-width: 9rem;
   height: 50px;
   border-radius: 8px;
   border: none;
@@ -43,6 +43,7 @@
   font-weight: 700;
   color: #1A1C19;
   line-height: 1.4;
+  cursor: pointer;
 }
 .deletePopup .deleteModal .deleteBtn > button:first-child {
   background: #D7D7D7;
@@ -98,6 +99,7 @@
 
 .myProfile {
   margin-top: 60px;
+  margin-bottom: 80px;
 }
 .myProfile .myContainer {
   border-radius: 20px;
@@ -202,9 +204,9 @@
 }
 .myProfile .mySwipeContainer {
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
   width: 90%;
-  gap: 10px;
+  gap: 1rem;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
@@ -214,6 +216,7 @@
 }
 .myProfile .mySwipeContainer .mySwipeItem {
   width: 80px;
+  flex-shrink: 0;
 }
 .myProfile .mySwipeContainer .mySwipeItem > img {
   width: 80px;
@@ -243,10 +246,16 @@
 .myProfile .userReviewWrapper > h3 {
   margin-bottom: 15px;
 }
+.myProfile .userReviewWrapper .userReview:last-child {
+  border-bottom: none;
+}
 .myProfile .userReviewWrapper .userReview {
   display: flex;
   gap: 15px;
-  width: 90%;
+  width: 100%;
+  border-bottom: 1px solid #D7D7D7;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 .myProfile .userReviewWrapper .userReview > img {
   width: 30px;
@@ -257,13 +266,16 @@
 }
 .myProfile .userReviewWrapper .userReview .userReviewContent {
   line-height: 20px;
+  padding-right: 10%;
 }
 .myProfile .userReviewWrapper .userReview .userReviewContent > p {
   margin-top: 15px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #D7D7D7;
 }
-.myProfile .userReviewWrapper .userReview:last-of-type .userReviewContent > P {
-  border-bottom: none;
+.myProfile .userReviewWrapper .userReview .userReviewContent > span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #6B6B6B;
 }/*# sourceMappingURL=myProfile.css.map */

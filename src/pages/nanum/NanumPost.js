@@ -35,7 +35,7 @@ function NanumPost(props) {
 					<p style={{color:'6B6B6B',fontSize:'14px'}}>&middot;게시한 시점으로부터 12시간동안 응모가 진행됩니다.</p>
 					<div className='bottomBtn'>
 					<button onClick={()=>navigate(-1)}>취소하기</button>
-					<button>완료</button>
+					<button type='submit'>완료</button>
 					</div>
 					</form>
 			</section>

@@ -34,7 +34,7 @@
 }
 .deletePopup .deleteModal .deleteBtn > button {
   width: 40%;
-  min-width: 150px;
+  min-width: 9rem;
   height: 50px;
   border-radius: 8px;
   border: none;
@@ -43,6 +43,7 @@
   font-weight: 700;
   color: #1A1C19;
   line-height: 1.4;
+  cursor: pointer;
 }
 .deletePopup .deleteModal .deleteBtn > button:first-child {
   background: #D7D7D7;
@@ -328,6 +329,10 @@
   color: #E06868;
 }
 
+.goodsDetail {
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
 .goodsDetail > .bottomBtn > button:first-child {
   background: #EEC75E;
 }
