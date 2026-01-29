@@ -88,11 +88,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/mypage/support/notice", element:<Notice />},
       {path:"/mypage/support/notice/noticedetail", element:<NoticeDetail />},
       {path:"/mypage/setting", element:<Setting />},
-<<<<<<< HEAD
-      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>}
-=======
+      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
       {path:"/chat/chatdetail", element:<ChatDetail />}
->>>>>>> 3382f553d219ab540bbf88407e9a44b8782542bd
     ],
   },
   
