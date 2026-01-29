@@ -5,19 +5,37 @@ import { IoIosSend } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import './styles/chatroom.css';
 
+const MIN_GAP_MS = 60 * 1000; // 1분
+
+// false 반환시 프로필 안나오게
+// true 반환시 프로필 나오게
+function isNewGroup(prev, curr) {
+  if (!prev) return true; // 첫 메시지는 무조건 그룹 시작
+  if (prev.senderId !== curr.senderId) return true; // 사람이 바뀌면 그룹 시작
+
+  const prevTime = new Date(prev.createdAt).getTime();
+  const currTime = new Date(curr.createdAt).getTime();
+  if (currTime - prevTime >= MIN_GAP_MS) return true; // 시간 텀이 크면 그룹 시작
+
+  return false; // 같은 사람 + 텀 짧음 => 같은 그룹
+}
+
+
 const ChatRoom = () => {
   return (
     <main className='chatRoomWrap'>
       <div className='chatRoomOut'>
         <div className='chatRoomIn'>
           {/* 날짜 */}
-          <p className='chatDate'>2026년 00월 00일</p>
+          <p className='chatDate'>
+            <span>2026년 00월 00일</span>
+          </p>
 
           {/* 판매자 */}
           <div className='chatSeller'>
             {/* 이미지 */}
             <div className='profile'>
-              <img src={`${process.env.PUBLIC_URL}/defaultProfile.png`} alt='프로필' />
+              <img src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='프로필' />
             </div>
             {/* 메세지 */}
             <div className='messageBox'>
