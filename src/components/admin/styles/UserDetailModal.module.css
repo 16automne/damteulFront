@@ -205,6 +205,7 @@
 }
 .userDetailModal .statusActions {
   display: flex;
+  gap: 8px;
 }
 .userDetailModal .primary {
   height: 40px;
