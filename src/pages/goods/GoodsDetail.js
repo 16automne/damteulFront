@@ -5,6 +5,8 @@ import './styles/goodsDetail.css';
 import { IoIosMore } from "react-icons/io";
 // 좋아요
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+
 // 댓글
 import { FaRegComment } from "react-icons/fa";
 
@@ -15,6 +17,8 @@ function GoodsDetail(props) {
 
 	// 더보기버튼 상태변수
 	const [isOpen, setIsOpen] = useState(false);
+	// 좋아요버튼 상태변수
+	const [like, setLike] = useState(false);
 
 	return (
 		<main>
@@ -64,8 +68,9 @@ function GoodsDetail(props) {
 							<FaRegComment /><span>nnn</span>
 						</p>
 					</div>
-					<button className='favorite'>
-					<FaRegHeart />
+					<button className='favorite' onClick={()=>setLike(!like)}>
+						{like === true?(<FaHeart />):(<FaRegHeart />)}
+					
 					</button>
 				</div>
 					<p>새제품 정보</p>

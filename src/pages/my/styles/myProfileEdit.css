@@ -34,7 +34,7 @@
 }
 .deletePopup .deleteModal .deleteBtn > button {
   width: 40%;
-  min-width: 150px;
+  min-width: 9rem;
   height: 50px;
   border-radius: 8px;
   border: none;

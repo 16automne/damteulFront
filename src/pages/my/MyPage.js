@@ -37,7 +37,7 @@ const MyPage = () => {
           </Link>
           </div>
           
-          <hr/>
+          <hr style={{border:'none', borderTop:'1px solid #D7D7D7'}}/>
           <Link to='' title='담뜰페이'>
           <div className='myWallet'>
             <p>담뜰페이</p>
@@ -47,8 +47,10 @@ const MyPage = () => {
             </div>
           </div>
           </Link>
+          <div className='payBtn'>
             <button>충전</button>
             <button>송금</button>
+          </div>
           
           
           

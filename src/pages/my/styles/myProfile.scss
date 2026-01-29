@@ -5,6 +5,7 @@
 .myProfile{
 	// 공통 div서식
 	margin-top: 60px;
+	margin-bottom: 80px;
 	.myContainer{
 		border-radius: 20px;
 		background: $colorWhite;
@@ -75,15 +76,16 @@
 	}
 	.mySwipeContainer{
 		display: flex;
-		overflow-x: hidden;
+		overflow-x: auto;
 		width: 90%;
-		gap: 10px;
+		gap: 1rem;
 		white-space: nowrap;
 		-webkit-overflow-scrolling: touch;
 		scroll-behavior: smooth;
 		&::-webkit-scrollbar{display: none;}
 		.mySwipeItem{
 			width: 80px;
+			flex-shrink: 0;
 			>img{
 				width: 80px; height: 80px;
 				border-radius: 6px;
@@ -103,18 +105,20 @@
 	// 리뷰 영역 서식
 	.userReviewWrapper{
 		border-radius: 20px;
-
 		background: $colorWhite;
 		padding: 30px 5%;
 		margin: 20px auto;
 		>h3{
 			margin-bottom: 15px;
 		}
+		.userReview:last-child{border-bottom: none;}
 		.userReview{
 			display: flex;
 			gap: 15px;
-			width: 90%;
-			
+			width: 100%;
+			border-bottom: 1px solid $colorSmGray;
+			margin-bottom: 20px;
+			padding-bottom: 20px;
 			>img{
 				width: 30px; height: 30px;
 				border-radius: 50%;
@@ -122,16 +126,15 @@
 			}
 			.userReviewContent{
 				line-height: 20px;
+				padding-right: 10%;
 				>p{
 					margin-top: 15px;
-					margin-bottom: 20px;
-					padding-bottom: 20px;
-					border-bottom: 1px solid $colorSmGray;
+				}
+				>span{
+					@include fontText04;
+					color: $colorMdGray;
 				}
 			}
-		}
-		.userReview:last-of-type .userReviewContent>P{
-			border-bottom: none;
 		}
 	}
 }
