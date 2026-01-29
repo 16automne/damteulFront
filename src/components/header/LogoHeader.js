@@ -1,28 +1,31 @@
 import React from 'react'
 import './styles/header.css';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { TbBell } from "react-icons/tb";
 import { useScrollDirection } from './hooks/useScrollDirection'; 
 
 const LogoHeader = () => {
   const isVisible = useScrollDirection();
+  const navigate = useNavigate();
 
   return (
     <div className={`headerWrap ${isVisible ? '' : 'hide'}`}>
-      {/* 왼쪽: 로고 */}
-      <div className="headerLeft">
-        <Link className="headerIcon">
-          <img src={`${process.env.PUBLIC_URL}/images/logo1.png`} alt="로고" />
-        </Link>
-      </div>
+      <div className="headerInner">
+        {/* 왼쪽: 로고 */}
+        <div className="headerLeft">
+          <div className="headerIcon" onClick={() => navigate(-1)}>
+            <img src={`${process.env.PUBLIC_URL}/images/logo1.png`} alt="로고" />
+          </div>
+        </div>
 
-      {/* 오른쪽: 알림 아이콘 */}
-      <div className="headerRight">
-        <Link className="headerIcon">
-          <TbBell />
-        </Link>
+        {/* 오른쪽: 알림 아이콘 */}
+        <div className="headerRight">
+          <Link className="headerIcon">
+            <TbBell />
+          </Link>
+        </div>
       </div>
-    </div>
+  </div>
   );
 }
 

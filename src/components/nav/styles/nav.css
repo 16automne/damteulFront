@@ -1,50 +1,55 @@
+@charset "UTF-8";
 .naviContainer {
   position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
-  height: 4rem;
-  padding-bottom: env(safe-area-inset-bottom);
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  overflow-x: hidden;
+  width: 100%;
   background-color: #fff;
+  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  /* 아이폰 하단 홈 바 */
+  height: calc(5rem + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
+}
+.naviContainer .naviInner {
+  width: 100%;
+  max-width: 767px;
+  height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-sizing: border-box;
-  z-index: 100;
 }
-.naviContainer .naviWrap {
+
+.navItem {
+  text-decoration: none;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6B6B6B;
+}
+.navItem.active {
+  color: #58A563;
+}
+.navItem.active .navLabel {
+  font-weight: 700;
+}
+
+.naviWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: #1A1C19;
-  width: 3.75rem;
-  height: 3rem;
 }
-.naviContainer .naviWrap .navIcon {
-  font-family: "Inter", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1A1C19;
-  line-height: 1.4;
-  margin-bottom: 2px;
-  display: flex;
-  align-items: center;
+.naviWrap .navIcon {
+  font-size: 1.5rem;
 }
-.naviContainer .naviWrap .navLabel {
+.naviWrap .navLabel {
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.5625rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-}
-.naviContainer .naviWrap.active {
-  color: #58A563;
-}
-.naviContainer .naviWrap.active .navIcon {
-  color: #58A563;
 }/*# sourceMappingURL=nav.css.map */
