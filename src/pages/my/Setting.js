@@ -1,6 +1,7 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // 내부서식은 supportList에서 가져옴
 function Setting(props) {
@@ -63,6 +64,7 @@ function Setting(props) {
 						<hr/>
 					</li>
 					<li>
+						
 						<hr/>
 						<div className='question'>
 							<p>탈퇴하기</p>
@@ -103,9 +105,11 @@ function Setting(props) {
 					</li>
 					<li>
 						<hr/>
+						<Link to='/mypage/setting/deleteaccount' title='회원탈퇴 페이지로 이동'>
 						<div className='question'>
 							<p>탈퇴하기</p>
 						</div>
+						</Link>
 						<hr/>
 					</li>
 					</>

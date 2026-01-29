@@ -30,6 +30,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import ChatRoom from "pages/chat/ChatRoom";
 
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
+  import CommWrite from "pages/community/CommWrite";
   import GoodsTrade from "pages/goods/GoodsTrade";
   import GoodsDetail from 'pages/goods/GoodsDetail';
   import NanumPost from 'pages/nanum/NanumPost';
@@ -38,7 +39,9 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyBuynSell from 'pages/my/MyBuynSell';
   import MyHistory from 'pages/my/MyHistory';
   import MyWishlist from 'pages/my/MyWishlist';
+
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
+
   // 5) 상단헤더X + 하단탭X (FullLayout)
   import FirstPage from "pages/intro/FirstPage";
   import Login from "pages/auth/Login";
@@ -53,6 +56,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import TradeAdminPage from "components/admin/TradeAdminPage"
   import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
+
 
 
 
@@ -91,6 +95,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   {
     element: <NoTabsBackLayout />,
     children: [
+      {path:"/community/write", element: <CommWrite />},
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},

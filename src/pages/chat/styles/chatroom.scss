@@ -1,7 +1,7 @@
 @use "../../../styles/_config" as *;
 
 // 채팅방
-.chatRoomWrap{
+.chatRoomWrap {
   height: 100%;
   min-height: 100dvh;
   width: 100dvw;
@@ -9,11 +9,13 @@
   margin-left: -50vw;
   left: 50%;
   background-color: $colorPrimary;
-  .chatRoomOut{
+
+  .chatRoomOut {
     width: 100%;
     max-width: 767px;
     margin: 0 auto;
-    .chatRoomIn{
+
+    .chatRoomIn {
       width: 92%;
       min-width: 360px;
       margin: 0 auto;
