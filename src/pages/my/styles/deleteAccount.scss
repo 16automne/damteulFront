@@ -1,0 +1,8 @@
+@charset "UTF-8";
+@use "../../../styles/_config" as*;
+@use "../../../styles/_config2" as*;
+
+.DeleteAccount{
+	margin-top: 60px;
+	p input, p{@include formTypeText;}
+}

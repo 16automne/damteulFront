@@ -72,6 +72,7 @@ textarea{
 	.tradePrice{
 		display: flex;
 		position: relative;
+		margin-bottom: 100px;
 		>span{
 			@include fontText02;
 			color: $colorDKGray;
@@ -81,7 +82,3 @@ textarea{
 		}
 	}
 }
-
-
-// 하단 fixed 버튼 가려져서 넣음
-main{padding-bottom: 100px;}
