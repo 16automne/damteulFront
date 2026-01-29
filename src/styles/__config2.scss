@@ -64,7 +64,8 @@
 			height: 50px;
 			border-radius: 8px;
 			border:none;
-			@include fontText01
+			@include fontText01;
+			cursor:pointer;
 		}
 		> button:first-child{
 			background: $colorSmGray;

@@ -1,5 +1,5 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import React from 'react';
+import React,{useState} from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,10 @@ function Setting(props) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const navigate = useNavigate();
 
+	// 로그아웃,캐시제거 모달 상태변수
+	const [logout, setLogout] = useState(false);
+	const [cash, setCash] = useState(false);
+
 	// 현재 URL에서 menu가져오기
 	const currentMenu = searchParams.get('menu') || 'main';
 
@@ -15,6 +19,30 @@ function Setting(props) {
 	return (
 		<main>
 			<section className='supportList'>
+				{/* 로그아웃 모달 */}
+				{logout &&
+					<div className='deletePopup'>
+						<div className='deleteModal'>
+							<p>로그아웃 하시겠습니까?</p>
+							<div className='deleteBtn'>
+								<button onClick={()=>setLogout(false)}>취소</button>
+								<button>로그아웃</button>
+							</div>
+						</div>
+					</div>
+				}
+				{/* 캐시 삭제 모달 */}
+				{cash &&
+					<div className='deletePopup'>
+						<div className='deleteModal'>
+							<p>앱 내 모든 미디어 데이터 캐시를 삭제 하시겠습니까?</p>
+							<div className='deleteBtn'>
+								<button onClick={()=>setCash(false)}>취소</button>
+								<button onClick={()=>setCash(false)}>삭제</button>
+							</div>
+						</div>
+					</div>
+				}
 				<ul>
 					{currentMenu === 'main' &&(
 						<>
@@ -76,7 +104,7 @@ function Setting(props) {
 					{/* 기타 설정 클릭 시 로딩될 구간 */}
 					{currentMenu === 'other' &&(
 					<>
-					<li>
+					<li onClick={()=>setCash(true)}>
 						<hr/>
 						<div className='question'>
 							<p>캐시 데이터 삭제</p>
@@ -96,7 +124,7 @@ function Setting(props) {
 						</div>
 						<hr/>
 					</li>
-					<li>
+					<li onClick={()=>setLogout(true)}>
 						<hr/>
 						<div className='question'>
 							<p>로그아웃</p>
@@ -117,14 +145,16 @@ function Setting(props) {
 					
 				</ul>
 				{/* 뒤로가기 버튼 */}
-				{currentMenu !== 'main' &&(
+				
+				{currentMenu !== 'main' && (logout, cash) === false &&(
 					<div
 					style={{
 						width:'35px',height:'35px',
 						background:'#F2F5F2',
 						position:'fixed',
 						zIndex:'99999',
-						top:'1%',left:'1rem'
+						top:'1%',left:'0.5rem',
+						display:'flex',alignItems:'center',justifyContent:'center'
 					}}>
 						<FaAngleLeft
 						onClick={()=>navigate(-1)}

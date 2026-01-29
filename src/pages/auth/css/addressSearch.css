@@ -44,6 +44,7 @@
   font-weight: 700;
   color: #1A1C19;
   line-height: 1.4;
+  cursor: pointer;
 }
 .deletePopup .deleteModal .deleteBtn > button:first-child {
   background: #D7D7D7;
