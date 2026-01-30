@@ -140,6 +140,7 @@
   justify-content: center;
   background-color: #D7D7D7;
   border-radius: 0.5rem;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
 }
 .commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel svg {
   font-size: 1.4rem;
@@ -207,16 +208,13 @@
 }
 .commWritePage .commWriteContainer .contentInputSection .inputGroup select, .commWritePage .commWriteContainer .contentInputSection .inputGroup input, .commWritePage .commWriteContainer .contentInputSection .inputGroup textarea {
   width: 100%;
+  height: 50px;
+  padding: 10px 0;
   box-sizing: border-box;
-  border: 1px solid #D7D7D7;
   border-radius: 8px;
-  padding: 1rem;
-  outline: none;
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1A1C19;
-  line-height: 1.4;
+  border: none;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  text-indent: 10px;
 }
 .commWritePage .commWriteContainer .contentInputSection .inputGroup select::-moz-placeholder, .commWritePage .commWriteContainer .contentInputSection .inputGroup input::-moz-placeholder, .commWritePage .commWriteContainer .contentInputSection .inputGroup textarea::-moz-placeholder {
   color: #6B6B6B;
@@ -229,6 +227,8 @@
   -webkit-appearance: none; /* 크롬, 사파리 */
   -moz-appearance: none; /* 파이어폭스 */
   appearance: none; /* 표준 */
+  background-color: #fff !important;
+  opacity: 1;
   /* 2. 내가 원하는 화살표 아이콘 넣기 (SVG 활용) */
   /* 배경 이미지로 화살표 아이콘을 넣고 오른쪽 끝에 배치합니다. */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B6B6B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
@@ -237,6 +237,9 @@
   background-size: 1.2rem;
 }
 .commWritePage .commWriteContainer .contentInputSection .inputGroup textarea {
-  height: 200px;
+  height: 12.5rem;
   resize: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-indent: 0;
 }/*# sourceMappingURL=CommWrite.css.map */

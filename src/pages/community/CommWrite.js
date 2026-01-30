@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/commwrite.css';
+
+
 import { TiPlus } from "react-icons/ti";
-import { IoCloseCircle } from "react-icons/io5"; // 삭제 버튼 아이콘
+import { IoCloseCircle } from "react-icons/io5";
 
 const CommWrite = () => {
   const navigate = useNavigate();
@@ -31,9 +33,10 @@ const CommWrite = () => {
   };
 
   // 이미지 클릭 시 태그 페이지 이동
-  const goToTagPage =(id)=> {
-    // 이미지를 클릭하면 해당 이미지의 ID를 가지고 태그 편집 페이지로 이동
-    navigate(`/community/tag/${id}`);
+  const goToTagPage =(img)=> {
+    navigate(`/community/tag/${img.id}`, { 
+      state: { imgUrl: img.url } // 이미지 주소도 보따리에 넣기
+    }); // 이미지를 클릭하면 해당 이미지의 ID를 가지고 태그 편집 페이지로 이동
   };
 
   return (
@@ -56,7 +59,7 @@ const CommWrite = () => {
           {images.map((img, index) => (
             <div className="previewItem" key={img.id}>
               <img src={img.url} alt="미리보기" 
-                onClick={() => goToTagPage(img.id)} />
+                onClick={() => goToTagPage(img)} />
               {index === 0 && <div className="representativeBadge">대표 사진</div>}
               <button type="button" className="deleteBtn" 
                 onClick={() => deleteImage(img.id)}>
@@ -89,10 +92,7 @@ const CommWrite = () => {
 
           <div className="inputGroup">
             <label>자세한 설명</label>
-            <textarea 
-              placeholder="게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)" 
-              className="writeContent"
-            ></textarea>
+            <textarea placeholder="게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)" className="writeContent"></textarea>
           </div>
         </section>
       </div>

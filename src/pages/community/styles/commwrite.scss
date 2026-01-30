@@ -21,7 +21,7 @@
       gap: 0.8rem;
       padding: 1rem;
       width: 100%;
-
+      
       &::-webkit-scrollbar { display: none; }
 
         /* 등록 버튼 */
@@ -37,6 +37,7 @@
             justify-content: center;
             background-color: $colorSmGray;
             border-radius: 0.5rem;
+            box-shadow: $bottomShadow;
             
               svg { font-size: 1.4rem; }
               p { font-size: 0.8rem; padding-top: 0.1rem; }
@@ -95,13 +96,7 @@
         label { @include fontText01; display: block; margin-bottom: 10px; }
 
         select, input, textarea {
-          width: 100%;
-          box-sizing: border-box;
-          border: 1px solid $colorSmGray;
-          border-radius: 8px;
-          padding: 1rem;
-          outline: none;
-          @include fontText02;
+          @include formTypeText;
           &::placeholder { color: $colorMdGray; }
         }
         select{
@@ -110,15 +105,22 @@
           -moz-appearance: none;    /* 파이어폭스 */
           appearance: none;         /* 표준 */
 
+          background-color: $colorWhite !important;
+          opacity: 1; // 아이폰에서 흐릿하게 보이는 현상 방지
+
           /* 2. 내가 원하는 화살표 아이콘 넣기 (SVG 활용) */
           /* 배경 이미지로 화살표 아이콘을 넣고 오른쪽 끝에 배치합니다. */
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B6B6B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: right 1rem center;
           background-size: 1.2rem;
-                }
+        }
 
-        textarea { height: 200px; resize: none; }
+        textarea { 
+          height: 12.5rem; resize: none;
+          padding-left: 10px; padding-right: 10px;
+          text-indent: 0;
+        }
       }
     }
   }
