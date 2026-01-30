@@ -29,7 +29,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import NoticeDetail from 'pages/my/NoticeDetail';
   import Setting from 'pages/my/Setting';
   import ChatRoom from "pages/chat/ChatRoom";
-
+  
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   import CommWrite from "pages/community/CommWrite";
   import GoodsTrade from "pages/goods/GoodsTrade";
@@ -43,6 +43,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Search from 'pages/search/Search';
   import Alarm from 'pages/alarm/Alarm';
   import SubmitReport from 'pages/my/SubmitReport';
+  import DeleteAccount from 'pages/my/DeleteAccount';
   
 
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
@@ -113,7 +114,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/mypage/mywishlist", element:<MyWishlist/>},
       {path:"/search", element:<Search />},
       {path:"/alarm", element:<Alarm/>},
-      {path:"/submitreport", element:<SubmitReport/>}
+      {path:"/submitreport", element:<SubmitReport/>},
+      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>}
     ],
   },
 
