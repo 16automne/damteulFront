@@ -5,6 +5,7 @@ import WriteBtn from 'components/writeBtn/WriteBtn';
 // 상품목록
 import GoodsList from 'components/GoodsList/GoodsList';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SearchBar from 'components/SearchBar/SearchBar';
 
 
 const HomePage = () => {
@@ -78,6 +79,7 @@ const HomePage = () => {
 			)}
 
 			<section className='homePage'>
+					<SearchBar />
 					<div className='btnContainer'>
 						<button className={filter === 'all'?'btnActive':''}
 						onClick={()=>setFilter('all')}>전체</button>

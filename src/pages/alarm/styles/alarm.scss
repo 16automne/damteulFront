@@ -1,0 +1,35 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+
+.alarm{
+	margin-top: 60px;
+	margin-bottom: 2rem;
+	.myTabMenu{
+		margin-bottom: 1rem;
+		li{
+			width: 100%;
+		}
+	}
+	.alarmList{
+		display: flex; gap: 1rem;
+		justify-content: flex-start;
+		align-items: center;
+		height: 3rem;
+		color: $colorDKGray;
+		border-bottom: 1px solid $colorSmGray;
+		svg{
+			font-size: 24px;
+		}
+		p{
+			@include fontText03;
+
+		}
+		span{
+			margin-left: auto;
+			@include fontText04;
+		}
+	}
+	.alarmList:last-child{
+		border-bottom: none;
+	}
+}

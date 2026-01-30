@@ -40,6 +40,8 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyHistory from 'pages/my/MyHistory';
   import MyWishlist from 'pages/my/MyWishlist';
   import Search from 'pages/search/Search';
+  import Alarm from 'pages/alarm/Alarm';
+  
 
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
 
@@ -57,6 +59,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import TradeAdminPage from "components/admin/TradeAdminPage"
   import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
   import CommunityAdminPage from "components/admin/CommunityAdminPage"
+
 
 
 
@@ -105,7 +108,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},
       {path:"/mypage/mywishlist", element:<MyWishlist/>},
-      {path:"/search", element:<Search />}
+      {path:"/search", element:<Search />},
+      {path:"/alarm", element:<Alarm/>}
     ],
   },
 
