@@ -1,7 +1,7 @@
 // src/components/admin/NoticeEventModal.js
 import React, { useState } from 'react';
 // styles라는 이름으로 가져옵니다.
-import styles from '../admin/styles/NoticeEventModal.module.scss'; 
+import styles from '../admin/styles/NoticeEventModal.module.css'; 
 
 const NoticeEventModal = ({ item, onClose }) => {
   const [title, setTitle] = useState(item.title || '');
@@ -101,6 +101,8 @@ const NoticeEventModal = ({ item, onClose }) => {
             </>
           )}
 
+</div>
+
           {/* 6. 하단 버튼 영역 */}
           <div className={styles.actionButtons}>
             <button className={styles.danger}>
@@ -113,7 +115,7 @@ const NoticeEventModal = ({ item, onClose }) => {
             </button>
           </div>
 
-        </div>
+
       </div>
     </div>
   );

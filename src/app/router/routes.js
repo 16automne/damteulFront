@@ -53,6 +53,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Login from "pages/auth/Login";
   import Register from "pages/auth/Register";
   import AddressSearch from "pages/auth/AddressSearch";
+  import CommTag from "pages/community/CommTag";
   
   // 6) 관리자 페이지 (AdminPage)
   import DashboardPage from "components/admin/DashboardPage"
@@ -135,6 +136,7 @@ import AdminIndex from "pages/admin/AdminIndex";
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/address", element: <AddressSearch /> },
+      { path: '/community/tag/:id', element: <CommTag /> }
     ],
   },
 

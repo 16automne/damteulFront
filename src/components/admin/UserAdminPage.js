@@ -157,6 +157,7 @@ const UserAdminPage = () => {
 
       {/* ===================== 필터 바 ===================== */}
       <div className="filterBar">
+        <div className="searchBox">
         {/* 키워드 검색 */}
         <input
           type="text"
@@ -164,6 +165,7 @@ const UserAdminPage = () => {
           value={inputKeyword}
           onChange={(e) => setInputKeyword(e.target.value)}
         />
+        </div>
 
         {/* 등급 필터 */}
         <select

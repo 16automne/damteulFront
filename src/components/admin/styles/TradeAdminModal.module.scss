@@ -75,18 +75,18 @@
 .modalBody {
   display: flex;
   flex-direction: column;
-  gap: 6px;
   background-color: $colorWhite;
   border-radius: 16px;
-  padding: 28px;
+  padding: 24px;
   box-shadow: $bottomShadow;
 
   section {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 
     h4 {
-      @include webFontText02;
+      // @include webFontText02;
       color: $colorDKGray;
       margin-bottom: 15px; // 제목 아래 간격
     }
@@ -122,7 +122,7 @@
 
     &:focus {
       outline: none;
-      border-color: $colorPrimary; // 포커스 시 테두리 강조
+      // border-color: $colorPrimary; // 포커스 시 테두리 강조
     }
 
     &:disabled {
