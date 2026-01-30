@@ -1,0 +1,101 @@
+@charset "UTF-8";
+@use "../../../styles/_config" as*;
+@use "../../../styles/_config2" as*;
+
+// 배경색상 변경
+.bodyParent:has(.payment){background-color: $colorWhite !important;}
+
+.payment{
+	margin-top: 80px;
+	padding-bottom: 100px;
+	// 페이지 공통서식
+	>div{
+		margin: 1rem 0;
+	}
+	h3{
+		@include fontText01;
+		margin-bottom: 1rem;
+	}
+	// 주문상품 서식
+	.productOrder{
+		.productOrderForm{
+			border: 1px solid $colorSmGray;
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			padding: 0.5rem 0px;
+			img{
+			margin-left: 1rem;
+			width: 3rem; height: 3rem;
+			border-radius: 3px; object-fit: cover;
+			}
+			p, span{@include fontText04;}
+			span{color: $colorMdGray;}
+		}
+		
+	}
+
+	// 배송지 입력란 서식
+	.deliveryAddress{
+		.myAddress{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-right: 2rem;
+			span{text-decoration: underline; cursor: pointer;}
+		}
+		.myAddressInput{
+			label{display: none;}
+			input{
+				@include formTypeText;
+				@include fontText03;
+				height: 5rem;
+				padding-bottom: 4rem;
+			}
+		}
+	}
+
+	// 결제수단 서식
+	.paymentMethod{
+		display: flex;
+		flex-direction: column;
+		p{
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 1rem;
+			@include fontText03;
+			color: $colorDKGray;
+			[type="radio"]{
+				width: 1.2rem; height: 1.2rem;
+				accent-color: $colorPrimary;
+			}
+		}
+	}
+
+	// 결제금액 서식
+	.paymentAmount{
+		p{
+			display: flex;
+			justify-content: space-between;
+			margin: 1rem 0;
+			@include fontText04;
+		}
+		p:nth-of-type(3){
+			@include fontText03;
+		}
+		hr{
+			border: none;
+			border-top: 1px solid $colorSmGray;
+		}
+		.moreInfo{
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+	button{
+		@include linkButtonHalf($colorEtcRed);
+		width: 100%;
+	}
+}

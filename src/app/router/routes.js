@@ -18,6 +18,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import Chat from "pages/chat/Chat";
   import MyPage from "pages/my/MyPage";
   import MyProfile from 'pages/my/MyProfile';
+  import Payment from 'pages/payment/Payment';
 
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
   import Support from 'pages/my/Support';
@@ -77,6 +78,7 @@ import AdminIndex from "pages/admin/AdminIndex";
       { path: "/chat", element: <Chat /> }, 
       { path: "/mypage", element: <MyPage /> }, 
       { path: "/myprofile", element: <MyProfile />},
+      { path:"/payment", element:<Payment />}
     ],
   },
 

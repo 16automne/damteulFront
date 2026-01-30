@@ -97,64 +97,65 @@
   background-color: #58A563;
 }
 
-.myProfileEdit {
+.bodyParent:has(.payment) {
+  background-color: #fff !important;
+}
+
+.payment {
+  margin-top: 80px;
+  padding-bottom: 100px;
+}
+.payment > div {
+  margin: 1rem 0;
+}
+.payment h3 {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 700;
   color: #1A1C19;
   line-height: 1.4;
-  margin: 30px auto;
-  margin-top: 60px;
+  margin-bottom: 1rem;
 }
-.myProfileEdit .editUser {
-  text-align: center;
+.payment .productOrder .productOrderForm {
+  border: 1px solid #D7D7D7;
+  border-radius: 8px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
-  margin: auto 35%;
-  max-width: 140px;
+  gap: 1rem;
+  padding: 0.5rem 0px;
 }
-.myProfileEdit .editUser > img {
-  width: 135px;
-  height: 135px;
-}
-.myProfileEdit .editUser .fileWrapper {
-  position: absolute;
-  right: 0;
-  bottom: 0px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
+.payment .productOrder .productOrderForm img {
+  margin-left: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3px;
   -o-object-fit: cover;
      object-fit: cover;
-  text-align: center;
+}
+.payment .productOrder .productOrderForm p, .payment .productOrder .productOrderForm span {
   font-family: "Inter", sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-  color: #fff;
+}
+.payment .productOrder .productOrderForm span {
+  color: #6B6B6B;
+}
+.payment .deliveryAddress .myAddress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 2rem;
+}
+.payment .deliveryAddress .myAddress span {
+  text-decoration: underline;
   cursor: pointer;
 }
-.myProfileEdit .editUser .fileWrapper .file {
-  opacity: 0;
-  position: absolute;
-  width: 0;
-  height: 0;
+.payment .deliveryAddress .myAddressInput label {
+  display: none;
 }
-.myProfileEdit > p {
-  margin: 20px auto;
-}
-.myProfileEdit .userName {
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1A1C19;
-  line-height: 1.4;
-}
-.myProfileEdit .inputForm {
+.payment .deliveryAddress .myAddressInput input {
   width: 100%;
   height: 50px;
   padding: 10px 0;
@@ -163,35 +164,61 @@
   border: none;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   text-indent: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  height: 5rem;
+  padding-bottom: 4rem;
 }
-.myProfileEdit .myContainer {
-  border-radius: 20px;
-  background: #fff;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin: 20px auto;
-}
-.myProfileEdit .checkProfile > dl {
-  margin-left: 5%;
-}
-.myProfileEdit .checkProfile > dl .checkProfileItem {
+.payment .paymentMethod {
   display: flex;
-  justify-content: flex-start;
-  margin: 15px auto;
+  flex-direction: column;
 }
-.myProfileEdit .checkProfile > dl .checkProfileItem > dt {
-  width: 15%;
-  border-right: 1px solid #1A1C19;
+.payment .paymentMethod p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
 }
-.myProfileEdit .checkProfile > dl .checkProfileItem > dd {
-  margin-left: 20px;
+.payment .paymentMethod p [type=radio] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: #58A563;
+}
+.payment .paymentAmount p {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.payment .paymentAmount p:nth-of-type(3) {
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
 }
-.myProfileEdit > button {
+.payment .paymentAmount hr {
+  border: none;
+  border-top: 1px solid #D7D7D7;
+}
+.payment .paymentAmount .moreInfo {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.payment button {
   width: 48%;
   min-width: 170px;
   height: 50px;
@@ -203,7 +230,6 @@
   line-height: 1.4;
   color: #F2F5F2;
   border: none;
-  background-color: #58A563;
+  background-color: #E06868;
   width: 100%;
-  margin-top: 50px;
-}/*# sourceMappingURL=myProfileEdit.css.map */
+}/*# sourceMappingURL=payment.css.map */
