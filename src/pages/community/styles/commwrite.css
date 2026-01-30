@@ -98,117 +98,145 @@
   background-color: #58A563;
 }
 
+.bodyParent:has(.commWritePage) {
+  background-color: #fff !important;
+}
+
 .commWritePage {
-  width: 100%;
-  height: 100%;
-  min-height: 100dvh;
-  max-width: 767px;
-  margin: 0 auto;
-  overflow: hidden;
-  background-color: #fff;
-  padding-top: 3.5rem;
-  padding-bottom: 10rem;
-  overflow-x: hidden;
-  /* 1. 이미지 삽입 파트 (스와이프 서식 적용) */
-  /* 2. 내용 입력 영역 */
+  padding: 3.5rem 0;
 }
 .commWritePage .commWriteContainer {
+  /* 이미지 영역 */
+  /* 상세 내용 영역 */
+}
+.commWritePage .commWriteContainer .imageUploadSection {
   width: 100%;
-}
-.commWritePage .imageUploadSection.swipeContainer {
-  /* NanumDetail에서 가져온 핵심 서식 */
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+  max-width: 767px;
+  margin: 0 auto;
+  box-sizing: border-box;
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  background-color: #1A1C19;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1rem;
+  width: 100%;
+  /* 등록 버튼 */
+  /* 미리보기 아이템 */
 }
-.commWritePage .imageUploadSection.swipeContainer::-webkit-scrollbar {
+.commWritePage .commWriteContainer .imageUploadSection::-webkit-scrollbar {
   display: none;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-  aspect-ratio: 1/1;
+.commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox {
+  flex-shrink: 0;
+}
+.commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #D7D7D7;
+  border-radius: 0.5rem;
+}
+.commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel svg {
+  font-size: 1.4rem;
+}
+.commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel p {
+  font-size: 0.8rem;
+  padding-top: 0.1rem;
+}
+.commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox input {
+  display: none;
+}
+.commWritePage .commWriteContainer .imageUploadSection .previewItem {
+  flex-shrink: 0;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace .previewImg {
+.commWritePage .commWriteContainer .imageUploadSection .previewItem img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 0.5rem;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace svg {
-  font-size: 5rem;
+.commWritePage .commWriteContainer .imageUploadSection .previewItem .representativeBadge {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #1A1C19;
   color: #fff;
+  font-size: 0.5rem;
+  text-align: center;
+  padding: 0.1rem 0;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace input {
-  display: none;
+.commWritePage .commWriteContainer .imageUploadSection .previewItem .deleteBtn {
+  position: absolute;
+  top: -0.8rem;
+  right: -0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #1A1C19;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap.dummy {
-  background-color: #1A1C19;
+.commWritePage .commWriteContainer .contentInputSection {
+  padding: 1rem;
+  width: 100%;
+  max-width: 767px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
-.commWritePage .contentInputSection {
-  padding: 2.5rem 1.5rem;
+.commWritePage .commWriteContainer .contentInputSection .inputGroup {
+  margin-bottom: 2rem;
 }
-.commWritePage .contentInputSection p {
-  margin-bottom: 24px;
-}
-.commWritePage .contentInputSection p label {
+.commWritePage .commWriteContainer .contentInputSection .inputGroup label {
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
   display: block;
+  margin-bottom: 10px;
+}
+.commWritePage .commWriteContainer .contentInputSection .inputGroup select, .commWritePage .commWriteContainer .contentInputSection .inputGroup input, .commWritePage .commWriteContainer .contentInputSection .inputGroup textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #D7D7D7;
+  border-radius: 8px;
+  padding: 1rem;
+  outline: none;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   color: #1A1C19;
   line-height: 1.4;
-  font-weight: 700;
-  color: #1A1C19;
-  margin-bottom: 8px;
 }
-.commWritePage .contentInputSection p select, .commWritePage .contentInputSection p .writeTitle, .commWritePage .contentInputSection p .writeContent {
-  width: 100%;
-  height: 50px;
-  padding: 10px 0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  border: none;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  text-indent: 10px;
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  width: 100% !important;
-  height: 60px !important;
-  background-color: #fff;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  padding: 0 1.2rem;
-  box-sizing: border-box;
-  border-radius: 12px;
-  outline: none;
+.commWritePage .commWriteContainer .contentInputSection .inputGroup select::-moz-placeholder, .commWritePage .commWriteContainer .contentInputSection .inputGroup input::-moz-placeholder, .commWritePage .commWriteContainer .contentInputSection .inputGroup textarea::-moz-placeholder {
+  color: #6B6B6B;
 }
-.commWritePage .contentInputSection p .writeContent {
-  height: 250px !important;
-  padding: 1.2rem;
+.commWritePage .commWriteContainer .contentInputSection .inputGroup select::placeholder, .commWritePage .commWriteContainer .contentInputSection .inputGroup input::placeholder, .commWritePage .commWriteContainer .contentInputSection .inputGroup textarea::placeholder {
+  color: #6B6B6B;
+}
+.commWritePage .commWriteContainer .contentInputSection .inputGroup select {
+  /* 1. 브라우저 기본 화살표 숨기기 */
+  -webkit-appearance: none; /* 크롬, 사파리 */
+  -moz-appearance: none; /* 파이어폭스 */
+  appearance: none; /* 표준 */
+  /* 2. 내가 원하는 화살표 아이콘 넣기 (SVG 활용) */
+  /* 배경 이미지로 화살표 아이콘을 넣고 오른쪽 끝에 배치합니다. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B6B6B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2rem;
+}
+.commWritePage .commWriteContainer .contentInputSection .inputGroup textarea {
+  height: 200px;
   resize: none;
-}
-
-.bottomBtn {
-  background-color: #fff !important;
-  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
-}/*# sourceMappingURL=commwrite.css.map */
+}/*# sourceMappingURL=CommWrite.css.map */

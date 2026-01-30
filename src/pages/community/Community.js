@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 // import { NavLink } from 'react-router-dom';
 import './styles/community.css';
-import WriteBtn from 'components/writeBtn/WriteBtn';
+import WriteBtn from '../../components/writeBtn/WriteBtn';
 
 import { HiOutlineTicket, HiTicket } from "react-icons/hi2";
 import { TbShirt, TbShirtFilled } from "react-icons/tb";
