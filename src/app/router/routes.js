@@ -42,6 +42,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyWishlist from 'pages/my/MyWishlist';
   import Search from 'pages/search/Search';
   import Alarm from 'pages/alarm/Alarm';
+  import SubmitReport from 'pages/my/SubmitReport';
   
 
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
@@ -111,7 +112,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/mypage/myhistory", element:<MyHistory/>},
       {path:"/mypage/mywishlist", element:<MyWishlist/>},
       {path:"/search", element:<Search />},
-      {path:"/alarm", element:<Alarm/>}
+      {path:"/alarm", element:<Alarm/>},
+      {path:"/submitreport", element:<SubmitReport/>}
     ],
   },
 
