@@ -1,92 +1,125 @@
 @use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
 
+
+.bodyParent:has(.commWritePage) {background-color: $colorWhite !important;}
 .commWritePage {
-  background-color: $colorWhite;
-  padding-top: 3.5rem;
+  padding: 3.5rem 0;
 
-  .imageUploadSection {
-    display: flex;
-    padding: 1.5rem;
-    gap: 12px;
-    overflow-x: auto;
-    border-bottom: 1px solid $colorLgGray;
+  .commWriteContainer{
+    /* 이미지 영역 */
+    .imageUploadSection {
+      width: 100%;
+      max-width: $mobileMaxWidth;
+      margin: 0 auto;
+      box-sizing: border-box;
 
-    &::-webkit-scrollbar { display: none; }
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 1rem;
+      width: 100%;
 
-    /* 등록 버튼 */
-    .uploadBtnBox {
-      .uploadLabel {
-        width: 80px; height: 80px;
-        border: 1px solid $colorSmGray;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        
-        svg { font-size: 1.5rem; color: $colorMdGray; }
-        p { 
-          font-size: 0.75rem; color: $colorMdGray; 
-          span { color: $colorPrimary; font-weight: bold; }
+      &::-webkit-scrollbar { display: none; }
+
+        /* 등록 버튼 */
+        .uploadBtnBox {
+          flex-shrink: 0;
+          
+          .uploadLabel {
+            width: 4rem; height: 4rem;
+            margin-right: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: $colorSmGray;
+            border-radius: 0.5rem;
+            
+              svg { font-size: 1.4rem; }
+              p { font-size: 0.8rem; padding-top: 0.1rem; }
+            }
+            
+            input { display: none; }
+          }
+
+        /* 미리보기 아이템 */
+        .previewItem {
+          flex-shrink: 0; // 찌그러짐 방지
+          position: relative;
+          width: 4rem; height: 4rem;
+          margin-right: 0.5rem;
+
+          img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+          }
+
+          .representativeBadge {
+            position: absolute;
+            bottom: 0; width: 100%;
+            background: $colorDKGray;
+            color: $colorWhite;
+            font-size: 0.5rem;
+            text-align: center;
+            padding: 0.1rem 0;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+          }
+
+          .deleteBtn {
+            position: absolute;
+            top: -0.8rem; right: -0.8rem;
+            background: none; border: none;
+            font-size: 1.2rem;
+            color: $colorDKGray;
+          }
         }
-        input { display: none; }
-      }
-    }
-
-    /* 미리보기 아이템 */
-    .previewItem {
-      position: relative;
-      width: 80px; height: 80px;
-      flex-shrink: 0;
-
-      img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-        cursor: pointer;
       }
 
-      .representativeBadge {
-        position: absolute;
-        bottom: 0; width: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        font-size: 10px;
-        text-align: center;
-        padding: 2px 0;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-      }
 
-      .deleteBtn {
-        position: absolute;
-        top: -8px; right: -8px;
-        background: none; border: none;
-        padding: 0;
-        font-size: 1.2rem;
-        color: $colorDKGray;
-        cursor: pointer;
-      }
-    }
-  }
+    /* 상세 내용 영역 */
+    .contentInputSection {
+      padding: 1rem;
+      width: 100%;
+      max-width: $mobileMaxWidth;
+      margin: 0 auto;
+      box-sizing: border-box;
+    
+      .inputGroup {
+        margin-bottom: 2rem;
 
-  /* 입력 영역 */
-  .contentInputSection {
-    padding: 1.5rem;
-    .inputGroup {
-      margin-bottom: 2rem;
-      label { @include fontText01; display: block; margin-bottom: 10px; }
-      input, textarea {
-        width: 100%;
-        border: 1px solid $colorSmGray;
-        border-radius: 8px;
-        padding: 1rem;
-        outline: none;
-        @include fontText02;
-        &::placeholder { color: $colorMdGray; }
+        label { @include fontText01; display: block; margin-bottom: 10px; }
+
+        select, input, textarea {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid $colorSmGray;
+          border-radius: 8px;
+          padding: 1rem;
+          outline: none;
+          @include fontText02;
+          &::placeholder { color: $colorMdGray; }
+        }
+        select{
+          /* 1. 브라우저 기본 화살표 숨기기 */
+          -webkit-appearance: none; /* 크롬, 사파리 */
+          -moz-appearance: none;    /* 파이어폭스 */
+          appearance: none;         /* 표준 */
+
+          /* 2. 내가 원하는 화살표 아이콘 넣기 (SVG 활용) */
+          /* 배경 이미지로 화살표 아이콘을 넣고 오른쪽 끝에 배치합니다. */
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B6B6B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 1rem center;
+          background-size: 1.2rem;
+                }
+
+        textarea { height: 200px; resize: none; }
       }
-      textarea { height: 200px; resize: none; }
     }
   }
 }

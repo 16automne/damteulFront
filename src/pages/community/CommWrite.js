@@ -26,12 +26,12 @@ const CommWrite = () => {
   };
 
   // 이미지 삭제 핸들러
-  const deleteImage = (id) => {
+  const deleteImage =(id)=> {
     setImages((prev) => prev.filter((img) => img.id !== id));
   };
 
   // 이미지 클릭 시 태그 페이지 이동
-  const goToTagPage = (id) => {
+  const goToTagPage =(id)=> {
     // 이미지를 클릭하면 해당 이미지의 ID를 가지고 태그 편집 페이지로 이동
     navigate(`/community/tag/${id}`);
   };
@@ -40,32 +40,26 @@ const CommWrite = () => {
     <main className="commWritePage">
       <div className="commWriteContainer">
         
-        {/* 1. 이미지 영역 (가로 스크롤) */}
+        {/* 1. 이미지 영역 */}
         <section className="imageUploadSection swipeContainer">
           
-          {/* 등록 버튼: 항상 왼쪽 고정 */}
+          {/* 등록 버튼 */}
           <div className="uploadBtnBox">
-            <label htmlFor="fileUpload" className="uploadLabel">
+            <label htmlFor="fileUpload" className="uploadLabel"> {/* fileUpload */}
               <TiPlus />
               <p><span>{images.length}</span>/10</p>
-              <input id="fileUpload" type="file" multiple accept="image/*" onChange={handleImageChange} />
+              <input id="fileUpload" type="file" multiple accept="image/*" 
+              onChange={handleImageChange} />
             </label>
           </div>
-
-          {/* 추가된 이미지들: 버튼 오른쪽으로 나열 */}
+          {/* 추가된 이미지들 */}
           {images.map((img, index) => (
             <div className="previewItem" key={img.id}>
-              <img 
-                src={img.url} 
-                alt="미리보기" 
-                onClick={() => goToTagPage(img.id)} 
-              />
+              <img src={img.url} alt="미리보기" 
+                onClick={() => goToTagPage(img.id)} />
               {index === 0 && <div className="representativeBadge">대표 사진</div>}
-              <button 
-                type="button" 
-                className="deleteBtn" 
-                onClick={() => deleteImage(img.id)}
-              >
+              <button type="button" className="deleteBtn" 
+                onClick={() => deleteImage(img.id)}>
                 <IoCloseCircle />
               </button>
             </div>
@@ -74,6 +68,20 @@ const CommWrite = () => {
 
         {/* 2. 상세 내용 영역 */}
         <section className="contentInputSection">
+          <div className="inputGroup">
+            <label>카테고리</label>
+            <select defaultValue="">
+              <option value="" disabled>카테고리를 선택해주세요.</option>
+              <option value="ticket">티켓/교환권</option>
+              <option value="clothes">의류</option>
+              <option value="beauty">뷰티/미용</option>
+              <option value="baby">유아용품</option>
+              <option value="book">도서</option>
+              <option value="sports">스포츠/레저</option>
+              <option value="digit">디지털기기</option>
+            </select>
+          </div>
+
           <div className="inputGroup">
             <label>제목</label>
             <input type="text" placeholder="글 제목" className="writeTitle" />
@@ -90,6 +98,8 @@ const CommWrite = () => {
       </div>
 
       <div className="bottomBtn">
+        <button type="button" className="commCancelBtn" 
+        onClick={() => navigate(-1)}>취소</button>
         <button type="button" className="commAcceptBtn">완료</button>
       </div>
     </main>
