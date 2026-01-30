@@ -100,7 +100,7 @@
 .myHistory {
   margin-top: 40px;
 }
-.myHistory .myHistoryTabMenu {
+.myHistory .mymyTabMenu {
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
@@ -109,7 +109,7 @@
   margin: 0 calc(-50vw + 50%);
   border-bottom: 2px solid #58A563;
 }
-.myHistory .myHistoryTabMenu > li {
+.myHistory .mymyTabMenu > li {
   width: 50%;
   height: 50px;
   text-align: center;
@@ -125,7 +125,7 @@
   line-height: 50px;
   cursor: pointer;
 }
-.myHistory .myHistoryTabMenu .active {
+.myHistory .mymyTabMenu .active {
   background: #58A563 !important;
   color: #fff !important;
 }

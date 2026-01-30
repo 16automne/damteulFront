@@ -29,7 +29,7 @@ function MyHistory(props) {
 	return (
 		<main>
 			<section className='myHistory'>
-				<ul className='myHistoryTabMenu'>
+				<ul className='mymyTabMenu'>
 					<li className={type === 'mypost'?'active':''}
 							onClick={()=>setType('mypost')}>
 						작성글

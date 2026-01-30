@@ -39,6 +39,7 @@ import AdminIndex from "pages/admin/AdminIndex";
   import MyBuynSell from 'pages/my/MyBuynSell';
   import MyHistory from 'pages/my/MyHistory';
   import MyWishlist from 'pages/my/MyWishlist';
+  import Search from 'pages/search/Search';
 
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
 
@@ -103,7 +104,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/myprofileedit", element:<MyProfileEdit/>},
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},
-      {path:"/mypage/mywishlist", element:<MyWishlist/>}
+      {path:"/mypage/mywishlist", element:<MyWishlist/>},
+      {path:"/search", element:<Search />}
     ],
   },
 
