@@ -1,99 +1,92 @@
 @use "../../../styles/_config" as *;
-@use "../../../styles/_config2" as *;
 
-// .bodyParent {background-color: $colorWhite !important;}
 .commWritePage {
-  @include mobileParentLayout; // 공통 서식 적용
   background-color: $colorWhite;
   padding-top: 3.5rem;
-  padding-bottom: 10rem;
-  overflow-x: hidden;
 
-  .commWriteContainer {
-    width: 100%;
-  }
-
-  /* 1. 이미지 삽입 파트 (스와이프 서식 적용) */
-  .imageUploadSection.swipeContainer {
-    /* NanumDetail에서 가져온 핵심 서식 */
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+  .imageUploadSection {
     display: flex;
+    padding: 1.5rem;
+    gap: 12px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    background-color: $colorDKGray;
+    border-bottom: 1px solid $colorLgGray;
 
-    &::-webkit-scrollbar { display: none; } // 스크롤바 숨김
+    &::-webkit-scrollbar { display: none; }
 
-    .uploadPlaceWrap {
-      flex: 0 0 100%;
-      scroll-snap-align: center;
-      aspect-ratio: 1 / 1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .uploadPlace {
-        width: 100%; height: 100%;
+    /* 등록 버튼 */
+    .uploadBtnBox {
+      .uploadLabel {
+        width: 80px; height: 80px;
+        border: 1px solid $colorSmGray;
+        border-radius: 8px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-
-        .previewImg {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; // 비율 유지하며 꽉 채우기
+        
+        svg { font-size: 1.5rem; color: $colorMdGray; }
+        p { 
+          font-size: 0.75rem; color: $colorMdGray; 
+          span { color: $colorPrimary; font-weight: bold; }
         }
-
-        svg { font-size: 5rem; color: $colorWhite; }
         input { display: none; }
       }
-
-      &.dummy { background-color: $colorDKGray; }
     }
-  }
 
-  /* 2. 내용 입력 영역 */
-  .contentInputSection {
-    padding: 2.5rem 1.5rem;
+    /* 미리보기 아이템 */
+    .previewItem {
+      position: relative;
+      width: 80px; height: 80px;
+      flex-shrink: 0;
 
-    p {
-      margin-bottom: 24px;
-      label {
-        display: block;
-        @include fontText02;
-        font-weight: $weightBold;
+      img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .representativeBadge {
+        position: absolute;
+        bottom: 0; width: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 10px;
+        text-align: center;
+        padding: 2px 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      .deleteBtn {
+        position: absolute;
+        top: -8px; right: -8px;
+        background: none; border: none;
+        padding: 0;
+        font-size: 1.2rem;
         color: $colorDKGray;
-        margin-bottom: 8px;
-      }
-
-      select, .writeTitle, .writeContent {
-        @include formTypeText;
-        @include fontText03;
-        width: 100% !important;
-        height: 60px !important;
-        background-color: $colorWhite;
-        box-shadow: $bottomShadow;
-        padding: 0 1.2rem;
-        box-sizing: border-box;
-        border-radius: 12px;
-        outline: none;
-      }
-
-      .writeContent {
-        height: 250px !important;
-        padding: 1.2rem;
-        resize: none;
+        cursor: pointer;
       }
     }
   }
-}
 
-.bottomBtn {
-  background-color: $colorWhite !important;
-  box-shadow: $topShadow;
+  /* 입력 영역 */
+  .contentInputSection {
+    padding: 1.5rem;
+    .inputGroup {
+      margin-bottom: 2rem;
+      label { @include fontText01; display: block; margin-bottom: 10px; }
+      input, textarea {
+        width: 100%;
+        border: 1px solid $colorSmGray;
+        border-radius: 8px;
+        padding: 1rem;
+        outline: none;
+        @include fontText02;
+        &::placeholder { color: $colorMdGray; }
+      }
+      textarea { height: 200px; resize: none; }
+    }
+  }
 }

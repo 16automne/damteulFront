@@ -1,213 +1,118 @@
 @charset "UTF-8";
-.deletePopup {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.deletePopup .deleteModal {
-  width: 92%;
-  height: 215px;
-  background: #fff;
-  border-radius: 20px;
-  text-align: center;
-  vertical-align: center;
-}
-.deletePopup .deleteModal > p {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1A1C19;
-  line-height: 1.4;
-}
-.deletePopup .deleteModal .deleteBtn {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.deletePopup .deleteModal .deleteBtn > button {
-  width: 40%;
-  min-width: 150px;
-  height: 50px;
-  border-radius: 8px;
-  border: none;
-  font-family: "Inter", sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #1A1C19;
-  line-height: 1.4;
-}
-.deletePopup .deleteModal .deleteBtn > button:first-child {
-  background: #D7D7D7;
-  color: #6B6B6B;
-}
-.deletePopup .deleteModal .deleteBtn > button:last-child {
-  background: #58A563;
-  color: #fff;
-}
-
-.bottomBtn {
-  display: flex;
-  justify-content: center;
-  background: #F2F5F2;
-  gap: 10px;
-  z-index: 10;
-  position: fixed;
-  width: 100%;
-  height: 80px;
-  bottom: 0px;
-  left: 0px;
-  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
-  padding-top: 10px;
-}
-.bottomBtn button:first-child {
-  width: 48%;
-  min-width: 170px;
-  height: 50px;
-  border-radius: 8px;
-  font-family: "Inter", sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #F2F5F2;
-  border: none;
-  background-color: #6B6B6B;
-}
-.bottomBtn button:last-child {
-  width: 48%;
-  min-width: 170px;
-  height: 50px;
-  border-radius: 8px;
-  font-family: "Inter", sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #F2F5F2;
-  border: none;
-  background-color: #58A563;
-}
-
 .commWritePage {
-  width: 100%;
-  height: 100%;
-  min-height: 100dvh;
-  max-width: 767px;
-  margin: 0 auto;
-  overflow: hidden;
   background-color: #fff;
   padding-top: 3.5rem;
-  padding-bottom: 10rem;
-  overflow-x: hidden;
-  /* 1. 이미지 삽입 파트 (스와이프 서식 적용) */
-  /* 2. 내용 입력 영역 */
+  /* 입력 영역 */
 }
-.commWritePage .commWriteContainer {
-  width: 100%;
-}
-.commWritePage .imageUploadSection.swipeContainer {
-  /* NanumDetail에서 가져온 핵심 서식 */
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+.commWritePage .imageUploadSection {
   display: flex;
+  padding: 1.5rem;
+  gap: 12px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  background-color: #1A1C19;
+  border-bottom: 1px solid #F2F5F2;
+  /* 등록 버튼 */
+  /* 미리보기 아이템 */
 }
-.commWritePage .imageUploadSection.swipeContainer::-webkit-scrollbar {
+.commWritePage .imageUploadSection::-webkit-scrollbar {
   display: none;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-  aspect-ratio: 1/1;
-  position: relative;
+.commWritePage .imageUploadSection .uploadBtnBox .uploadLabel {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #D7D7D7;
+  border-radius: 8px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace {
-  width: 100%;
-  height: 100%;
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace .previewImg {
+.commWritePage .imageUploadSection .uploadBtnBox .uploadLabel svg {
+  font-size: 1.5rem;
+  color: #6B6B6B;
+}
+.commWritePage .imageUploadSection .uploadBtnBox .uploadLabel p {
+  font-size: 0.75rem;
+  color: #6B6B6B;
+}
+.commWritePage .imageUploadSection .uploadBtnBox .uploadLabel p span {
+  color: #58A563;
+  font-weight: bold;
+}
+.commWritePage .imageUploadSection .uploadBtnBox .uploadLabel input {
+  display: none;
+}
+.commWritePage .imageUploadSection .previewItem {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+.commWritePage .imageUploadSection .previewItem img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace svg {
-  font-size: 5rem;
-  color: #fff;
+.commWritePage .imageUploadSection .previewItem .representativeBadge {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  padding: 2px 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap .uploadPlace input {
-  display: none;
-}
-.commWritePage .imageUploadSection.swipeContainer .uploadPlaceWrap.dummy {
-  background-color: #1A1C19;
+.commWritePage .imageUploadSection .previewItem .deleteBtn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1.2rem;
+  color: #1A1C19;
+  cursor: pointer;
 }
 .commWritePage .contentInputSection {
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem;
 }
-.commWritePage .contentInputSection p {
-  margin-bottom: 24px;
+.commWritePage .contentInputSection .inputGroup {
+  margin-bottom: 2rem;
 }
-.commWritePage .contentInputSection p label {
+.commWritePage .contentInputSection .inputGroup label {
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
   display: block;
+  margin-bottom: 10px;
+}
+.commWritePage .contentInputSection .inputGroup input, .commWritePage .contentInputSection .inputGroup textarea {
+  width: 100%;
+  border: 1px solid #D7D7D7;
+  border-radius: 8px;
+  padding: 1rem;
+  outline: none;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   color: #1A1C19;
   line-height: 1.4;
-  font-weight: 700;
-  color: #1A1C19;
-  margin-bottom: 8px;
 }
-.commWritePage .contentInputSection p select, .commWritePage .contentInputSection p .writeTitle, .commWritePage .contentInputSection p .writeContent {
-  width: 100%;
-  height: 50px;
-  padding: 10px 0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  border: none;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  text-indent: 10px;
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  width: 100% !important;
-  height: 60px !important;
-  background-color: #fff;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  padding: 0 1.2rem;
-  box-sizing: border-box;
-  border-radius: 12px;
-  outline: none;
+.commWritePage .contentInputSection .inputGroup input::-moz-placeholder, .commWritePage .contentInputSection .inputGroup textarea::-moz-placeholder {
+  color: #6B6B6B;
 }
-.commWritePage .contentInputSection p .writeContent {
-  height: 250px !important;
-  padding: 1.2rem;
+.commWritePage .contentInputSection .inputGroup input::placeholder, .commWritePage .contentInputSection .inputGroup textarea::placeholder {
+  color: #6B6B6B;
+}
+.commWritePage .contentInputSection .inputGroup textarea {
+  height: 200px;
   resize: none;
-}
-
-.bottomBtn {
-  background-color: #fff !important;
-  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
 }/*# sourceMappingURL=CommWrite.css.map */
