@@ -3,6 +3,23 @@
 @use "../../../styles/_config2" as*;
 
 .DeleteAccount{
-	margin-top: 60px;
-	p input, p{@include formTypeText;}
+	margin-top: 8rem;
+	p input, p select{@include formTypeText;}
+	p:first-child{
+		text-align: center;
+		@include fontText01;
+		color: $colorMdGray;
+	}
+	p{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		@include fontText02;
+		color: $colorDKGray;
+		line-height: 30px;
+	}
+	button{
+		@include linkButtonHalf($colorPrimary);
+		width: 100%;
+		margin-top: 7rem;
+	}
 }

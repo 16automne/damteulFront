@@ -1,6 +1,6 @@
 import GoodsList from 'components/GoodsList/GoodsList';
 import WriteBtn from 'components/writeBtn/WriteBtn';
-import React from 'react';
+import React, {useState} from 'react';
 
 const Nanum = () => {
 
@@ -28,12 +28,17 @@ const Nanum = () => {
     timer: "11:20:05"
   }
 ];
+
+  const [filter, setFilter] = useState('nanum');
+
   return (
     <main>
-      <section style={{marginTop:'60px'}}>
+      <section style={{marginTop:'60px', marginBottom:'80px'}}>
           <div className='btnContainer'>
-						<button className='btnActive'>나눔</button>
-						<button>이벤트</button>
+						<button className={filter === 'nanum'?'btnActive':''}
+            onClick={()=>setFilter('nanum')}>나눔</button>
+						<button className={filter === 'event'?'btnActive':''}
+            onClick={()=>setFilter('event')}>이벤트</button>
 					</div>
           {dummyData.map((item)=>(
             <GoodsList key={item.id}
@@ -42,7 +47,6 @@ const Nanum = () => {
             status={item.status}
             timer={item.timer}/>
           ))}
-
           <WriteBtn />
       </section>
     </main>

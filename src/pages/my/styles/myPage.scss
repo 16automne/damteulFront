@@ -54,11 +54,16 @@
 		}
 		
 	}
-	>button{
+	.payBtn{
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		>button{
 		@include linkButtonHalf($colorPrimary);
-		width: 45%;
-		margin: auto 10px;
+		width: 45% !important;
 	}
+	}
+	
 }
 
 // 마이페이지 카테고리 영역

@@ -66,6 +66,7 @@ const HomePage = () => {
   }
 ];
 
+	const [filter, setFilter] = useState('all');
 
 	return (
 		<main>
@@ -78,8 +79,10 @@ const HomePage = () => {
 
 			<section className='homePage'>
 					<div className='btnContainer'>
-						<button className='btnActive'>전체</button>
-						<button>최신글</button>
+						<button className={filter === 'all'?'btnActive':''}
+						onClick={()=>setFilter('all')}>전체</button>
+						<button className={filter === 'latest'?'btnActive':''}
+						onClick={()=>setFilter('latest')}>최신글</button>
 					</div>
           {/* 상품목록 (map필요)*/}
 					{dummyData.map((item)=>(
@@ -90,6 +93,7 @@ const HomePage = () => {
 						linkTo={item.path}
 					/>
 					))}
+					
 						{/* 글쓰기 버튼 */}
             <WriteBtn />			
 			</section>

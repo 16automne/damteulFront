@@ -1,7 +1,9 @@
 import React from 'react';
 import './styles/goodsTrade.css';
+import { useNavigate } from 'react-router-dom';
 
 function GoodsTrade(props) {
+	const navigate = useNavigate();
 	return (
 		<main>
 			<form className='writeForm'>
@@ -97,8 +99,8 @@ function GoodsTrade(props) {
 				</p>
 
 				<div className='bottomBtn'>
-				<button>취소하기</button>
-				<button>완료</button>
+				<button onClick={()=>navigate(-1)}>취소하기</button>
+				<button type='submit'>완료</button>
 				</div>
 			</form>
 		</main>
