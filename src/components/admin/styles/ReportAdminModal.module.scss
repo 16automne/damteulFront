@@ -78,16 +78,15 @@
 .modalBody {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-
   background-color: $colorWhite;
   border-radius: 16px;
-  padding: 28px;
+  padding: 24px;
   box-shadow: $bottomShadow;
 
   section {
     display: flex;
     flex-direction: column;
+    gap:15px;
 
     h4 {
       @include webFontText02;
@@ -118,14 +117,13 @@
     border-radius: 8px;
     border: 1px solid #ddd;
     background-color: $colorWhite;
-
     @include webFontText03;
     color: $colorDKGray;
     transition: all 0.2s;
 
     &:focus {
       outline: none;
-      border-color: $colorPrimary;
+      // border-color: $colorPrimary;
     }
 
     &:disabled {

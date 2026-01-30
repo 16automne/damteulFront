@@ -49,7 +49,7 @@ const UserDetailModal = ({ user, onClose }) => {
   };
 
   return (
-    <div className={styles.userDetailModal}>
+    // <div className={styles.userDetailModal}> 
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
         className={styles.modalContent}
@@ -71,6 +71,9 @@ const UserDetailModal = ({ user, onClose }) => {
               회원 정보를 확인하고 관리합니다
             </span>
           </div>
+
+        {/* 5. 모달 바디 */}
+        <div className={styles.modalBody}>
 
           <div className={styles.userEditCard}>
             {/* ===================== 프로필 요약 ===================== */}
@@ -132,15 +135,6 @@ const UserDetailModal = ({ user, onClose }) => {
                 </div>
               </div>
 
-              {/* <div className={styles.inputGroup}>
-                <strong>신고 점수:</strong>
-                <input
-                  type="number"
-                  value={reportScore}
-                  onChange={(e) => setReportScore(e.target.value)}
-                />
-              </div> */}
-
               <div className={styles.inputGroup}>
                 <strong>신고 점수:</strong>
                 <input
@@ -174,6 +168,8 @@ const UserDetailModal = ({ user, onClose }) => {
             />
 
             {/* ===================== 하단 액션 버튼 ===================== */}
+            </div>
+            </div>
 
               {/* 상태 변경 버튼 */}
               <div className={styles.statusActions}>
@@ -226,9 +222,7 @@ const UserDetailModal = ({ user, onClose }) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    </div>
+      </div> 
   );
 };
 

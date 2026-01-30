@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../admin/styles/PostAdminModal.module.css';
 
 
-const PostAdminModal = ({ post, onClose, onDelete, onHide }) => {
+const PostAdminModal = ({ post, onClose, onDelete,  onComplete }) => {
   const [status, setStatus] = useState(post.productStatus);
   if (!post) return null;
 
@@ -28,10 +28,10 @@ const PostAdminModal = ({ post, onClose, onDelete, onHide }) => {
         {/* 본문 */}
         <div className={styles.modalBody}>
           <section>
-            <h4>게시글 정보</h4>
+            {/* <h4>게시글 정보</h4> */}
 
             <div className={styles.formGroup}>
-              <label>ID</label>
+              <label>게시글 ID</label>
               <input value={post.id} disabled />
             </div>
 
@@ -62,13 +62,15 @@ const PostAdminModal = ({ post, onClose, onDelete, onHide }) => {
             </div>
           </section>
 
+          </div>
+
           {/* 버튼 영역 */}
           <div className={styles.actionButtons}>
             <button
               className={styles.primary}
-              onClick={() => onHide(post.id)}
+              onClick={() =>  onComplete(post.id)}
             >
-              숨김 처리
+              저장 
             </button>
             <button
               className={styles.danger}
@@ -76,7 +78,7 @@ const PostAdminModal = ({ post, onClose, onDelete, onHide }) => {
             >
               삭제
             </button>
-          </div>
+
         </div>
       </div>
     </div>

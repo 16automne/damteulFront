@@ -1,6 +1,5 @@
 @use '../../../styles/_config' as *;
 
-.userDetailModal{
 /* ==============================
    모달 오버레이
 ============================== */
@@ -18,14 +17,14 @@
    모달 컨텐츠
 ============================== */
 .modalContent {
-  width: 25%;
-  max-height: 90vh;
-  overflow-y: auto;
-  background-color: $colorWhite;
+  width: 28%;
+  background-color: $colorLgGray;
   border-radius: 12px;
   padding: 24px;
-  position: relative;
   box-shadow: $bottomShadow;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 /* 닫기 버튼 */
@@ -59,6 +58,16 @@
 /* ==============================
    카드 영역
 ============================== */
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: $colorWhite;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: $bottomShadow;
+}
+
 .userEditCard {
   display: flex;
   flex-direction: column;
@@ -116,6 +125,18 @@
     border: 1px solid $colorSmGray;
     border-radius: 6px;
     @include webFontText03;
+
+    
+    &:focus {
+      outline: none;
+      // border-color: $colorPrimary;
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      color: #999;
+    }
+
   }
 }
 
@@ -142,6 +163,7 @@
   width: 40px;
   height: 40px;
 }
+
 
 /* ==============================
    상태 표시
@@ -183,56 +205,73 @@ textarea {
   border: 1px solid $colorSmGray;
   resize: vertical;
   @include webFontText03;
+  
+  &:focus {
+    outline: none;
+    // border-color: $colorPrimary;
+  }
+
+  &:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+  }
 }
 
 /* ==============================
    하단 버튼 영역
 ============================== */
-.actionButtons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
-  width: 100%;   
-}
+
+// 저장 버튼
+// .actionButtons {
+//   display: flex;
+//   width: 100%;
+// }
 
 .statusActions {
   display: flex;
-  gap: 8px;
+  justify-content: space-between; // ⭐ 양쪽 끝
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }
 
+
 /* ==============================
-   버튼
+   버튼 공통 스타일
 ============================== */
-.primary {
-  height: 40px;
-  padding: 0 16px;
-  background-color: $colorPrimary;
+.buttonBase{
+  // justify-content: flex-end;
+  // flex: 1;
+  padding: 10px 50px;
   color: $colorWhite;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  @include webFontText03;
-}
-
-.saveBtn {
+  white-space: nowrap;
   font-weight: $weightSemibold;
 }
 
+.primary {
+  @extend .buttonBase;
+  background-color: $colorPrimary;
+}
+
 .banBtn {
-  height: 40px;
-  padding: 0 16px;
+  @extend .buttonBase;
   background-color: $colorEtcRed;
-  color: $colorWhite;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  @include webFontText03;
 }
 
+.saveBtn {
+  @extend .buttonBase;
+  padding: 10px 64px;
+  margin-left: auto;
+}
+
+/* ==============================
+   일반 텍스트
+============================== */
 .mutedText {
-  @include webFontText04;
-  color: $colorMdGray;
-}
-
+  @include webFontText03;
+  white-space: nowrap;
+  margin: 0 0 0 10px;
 }

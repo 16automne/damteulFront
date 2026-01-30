@@ -32,10 +32,10 @@ const CommunityAdminModal = ({ community, onClose, onComplete, onDelete }) => {
         {/* 본문 */}
         <div className={styles.modalBody}>
           <section>
-            <h4>게시글 정보</h4>
+            {/* <h4>게시글 정보</h4> */}
 
             <div className={styles.formGroup}>
-              <label>ID</label>
+              <label>커뮤니티 ID</label>
               <input value={community.id} disabled />
             </div>
 
@@ -66,13 +66,15 @@ const CommunityAdminModal = ({ community, onClose, onComplete, onDelete }) => {
             </div>
           </section>
 
+          </div>
+          
           {/* 버튼 */}
           <div className={styles.actionButtons}>
             <button
               className={`${styles.primary}`}
               onClick={() => onComplete(community.id, status)}
             >
-              상태 변경
+              저장
             </button>
             <button
               className={`${styles.danger}`}
@@ -80,7 +82,7 @@ const CommunityAdminModal = ({ community, onClose, onComplete, onDelete }) => {
             >
               삭제
             </button>
-          </div>
+
         </div>
       </div>
     </div>
