@@ -137,64 +137,132 @@
     }
 }
 
+/* 공통 뱃지 스타일 */
+.statusBadge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: white;
+    font-size: 0.9rem;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* 상태별 색상 */
+.승인 {
+    background-color: #4caf50;
+    /* 초록 */
+}
+
+.보류 {
+    background-color: #9c27b0;
+    /* 보라 */
+}
+
+.반려 {
+    background-color: #9e9e9e;
+    /* 회색 */
+}
+
+
 /* ==============================
    하단 버튼
 ============================== */
+// .actionButtons {
+//     display: flex;
+//     // 📌 버튼들을 가로로 배치
+
+//     justify-content: flex-end;
+//     // 📌 버튼들을 오른쪽 끝으로 정렬
+
+//     gap: 12px;
+//     // 📌 버튼 사이 간격
+
+//     margin-top: 40px;
+//     // 📌 폼 영역과 버튼 영역 분리
+// }
+
+// .secondary {
+//     padding: 10px 18px;
+//     // 📌 버튼 내부 여백
+
+//     border-radius: 8px;
+//     // 📌 버튼 모서리 둥글게
+
+//     background-color: $colorLgGray;
+//     // 📌 보조 버튼 느낌의 밝은 배경
+
+//     border: 1px solid $colorSmGray;
+//     // 📌 테두리 있는 버튼
+
+//     @include webFontText02;
+//     // 📌 버튼용 텍스트 스타일
+
+//     color: $colorDKGray;
+//     cursor: pointer;
+//     // 📌 마우스 올리면 클릭 가능 표시
+
+//     &:hover {
+//         background-color: $colorSmGray;
+//         // 📌 마우스 오버 시 살짝 어두워짐
+//     }
+// }
+
+// .danger {
+//     padding: 10px 18px;
+//     border-radius: 8px;
+
+//     background-color: $colorEtcRed;
+//     // 📌 위험/삭제 버튼 → 빨간색
+
+//     @include webFontText02;
+//     color: $colorWhite;
+
+//     border: none;
+//     cursor: pointer;
+
+//     &:hover {
+//         opacity: 0.9;
+//         // 📌 hover 시 살짝 투명 → 클릭 피드백
+//     }
+// }
+
+/* =========================
+   하단 버튼
+========================= */
 .actionButtons {
     display: flex;
-    // 📌 버튼들을 가로로 배치
+    justify-content: flex-end; // 오른쪽 정렬
+    gap: 12px; // 버튼 간 간격
+    margin-top: 24px;
 
-    justify-content: flex-end;
-    // 📌 버튼들을 오른쪽 끝으로 정렬
+    button {
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        border: none;
+        cursor: pointer;
 
-    gap: 12px;
-    // 📌 버튼 사이 간격
+        &.primary {
+            background-color: #4a6cf7; // 목록 버튼 색상
+            color: #fff;
 
-    margin-top: 40px;
-    // 📌 폼 영역과 버튼 영역 분리
-}
+            &:hover {
+                background-color: #3957d6;
+            }
+        }
 
-.secondary {
-    padding: 10px 18px;
-    // 📌 버튼 내부 여백
+        &.danger {
+            background-color: #E06868; // 삭제 버튼 색상
+            color: #fff;
 
-    border-radius: 8px;
-    // 📌 버튼 모서리 둥글게
-
-    background-color: $colorLgGray;
-    // 📌 보조 버튼 느낌의 밝은 배경
-
-    border: 1px solid $colorSmGray;
-    // 📌 테두리 있는 버튼
-
-    @include webFontText02;
-    // 📌 버튼용 텍스트 스타일
-
-    color: $colorDKGray;
-    cursor: pointer;
-    // 📌 마우스 올리면 클릭 가능 표시
-
-    &:hover {
-        background-color: $colorSmGray;
-        // 📌 마우스 오버 시 살짝 어두워짐
-    }
-}
-
-.danger {
-    padding: 10px 18px;
-    border-radius: 8px;
-
-    background-color: $colorEtcRed;
-    // 📌 위험/삭제 버튼 → 빨간색
-
-    @include webFontText02;
-    color: $colorWhite;
-
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-        opacity: 0.9;
-        // 📌 hover 시 살짝 투명 → 클릭 피드백
+            &:hover {
+                background-color: darken(#E06868, 6%);
+            }
+        }
     }
 }

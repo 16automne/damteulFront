@@ -61,9 +61,11 @@ import UserAdminPage from "components/admin/UserAdminPage"
 import PostAdminPage from "components/admin/PostAdminPage"
 import PostDetailPage from "components/admin/PostDetailPage"; // 새 페이지용
 import ReportAdminPage from "components/admin/ReportAdminPage"
+import ReportDetailPage from 'components/admin/ReportDetailPage'; // 새 페이지용
 import TradeAdminPage from "components/admin/TradeAdminPage"
 import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
 import CommunityAdminPage from "components/admin/CommunityAdminPage"
+
 
 
 
@@ -162,7 +164,11 @@ export const routes = [
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
   {
     path: "/admin/posts/detail/:id",
-    element: <PostDetailPage />,
+    element: <PostDetailPage />
   },
+  {
+    path: "/admin/reports/detail/:id",
+    element: <ReportDetailPage />
+  }
 
 ];

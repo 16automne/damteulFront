@@ -1,12 +1,12 @@
 export const samplePosts = [
-    {
-        id: 120,
-        title: '스마트워치 판매',
-        writer: 'user020',
-        category: '전자기기',
-        createdAt: '2026-01-09',
-        productStatus: '새상품',
-        content: `
+  {
+    id: 120,
+    title: '스마트워치 판매',
+    writer: 'user020',
+    category: '전자기기',
+    createdAt: '2026-01-09',
+    productStatus: '새상품',
+    content: `
 구매 후 한 번도 사용하지 않은 스마트워치 판매합니다.
 
 선물로 받았으나 기존에 사용하던 기기가 있어
@@ -18,15 +18,15 @@ export const samplePosts = [
 
 궁금하신 점은 댓글이나 메시지로 문의 주세요.
   `
-    },
-    {
-        id: 119,
-        title: '노트북 가방 판매',
-        writer: 'user019',
-        category: '패션',
-        createdAt: '2026-01-09',
-        productStatus: '새상품',
-        content: `
+  },
+  {
+    id: 119,
+    title: '노트북 가방 판매',
+    writer: 'user019',
+    category: '패션',
+    createdAt: '2026-01-09',
+    productStatus: '새상품',
+    content: `
 노트북 가방 새상품입니다.
 
 15~16인치 노트북 수납 가능하며
@@ -35,15 +35,15 @@ export const samplePosts = [
 한 번도 사용하지 않았고,
 보관만 해둔 상태입니다.
   `
-    },
-    {
-        id: 118,
-        title: '의자 무료',
-        writer: 'user018',
-        category: '가구',
-        createdAt: '2026-01-10',
-        productStatus: '중고 상품',
-        content: `
+  },
+  {
+    id: 118,
+    title: '의자 무료',
+    writer: 'user018',
+    category: '가구',
+    createdAt: '2026-01-10',
+    productStatus: '중고 상품',
+    content: `
 사용하던 의자를 무료로 나눔합니다.
 
 생활 사용감은 있으나
@@ -54,15 +54,15 @@ export const samplePosts = [
 
 필요하신 분 연락 주세요.
   `
-    },
-    {
-        id: 117,
-        title: '중고 장난감',
-        writer: 'user017',
-        category: '취미',
-        createdAt: '2026-01-10',
-        productStatus: '새상품',
-        content: `
+  },
+  {
+    id: 117,
+    title: '중고 장난감',
+    writer: 'user017',
+    category: '취미',
+    createdAt: '2026-01-10',
+    productStatus: '새상품',
+    content: `
 미개봉 장난감 판매합니다.
 
 선물용으로 구매했으나
@@ -73,15 +73,15 @@ export const samplePosts = [
 
 택배 / 직거래 모두 가능합니다.
   `
-    },
-    {
-        id: 116,
-        title: '모니터 판매',
-        writer: 'user016',
-        category: '전자기기',
-        createdAt: '2026-01-11',
-        productStatus: '새상품',
-        content: `
+  },
+  {
+    id: 116,
+    title: '모니터 판매',
+    writer: 'user016',
+    category: '전자기기',
+    createdAt: '2026-01-11',
+    productStatus: '새상품',
+    content: `
 24인치 모니터 판매합니다.
 
 구매 후 테스트만 해보고
@@ -92,15 +92,15 @@ export const samplePosts = [
 
 빠른 거래 원합니다.
   `
-    },
-    {
-        id: 115,
-        title: '책상 판매',
-        writer: 'user015',
-        category: '가구',
-        createdAt: '2026-01-11',
-        productStatus: '중고 상품',
-        content: `
+  },
+  {
+    id: 115,
+    title: '책상 판매',
+    writer: 'user015',
+    category: '가구',
+    createdAt: '2026-01-11',
+    productStatus: '중고 상품',
+    content: `
 원목 책상 판매합니다.
 
 사용 기간은 약 1년 정도이며
@@ -111,16 +111,16 @@ export const samplePosts = [
 
 직접 가져가실 분 우선입니다.
   `
-    },
+  },
 
-    {
-        id: 114,
-        title: '중고 카메라',
-        writer: 'user014',
-        category: '전자기기',
-        createdAt: '2026-01-12',
-        productStatus: '중고 상품',
-        content: `
+  {
+    id: 114,
+    title: '중고 카메라',
+    writer: 'user014',
+    category: '전자기기',
+    createdAt: '2026-01-12',
+    productStatus: '중고 상품',
+    content: `
 중고 카메라 판매합니다.
 
 정상 작동 확인 완료했으며
@@ -131,16 +131,16 @@ export const samplePosts = [
 
 사진 촬영용으로 무난합니다.
   `
-    },
+  },
 
-    {
-        id: 113,
-        title: '의류 나눔',
-        writer: 'user013',
-        category: '패션',
-        createdAt: '2026-01-12',
-        productStatus: '새상품',
-        content: `
+  {
+    id: 113,
+    title: '의류 나눔',
+    writer: 'user013',
+    category: '패션',
+    createdAt: '2026-01-12',
+    productStatus: '새상품',
+    content: `
 사이즈 미스로 착용하지 않은 의류 나눔합니다.
 
 택 제거만 한 상태로
@@ -151,15 +151,15 @@ export const samplePosts = [
 
 필요하신 분 편하게 연락 주세요.
   `
-    },
-    {
-        id: 112,
-        title: '운동화 판매',
-        writer: 'user012',
-        category: '패션',
-        createdAt: '2026-01-13',
-        productStatus: '중고 상품',
-        content: `
+  },
+  {
+    id: 112,
+    title: '운동화 판매',
+    writer: 'user012',
+    category: '패션',
+    createdAt: '2026-01-13',
+    productStatus: '중고 상품',
+    content: `
 운동화 판매합니다.
 
 몇 차례 착용하여
@@ -170,15 +170,15 @@ export const samplePosts = [
 
 실물 보시고 결정하셔도 됩니다.
   `
-    },
-    {
-        id: 111,
-        title: '에어팟 판매',
-        writer: 'user011',
-        category: '전자기기',
-        createdAt: '2026-01-13',
-        productStatus: '새상품',
-        content: `
+  },
+  {
+    id: 111,
+    title: '에어팟 판매',
+    writer: 'user011',
+    category: '전자기기',
+    createdAt: '2026-01-13',
+    productStatus: '새상품',
+    content: `
 에어팟 새상품 판매합니다.
 
 구매 후 사용하지 않아
@@ -189,6 +189,6 @@ export const samplePosts = [
 
 빠른 거래 희망합니다.
   `
-    }
+  }
 
 ];
