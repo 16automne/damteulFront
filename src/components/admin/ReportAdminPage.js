@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 공통 관리자 테이블 스타일
-import ReportAdminModal from './ReportAdminModal'; 
+import ReportAdminModal from './ReportAdminModal';
 // 🔹 [모달 컴포넌트] 신고 상세/처리 모달 import
 
 /* =================================================
@@ -40,7 +40,7 @@ const ReportAdminPage = () => {
      🔹 페이지네이션 상태
   ------------------------------------------------- */
   const [currentPage, setCurrentPage] = useState(1);
-  const reportsPerPage = 5;
+  const reportsPerPage = 10;
 
   /* -------------------------------------------------
      🔹 검색 버튼 클릭 시 실행
@@ -172,13 +172,12 @@ const ReportAdminPage = () => {
                 {/* 🔹 상태 뱃지 */}
                 <td>
                   <span
-                    className={`statusBadge ${
-                      report.status === '처리중'
-                        ? 'new'
-                        : report.status === '완료'
+                    className={`statusBadge ${report.status === '처리중'
+                      ? 'new'
+                      : report.status === '완료'
                         ? 'used'
                         : 'ignored'
-                    }`}
+                      }`}
                   >
                     {report.status}
                   </span>
@@ -187,8 +186,8 @@ const ReportAdminPage = () => {
                 {/* =========================
                    🔹 관리 버튼 영역
                 ========================= */}
-                <td>
-                  {/* 🔹 처리 버튼 → 모달 오픈 */}
+                {/* <td>
+                  🔹 처리 버튼 → 모달 오픈
                   <button
                     className="btn-sm"
                     onClick={() => setSelectedReport(report)}
@@ -199,7 +198,18 @@ const ReportAdminPage = () => {
                   <button className="btn-sm danger">
                     삭제
                   </button>
+                </td> */}
+
+                <td>
+                  <button
+                    className="btn-sm gearButton"
+                    onClick={() => setSelectedReport(report)}
+                    title="신고 처리"
+                  >
+                    ⚙
+                  </button>
                 </td>
+
               </tr>
             ))
           )}

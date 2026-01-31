@@ -30,12 +30,20 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  /* ===========================
+     🔹 닫기 버튼
+  =========================== */
+  /* ===========================
+     🔹 헤더
+  =========================== */
+  /* ===========================
+     🔹 내용 카드
+  =========================== */
 }
-
-/* ===========================
-   🔹 닫기 버튼
-=========================== */
-.closeButton {
+.modalContent::-webkit-scrollbar {
+  width: 0;
+}
+.modalContent .closeButton {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -46,30 +54,22 @@
   cursor: pointer;
   color: #555;
 }
-.closeButton:hover {
+.modalContent .closeButton:hover {
   color: #000;
 }
-
-/* ===========================
-   🔹 헤더
-=========================== */
-.adminHeader {
+.modalContent .adminHeader {
   margin-bottom: 20px;
 }
-.adminHeader .adminTitle {
+.modalContent .adminHeader .adminTitle {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 4px;
 }
-.adminHeader .adminDesc {
+.modalContent .adminHeader .adminDesc {
   font-size: 0.875rem;
   color: #666;
 }
-
-/* ===========================
-   🔹 내용 카드
-=========================== */
-.modalBody {
+.modalContent .modalBody {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -78,12 +78,12 @@
   padding: 24px;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
 }
-.modalBody section {
+.modalContent section {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.modalBody section h4 {
+.modalContent section h4 {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -91,7 +91,9 @@
   line-height: 1.4;
   color: #1A1C19;
 }
-.modalBody section input, .modalBody section select, .modalBody section textarea {
+.modalContent section input,
+.modalContent section select,
+.modalContent section textarea {
   padding: 10px 12px;
   display: flex;
   margin-bottom: 6px;
@@ -105,11 +107,14 @@
   line-height: 1.4;
   color: #1A1C19;
 }
-.modalBody section input:focus, .modalBody section select:focus, .modalBody section textarea:focus {
+.modalContent section input:focus,
+.modalContent section select:focus,
+.modalContent section textarea:focus {
   outline: none;
   border-color: #58A563;
 }
-.modalBody section textarea {
+.modalContent section textarea {
+  resize: none;
   min-height: 80px;
   resize: vertical;
 }

@@ -25,6 +25,10 @@
   position: relative;
   max-height: 90vh;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 /* 닫기 버튼 */
@@ -126,7 +130,7 @@
     border-radius: 6px;
     @include webFontText03;
 
-    
+
     &:focus {
       outline: none;
       // border-color: $colorPrimary;
@@ -180,7 +184,7 @@
 }
 
 /* 상태별 색상 */
-.정상 {
+.활동중 {
   background-color: $colorEtcLgGreen;
   color: $colorWhite;
 }
@@ -199,13 +203,14 @@
    메모
 ============================== */
 textarea {
+  resize: none;
   min-height: 100px;
   padding: 12px;
   border-radius: 6px;
   border: 1px solid $colorSmGray;
-  resize: vertical;
+  // resize: vertical;
   @include webFontText03;
-  
+
   &:focus {
     outline: none;
     // border-color: $colorPrimary;
@@ -239,7 +244,7 @@ textarea {
 /* ==============================
    버튼 공통 스타일
 ============================== */
-.buttonBase{
+.buttonBase {
   // justify-content: flex-end;
   // flex: 1;
   padding: 10px 50px;

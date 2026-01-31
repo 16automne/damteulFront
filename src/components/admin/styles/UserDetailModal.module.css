@@ -25,6 +25,9 @@
   max-height: 90vh;
   overflow-y: auto;
 }
+.modalContent::-webkit-scrollbar {
+  width: 0;
+}
 
 /* 닫기 버튼 */
 .modalCloseBtn {
@@ -197,7 +200,7 @@
 }
 
 /* 상태별 색상 */
-.정상 {
+.활동중 {
   background-color: #82BC62;
   color: #fff;
 }
@@ -216,11 +219,11 @@
    메모
 ============================== */
 textarea {
+  resize: none;
   min-height: 100px;
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #D7D7D7;
-  resize: vertical;
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;

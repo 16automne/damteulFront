@@ -31,56 +31,60 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: $bottomShadow;
-}
 
-/* ===========================
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  /* ===========================
    🔹 닫기 버튼
 =========================== */
-.closeButton {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  color: #555;
+  .closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
 
-  &:hover {
-    color: #000;
+    &:hover {
+      color: #000;
     }
-}
+  }
 
-/* ===========================
+  /* ===========================
    🔹 헤더
 =========================== */
-.adminHeader {
-  margin-bottom: 20px;
+  .adminHeader {
+    margin-bottom: 20px;
 
-  .adminTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 4px;
+    .adminTitle {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .adminDesc {
+      font-size: 0.875rem;
+      color: #666;
+    }
   }
 
-  .adminDesc {
-    font-size: 0.875rem;
-    color: #666;
-  }
-}
-
-/* ===========================
+  /* ===========================
    🔹 내용 카드
 =========================== */
-.modalBody {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  background-color: $colorWhite;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: $bottomShadow;
+  .modalBody {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: $colorWhite;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: $bottomShadow;
+  }
 
   section {
     display: flex;
@@ -93,25 +97,28 @@
       color: $colorDKGray;
     }
 
-    input, select, textarea {
+    input,
+    select,
+    textarea {
       padding: 10px 12px;
       display: flex;
       margin-bottom: 6px;
-  
+
       border-radius: 8px;
       border: 1px solid $colorPrimary;
       background-color: $colorWhite;
-  
+
       @include webFontText03;
       color: $colorDKGray;
 
-    &:focus {
-      outline: none;
-      border-color: $colorPrimary;
-    }
+      &:focus {
+        outline: none;
+        border-color: $colorPrimary;
+      }
     }
 
     textarea {
+      resize: none;
       min-height: 80px;
       resize: vertical;
     }
@@ -187,6 +194,3 @@
     border: 1px solid $colorSmGray;
   }
 }
-
-
-

@@ -91,7 +91,7 @@ const NoticeEventAdminPage = () => {
      🔹 페이지네이션
   ============================ */
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   /* ===========================
      🔹 모달 상태
@@ -210,7 +210,35 @@ const NoticeEventAdminPage = () => {
         >
           초기화
         </button>
+
+        {/* ===========================
+          ✍ 글쓰기 버튼
+          - 클릭 시 작성 모달
+      ============================ */}
+        <div className="writeButtonWrap">
+          <button
+            className="writeButton"
+            onClick={() => {
+              setSelectedItem({
+                id: null,
+                title: '',
+                content: '',
+                startDate: '',
+                endDate: '',
+                type: activeTab, // event / notice
+              });
+              setIsModalOpen(true);
+            }}
+          >
+            + 글쓰기
+          </button>
+        </div>
+
       </div>
+
+
+
+
 
       {/* ===========================
           테이블
@@ -244,14 +272,13 @@ const NoticeEventAdminPage = () => {
                 <td>{item.endDate}</td>
                 <td>
                   <span
-                    className={`statusBadge ${
-                      item.status === '진행중' ? 'new' : 'used'
-                    }`}
+                    className={`statusBadge ${item.status === '진행중' ? 'new' : 'used'
+                      }`}
                   >
                     {item.status}
                   </span>
                 </td>
-                <td>
+                {/* <td>
                   <button
                     className="btn-sm"
                     onClick={(e) => {
@@ -260,9 +287,25 @@ const NoticeEventAdminPage = () => {
                       setIsModalOpen(true);
                     }}
                   >
-                  수정</button>
+                    수정</button>
                   <button className="btn-sm danger">삭제</button>
+                </td> */}
+
+                <td>
+                  <button
+                    className="btn-sm"
+                    onClick={(e) => {
+                      e.stopPropagation(); // 🔥 행 클릭 방지
+                      setSelectedItem({ ...item, type: activeTab });
+                      setIsModalOpen(true);
+                    }}
+                    title="수정 / 관리"
+                    aria-label="수정 / 관리"
+                  >
+                    ⚙
+                  </button>
                 </td>
+
               </tr>
             ))
           )}
@@ -295,29 +338,6 @@ const NoticeEventAdminPage = () => {
           disabled={currentPage === totalPages || totalPages === 0}
         >
           {'>'}
-        </button>
-      </div>
-
-      {/* ===========================
-          ✍ 글쓰기 버튼
-          - 클릭 시 작성 모달
-      ============================ */}
-      <div className="writeButtonWrap">
-        <button
-          className="writeButton"
-          onClick={() => {
-            setSelectedItem({
-              id: null,
-              title: '',
-              content: '',
-              startDate: '',
-              endDate: '',
-              type: activeTab, // event / notice
-            });
-            setIsModalOpen(true);
-          }}
-        >
-          + 글쓰기
         </button>
       </div>
 

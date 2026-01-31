@@ -14,9 +14,9 @@ const UserDetailModal = ({ user, onClose }) => {
 
   /* =================================================
      2️⃣ 회원 상태 관리
-     - 정상 / 정지 / 탈퇴
+     - 활동중 / 정지 / 탈퇴
   ================================================= */
-  const [userStatus, setUserStatus] = useState(user?.status || '정상');
+  const [userStatus, setUserStatus] = useState(user?.status || '활동중');
 
   const currentGradeData = gradeInfo[selectedGrade];
 
@@ -72,141 +72,141 @@ const UserDetailModal = ({ user, onClose }) => {
             </span>
           </div>
 
-        {/* 5. 모달 바디 */}
-        <div className={styles.modalBody}>
+          {/* 5. 모달 바디 */}
+          <div className={styles.modalBody}>
 
-          <div className={styles.userEditCard}>
-            {/* ===================== 프로필 요약 ===================== */}
-            <div className={styles.profile}>
-              <img
-                src="/images/defaultProfile.png"
-                alt="user"
-                className={styles.profileImg}
-              />
-              <div>
-                <strong>ID:</strong> {user.id} <br />
-                <strong>닉네임:</strong> {nickname}
-              </div>
-            </div>
-
-            {/* ===================== 기본 정보 ===================== */}
-            <section className={styles.formSection}>
-              <h4>기본 정보</h4>
-
-              <div className={styles.inputGroup}>
-                <strong>ID:</strong>
-                <input
-                  value={user.id}
-                  disabled
-                  className={styles.disabledInput}
+            <div className={styles.userEditCard}>
+              {/* ===================== 프로필 요약 ===================== */}
+              <div className={styles.profile}>
+                <img
+                  src="/images/defaultProfile.png"
+                  alt="user"
+                  className={styles.profileImg}
                 />
-              </div>
-
-              <div className={styles.inputGroup}>
-                <strong>닉네임:</strong>
-                <input
-                  value={nickname}
-                  onChange={(e) => setNickname(e.target.value)}
-                  placeholder="닉네임 입력"
-                />
-              </div>
-
-              <div className={styles.gradeWrapper}>
-                <strong>등급:</strong>
-                <select
-                  value={selectedGrade}
-                  onChange={(e) => setSelectedGrade(e.target.value)}
-                >
-                  {Object.keys(gradeInfo).map((g) => (
-                    <option key={g} value={g}>
-                      {g}
-                    </option>
-                  ))}
-                </select>
-
-                <div className={styles.userSummary}>
-                  {currentGradeData && (
-                    <img
-                      src={currentGradeData.img}
-                      alt={selectedGrade}
-                      className={styles.gradeImg}
-                    />
-                  )}
+                <div>
+                  <strong>ID:</strong> {user.id} <br />
+                  <strong>닉네임:</strong> {nickname}
                 </div>
               </div>
 
-              <div className={styles.inputGroup}>
-                <strong>신고 점수:</strong>
-                <input
-                  type="number"
-                  value={reportScore}
-                  disabled
-                  className={styles.disabledInput}
-                />
-              </div>
+              {/* ===================== 기본 정보 ===================== */}
+              <section className={styles.formSection}>
+                <h4>기본 정보</h4>
 
-            </section>
+                <div className={styles.inputGroup}>
+                  <strong>ID:</strong>
+                  <input
+                    value={user.id}
+                    disabled
+                    className={styles.disabledInput}
+                  />
+                </div>
 
-            {/* ===================== 계정 상태 표시 ===================== */}
-            <section className={styles.formSection}>
-              <h4>계정 상태</h4>
+                <div className={styles.inputGroup}>
+                  <strong>닉네임:</strong>
+                  <input
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                    placeholder="닉네임 입력"
+                  />
+                </div>
 
-              <div className={styles.statusRow}>
-                <span
-                  className={`${styles.statusBadge} ${styles[userStatus]}`}
-                >
-                  {userStatus}
-                </span>
-              </div>
-            </section>
-
-            {/* ===================== 관리자 메모 ===================== */}
-            <textarea
-              placeholder="관리자용 메모를 입력하세요 (수정 사유, 정지 사유 등)"
-              value={adminMemo}
-              onChange={(e) => setAdminMemo(e.target.value)}
-            />
-
-            {/* ===================== 하단 액션 버튼 ===================== */}
-            </div>
-            </div>
-
-              {/* 상태 변경 버튼 */}
-              <div className={styles.statusActions}>
-                {userStatus === '정상' && (
-                  <button
-                    type="button"
-                    className={styles.banBtn}
-                    onClick={() => handleStatusChange('정지')}
+                <div className={styles.gradeWrapper}>
+                  <strong>등급:</strong>
+                  <select
+                    value={selectedGrade}
+                    onChange={(e) => setSelectedGrade(e.target.value)}
                   >
-                    회원 정지
-                  </button>
-                )}
+                    {Object.keys(gradeInfo).map((g) => (
+                      <option key={g} value={g}>
+                        {g}
+                      </option>
+                    ))}
+                  </select>
 
-                {userStatus === '정지' && (
-                  <>
-                    <button
-                      type="button"
-                      className={styles.primary}
-                      onClick={() => handleStatusChange('정상')}
-                    >
-                      정지 해제
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.banBtn}
-                      onClick={() => handleStatusChange('탈퇴')}
-                    >
-                      탈퇴 처리
-                    </button>
-                  </>
-                )}
+                  <div className={styles.userSummary}>
+                    {currentGradeData && (
+                      <img
+                        src={currentGradeData.img}
+                        alt={selectedGrade}
+                        className={styles.gradeImg}
+                      />
+                    )}
+                  </div>
+                </div>
 
-                {userStatus === '탈퇴' && (
-                  <span className={styles.mutedText}>
-                    탈퇴 회원
+                <div className={styles.inputGroup}>
+                  <strong>신고 점수:</strong>
+                  <input
+                    type="number"
+                    value={reportScore}
+                    disabled
+                    className={styles.disabledInput}
+                  />
+                </div>
+
+              </section>
+
+              {/* ===================== 계정 상태 표시 ===================== */}
+              <section className={styles.formSection}>
+                <h4>계정 상태</h4>
+
+                <div className={styles.statusRow}>
+                  <span
+                    className={`${styles.statusBadge} ${styles[userStatus]}`}
+                  >
+                    {userStatus}
                   </span>
-                )}
+                </div>
+              </section>
+
+              {/* ===================== 관리자 메모 ===================== */}
+              <textarea
+                placeholder="관리자용 메모를 입력하세요 (수정 사유, 정지 사유 등)"
+                value={adminMemo}
+                onChange={(e) => setAdminMemo(e.target.value)}
+              />
+
+              {/* ===================== 하단 액션 버튼 ===================== */}
+            </div>
+          </div>
+
+          {/* 상태 변경 버튼 */}
+          <div className={styles.statusActions}>
+            {userStatus === '활동중' && (
+              <button
+                type="button"
+                className={styles.banBtn}
+                onClick={() => handleStatusChange('정지')}
+              >
+                회원 정지
+              </button>
+            )}
+
+            {userStatus === '정지' && (
+              <>
+                <button
+                  type="button"
+                  className={styles.primary}
+                  onClick={() => handleStatusChange('활동중')}
+                >
+                  정지 해제
+                </button>
+                <button
+                  type="button"
+                  className={styles.banBtn}
+                  onClick={() => handleStatusChange('탈퇴')}
+                >
+                  탈퇴 처리
+                </button>
+              </>
+            )}
+
+            {userStatus === '탈퇴' && (
+              <span className={styles.mutedText}>
+                탈퇴 회원
+              </span>
+            )}
 
             <div className={styles.actionButtons}>
               {/* 저장 버튼 */}
@@ -218,11 +218,11 @@ const UserDetailModal = ({ user, onClose }) => {
                 저장
               </button>
 
-              </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
+    </div>
   );
 };
 

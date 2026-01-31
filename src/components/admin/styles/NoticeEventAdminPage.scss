@@ -7,12 +7,16 @@
     gap: 12px;
     margin-bottom: 20px;
 
-    .tabButton1 { 
-      padding: 10px 31px;}
-    .tabButton2 { 
-      padding: 10px 24px;}
+    .tabButton1 {
+      padding: 10px 31px;
+    }
 
-    .tabButton1, .tabButton2 {
+    .tabButton2 {
+      padding: 10px 24px;
+    }
+
+    .tabButton1,
+    .tabButton2 {
       border-radius: 12px;
       border: 1px solid $colorSmGray;
       background-color: $colorWhite;
@@ -37,21 +41,22 @@
 // 글쓰기 버튼 
 
 .writeButtonWrap {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -36px;
+  // display: flex;
+  // justify-content: flex-end;
+  // margin-bottom: 16px; // ⭐ 위로 올라온 느낌
+  // margin-top: -36px;
 }
 
 .writeButton {
-  padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
-  background-color: #4a6cf7;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
+  // padding: 10px 16px;
+  // border-radius: 6px;
+  // border: none;
+  // background-color: #4a6cf7;
+  // color: #fff;
+  // font-weight: 600;
+  // cursor: pointer;
 
-  &:hover {
-    background-color: #3957d6;
-  }
+  // &:hover {
+  //   background-color: #3957d6;
+  // }
 }

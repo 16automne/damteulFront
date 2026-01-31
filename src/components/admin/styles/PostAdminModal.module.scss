@@ -1,167 +1,80 @@
 @use '../../../styles/_config' as *;
 
-/* ===========================
-   🔹 Overlay
-=========================== */
-
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); // 배경 반투명
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+.pageWrapper {
+  padding: 0;
 }
 
-
-/* ===========================
-   🔹 Modal Content
-=========================== */
-.modalContent {
-  background-color: $colorLgGray;
-  width: 24%;
-  max-width: 90vw;
-  border-radius: 12px;
-  padding: 20px 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: $bottomShadow;
-}
-
-
-/* ===========================
-   🔹 Close Button
-=========================== */
-.closeButton {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
+.adminTitle {
   font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  color: #555;
-
-  &:hover {
-    color: #000;
-  }
-}
-
-/* ===========================
-   🔹 Header
-=========================== */
-.adminHeader {
+  font-weight: 700;
   margin-bottom: 20px;
-
-  .adminTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-
-  .adminDesc {
-    font-size: 0.875rem;
-    color: #666;
-  }
 }
 
-/* ===========================
-   🔹 Body
-=========================== */
-.modalBody {
-  background-color: $colorWhite;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: $bottomShadow;
-
-  section {
-    display: flex;
-    flex-direction: column;
-
-    h4 {
-      @include webFontText02;
-      color: $colorDKGray;
-      margin-bottom: 15px;
-    }
-  }
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* ===========================
-   🔹 Form Group
-=========================== */
+.postCard {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 .formGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 
   label {
-    @include webFontText03;
     font-weight: 600;
     margin-bottom: 4px;
-    color: $colorDKGray;
   }
 
   input,
   select {
-    padding: 10px 12px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 6px;
     border: 1px solid #ddd;
-    background-color: $colorWhite;
-    @include webFontText03;
-    color: $colorDKGray;
+  }
 
-    &:focus {
-      outline: none;
-      // border-color: $colorPrimary;
-    }
-
-    &:disabled {
-      background-color: #f5f5f5;
-      color: #999;
-    }
+  input:disabled {
+    background-color: #f5f5f5;
+    color: #999;
   }
 }
 
-/* ===========================
-   🔹 Action Buttons
-=========================== */
 .actionButtons {
   display: flex;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 12px;
 
   button {
     flex: 1;
-    padding: 8px 12px;
+    padding: 10px;
     border-radius: 6px;
     border: none;
     cursor: pointer;
     font-weight: 600;
-
-    &.primary {
-      background-color: #58A563;
-      color: #fff;
-
-
-  &:hover {
-    background-color: #44864a;
   }
-}
 
-&.danger {
-  background-color: #e06868;
-  color: #fff;
+  .primary {
+    background-color: #58a563;
+    color: #fff;
 
-  &:hover {
-    background-color: #c95a5a;
-      }  
+    &:hover {
+      background-color: #44864a;
+    }
+  }
+
+  .danger {
+    background-color: #e06868;
+    color: #fff;
+
+    &:hover {
+      background-color: #c95a5a;
     }
   }
 }

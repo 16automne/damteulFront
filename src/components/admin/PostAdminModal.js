@@ -1,88 +1,72 @@
 import React, { useState } from 'react';
-import styles from '../admin/styles/PostAdminModal.module.css';
+import styles from '../admin/styles/PostAdminModal.module.scss';
 
+// 샘플 데이터
+const samplePosts = [
+  { id: 'post01', title: '첫 번째 게시글', writer: '은하', category: '공지', productStatus: '새상품' },
+  { id: 'post02', title: '두 번째 게시글', writer: '별하', category: '자유', productStatus: '사용감 있음' },
+];
 
-const PostAdminModal = ({ post, onClose, onDelete,  onComplete }) => {
-  const [status, setStatus] = useState(post.productStatus);
-  if (!post) return null;
+const PostAdminPage = () => {
+  const [posts, setPosts] = useState(samplePosts);
+  const [selectedStatus, setSelectedStatus] = useState({});
+
+  const handleStatusChange = (id, value) => {
+    setSelectedStatus(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSave = (id) => {
+    console.log('저장', id, selectedStatus[id]);
+    // 실제 API 연결
+  };
+
+  const handleDelete = (id) => {
+    console.log('삭제', id);
+    setPosts(posts.filter(p => p.id !== id));
+  };
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div
-        className={styles.modalContent}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* 닫기 버튼 */}
-        <button className={styles.closeButton} onClick={onClose}>
-          ×
-        </button>
-
-        {/* 헤더 */}
-        <div className={styles.adminHeader}>
-          <h3 className={styles.adminTitle}>게시글 관리</h3>
-          <p className={styles.adminDesc}>
-            선택한 게시글의 정보를 확인하고 관리할 수 있습니다
-          </p>
-        </div>
-
-        {/* 본문 */}
-        <div className={styles.modalBody}>
-          <section>
-            {/* <h4>게시글 정보</h4> */}
-
+    <div className={styles.pageWrapper}>
+      <h2 className={styles.adminTitle}>게시글 관리</h2>
+      <div className={styles.pageContent}>
+        {posts.map(post => (
+          <div key={post.id} className={styles.postCard}>
             <div className={styles.formGroup}>
-              <label>게시글 ID</label>
+              <label>ID</label>
               <input value={post.id} disabled />
             </div>
-
             <div className={styles.formGroup}>
               <label>제목</label>
               <input value={post.title} disabled />
             </div>
-
             <div className={styles.formGroup}>
               <label>작성자</label>
               <input value={post.writer} disabled />
             </div>
-
             <div className={styles.formGroup}>
               <label>카테고리</label>
               <input value={post.category} disabled />
             </div>
-
             <div className={styles.formGroup}>
               <label>상품 상태</label>
               <select
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
+                value={selectedStatus[post.id] || post.productStatus}
+                onChange={(e) => handleStatusChange(post.id, e.target.value)}
               >
                 <option value="새상품">새상품</option>
                 <option value="사용감 있음">사용감 있음</option>
               </select>
             </div>
-          </section>
 
+            <div className={styles.actionButtons}>
+              <button className={styles.primary} onClick={() => handleSave(post.id)}>저장</button>
+              <button className={styles.danger} onClick={() => handleDelete(post.id)}>삭제</button>
+            </div>
           </div>
-
-          {/* 버튼 영역 */}
-          <div className={styles.actionButtons}>
-            <button
-              className={styles.primary}
-              onClick={() =>  onComplete(post.id)}
-            >
-              저장 
-            </button>
-            <button
-              className={styles.danger}
-              onClick={() => onDelete(post.id)}
-            >
-              삭제
-            </button>
-
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default PostAdminModal;
+export default PostAdminPage;

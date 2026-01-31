@@ -45,7 +45,7 @@ const TradeAdminPage = () => {
      3️⃣ 페이지네이션 상태
   ================================================= */
   const [currentPage, setCurrentPage] = useState(1);
-  const transactionsPerPage = 5;
+  const transactionsPerPage = 10;
 
   /* =================================================
      4️⃣ 검색 버튼 클릭 핸들러
@@ -168,7 +168,7 @@ const TradeAdminPage = () => {
                 <td>{trx.date}</td>
                 <td>{trx.price.toLocaleString()}원</td>
                 <td>{trx.completed}</td>
-                <td>
+                {/* <td>
                   <button
                     className="btn-sm"
                     onClick={() => setSelectedTrade(trx)}
@@ -176,7 +176,19 @@ const TradeAdminPage = () => {
                     관리
                   </button>
                   <button className="btn-sm danger">삭제</button>
+                </td> */}
+
+                <td>
+                  <button
+                    className="btn-sm gearButton"
+                    onClick={() => setSelectedTrade(trx)}
+                    title="거래 관리"
+                    aria-label="거래 관리"
+                  >
+                    ⚙
+                  </button>
                 </td>
+
               </tr>
             ))
           )}
@@ -202,19 +214,19 @@ const TradeAdminPage = () => {
         </button>
       </div>
 
-        {/* ==========================
+      {/* ==========================
             거래 관리 모달
         ========================== */}
-        {selectedTrade && (
-          <TradeAdminModal
-            trade={selectedTrade}
-            onClose={() => setSelectedTrade(null)}
-            onComplete={(id) => {
-              alert(`거래 ${id} 완료 처리`);
-              setSelectedTrade(null);
-            }}
-          />
-        )}
+      {selectedTrade && (
+        <TradeAdminModal
+          trade={selectedTrade}
+          onClose={() => setSelectedTrade(null)}
+          onComplete={(id) => {
+            alert(`거래 ${id} 완료 처리`);
+            setSelectedTrade(null);
+          }}
+        />
+      )}
 
     </div>
   );

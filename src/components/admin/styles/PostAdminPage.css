@@ -56,6 +56,21 @@
      검색 / 액션 버튼
   ========================== */
 }
+.adminPageContainer .filterBar > .writeButtonWrap {
+  margin-left: auto;
+}
+.adminPageContainer .filterBar > .writeButtonWrap .writeButton {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4a6cf7;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.adminPageContainer .filterBar > .writeButtonWrap .writeButton:hover {
+  background-color: #3957d6;
+}
 .adminPageContainer .filterBar .searchBox {
   position: relative;
   width: 300px;
@@ -128,7 +143,14 @@
   border-radius: 6px;
   overflow: hidden;
   /* 행 hover 효과 */
-  /* 관리 버튼 (수정/삭제) */
+}
+.adminPageContainer .adminTable td {
+  vertical-align: middle;
+}
+.adminPageContainer .adminTable td .gradeContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .adminPageContainer .adminTable th,
 .adminPageContainer .adminTable td {
@@ -148,21 +170,14 @@
   background-color: #D7D7D7;
 }
 .adminPageContainer .adminTable .btn-sm {
-  padding: 4px 8px;
+  background: none;
   border: none;
-  border-radius: 4px;
+  font-size: 18px;
   cursor: pointer;
-  margin-right: 4px;
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  background-color: #62A1BC;
-  color: #fff;
+  color: #666;
 }
-.adminPageContainer .adminTable .btn-sm.danger {
-  background-color: #E06868;
+.adminPageContainer .adminTable .btn-sm:hover {
+  color: #4a6cf7;
 }
 .adminPageContainer .pagination {
   margin-top: 20px;

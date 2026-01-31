@@ -1,4 +1,4 @@
-@use '../../../styles/_config' as *; 
+@use '../../../styles/_config' as *;
 
 .sidebar {
   width: 260px;
@@ -56,17 +56,30 @@
     margin: 0;
 
     li {
-        color: $colorWhite; // ❗ 추가
-        margin-bottom: 8px;
-        padding: 12px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.2s;
-      a {
-        color: $colorWhite; // ❗ NavLink 텍스트 흰색 지정
-        text-decoration: none; // 링크 밑줄 제거
-        display: block; // li 전체 영역 클릭 가능
-      }
+      margin-bottom: 8px;
+    }
+
+    a {
+      display: block;
+      padding: 12px 10px;
+      border-radius: 6px;
+      color: $colorWhite;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      // li {
+      //     color: $colorWhite; // ❗ 추가
+      //     margin-bottom: 8px;
+      //     padding: 12px 10px;
+      //     border-radius: 6px;
+      //     cursor: pointer;
+      //     transition: background 0.2s;
+      //   a {
+      //     color: $colorWhite; // ❗ NavLink 텍스트 흰색 지정
+      //     text-decoration: none; // 링크 밑줄 제거
+      //     display: block; // li 전체 영역 클릭 가능
+
 
 
       &:hover {
@@ -134,6 +147,7 @@
 }
 
 // 그림자 예제 적용
-.sidebar, .sidebar-bottom li.settings {
+.sidebar,
+.sidebar-bottom li.settings {
   box-shadow: $bottomShadow;
 }
