@@ -32,7 +32,7 @@ const PostDetailPage = () => {
                 <div className={styles.adminHeader}>
                     <h2 className={styles.adminTitle}>게시글 상세 관리</h2>
                     <span className={styles.adminDesc}>
-                        {post.id}번 데이터 관리
+                        게시글 ID #{post.id} 상세 정보
                     </span>
                 </div>
 

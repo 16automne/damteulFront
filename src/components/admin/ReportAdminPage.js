@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 공통 관리자 테이블 스타일
 // import ReportAdminModal from './ReportAdminModal';
 // import { useNavigate } from 'react-router-dom';
+// import { sampleReports } from './data/sampleReports';
 import { sampleReports } from './data/sampleReports';
+
 
 
 /* =================================================
@@ -136,6 +138,7 @@ const ReportAdminPage = () => {
           </button>
         </div>
 
+
         {/* =========================
          🔹 신고 목록 테이블
       ========================= */}
@@ -166,6 +169,7 @@ const ReportAdminPage = () => {
                   <td>{report.reported}</td>
                   <td>{report.createdAt}</td>
 
+
                   {/* 🔹 상태 뱃지 */}
                   <td>
                     {/* <span
@@ -183,48 +187,21 @@ const ReportAdminPage = () => {
 
                   </td>
 
-                  {/* =========================
+
+                  <td>
+                    {/* =========================
                    🔹 관리 버튼 영역
                 ========================= */}
-                  {/* <td>
-                  🔹 처리 버튼 → 모달 오픈
-                  <button
-                    className="btn-sm"
-                    onClick={() => setSelectedReport(report)}
-                  >
-                    처리
-                  </button>
-
-                  <button className="btn-sm danger">
-                    삭제
-                  </button>
-                </td> */}
-
-                  {/* <td>
-                  <button
-                    className="btn-sm gearButton"
-                    onClick={() => setSelectedReport(report)}
-                    title="신고 처리"
-                  >
-                    ⚙
-                  </button>
-                </td> */}
-                  <button
-                    className="btn-sm gearButton"
-                    onClick={() => {
-                      const url = `/admin/reports/detail/${report.id}`;
-                      window.open(url, '_blank', 'width=1000,height=800'); // 새 창
-                    }}
-
-                  //     window.open(`/admin/reports/detail/${report.id}`, '_blank')}
-                  //   title="신고 상세"
-                  >
-                    ⚙
-                  </button>
-
-
-
-
+                    <button button
+                      className="btn-sm gearButton"
+                      onClick={() => {
+                        const url = `/admin/reports/detail/${report.id}`;
+                        window.open(url, '_blank', 'width=1000,height=800'); // 새 창
+                      }}
+                    >
+                      ⚙
+                    </button>
+                  </td>
                 </tr>
               ))
             )}
@@ -275,7 +252,7 @@ const ReportAdminPage = () => {
           }}
         />
       )} */}
-      </div>
+      </div >
     </div>
   );
 };

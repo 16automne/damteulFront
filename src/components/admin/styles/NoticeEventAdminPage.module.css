@@ -13,9 +13,17 @@
      필터 / 검색 바
   ========================== */
   /* ==========================
+     탭 버튼
+  ========================== */
+  /* ==========================
      관리자 테이블
   ========================== */
-  /* 행 hover 효과 */
+  /* ==========================
+     페이지네이션
+  ========================== */
+  /* ==========================
+     상태 뱃지
+  ========================== */
 }
 .adminPageContainer .adminHeader {
   margin-bottom: 20px;
@@ -44,15 +52,6 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  /* ==========================
-     검색 input
-  ========================== */
-  /* ==========================
-     상태 select 박스
-  ========================== */
-  /* ==========================
-     검색 / 액션 버튼
-  ========================== */
 }
 .adminPageContainer .filterBar > .writeButtonWrap {
   margin-left: auto;
@@ -133,6 +132,40 @@
 .adminPageContainer .filterBar button.danger:hover {
   background-color: rgb(218.7879120879, 78.6120879121, 78.6120879121);
 }
+.adminPageContainer .tabContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.adminPageContainer .tabContainer .tabButton1,
+.adminPageContainer .tabContainer .tabButton2 {
+  border-radius: 12px;
+  border: 1px solid #D7D7D7;
+  background-color: #fff;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1C19;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+}
+.adminPageContainer .tabContainer .tabButton1.active,
+.adminPageContainer .tabContainer .tabButton2.active {
+  background-color: #58A563;
+  color: #fff;
+  border-color: #58A563;
+}
+.adminPageContainer .tabContainer .tabButton1:hover:not(.active),
+.adminPageContainer .tabContainer .tabButton2:hover:not(.active) {
+  background-color: #F2F5F2;
+}
+.adminPageContainer .tabContainer .tabButton1 {
+  padding: 10px 31px;
+}
+.adminPageContainer .tabContainer .tabButton2 {
+  padding: 10px 24px;
+}
 .adminPageContainer .adminTable {
   width: 100%;
   max-width: 1050px;
@@ -143,17 +176,11 @@
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   overflow: hidden;
+  table-layout: fixed;
+  word-break: break-word;
 }
-.adminPageContainer td {
-  vertical-align: middle;
-}
-.adminPageContainer td .gradeContainer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.adminPageContainer th,
-.adminPageContainer td {
+.adminPageContainer .adminTable th,
+.adminPageContainer .adminTable td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #D7D7D7;
@@ -163,42 +190,45 @@
   color: #1A1C19;
   line-height: 1.4;
 }
-.adminPageContainer th {
+.adminPageContainer .adminTable th {
   background-color: #F2F5F2;
 }
-.adminPageContainer tbody tr:hover {
+.adminPageContainer .adminTable td {
+  vertical-align: middle;
+}
+.adminPageContainer .adminTable td .gradeContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.adminPageContainer .adminTable tbody tr:hover {
   background-color: #D7D7D7;
 }
-.adminPageContainer .btn-sm {
+.adminPageContainer .adminTable .btn-sm {
   background: none;
   border: none;
   font-size: 18px;
   cursor: pointer;
   color: #666;
 }
-.adminPageContainer .btn-sm:hover {
+.adminPageContainer .adminTable .btn-sm:hover {
   color: #4a6cf7;
 }
-
-/* ==========================
-     페이지네이션
-  ========================== */
-.pagination {
+.adminPageContainer .pagination {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-.pagination button {
+.adminPageContainer .pagination button {
   padding: 6px 12px;
   border: 1px solid #D7D7D7;
   border-radius: 4px;
   background-color: #fff;
   cursor: pointer;
 }
-
-.statusBadge {
+.adminPageContainer .statusBadge {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 12px;
@@ -207,89 +237,9 @@
   text-align: center;
   min-width: 50px;
 }
-.statusBadge.new {
-  background-color: #4caf50;
-  color: #fff;
-}
-.statusBadge.used {
-  background-color: #f7a305;
-  color: #fff;
-}
-.statusBadge.end {
-  background-color: #9e9e9e;
-  color: #fff;
-}
-.statusBadge:hover {
-  opacity: 0.85;
-}
-
-.reportStatusWrapper {
-  /* 상태 뱃지 공통 */
-  /* 상태별 색상 */
-}
-.reportStatusWrapper .statusBadge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  color: #fff;
-  font-weight: 500;
-  text-align: center;
-  min-width: 50px;
-}
-.reportStatusWrapper .승인 {
-  background-color: #4caf50;
-  /* 초록 */
-}
-.reportStatusWrapper .보류 {
-  background-color: #9c27b0;
-  /* 보라 */
-}
-.reportStatusWrapper .반려 {
-  background-color: #9e9e9e;
-  /* 회색 */
-}
-
-/* ==============================
-   사용자 상태 배지 (UserAdminPage 전용)
-============================== */
-.userStatusWrapper .statusBadge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.9rem;
-  min-width: 50px;
-  text-align: center;
-  /* 상태별 색상 */
-}
-.userStatusWrapper .statusBadge.활동중 {
+.adminPageContainer .statusBadge.new {
   background-color: #4caf50;
 }
-.userStatusWrapper .statusBadge.정지 {
-  background-color: #f09824;
-}
-.userStatusWrapper .statusBadge.탈퇴 {
+.adminPageContainer .statusBadge.used {
   background-color: #9e9e9e;
-}
-
-.tradeStatusWrapper {
-  /* ==============================
-     거래 상태
-  ============================== */
-}
-.tradeStatusWrapper .statusBadge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  color: #fff;
-  font-weight: 500;
-  text-align: center;
-  min-width: 50px;
-}
-.tradeStatusWrapper .statusBadge.완료 {
-  background-color: #9e9e9e;
-}
-.tradeStatusWrapper .statusBadge.거래중 {
-  background-color: #4caf50;
-}/*# sourceMappingURL=PostAdminPage.css.map */
+}/*# sourceMappingURL=NoticeEventAdminPage.module.css.map */

@@ -1,23 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
-import CommunityAdminModal from './CommunityAdminModal';
+import { sampleCommunities } from './data/sampleCommunities';
 
-/* ===========================
-   1️⃣ 샘플 커뮤니티 데이터
-=========================== */
-
-const sampleCommunities = [
-  { id: 120, category: '재활용/나눔', title: '동네 나눔 장터', date: '2026-01-23', status: '진행중' },
-  { id: 119, category: '반려동물', title: '강아지 산책 모임', date: '2026-01-22', status: '종료' },
-  { id: 118, category: '직업', title: '프리랜서 직무 공유', date: '2026-01-21', status: '진행중' },
-  { id: 117, category: '유아/교육', title: '유아 배움 모임', date: '2026-01-20', status: '종료' },
-  { id: 116, category: '중고 거래', title: '중고 도서 교환', date: '2026-01-19', status: '진행중' },
-  { id: 115, category: '재활용/나눔', title: '가구 무료 나눔', date: '2026-01-18', status: '종료' },
-  { id: 114, category: '반려동물', title: '고양이 돌봄 모임', date: '2026-01-17', status: '진행중' },
-  { id: 113, category: '직업', title: '취업 정보 공유', date: '2026-01-16', status: '종료' },
-  { id: 112, category: '유아/교육', title: '영어 놀이 모임', date: '2026-01-15', status: '진행중' },
-  { id: 111, category: '중고 거래', title: '중고 가전 판매', date: '2026-01-14', status: '종료' },
-];
 
 /* ===========================
    2️⃣ CommunityAdminPage
@@ -45,7 +29,6 @@ const CommunityAdminPage = () => {
   /* ===========================
    🔹 선택된 커뮤니티 (모달용)
 =========================== */
-  const [selectedCommunity, setSelectedCommunity] = useState(null);
 
   const communitiesPerPage = 10;
 
@@ -175,29 +158,19 @@ const CommunityAdminPage = () => {
                 <td>{item.date}</td>
                 <td>
                   <span
-                    className={`statusBadge ${item.status === '진행중' ? 'new' : 'used'
+                    className={`statusBadge ${item.status === '진행중' ? 'new' : 'end'
                       }`}
                   >
                     {item.status}
                   </span>
                 </td>
-                {/* <td>
-                  <button
-                    className="btn-sm"
-                    onClick={() => setSelectedCommunity(item)}
-                  >
-                    관리
-                  </button>
-
-                  <button className="btn-sm danger">삭제</button>
-                </td> */}
-
                 <td>
                   <button
                     className="btn-sm"
-                    onClick={() => setSelectedCommunity(item)}
-                    title="관리"
-                    aria-label="관리"
+                    onClick={() => {
+                      const url = `${window.location.origin}/admin/community/detail/${item.id}`;
+                      window.open(url, '_blank', 'width=1000,height=800');
+                    }}
                   >
                     ⚙
                   </button>
@@ -229,20 +202,6 @@ const CommunityAdminPage = () => {
           {'>'}
         </button>
       </div>
-
-      <CommunityAdminModal
-        community={selectedCommunity}
-        onClose={() => setSelectedCommunity(null)}
-        onComplete={(id, status) => {
-          console.log(id, status);
-          setSelectedCommunity(null);
-        }}
-        onDelete={(id) => {
-          console.log(id);
-          setSelectedCommunity(null);
-        }}
-      />
-
     </div>
   );
 };

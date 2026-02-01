@@ -36,7 +36,9 @@ const ReportDetailPage = () => {
                 {/* 헤더 */}
                 <div className={styles.adminHeader}>
                     <h2 className={styles.adminTitle}>신고 상세 관리</h2>
-                    <span className={styles.adminDesc}>신고 ID : {report.id}</span>
+                    <span className={styles.adminDesc}>
+                        신고 ID #{report.id} 상세 정보
+                    </span>
                 </div>
 
                 {/* 본문 */}
@@ -104,7 +106,7 @@ const ReportDetailPage = () => {
                         className={styles.primary}
                         onClick={() => handleUpdateStatus()}
                     >
-                        적용
+                        저장
                     </button>
 
                     {/* 삭제 버튼 */}

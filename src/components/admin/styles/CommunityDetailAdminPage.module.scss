@@ -1,0 +1,124 @@
+@use '../../../styles/_config' as *;
+
+.adminPageContainer {
+    padding: 20px;
+    background-color: $colorLgGray;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .adminHeader {
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 20px;
+
+        .adminTitle {
+            @include webFontHead02; // 관리자 기준
+            margin-bottom: 6px;
+        }
+
+        .adminDesc {
+            @include webFontText03; // 일반 본문
+            color: $colorMdGray;
+        }
+    }
+
+    .statusWrap {
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 16px;
+
+        .statusBadge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: $colorWhite;
+            font-weight: 500;
+            min-width: 50px;
+            text-align: center;
+            @include webFontText03;
+
+            &.new {
+                background-color: $colorPrimary;
+            }
+
+            &.used {
+                background-color: $colorMdGray;
+            }
+        }
+    }
+
+    .adminBody {
+        width: 100%;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        background-color: $colorWhite;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: $bottomShadow;
+
+        .content {
+            @include webFontText02;
+            color: $colorDKGray;
+            line-height: 1.6;
+        }
+
+        .imageContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            img {
+                max-width: 100%;
+                border-radius: 6px;
+                box-shadow: $bottomShadow;
+            }
+        }
+    }
+
+    .actionButtons {
+        width: 100%;
+        max-width: 900px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+
+        button {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            @include webFontText02;
+
+            &.primary {
+                background-color: $colorPrimary;
+                color: $colorWhite;
+
+                &:hover {
+                    background-color: darken($colorPrimary, 6%);
+                }
+            }
+
+            &.danger {
+                background-color: $colorEtcRed;
+                color: $colorWhite;
+
+                &:hover {
+                    background-color: darken($colorEtcRed, 6%);
+                }
+            }
+        }
+    }
+
+    .empty {
+        @include webFontText03;
+        color: $colorMdGray;
+        text-align: center;
+        margin-top: 50px;
+    }
+}
