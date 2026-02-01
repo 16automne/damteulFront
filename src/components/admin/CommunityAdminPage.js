@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
-import { sampleCommunities } from './data/sampleCommunities';
+import { sampleCommunityPosts } from './data/sampleCommunityPosts';
+
 
 
 /* ===========================
@@ -46,7 +47,7 @@ const CommunityAdminPage = () => {
   /* ===========================
      4️⃣ 최신글 우선 정렬
   =========================== */
-  const sortedCommunities = [...sampleCommunities].sort(
+  const sortedCommunities = [...sampleCommunityPosts].sort(
     (a, b) => b.id - a.id
   );
 

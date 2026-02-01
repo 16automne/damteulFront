@@ -181,20 +181,15 @@
 }
 
 .danger {
-    padding: 10px 18px;
-    border-radius: 8px;
-
+    padding: 10px 40px;
     background-color: $colorEtcRed;
-    // 📌 위험/삭제 버튼 → 빨간색
-
-    @include webFontText02;
-    color: $colorWhite;
-
     border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: $weightSemibold;
     cursor: pointer;
 
     &:hover {
-        opacity: 0.9;
-        // 📌 hover 시 살짝 투명 → 클릭 피드백
+        background-color: darken($colorEtcRed, 5%);
     }
 }

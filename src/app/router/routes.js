@@ -70,7 +70,7 @@ import NoticeDetailPage from "components/admin/NoticeDetailPage"; // 새 페이�
 import NoticeEventWritePage from "components/admin/NoticeEventWritePage";// 새 페이지용
 import EventDetailPage from "components/admin/EventDetailPage"; // 새 페이지용
 import CommunityAdminPage from "components/admin/CommunityAdminPage";
-import CommunityDetailAdminPage from "components/admin/CommunityDetailAdminPage"; // 새 페이지용
+import CommunityDetailPage from "components/admin/CommunityDetailPage"; // 새 페이지용
 
 
 
@@ -194,7 +194,7 @@ export const routes = [
   },
   {
     path: "/admin/community/detail/:id",
-    element: <CommunityDetailAdminPage />
+    element: <CommunityDetailPage />
   },
   {
     path: '/admin/notice/write',

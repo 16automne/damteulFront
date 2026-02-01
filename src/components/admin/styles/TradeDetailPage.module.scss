@@ -168,10 +168,17 @@
 }
 
 .actionButtons button.danger {
-    background-color: #E06868;
+    padding: 10px 40px;
+    background-color: $colorEtcRed;
+    border: none;
+    border-radius: 6px;
     color: #fff;
+    font-weight: $weightSemibold;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($colorEtcRed, 5%);
+    }
 }
 
-.actionButtons button.danger:hover {
-    background-color: #d94e4e;
-}
+;

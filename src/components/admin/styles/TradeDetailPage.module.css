@@ -166,10 +166,14 @@
 }
 
 .actionButtons button.danger {
+  padding: 10px 40px;
   background-color: #E06868;
+  border: none;
+  border-radius: 6px;
   color: #fff;
+  font-weight: 600;
+  cursor: pointer;
 }
-
 .actionButtons button.danger:hover {
-  background-color: #d94e4e;
+  background-color: rgb(219.6565934066, 82.8434065934, 82.8434065934);
 }/*# sourceMappingURL=TradeDetailPage.module.css.map */
