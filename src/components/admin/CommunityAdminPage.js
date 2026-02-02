@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
 import CommunityAdminModal from './CommunityAdminModal';
+import { IoSettingsOutline } from "react-icons/io5";
 
 /* ===========================
    1️⃣ 샘플 커뮤니티 데이터
@@ -199,7 +200,7 @@ const CommunityAdminPage = () => {
                     title="관리"
                     aria-label="관리"
                   >
-                    ⚙
+                    <IoSettingsOutline />
                   </button>
                 </td>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
 import UserDetailModal from './UserDetailModal';
 import { gradeInfo } from './constants/gradeInfo';
+import { IoSettingsOutline } from "react-icons/io5";
 
 /* -------------------------------------------------
    📌 샘플 사용자 데이터
@@ -274,7 +275,7 @@ const UserAdminPage = () => {
                       title="회원 관리"
                       aria-label="회원 관리"
                     >
-                      ⚙
+                      <IoSettingsOutline />
                     </button>
                   </td>
 

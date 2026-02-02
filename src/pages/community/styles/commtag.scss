@@ -1,2 +1,87 @@
 @use "../../../styles/_config" as *;
-@use "../../../styles/_config2" as *;
+@use "../../../styles/_config2" as *; 
+
+.commTagPage {
+  background-color: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  .tagInstruction {
+    text-align: center;
+    padding: 3rem 0;
+    line-height: 1.5;
+    font-size: 1.1rem;
+  }
+
+  .tagImageContainer {
+    position: relative;
+    width: 100%;
+    
+    .fullImage { width: 100%; display: block; }
+
+    /* 네 번째 사진 좌측 하단 아이콘 */
+    .tagIconOverlay {
+      position: absolute;
+      bottom: 15px; left: 15px;
+      background: rgba(0,0,0,0.6);
+      padding: 8px; border-radius: 50%;
+      display: flex; align-items: center;
+      svg { font-size: 1.5rem; color: #fff; }
+    }
+
+    /* 태그 레이블 스타일 */
+    .addedTagMarker {
+      position: absolute; transform: translate(-50%, -50%);
+      .tagLabel {
+        background: rgba(0,0,0,0.7);
+        padding: 6px 12px; border-radius: 8px;
+        display: flex; flex-direction: column;
+        .name { font-size: 14px; font-weight: bold; }
+        .price { font-size: 12px; color: #ccc; }
+      }
+    }
+  }
+
+  /* 하단 버튼 바 */
+  .tagFooter {
+    margin-top: auto; padding: 2rem;
+    display: flex; gap: 15px;
+    button {
+      flex: 1; height: 50px; border-radius: 12px; border: none; font-size: 1.1rem; font-weight: bold;
+      &.backBtn { background: #d9d9d9; color: #555; }
+      &.doneBtn { background: #67b473; color: #fff; }
+    }
+  }
+
+  /* 모달 스타일 (두 번째, 세 번째 사진) */
+  .modalOverlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center; z-index: 100;
+    
+    .tagModalContent {
+      background: #fff; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; color: #333;
+      h3 { text-align: center; margin-bottom: 20px; }
+
+      /* 가로 스와이프 리스트 */
+      .goodsListSwipe {
+        max-height: 350px; overflow-y: auto; // 세로 리스트일 경우
+        // 만약 가로 스와이프가 필요하다면 display: flex; overflow-x: auto; 로 변
+        
+        .goodsItem {
+          display: flex; align-items: center; gap: 15px; padding: 12px;
+          border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px;
+          img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+          .info { flex: 1; .name { font-weight: bold; } .price { font-size: 13px; color: #888; } }
+          .radioCircle { width: 18px; height: 18px; border: 2px solid #ddd; border-radius: 50%; }
+        }
+      }
+
+      .registerActionBtn, .goTradeBtn {
+        width: 100%; height: 50px; border: none; border-radius: 10px;
+        background: #e57373; color: #fff; font-weight: bold; margin-top: 15px;
+      }
+    }
+  }
+}

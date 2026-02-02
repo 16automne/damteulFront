@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 공통 관리자 테이블 스타일
 import ReportAdminModal from './ReportAdminModal';
 // 🔹 [모달 컴포넌트] 신고 상세/처리 모달 import
+import { IoSettingsOutline } from "react-icons/io5";
 
 /* =================================================
    1️⃣ 샘플 신고 데이터 (임시)
@@ -206,7 +207,7 @@ const ReportAdminPage = () => {
                     onClick={() => setSelectedReport(report)}
                     title="신고 처리"
                   >
-                    ⚙
+                    <IoSettingsOutline />
                   </button>
                 </td>
 

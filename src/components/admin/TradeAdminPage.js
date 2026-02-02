@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
 import TradeAdminModal from '../admin/TradeAdminModal';
+import { IoSettingsOutline } from "react-icons/io5";
 
 
 /* -------------------------------------------------
@@ -185,7 +186,7 @@ const TradeAdminPage = () => {
                     title="거래 관리"
                     aria-label="거래 관리"
                   >
-                    ⚙
+                    <IoSettingsOutline />
                   </button>
                 </td>
 

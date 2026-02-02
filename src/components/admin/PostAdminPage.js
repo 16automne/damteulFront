@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
 import PostAdminModal from './PostAdminModal';
+import { IoSettingsOutline } from "react-icons/io5";
 
 
 
@@ -191,7 +192,7 @@ const PostAdminPage = () => {
                     title="관리"
                     aria-label="관리"
                   >
-                    ⚙
+                    <IoSettingsOutline />
                   </button>
                 </td>
               </tr>
