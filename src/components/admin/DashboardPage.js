@@ -1,52 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../admin/styles/Dashboard.css';
+// axios
+import api from "app/api/axios";
 
 /* =================================================
-   1️⃣ KPI 데이터
-   - UserAdminPage / ReportAdminPage / PostAdminPage에서
-     "요약용"으로 뽑아온 데이터라고 가정
-   - 나중에 API 연동 시 이 객체만 서버 데이터로 교체
+  1️⃣ KPI 데이터
+
 ================================================= */
-const kpiData = {
-  today: {
-    users: 3,     // 오늘 가입자 수
-    reports: 2,   // 오늘 신고 건수
-    posts: 12,    // 오늘 작성된 게시글 수
-  },
-  month: {
-    users: 30,    // 이번 달 가입자 수
-    reports: 20,  // 이번 달 신고 건수
-    posts: 150,   // 이번 달 게시글 수
-  },
+const formatDateNumber = (dateValue) => {
+  // 서버에서 "YYYY-MM-DD" 형태로 오면 그대로 사용
+  if (typeof dateValue === "string" && dateValue.length >= 10) {
+    return dateValue.slice(0, 10);
+  }
+
+  // 혹시 Date 객체로 온 경우만 처리
+  const d = new Date(dateValue);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 };
 
-/* =================================================
-   2️⃣ 일자별 요약 데이터
-   - 대시보드에서 "흐름"을 보는 용도
-   - 통계 페이지 생기면 여기서 확장 가능
-================================================= */
-const summaryData = [
-  { date: '2026-01-20', users: 2, reports: 1, posts: 5 },
-  { date: '2026-01-21', users: 1, reports: 0, posts: 7 },
-  { date: '2026-01-22', users: 3, reports: 1, posts: 10 },
-];
-
-/* =================================================
-   3️⃣ 이벤트 / 공지사항 데이터
-   - NoticeEventAdminPage와 직접 연동 대상
-   - 최근 N개만 가져와서 보여주는 용도
-================================================= */
-const eventsData = [
-  { id: 'e001', title: '신년 이벤트', type: '이벤트', date: '2026-01-01' },
-  { id: 'n001', title: '공지사항 예시', type: '공지사항', date: '2026-01-10' },
-];
-
-/* =================================================
-   4️⃣ KPI 카드 컴포넌트
-   - 클릭 가능
-   - 클릭 시 해당 관리자 페이지로 이동
-================================================= */
 const KPIBlock = ({ title, today, month, onClick }) => (
   <div className="kpiCard">
     {/* 상단 영역 */}
@@ -69,11 +44,70 @@ const KPIBlock = ({ title, today, month, onClick }) => (
     </div>
   </div>
 );
+
 /* =================================================
-   5️⃣ Dashboard 메인 컴포넌트
+  5️⃣ Dashboard 메인 컴포넌트
 ================================================= */
 const Dashboard = () => {
   const navigate = useNavigate(); // 관리자 페이지 이동용
+
+  // ✅ 서버에서 가져올 데이터들
+  const [kpiData, setKpiData] = useState(null);
+  const [summaryData, setSummaryData] = useState([]);
+  const [eventsData, setEventsData] = useState([]);
+
+  // ✅ 로딩/에러
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let alive = true;
+    const fetchDashboard = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        // ✅ 대시보드 API 호출
+        const res = await api.get("/api/admin/dashboard");
+
+        if (!alive) return;
+
+        const data = res.data;
+
+        setKpiData(data.kpiData);
+        setSummaryData(data.summaryData || []);
+        setEventsData(data.eventsData || []);
+      } catch (err) {
+        console.error(err);
+        if (!alive) return;
+
+        setError(
+          err?.response?.data?.message ||
+          "대시보드 데이터를 불러오지 못했어요."
+        );
+      } finally {
+        if (!alive) return;
+        setLoading(false);
+      }
+    };
+
+    fetchDashboard();
+
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  /* ================== 안전한 기본값 ================== */
+  const todayUsers = kpiData?.today?.users ?? 0;
+  const monthUsers = kpiData?.month?.users ?? 0;
+
+  const todayReports = kpiData?.today?.reports ?? 0;
+  const monthReports = kpiData?.month?.reports ?? 0;
+
+  const todayPosts = kpiData?.today?.posts ?? 0;
+  const monthPosts = kpiData?.month?.posts ?? 0;
+
 
   return (
     <div className="dashboardContainer">
@@ -86,24 +120,24 @@ const Dashboard = () => {
           {/* 사용자 관리 페이지 연동 */}
           <KPIBlock
             title="오늘 가입자"
-            today={kpiData.today.users}
-            month={kpiData.month.users}
+            today={todayUsers}
+            month={monthUsers}
             onClick={() => navigate('/admin/users')}
           />
 
           {/* 신고 관리 페이지 연동 */}
           <KPIBlock
             title="오늘 신고 내역"
-            today={kpiData.today.reports}
-            month={kpiData.month.reports}
+            today={todayReports}
+            month={monthReports}
             onClick={() => navigate('/admin/reports')}
           />
 
           {/* 게시글 관리 페이지 연동 */}
           <KPIBlock
             title="오늘 총 게시물"
-            today={kpiData.today.posts}
-            month={kpiData.month.posts}
+            today={todayPosts}
+            month={monthPosts}
             onClick={() => navigate('/admin/posts')}
           />
         </div>
@@ -119,7 +153,7 @@ const Dashboard = () => {
           <ul>
             {summaryData.map(item => (
               <li key={item.date}>
-                <strong>{item.date}</strong>
+                <strong>{formatDateNumber(item.date)}</strong>
                 <span> 가입자 {item.users}</span>
                 <span> · 신고 {item.reports}</span>
                 <span> · 게시물 {item.posts}</span>
