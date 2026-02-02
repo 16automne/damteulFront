@@ -1,0 +1,22 @@
+@use '../../../styles/_config' as *; 
+
+.bodyParent:has(.splashScreen){background-color:$colorPrimary;}
+
+.splashScreen {
+  background-color:  $colorPrimary; 
+  // 정중앙 정렬을 위한 Flex 설정
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  // 모바일 전체 화면 높이 대응
+  height: 100dvh; 
+  
+  .logo_container {
+
+      img {
+          width: 250px; // 모바일 기준 적정 로고 사이즈
+          height: auto;
+      }
+  }
+}
