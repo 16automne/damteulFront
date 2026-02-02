@@ -130,29 +130,47 @@
     background-color: #9e9e9e;
 }
 
-.statusActions {
+.actionButtons {
     display: flex;
-    justify-content: flex-end;
-    gap: 12px;
+    justify-content: flex-end; // 오른쪽 정렬
+    gap: 12px; // 버튼 간 간격
     margin-top: 20px;
-}
 
-.primary {
-    padding: 10px 40px;
-    background-color: $colorPrimary;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: $weightSemibold;
-    cursor: pointer;
-}
+    .buttonBase {
+        padding: 10px 50px;
+        color: $colorWhite;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: $weightSemibold;
+    }
 
-.danger {
-    padding: 10px 40px;
-    background-color: $colorEtcRed;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: $weightSemibold;
-    cursor: pointer;
+    button {
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+
+
+        &.primary {
+            @extend .buttonBase;
+            background-color: $colorPrimary;
+
+            &:hover {
+                background-color: darken($colorPrimary, 5%);
+            }
+        }
+
+        &.danger {
+            @extend .buttonBase;
+            background-color: $colorEtcRed;
+ 
+    
+        
+
+            &:hover {
+                background-color: darken($colorEtcRed, 5%);
+            }
+        }
+    }
 }

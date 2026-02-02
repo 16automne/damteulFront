@@ -91,7 +91,7 @@ ID: ${post.id}
                     </div>
 
                     {/* 저장 버튼 */}
-                    <div className={styles.statusActions}>
+                    <div className={styles.actionButtons}>
                         <button className={styles.danger} onClick={handleDelete}>
                             삭제
                         </button>

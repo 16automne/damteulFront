@@ -55,6 +55,10 @@ import Register from "pages/auth/Register";
 import AddressSearch from "pages/auth/AddressSearch";
 import CommTag from "pages/community/CommTag";
 
+import Start from "pages/intro/Start";
+
+
+
 // 6) 관리자 페이지 (AdminPage)
 import DashboardPage from "components/admin/DashboardPage";
 import UserAdminPage from "components/admin/UserAdminPage";
@@ -145,7 +149,9 @@ export const routes = [
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/address", element: <AddressSearch /> },
-      { path: '/community/tag/:id', element: <CommTag /> }
+      { path: '/community/tag/:id', element: <CommTag /> },
+
+      {path: '/start', element: <Start />}
     ],
   },
 

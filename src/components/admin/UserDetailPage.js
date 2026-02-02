@@ -119,7 +119,7 @@ const UserDetailPage = () => {
                 </section>
 
                 {/* 하단 버튼 */}
-                <div className={styles.statusActions}>
+                <div className={styles.actionButtons }>
                     {/* 저장 버튼 */}
                     <button className={styles.primary} onClick={handleSave}>
                         저장
@@ -127,7 +127,7 @@ const UserDetailPage = () => {
 
                     {/* 삭제 버튼 */}
                     <button
-                        className={styles.banBtn}
+                        className={styles.danger}
                         onClick={() => {
                             if (window.confirm("사용자를 삭제하시겠습니까?")) {
                                 alert(`샘플 데이터 시뮬레이션: ${user.id} 삭제`);

@@ -4,6 +4,10 @@
    관리자 페이지 공통 컨테이너
 ================================================== */
 .adminPageContainer {
+  width: 100%;
+  max-width: 1300px;
+  min-width: 1300px;
+  margin: 0 auto; // 중앙 정렬
   padding: 20px;
   background-color: $colorLgGray;
   min-height: 100vh;
@@ -143,9 +147,9 @@
   ========================== */
   .adminTable {
     width: 100%;
-    max-width: 1050px;
-    min-width: 1050px;
-    margin: 0 auto; // 중앙 정렬
+    max-width: 1300px;
+    min-width: 1300px;
+    // margin: 0 auto; // 중앙 정렬
     border-collapse: collapse;
     background-color: $colorWhite;
     box-shadow: $bottomShadow;

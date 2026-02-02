@@ -62,7 +62,7 @@
 .adminBody {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 
     .inputGroup {
         display: flex;
@@ -76,22 +76,22 @@
 
         input,
         textarea {
-
             resize: none;
             padding: 12px 14px;
             border: 1px solid $colorSmGray;
             border-radius: 8px;
+            background-color: #f4f3f3;
             @include webFontText03;
             color: $colorDKGray;
             outline: none;
 
             &:focus {
-                border-color: $colorPrimary;
+                // border-color: $colorPrimary;
             }
         }
 
         textarea {
-            resize: vertical;
+            min-height: 160px;
         }
     }
 
@@ -125,23 +125,45 @@
         }
     }
 
-    .statusActions {
+    .actionButtons {
         display: flex;
-        justify-content: flex-end;
-        gap: 12px;
+        justify-content: flex-end; // 오른쪽 정렬
+        gap: 12px; // 버튼 간 간격
         margin-top: 20px;
-
-        .danger {
-            padding: 10px 40px;
-            background-color: $colorEtcRed;
+    
+        .buttonBase {
+            padding: 10px 50px;
+            color: $colorWhite;
             border: none;
             border-radius: 6px;
-            color: #fff;
-            font-weight: $weightSemibold;
             cursor: pointer;
-
-            &:hover {
-                background-color: darken($colorEtcRed, 5%);
+            font-weight: $weightSemibold;
+        }
+    
+        button {
+            font-family: "Inter", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+    
+    
+            &.primary {
+                @extend .buttonBase;
+                background-color: $colorPrimary;
+    
+                &:hover {
+                    background-color: darken($colorPrimary, 5%);
+                }
+            }
+    
+            &.danger {
+                @extend .buttonBase;
+                background-color: $colorEtcRed;
+            
+    
+                &:hover {
+                    background-color: darken($colorEtcRed, 5%);
+                }
             }
         }
     }

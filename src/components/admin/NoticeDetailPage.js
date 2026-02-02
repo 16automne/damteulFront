@@ -122,7 +122,7 @@ ID: ${notice.id}
                     </div>
 
                     {/* 액션 버튼 */}
-                    <div className={styles.statusActions}>
+                    <div className={styles.actionButtons}>
                         <button className={styles.primary} onClick={handleSave}>저장</button>
                         <button className={styles.danger} onClick={handleDelete}>삭제</button>
                     </div>

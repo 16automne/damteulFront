@@ -8,6 +8,8 @@ const TradeDetailPage = () => {
     const { id } = useParams();
     const trade = sampleTransactions.find(item => item.id === Number(id));
 
+    
+
     // 🔹 게시글 숨김/보이기 상태
     const [showArticle, setShowArticle] = useState(true);
 
@@ -20,8 +22,21 @@ const TradeDetailPage = () => {
     }
 
 
-    // 🔹 저장 버튼
-    const handleSave = () => {
+
+// 🔹 저장 버튼 클릭 시 실행될 함수
+const handleUpdateStatus = () => {
+    // 1. selectedStatus 대신 실제 데이터인 status(trade.completed)를 사용하거나,
+    // 2. 현재 화면의 설정값(showArticle 등)을 확인하도록 수정합니다.
+    console.log('저장 시도: ', {
+        거래ID: trade.id,
+        거래상태: status, // trade.completed 값
+        게시글표시: showArticle
+    });
+    
+    alert('설정이 저장되었습니다.');
+};
+
+    const handleDeleteReport = () => {
         console.log('게시글 표시 여부:', showArticle);
         // TODO: API 호출하여 게시글 숨김/보이기 적용
     };
@@ -127,8 +142,16 @@ const TradeDetailPage = () => {
 
                 {/* 하단 버튼 */}
                 <div className={styles.actionButtons}>
-                    <button className={styles.primary} onClick={handleSave}>
+
+                <button
+                        className={styles.primary}
+                        onClick={() => handleUpdateStatus()}
+                    >
                         저장
+                    </button>
+
+                    <button className={styles.danger} onClick={handleDeleteReport}>
+                        삭제
                     </button>
                 </div>
             </div>

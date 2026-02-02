@@ -85,6 +85,7 @@
   color: #1A1C19;
   line-height: 1.4;
   color: #1A1C19;
+  outline: none;
   resize: none;
 }
 .formGroup textarea {
@@ -99,6 +100,15 @@
   justify-content: flex-end;
   gap: 12px;
   margin-top: 40px;
+}
+
+.buttonBase, .danger {
+  padding: 10px 50px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .secondary {
@@ -119,13 +129,7 @@
 }
 
 .danger {
-  padding: 10px 40px;
   background-color: #E06868;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
 }
 .danger:hover {
   background-color: rgb(219.6565934066, 82.8434065934, 82.8434065934);
