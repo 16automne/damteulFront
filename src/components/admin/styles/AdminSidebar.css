@@ -55,19 +55,18 @@
   margin: 0;
 }
 .sidebar-menu ul li {
-  color: #fff;
   margin-bottom: 8px;
+}
+.sidebar-menu ul a {
+  display: block;
   padding: 12px 10px;
   border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
   cursor: pointer;
   transition: background 0.2s;
 }
-.sidebar-menu ul li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-}
-.sidebar-menu ul li:hover {
+.sidebar-menu ul a:hover {
   background-color: #6B6B6B;
 }
 
@@ -128,6 +127,7 @@
   padding: 20px;
 }
 
-.sidebar, .sidebar-bottom li.settings {
+.sidebar,
+.sidebar-bottom li.settings {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
 }/*# sourceMappingURL=AdminSidebar.css.map */

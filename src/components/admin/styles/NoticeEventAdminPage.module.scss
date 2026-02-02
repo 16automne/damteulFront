@@ -1,3 +1,4 @@
+// src/admin/styles/NoticeEventAdminPage.module.scss
 @use '../../../styles/_config' as *;
 
 /* ==================================================
@@ -20,7 +21,6 @@
 
     .adminTitle {
       @include webFontHead01; // 관리자 페이지 대제목
-      // color: $colorPrimary;
     }
 
     .adminDesc {
@@ -30,8 +30,8 @@
   }
 
   /* ==========================
-   필터 / 검색 바
-========================== */
+     필터 / 검색 바
+  ========================== */
   .filterBar {
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@
     box-shadow: $bottomShadow;
 
     >.writeButtonWrap {
-      margin-left: auto; // ⭐ 핵심: 오른쪽으로 밀기
+      margin-left: auto; // 오른쪽 밀기
     }
 
     >.writeButtonWrap .writeButton {
@@ -58,13 +58,8 @@
       &:hover {
         background-color: #3957d6;
       }
-
-      // height: 40px; // 기존 버튼 높이 맞춤
     }
 
-    /* ==========================
-     검색 input
-  ========================== */
     .searchBox {
       position: relative;
       width: 300px;
@@ -77,7 +72,6 @@
         border-radius: 6px;
         background-color: $colorWhite;
         @include webFontText03;
-
         transition: border-color 0.2s, box-shadow 0.2s;
 
         &:focus {
@@ -88,9 +82,6 @@
       }
     }
 
-    /* ==========================
-     상태 select 박스
-  ========================== */
     select {
       height: 40px;
       padding: 0 12px;
@@ -99,7 +90,6 @@
       background-color: $colorWhite;
       cursor: pointer;
       @include webFontText03;
-
       transition: border-color 0.2s, box-shadow 0.2s;
 
       &:focus {
@@ -109,9 +99,6 @@
       }
     }
 
-    /* ==========================
-     검색 / 액션 버튼
-  ========================== */
     button {
       height: 40px;
       padding: 0 16px;
@@ -120,7 +107,6 @@
       background-color: $colorPrimary;
       color: $colorWhite;
       cursor: pointer;
-
       transition: background-color 0.2s, transform 0.1s;
 
       &:hover {
@@ -141,6 +127,44 @@
     }
   }
 
+  /* ==========================
+     탭 버튼
+  ========================== */
+  .tabContainer {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    .tabButton1,
+    .tabButton2 {
+      border-radius: 12px;
+      border: 1px solid $colorSmGray;
+      background-color: $colorWhite;
+      cursor: pointer;
+      @include webFontText02;
+      transition: all 0.2s ease;
+
+      &.active {
+        background-color: $colorPrimary;
+        color: $colorWhite;
+        border-color: $colorPrimary;
+      }
+
+      &:hover:not(.active) {
+        background-color: $colorLgGray;
+      }
+    }
+
+    .tabButton1 {
+      padding: 10px 31px;
+    }
+
+    .tabButton2 {
+      padding: 10px 24px;
+    }
+  }
+
+
 
   /* ==========================
      관리자 테이블
@@ -149,110 +173,78 @@
     width: 100%;
     max-width: 1300px;
     min-width: 1300px;
-    // margin: 0 auto; // 중앙 정렬
+    margin: 0 auto;
     border-collapse: collapse;
     background-color: $colorWhite;
     box-shadow: $bottomShadow;
     border-radius: 6px;
     overflow: hidden;
-  }
+    table-layout: fixed;
+    word-break: break-word;
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid $colorSmGray;
+      @include webFontText03;
+    }
 
 
+    th {
+      background-color: $colorLgGray;
+    }
 
-  td {
-    vertical-align: middle; // ⭐ 이 한 줄이 핵심
+    td {
+      vertical-align: middle;
 
-    .gradeContainer {
-      display: flex; // ⭐ 가로 정렬
-      align-items: center; // 세로 중앙 정렬
-      gap: 8px; // 이미지-텍스트 간격
+      .gradeContainer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+    }
+
+    tbody tr:hover {
+      background-color: $colorSmGray;
+    }
+
+    .btn-sm {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #666;
+
+      &:hover {
+        color: #4a6cf7;
+      }
     }
   }
 
-  th,
-  td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid $colorSmGray;
-    @include webFontText03;
-  }
-
-  th {
-    background-color: $colorLgGray;
-  }
-
-  /* 행 hover 효과 */
-  tbody tr:hover {
-    background-color: $colorSmGray;
-  }
-
-  .btn-sm {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #666;
-
-    &:hover {
-      color: #4a6cf7;
-    }
-  }
-}
-
-/* ==========================
+  /* ==========================
      페이지네이션
   ========================== */
-.pagination {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 
-  button {
-    padding: 6px 12px;
-    border: 1px solid $colorSmGray;
-    border-radius: 4px;
-    background-color: $colorWhite;
-    cursor: pointer;
-  }
-}
-
-
-.statusBadge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  color: #fff;
-  font-weight: 500;
-  text-align: center;
-  min-width: 50px;
-
-  &.new {
-    background-color: #4caf50; // 초록
-    color: #fff;
+    button {
+      padding: 6px 12px;
+      border: 1px solid $colorSmGray;
+      border-radius: 4px;
+      background-color: $colorWhite;
+      cursor: pointer;
+    }
   }
 
-  &.used {
-    background-color: #f7a305; // 주황 
-    color: #fff;
-  }
-
-  &.end {
-    background-color: #9e9e9e; // 회색
-    color: #fff;
-  }
-
-  &:hover {
-    opacity: 0.85; // 살짝 hover 효과
-  }
-}
-
-
-
-.reportStatusWrapper {
-
-  /* 상태 뱃지 공통 */
+  /* ==========================
+     상태 뱃지
+  ========================== */
   .statusBadge {
     display: inline-block;
     padding: 4px 10px;
@@ -261,78 +253,15 @@
     font-weight: 500;
     text-align: center;
     min-width: 50px;
-  }
 
-  /* 상태별 색상 */
-  .승인 {
-    background-color: #4caf50;
-    /* 초록 */
-  }
-
-  .보류 {
-    background-color: #9c27b0;
-    /* 보라 */
-  }
-
-  .반려 {
-    background-color: #9e9e9e;
-    /* 회색 */
-  }
-
-}
-
-/* ==============================
-   사용자 상태 배지 (UserAdminPage 전용)
-============================== */
-.userStatusWrapper {
-  .statusBadge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9rem;
-    min-width: 50px;
-    text-align: center;
-
-    /* 상태별 색상 */
-    &.활동중 {
+    &.new {
+      // 진행중
       background-color: #4caf50;
     }
 
-    &.정지 {
-      background-color: #f09824;
-    }
-
-    &.탈퇴 {
+    &.used {
+      // 종료
       background-color: #9e9e9e;
     }
-  }
-}
-
-
-
-.tradeStatusWrapper {
-  .statusBadge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    color: #fff;
-    font-weight: 500;
-    text-align: center;
-    min-width: 50px;
-  }
-
-  /* ==============================
-   거래 상태
-============================== */
-  .statusBadge.완료 {
-    background-color: #9e9e9e;
-    // color: #1E7F4D;
-  }
-
-  .statusBadge.거래중 {
-    background-color: #4caf50;
-    // color: #C77700;
   }
 }

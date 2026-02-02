@@ -1,0 +1,170 @@
+// src/components/admin/styles/CommunityDetailPage.module.scss
+@use '../../../styles/_config' as *;
+
+.pageWrapper {
+    background-color: $colorLgGray;
+    display: flex;
+    min-height: 100vh;
+}
+
+.wrapper {
+    margin: auto; // ⭐ 핵심
+    width: 100%;
+    max-width: 500px;
+    // 📌 콘텐츠 최대 너비
+    padding: 32px;
+    // 📌 페이지 내부 여백
+    // 화면 가장자리에 딱 붙지 않게 숨 쉴 공간을 줌
+    background-color: $colorWhite;
+    border-radius: 12px;
+    // padding: 20px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.adminHeader {
+    display: flex;
+    // 📌 자식 요소(h2, span)를 가로 정렬
+
+    justify-content: space-between;
+    // 📌 왼쪽(제목) / 오른쪽(설명)을 양 끝으로 벌림
+
+    align-items: flex-end;
+    // 📌 세로 정렬: 글자 기준 하단 맞춤
+    // 제목과 설명의 폰트 크기가 달라도 자연스럽게 보임
+
+    padding-bottom: 16px;
+    // 📌 헤더 아래 여백
+
+    margin-bottom: 32px;
+    // 📌 헤더와 본문 사이 간격
+
+    border-bottom: 1px solid $colorSmGray;
+    // 📌 헤더 하단 구분선
+
+    .adminTitle {
+        @include webFontHead02;
+        // 📌 제목용 폰트 스타일 (크기, 굵기 포함)
+
+        color: $colorDKGray;
+        // 📌 진한 회색 → 관리자 페이지에 안정감 있는 톤
+    }
+
+    .adminDesc {
+        @include webFontText05;
+        // 📌 보조 설명용 작은 텍스트 스타일
+
+        color: $colorMdGray;
+        // 📌 제목보다 연한 회색 → 정보 위계 표현
+    }
+}
+
+.adminBody {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .inputGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+            @include webFontText04;
+            color: $colorDKGray;
+        }
+
+        input,
+        textarea {
+            resize: none;
+            padding: 12px 14px;
+            border: 1px solid $colorSmGray;
+            border-radius: 8px;
+            background-color: #f4f3f3;
+            @include webFontText03;
+            color: $colorDKGray;
+            outline: none;
+
+            &:focus {
+                // border-color: $colorPrimary;
+            }
+        }
+
+        textarea {
+            min-height: 160px;
+        }
+    }
+
+    .statusWrapper {
+        display: flex;
+        flex-direction: column; // ← 여기서 세로로 변경
+        gap: 8px;
+        align-items: flex-start; // 왼쪽 정렬
+
+        strong {
+            @include webFontText03;
+            color: $colorDKGray;
+        }
+
+        .statusBadge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: $weightSemibold;
+            font-size: 0.875rem;
+            color: $colorWhite;
+
+
+
+            &.new {
+                background-color: $colorEtcLgGreen;
+            }
+
+            &.end {
+                background-color: $colorEtcRed;
+            }
+        }
+    }
+
+    .actionButtons {
+        display: flex;
+        justify-content: flex-end; // 오른쪽 정렬
+        gap: 12px; // 버튼 간 간격
+        margin-top: 20px;
+    
+        .buttonBase {
+            padding: 10px 50px;
+            color: $colorWhite;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: $weightSemibold;
+        }
+    
+        button {
+            font-family: "Inter", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+    
+    
+            &.primary {
+                @extend .buttonBase;
+                background-color: $colorPrimary;
+    
+                &:hover {
+                    background-color: darken($colorPrimary, 5%);
+                }
+            }
+    
+            &.danger {
+                @extend .buttonBase;
+                background-color: $colorEtcRed;
+            
+    
+                &:hover {
+                    background-color: darken($colorEtcRed, 5%);
+                }
+            }
+        }
+    }
+}

@@ -84,14 +84,14 @@ const HomePage = () => {
 						onClick={()=>setFilter('latest')}>최신글</button>
 					</div>
 					{list.length > 0 ?(
-						list.map((item)=>{
+						list.map((item)=>(
 							<GoodsList key={item.goods_id}
 							title={item.title}
 							status={item.condition_type === '0'?'중고상품':'새상품'}
 							price={item.price.toLocaleString()}
 							linkTo={`/goodsdetail/${item.goods_id}`}
 							/>
-						})
+						))
 					):(
 						<p style={{textAlign: 'center', marginTop: '20px'}}>등록된 매물이 없습니다.</p>
 					)}
