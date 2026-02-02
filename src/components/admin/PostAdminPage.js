@@ -1,26 +1,8 @@
 import React, { useState } from 'react';
 import '../admin/styles/PostAdminPage.css';
-import PostAdminModal from './PostAdminModal';
+// import PostAdminModal from './PostAdminModal';
+import { samplePosts } from './data/samplePosts';
 import { IoSettingsOutline } from "react-icons/io5";
-
-
-
-/* ===========================
-   1️⃣ 샘플 게시글 데이터
-=========================== */
-
-const samplePosts = [
-  { id: 120, title: '스마트워치 판매', writer: 'user020', category: '전자기기', createdAt: '2026-01-09', productStatus: '새상품' },
-  { id: 119, title: '노트북 가방 판매', writer: 'user019', category: '패션', createdAt: '2026-01-09', productStatus: '새상품' },
-  { id: 118, title: '의자 무료', writer: 'user018', category: '가구', createdAt: '2026-01-10', productStatus: '중고 상품' },
-  { id: 117, title: '중고 장난감', writer: 'user017', category: '취미', createdAt: '2026-01-10', productStatus: '새상품' },
-  { id: 116, title: '모니터 판매', writer: 'user016', category: '전자기기', createdAt: '2026-01-11', productStatus: '새상품' },
-  { id: 115, title: '책상 판매', writer: 'user015', category: '가구', createdAt: '2026-01-11', productStatus: '중고 상품' },
-  { id: 114, title: '중고 카메라', writer: 'user014', category: '전자기기', createdAt: '2026-01-12', productStatus: '중고 상품' },
-  { id: 113, title: '의류 나눔', writer: 'user013', category: '패션', createdAt: '2026-01-12', productStatus: '새상품' },
-  { id: 112, title: '운동화 판매', writer: 'user012', category: '패션', createdAt: '2026-01-13', productStatus: '중고 상품' },
-  { id: 111, title: '에어팟 판매', writer: 'user011', category: '전자기기', createdAt: '2026-01-13', productStatus: '새상품' },
-];
 
 /* ===========================
    2️⃣ PostAdminPage 컴포넌트
@@ -29,7 +11,7 @@ const samplePosts = [
 const PostAdminPage = () => {
 
   // 상태
-  const [selectedPost, setSelectedPost] = useState(null);
+  // const [selectedPost, setSelectedPost] = useState(null);
 
   /* ===========================
      🔹 검색 입력용 상태 (입력만)
@@ -87,6 +69,7 @@ const PostAdminPage = () => {
         <h2 className="adminTitle">게시글 관리</h2>
         <span className="adminDesc">중고 거래 게시글을 관리합니다</span>
       </div>
+
 
       {/* ===========================
          🔍 검색 / 필터 영역
@@ -163,24 +146,6 @@ const PostAdminPage = () => {
                     {post.productStatus}
                   </span>
                 </td>
-                {/* <td>
-
-                  <button className="btn-sm" onClick={() => setSelectedPost(post)}>
-                    관리
-                  </button>
-                  <button className="btn-sm danger">삭제</button>
-                </td> */}
-
-                {/* <td>
-                  <button
-                    className="btn-sm"
-                    onClick={() => setSelectedPost(post)}
-                    title="관리"
-                    aria-label="관리"
-                  >
-                    ⚙
-                  </button>
-                </td> */}
 
                 <td>
                   <button
@@ -211,14 +176,14 @@ const PostAdminPage = () => {
       </div>
 
 
-      {selectedPost && (
+      {/* {selectedPost && (
         <PostAdminModal
           post={selectedPost}
           onClose={() => setSelectedPost(null)}
           onDelete={(id) => console.log('삭제', id)}
           onHide={(id) => console.log('숨김', id)}
         />
-      )}
+      )} */}
     </div>
   );
 };

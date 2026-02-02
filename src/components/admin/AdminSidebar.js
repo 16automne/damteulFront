@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import '../admin/styles/AdminSidebar.css';
 
 function AdminSidebar() {
+
+
+  
+  // 로그아웃
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     window.location.href = "/login";

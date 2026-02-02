@@ -55,15 +55,27 @@ import Register from "pages/auth/Register";
 import AddressSearch from "pages/auth/AddressSearch";
 import CommTag from "pages/community/CommTag";
 
+import Start from "pages/intro/Start";
+
+
+
 // 6) 관리자 페이지 (AdminPage)
-import DashboardPage from "components/admin/DashboardPage"
-import UserAdminPage from "components/admin/UserAdminPage"
-import PostAdminPage from "components/admin/PostAdminPage"
+import DashboardPage from "components/admin/DashboardPage";
+import UserAdminPage from "components/admin/UserAdminPage";
+import UserDetailPage from "components/admin/UserDetailPage"; // 새 페이지용
+import PostAdminPage from "components/admin/PostAdminPage";
 import PostDetailPage from "components/admin/PostDetailPage"; // 새 페이지용
 import ReportAdminPage from "components/admin/ReportAdminPage"
-import TradeAdminPage from "components/admin/TradeAdminPage"
-import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage"
-import CommunityAdminPage from "components/admin/CommunityAdminPage"
+import ReportDetailPage from "components/admin/ReportDetailPage"; // 새 페이지용
+import TradeAdminPage from "components/admin/TradeAdminPage";
+import TradeDetailPage from "components/admin/TradeDetailPage"; // 새 페이지용
+import NoticeEventAdminPage from "components/admin/NoticeEventAdminPage";
+import NoticeDetailPage from "components/admin/NoticeDetailPage"; // 새 페이지용
+import NoticeEventWritePage from "components/admin/NoticeEventWritePage";// 새 페이지용
+import EventDetailPage from "components/admin/EventDetailPage"; // 새 페이지용
+import CommunityAdminPage from "components/admin/CommunityAdminPage";
+import CommunityDetailPage from "components/admin/CommunityDetailPage"; // 새 페이지용
+
 
 
 
@@ -105,19 +117,20 @@ export const routes = [
   {
     element: <NoTabsBackLayout />,
     children: [
-      { path: "/community/write", element: <CommWrite /> },
-      { path: "/goodstrade", element: <GoodsTrade /> },
-      { path: "/goodsdetail", element: <GoodsDetail /> },
-      { path: "/nanumpost", element: <NanumPost /> },
-      { path: "/nanumdetail", element: <NanumDetail /> },
-      { path: "/myprofileedit", element: <MyProfileEdit /> },
-      { path: '/mypage/mybuynsell', element: <MyBuynSell /> },
-      { path: "/mypage/myhistory", element: <MyHistory /> },
-      { path: "/mypage/mywishlist", element: <MyWishlist /> },
-      { path: "/search", element: <Search /> },
-      { path: "/alarm", element: <Alarm /> },
-      { path: "/submitreport", element: <SubmitReport /> },
-      { path: "/mypage/setting/deleteaccount", element: <DeleteAccount /> }
+      {path:"/community/write", element: <CommWrite />},
+      {path:"/goodstrade", element: <GoodsTrade />},
+      {path:"/goodsdetail", element: <GoodsDetail />},
+      {path:"/nanumpost", element:<NanumPost />},
+      {path:"/nanumdetail", element:<NanumDetail />},
+      {path:"/myprofileedit", element:<MyProfileEdit/>},
+      {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
+      {path:"/mypage/myhistory", element:<MyHistory/>},
+      {path:"/mypage/mywishlist", element:<MyWishlist/>},
+      {path:"/search", element:<Search />},
+      {path:"/alarm", element:<Alarm/>},
+      {path:"/submitreport", element:<SubmitReport/>},
+      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
+      { path:"/payment", element:<Payment />}
     ],
   },
 
@@ -137,7 +150,9 @@ export const routes = [
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/address", element: <AddressSearch /> },
-      { path: '/community/tag/:id', element: <CommTag /> }
+      { path: '/community/tag/:id', element: <CommTag /> },
+
+      {path: '/start', element: <Start />}
     ],
   },
 
@@ -161,8 +176,40 @@ export const routes = [
 
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
   {
-    path: "/admin/posts/detail/:id",
-    element: <PostDetailPage />,
+    path: "/admin/users/detail/:id",
+    element: <UserDetailPage />
   },
+  {
+    path: "/admin/posts/detail/:id",
+    element: <PostDetailPage />
+  },
+  {
+    path: "/admin/reports/detail/:id",
+    element: <ReportDetailPage />
+  },
+  {
+    path: "/admin/trades/detail/:id",
+    element: <TradeDetailPage />
+  },
+  {
+    path: "/admin/notice/detail/:id",
+    element: <NoticeDetailPage />
+  },
+  {
+    path: "/admin/event/detail/:id",
+    element: <EventDetailPage />
+  },
+  {
+    path: "/admin/community/detail/:id",
+    element: <CommunityDetailPage />
+  },
+  {
+    path: '/admin/notice/write',
+    element: <NoticeEventWritePage defaultTab="notice" />
+  },
+  {
+    path: '/admin/event/write',
+    element: <NoticeEventWritePage defaultTab="event" />
+  }
 
 ];

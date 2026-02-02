@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './styles/main.css';
 // 글쓰기버튼
 import WriteBtn from 'components/writeBtn/WriteBtn';
@@ -43,31 +44,27 @@ const HomePage = () => {
 	},[location.state?.showWelcome]);
 
 	// 더미 데이터(추후삭제예정)
-	const dummyData = [
-  {
-    id: 1,
-    path: "/goodsdetail",
-    title: "빈티지 우드 체어",
-    status: "중고상품",
-    price: "45,000"
-  },
-  {
-    id: 2,
-    path: "/goodsdetail",
-    title: "미개봉 조말론 향수",
-    status: "새제품",
-    price: "82,000"
-  },
-  {
-    id: 3,
-    path: "/goodsdetail",
-    title: "친환경 에코백",
-    status: "이벤트상품",
-    price: "20,000"
-  }
-];
+	
 
 	const [filter, setFilter] = useState('all');
+
+	// DB데이터 상태변수
+	const [list, setList] = useState([]);
+
+	// 서버에서 데이터 가져오기
+	useEffect(()=>{
+		const fetchGoods = async()=>{
+			try{
+				const res = await axios.get('http://localhost:9070/api/goods');
+				if(res.data.ok){
+					setList(res.data.list);
+				}
+			}catch(err){
+				console.error("목록 로드 실패 : ", err);
+			}
+		};
+		fetchGoods();
+	},[]);
 
 	return (
 		<main>
@@ -86,15 +83,18 @@ const HomePage = () => {
 						<button className={filter === 'latest'?'btnActive':''}
 						onClick={()=>setFilter('latest')}>최신글</button>
 					</div>
-          {/* 상품목록 (map필요)*/}
-					{dummyData.map((item)=>(
-						<GoodsList key={item.id}
-						title={item.title}
-						status={item.status}
-						price={item.price}
-						linkTo={item.path}
-					/>
-					))}
+					{list.length > 0 ?(
+						list.map((item)=>(
+							<GoodsList key={item.goods_id}
+							title={item.title}
+							status={item.condition_type === '0'?'중고상품':'새상품'}
+							price={item.price.toLocaleString()}
+							linkTo={`/goodsdetail/${item.goods_id}`}
+							/>
+						))
+					):(
+						<p style={{textAlign: 'center', marginTop: '20px'}}>등록된 매물이 없습니다.</p>
+					)}
 					
 						{/* 글쓰기 버튼 */}
             <WriteBtn />			
