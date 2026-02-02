@@ -117,7 +117,6 @@ export const routes = [
   {
     element: <NoTabsBackLayout />,
     children: [
-<<<<<<< HEAD
       {path:"/community/write", element: <CommWrite />},
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail", element: <GoodsDetail />},
@@ -132,21 +131,6 @@ export const routes = [
       {path:"/submitreport", element:<SubmitReport/>},
       {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
       { path:"/payment", element:<Payment />}
-=======
-      { path: "/community/write", element: <CommWrite /> },
-      { path: "/goodstrade", element: <GoodsTrade /> },
-      { path: "/goodsdetail", element: <GoodsDetail /> },
-      { path: "/nanumpost", element: <NanumPost /> },
-      { path: "/nanumdetail", element: <NanumDetail /> },
-      { path: "/myprofileedit", element: <MyProfileEdit /> },
-      { path: '/mypage/mybuynsell', element: <MyBuynSell /> },
-      { path: "/mypage/myhistory", element: <MyHistory /> },
-      { path: "/mypage/mywishlist", element: <MyWishlist /> },
-      { path: "/search", element: <Search /> },
-      { path: "/alarm", element: <Alarm /> },
-      { path: "/submitreport", element: <SubmitReport /> },
-      { path: "/mypage/setting/deleteaccount", element: <DeleteAccount /> }
->>>>>>> 3823d69541974ae04e8e2e639cd9f2ad2951cbf2
     ],
   },
 
