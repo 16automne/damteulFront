@@ -81,7 +81,7 @@ import AdminIndex from "pages/admin/AdminIndex";
       { path: "/chat", element: <Chat /> }, 
       { path: "/mypage", element: <MyPage /> }, 
       { path: "/myprofile", element: <MyProfile />},
-      { path:"/payment", element:<Payment />}
+      
     ],
   },
 
@@ -116,7 +116,8 @@ import AdminIndex from "pages/admin/AdminIndex";
       {path:"/search", element:<Search />},
       {path:"/alarm", element:<Alarm/>},
       {path:"/submitreport", element:<SubmitReport/>},
-      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>}
+      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
+      { path:"/payment", element:<Payment />}
     ],
   },
 

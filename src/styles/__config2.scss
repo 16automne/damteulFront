@@ -93,8 +93,10 @@
 	padding-top: 10px;
 	button:first-child{
 	@include linkButtonHalf($colorMdGray);
+	cursor: pointer;
 	}
 	button:last-child{
 	@include linkButtonHalf($colorPrimary);
+	cursor: pointer;
 	}
 }
