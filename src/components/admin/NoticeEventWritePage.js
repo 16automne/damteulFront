@@ -172,7 +172,7 @@ ${tab === 'event' ? `기간: ${startDate} ~ ${endDate}` : `종료일: ${endDate}
                     )}
 
                     {/* 저장 버튼 */}
-                    <div className={styles.statusActions}>
+                    <div className={styles.actionButtons}>
                         <button className={styles.primary} onClick={handleSave}>
                             저장
                         </button>

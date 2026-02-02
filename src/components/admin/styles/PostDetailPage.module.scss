@@ -125,7 +125,7 @@
 
         color: $colorDKGray;
         // 📌 가독성 좋은 진한 회색
-
+        outline: none;
         resize: none;
         // 📌 textarea 우측 하단 크기 조절 버튼 제거
     }
@@ -142,16 +142,18 @@
 ============================== */
 .actionButtons {
     display: flex;
-    // 📌 버튼들을 가로로 배치
-
-    justify-content: flex-end;
-    // 📌 버튼들을 오른쪽 끝으로 정렬
-
-    gap: 12px;
-    // 📌 버튼 사이 간격
-
+    justify-content: flex-end; // 오른쪽 정렬
+    gap: 12px; // 버튼 간 간격
     margin-top: 40px;
-    // 📌 폼 영역과 버튼 영역 분리
+}
+
+.buttonBase {
+    padding: 10px 50px;
+    color: $colorWhite;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: $weightSemibold;
 }
 
 .secondary {
@@ -181,15 +183,13 @@
 }
 
 .danger {
-    padding: 10px 40px;
-    background-color: $colorEtcRed;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: $weightSemibold;
-    cursor: pointer;
+    @extend .buttonBase;
+            background-color: $colorEtcRed;
+ 
+    
+        
 
-    &:hover {
-        background-color: darken($colorEtcRed, 5%);
-    }
+            &:hover {
+                background-color: darken($colorEtcRed, 5%);
+            }
 }

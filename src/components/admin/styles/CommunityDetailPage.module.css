@@ -42,7 +42,7 @@
 .adminBody {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 .adminBody .inputGroup {
   display: flex;
@@ -63,6 +63,7 @@
   padding: 12px 14px;
   border: 1px solid #D7D7D7;
   border-radius: 8px;
+  background-color: #f4f3f3;
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
@@ -71,12 +72,8 @@
   color: #1A1C19;
   outline: none;
 }
-.adminBody .inputGroup input:focus,
-.adminBody .inputGroup textarea:focus {
-  border-color: #58A563;
-}
 .adminBody .inputGroup textarea {
-  resize: vertical;
+  min-height: 160px;
 }
 .adminBody .statusWrapper {
   display: flex;
@@ -105,21 +102,35 @@
 .adminBody .statusWrapper .statusBadge.end {
   background-color: #E06868;
 }
-.adminBody .statusActions {
+.adminBody .actionButtons {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   margin-top: 20px;
 }
-.adminBody .statusActions .danger {
-  padding: 10px 40px;
-  background-color: #E06868;
+.adminBody .actionButtons .buttonBase, .adminBody .actionButtons button.danger, .adminBody .actionButtons button.primary {
+  padding: 10px 50px;
+  color: #fff;
   border: none;
   border-radius: 6px;
-  color: #fff;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
 }
-.adminBody .statusActions .danger:hover {
+.adminBody .actionButtons button {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.adminBody .actionButtons button.primary {
+  background-color: #58A563;
+}
+.adminBody .actionButtons button.primary:hover {
+  background-color: rgb(79.1304347826, 148.3695652174, 89.0217391304);
+}
+.adminBody .actionButtons button.danger {
+  background-color: #E06868;
+}
+.adminBody .actionButtons button.danger:hover {
   background-color: rgb(219.6565934066, 82.8434065934, 82.8434065934);
 }/*# sourceMappingURL=CommunityDetailPage.module.css.map */

@@ -80,14 +80,6 @@ const ReportDetailPage = () => {
                     </div>
                 </div>
 
-                {/* 하단 버튼 */}
-                {/* <div className={styles.actionButtons}>
-
-                    <button className={styles.danger}>
-                        삭제
-                    </button>
-                </div> */}
-
                 {/* 하단 상태 변경 영역 */}
                 <div className={styles.actionButtons}>
                     {/* 상태 선택 */}

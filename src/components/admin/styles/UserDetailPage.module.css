@@ -205,17 +205,16 @@
 /* ==============================
    하단 버튼 영역
 ============================= */
-.statusActions {
+.actionButtons {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   margin-top: 20px;
+  /* ==============================
+     버튼 스타일
+  ============================= */
 }
-
-/* ==============================
-   버튼 스타일
-============================= */
-.buttonBase, .banBtn, .primary {
+.actionButtons .buttonBase, .actionButtons button.danger, .actionButtons button.primary {
   padding: 10px 50px;
   color: #fff;
   border: none;
@@ -223,11 +222,21 @@
   cursor: pointer;
   font-weight: 600;
 }
-
-.primary {
+.actionButtons button {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.actionButtons button.primary {
   background-color: #58A563;
 }
-
-.banBtn {
+.actionButtons button.primary:hover {
+  background-color: rgb(79.1304347826, 148.3695652174, 89.0217391304);
+}
+.actionButtons button.danger {
   background-color: #E06868;
+}
+.actionButtons button.danger:hover {
+  background-color: rgb(219.6565934066, 82.8434065934, 82.8434065934);
 }/*# sourceMappingURL=UserDetailPage.module.css.map */

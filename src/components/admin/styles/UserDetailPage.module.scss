@@ -212,16 +212,17 @@
 /* ==============================
    하단 버튼 영역
 ============================= */
-.statusActions {
+.actionButtons {
     display: flex;
     justify-content: flex-end; // 오른쪽 정렬
     gap: 12px; // 버튼 간 간격
     margin-top: 20px;
-}
 
 /* ==============================
    버튼 스타일
 ============================= */
+
+
 .buttonBase {
     padding: 10px 50px;
     color: $colorWhite;
@@ -231,12 +232,32 @@
     font-weight: $weightSemibold;
 }
 
-.primary {
-    @extend .buttonBase;
-    background-color: $colorPrimary;
-}
 
-.banBtn {
-    @extend .buttonBase;
-    background-color: $colorEtcRed;
+button {  
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+
+    &.primary {
+        @extend .buttonBase;
+        background-color: $colorPrimary;
+
+        &:hover {
+            background-color: darken($colorPrimary, 5%);
+        }
+    }
+
+    &.danger {
+        @extend .buttonBase;
+        background-color: $colorEtcRed;
+
+
+    
+
+        &:hover {
+            background-color: darken($colorEtcRed, 5%);
+        }
+    }
+}
 }
