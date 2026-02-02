@@ -1,9 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 기존 CSS 적용
 import { gradeInfo } from './constants/gradeInfo';
 import { sampleUsers } from './data/sampleUsers';
+import api from "app/api/axios";
 
 const UserAdminPage = () => {
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState('');
+
+  // db에서 값 가져오기
+  useEffect(()=>{
+    const getUserData=async()=>{
+      try{
+        setError('');
+        const { data } = await api.get('/api/admin/users');
+        if (!data.success){
+          setError(data.message || "유저 조회 실패");
+          return;
+        }
+        setUsers([
+          ...users,
+          data
+        ])
+      }catch(err){
+        console.error(err);
+        setError(
+          err?.response?.data?.message ||
+          "대시보드 데이터를 불러오지 못했어요."
+        );
+      }
+    }
+    getUserData();
+
+  },[users]);
+
+
+
+
   // ==============================
   // 상태값 정의
   // ==============================
@@ -120,28 +153,28 @@ const UserAdminPage = () => {
             </tr>
           </thead>
           <tbody>
-            {currentUsers.length === 0 ? (
+            {users.length === 0 ? (
               <tr>
                 <td colSpan="7">사용자가 없습니다.</td>
               </tr>
-            ) : (
-              currentUsers.map(user => {
-                const grade = gradeInfo[user.grade];
+              ) : (
+              users.map(user => {
+                const level = gradeInfo[user.level_code];
                 return (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>{user.nickname}</td>
+                  <tr key={user.user_id}>
+                    <td>{user.user_id}</td>
+                    <td>{user.user_nickname}</td>
                     <td>
-                      {grade && (
+                      {level && (
                         <div className="gradeContainer">
-                          <img src={grade.img} alt={user.grade} />
+                          <img src={level.img} alt={user.grade} />
                           <div>{user.grade}</div>
                         </div>
                       )}
                     </td>
                     <td>{user.reportScore} / 15</td>
 
-                    <td>{user.createdAt}</td> {/* ✅ 가입일 표시 */}
+                    <td>{user.createdAt}</td>
                     <td>
                       <span className={`statusBadge ${user.status}`}>{user.status}</span>
                     </td>
