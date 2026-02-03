@@ -96,6 +96,9 @@ function GoodsTrade(props) {
 						<option value='2'>의류</option>
 						<option value='3'>뷰티/미용</option>
 						<option value='4'>유아용품</option>
+						<option value='5'>도서</option>
+						<option value='6'>스포츠레저</option>
+						<option value='7'>디지털기기</option>
 					</select>
 				</p>
 				<p>
