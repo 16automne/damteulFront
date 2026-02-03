@@ -98,11 +98,6 @@
   background-color: #58A563;
   cursor: pointer;
 }
-.bottomBtn > a {
-  display: inline-block;
-  line-height: 50px;
-  text-align: center;
-}
 
 .submitReport {
   padding-top: 60px;

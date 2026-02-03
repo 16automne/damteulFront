@@ -99,11 +99,6 @@
   background-color: #58A563;
   cursor: pointer;
 }
-.bottomBtn > a {
-  display: inline-block;
-  line-height: 50px;
-  text-align: center;
-}
 
 .bodyParent:has(.commWritePage) {
   background-color: #fff !important;

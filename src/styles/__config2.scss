@@ -99,9 +99,4 @@
 	@include linkButtonHalf($colorPrimary);
 	cursor: pointer;
 	}
-	>a{
-		display: inline-block;
-		line-height: 50px;
-		text-align: center;
-	}
 }
