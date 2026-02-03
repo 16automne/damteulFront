@@ -68,7 +68,7 @@
   box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
   padding-top: 10px;
 }
-.bottomBtn button:first-child {
+.bottomBtn button:first-child, .bottomBtn a:first-child {
   width: 48%;
   min-width: 170px;
   height: 50px;
@@ -81,8 +81,9 @@
   color: #F2F5F2;
   border: none;
   background-color: #6B6B6B;
+  cursor: pointer;
 }
-.bottomBtn button:last-child {
+.bottomBtn button:last-child, .bottomBtn a:last-child {
   width: 48%;
   min-width: 170px;
   height: 50px;
@@ -95,4 +96,10 @@
   color: #F2F5F2;
   border: none;
   background-color: #58A563;
+  cursor: pointer;
+}
+.bottomBtn > a {
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
 }/*# sourceMappingURL=commtag.css.map */

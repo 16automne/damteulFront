@@ -34,7 +34,7 @@ function GoodsTrade(props) {
 
 	// 폼 입력값 상태변수 생성
 	const [formData, setFormData] = useState({
-		user_id:'',
+		user_id:'5',
 		category_id:'',
 		title:'',
 		conversation_type:'0',
@@ -64,7 +64,8 @@ function GoodsTrade(props) {
 		e.preventDefault();
 
 		// 유저 ID가져오기
-		const storeUserId = localStorage.getItem('user_id')
+		// 임의로 12번추가 추후 로그인로직 정상작동하면 삭제예정
+		const storeUserId = localStorage.getItem('user_id') || 12
 		try{
 			// API 전송(JSON형태로)
 			const result = await createPost({

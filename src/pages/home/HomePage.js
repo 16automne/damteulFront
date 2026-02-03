@@ -83,6 +83,7 @@ const HomePage = () => {
 						<button className={filter === 'latest'?'btnActive':''}
 						onClick={()=>setFilter('latest')}>최신글</button>
 					</div>
+					{/* GoodsList */}
 					{list.length > 0 ?(
 						list.map((item)=>(
 							<GoodsList key={item.goods_id}

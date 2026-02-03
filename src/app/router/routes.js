@@ -119,7 +119,7 @@ export const routes = [
     children: [
       {path:"/community/write", element: <CommWrite />},
       {path:"/goodstrade", element: <GoodsTrade />},
-      {path:"/goodsdetail", element: <GoodsDetail />},
+      {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
       {path:"/nanumdetail", element:<NanumDetail />},
       {path:"/myprofileedit", element:<MyProfileEdit/>},
@@ -130,7 +130,7 @@ export const routes = [
       {path:"/alarm", element:<Alarm/>},
       {path:"/submitreport", element:<SubmitReport/>},
       {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
-      { path:"/payment", element:<Payment />}
+      { path:"/payment/:goods_id", element:<Payment />}
     ],
   },
 
