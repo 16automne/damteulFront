@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./css/auth.css";
 
@@ -11,12 +11,13 @@ export default function Register() {
 
   // addressSearch에서 받아온 값 없으면 address로 넘어가게
   const { state } = useLocation();
-  const address = state.address;
-  if(!address){
-    navigate('/address');
-  }
-  // console.log(address);
+  const address = state?.address;
 
+  useEffect(()=>{
+    if(!address){
+      navigate("/address", { replace: true });
+    }
+  },[address, navigate])
 
 
   // 에러 발생시 나오게할 상태값 (phone, name, nick)
@@ -155,7 +156,7 @@ export default function Register() {
       setRegError("* 서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요");
     }
   };
-
+  if(!address) return null;
   return (
     <main>
       <form className="authForm" onSubmit={onSubmitRegister}>

@@ -81,6 +81,7 @@
   color: #F2F5F2;
   border: none;
   background-color: #6B6B6B;
+  cursor: pointer;
 }
 .bottomBtn button:last-child {
   width: 48%;
@@ -95,6 +96,7 @@
   color: #F2F5F2;
   border: none;
   background-color: #58A563;
+  cursor: pointer;
 }
 
 .postUser {
