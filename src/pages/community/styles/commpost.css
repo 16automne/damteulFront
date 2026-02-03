@@ -1,0 +1,373 @@
+@charset "UTF-8";
+.deletePopup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.deletePopup .deleteModal {
+  width: 92%;
+  height: 12rem;
+  background: #fff;
+  border-radius: 20px;
+  text-align: center;
+  vertical-align: center;
+}
+.deletePopup .deleteModal > p {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.deletePopup .deleteModal .deleteBtn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.deletePopup .deleteModal .deleteBtn > button {
+  width: 40%;
+  min-width: 9rem;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.deletePopup .deleteModal .deleteBtn > button:first-child {
+  background: #D7D7D7;
+  color: #6B6B6B;
+}
+.deletePopup .deleteModal .deleteBtn > button:last-child {
+  background: #58A563;
+  color: #fff;
+}
+
+.bottomBtn {
+  display: flex;
+  justify-content: center;
+  background: #F2F5F2;
+  gap: 10px;
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  bottom: 0px;
+  left: 0px;
+  box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
+  padding-top: 10px;
+}
+.bottomBtn button:first-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #6B6B6B;
+  cursor: pointer;
+}
+.bottomBtn button:last-child {
+  width: 48%;
+  min-width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #F2F5F2;
+  border: none;
+  background-color: #58A563;
+  cursor: pointer;
+}
+
+.bodyParent:has(.commPostPage) {
+  background-color: #fff !important;
+}
+
+.commPostPage {
+  padding-top: calc(3.5rem + env(safe-area-inset-top));
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  max-width: 767px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #fff;
+  padding-bottom: 70px;
+  /* 6. 관리 메뉴 헤더 */
+  /* 1, 2. 이미지 스와이퍼 영역 */
+  /* 3. 태그된 상품 리스트 (가로 스와이프) */
+  /* 4. 좋아요 & 댓글 반응 바 */
+  /* 5. 댓글 영역 */
+}
+.commPostPage .postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+}
+.commPostPage .postHeader .userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.commPostPage .postHeader .userInfo > img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.commPostPage .postHeader .userInfo .nameWrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.commPostPage .postHeader .userInfo .nameWrap .gradeBadge {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 0 !important;
+}
+.commPostPage .postHeader .menuWrap {
+  position: relative;
+}
+.commPostPage .postHeader .menuWrap svg {
+  font-size: 1.4rem;
+  color: #6B6B6B;
+  cursor: pointer;
+}
+.commPostPage .postHeader .menuWrap .adminMenu {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  background: #fff;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 50;
+  overflow: hidden;
+  border: 1px solid #F2F5F2;
+}
+.commPostPage .postHeader .menuWrap .adminMenu button {
+  display: block;
+  width: 100px;
+  padding: 12px;
+  border: none;
+  background: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+  text-align: center;
+}
+.commPostPage .postHeader .menuWrap .adminMenu button:first-child {
+  border-bottom: 1px solid #F2F5F2;
+}
+.commPostPage .postHeader .menuWrap .adminMenu button:active {
+  background-color: #F2F5F2;
+}
+.commPostPage .imageSection {
+  position: relative;
+  width: 100%;
+}
+.commPostPage .imageSection .imgWrap {
+  position: relative;
+  width: 100%;
+  background-color: #F2F5F2;
+}
+.commPostPage .imageSection .imgWrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.commPostPage .imageSection .tagToggleBtn {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.commPostPage .imageSection .tagToggleBtn svg {
+  color: #fff;
+  font-size: 1.2rem;
+}
+.commPostPage .imageSection .postTagMarker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+.commPostPage .imageSection .postTagMarker .tagBox {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #fff;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.commPostPage .imageSection .postTagMarker .tagBox span {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.commPostPage .imageSection .postTagMarker .tagBox small {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #D7D7D7;
+}
+.commPostPage .tagListRow {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  overflow-x: auto;
+  background-color: #fff;
+}
+.commPostPage .tagListRow::-webkit-scrollbar {
+  display: none;
+}
+.commPostPage .tagListRow .tagItemCard {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #F2F5F2;
+  border-radius: 12px;
+  border: 1px solid #D7D7D7;
+}
+.commPostPage .tagListRow .tagItemCard img {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.commPostPage .tagListRow .tagItemCard .txt p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #1A1C19;
+}
+.commPostPage .tagListRow .tagItemCard .txt span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #6B6B6B;
+}
+.commPostPage .interactionBar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 16px;
+}
+.commPostPage .interactionBar .iconItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.commPostPage .interactionBar .iconItem svg {
+  font-size: 1.5rem;
+  color: #6B6B6B;
+}
+.commPostPage .interactionBar .iconItem svg.active {
+  color: #E06868;
+}
+.commPostPage .interactionBar .iconItem span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #1A1C19;
+}
+.commPostPage .commentSection {
+  padding: 16px;
+}
+.commPostPage .commentSection .commentItem {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.commPostPage .commentSection .commentItem:active {
+  opacity: 0.7;
+}
+.commPostPage .commentSection .commentItem img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+.commPostPage .commentSection .commentItem .commTxt {
+  flex: 1;
+  background: #F2F5F2;
+  padding: 10px 14px;
+  border-radius: 0 16px 16px 16px;
+}
+.commPostPage .commentSection .commentItem .commTxt strong {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.commPostPage .commentSection .commentItem .commTxt p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+
+.swiper-pagination-bullet-active {
+  background: #58A563 !important;
+}/*# sourceMappingURL=commpost.css.map */
