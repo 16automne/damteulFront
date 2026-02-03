@@ -121,7 +121,7 @@ export const routes = [
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
-      {path:"/nanumdetail", element:<NanumDetail />},
+      {path:"/nanumdetail/:nanum_id", element:<NanumDetail />},
       {path:"/myprofileedit", element:<MyProfileEdit/>},
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},
