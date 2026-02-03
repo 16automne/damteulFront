@@ -114,7 +114,7 @@
   overflow: hidden;
   background-color: #fff;
   padding-bottom: 70px;
-  /* 6. 관리 메뉴 헤더 */
+  /* 사용자프로필 헤더 */
   /* 1, 2. 이미지 스와이퍼 영역 */
   /* 3. 태그된 상품 리스트 (가로 스와이프) */
   /* 4. 좋아요 & 댓글 반응 바 */
@@ -132,8 +132,8 @@
   gap: 10px;
 }
 .commPostPage .postHeader .userInfo > img {
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -144,8 +144,8 @@
   gap: 4px;
 }
 .commPostPage .postHeader .userInfo .nameWrap .gradeBadge {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 0 !important;
@@ -161,18 +161,18 @@
 .commPostPage .postHeader .menuWrap .adminMenu {
   position: absolute;
   right: 0;
-  top: 30px;
+  top: 1.8rem;
   background: #fff;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   z-index: 50;
   overflow: hidden;
   border: 1px solid #F2F5F2;
 }
 .commPostPage .postHeader .menuWrap .adminMenu button {
   display: block;
-  width: 100px;
-  padding: 12px;
+  width: 6.25rem;
+  padding: 0.75rem;
   border: none;
   background: none;
   font-family: "Inter", sans-serif;
@@ -186,21 +186,32 @@
 .commPostPage .postHeader .menuWrap .adminMenu button:first-child {
   border-bottom: 1px solid #F2F5F2;
 }
+.commPostPage .postHeader .menuWrap .adminMenu button:last-child {
+  color: #E06868;
+}
 .commPostPage .postHeader .menuWrap .adminMenu button:active {
-  background-color: #F2F5F2;
+  font-weight: bold;
 }
 .commPostPage .imageSection {
   position: relative;
   width: 100%;
 }
+.commPostPage .imageSection .swiper {
+  width: 100%;
+  height: 100%;
+}
 .commPostPage .imageSection .imgWrap {
   position: relative;
   width: 100%;
+  aspect-ratio: 1/1.2;
   background-color: #F2F5F2;
+  overflow: hidden;
 }
 .commPostPage .imageSection .imgWrap img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 .commPostPage .imageSection .tagToggleBtn {
@@ -331,22 +342,25 @@
 .commPostPage .commentSection .commentItem {
   display: flex;
   gap: 12px;
-  margin-bottom: 16px;
-  cursor: pointer;
-}
-.commPostPage .commentSection .commentItem:active {
-  opacity: 0.7;
+  margin-bottom: 20px;
+  position: relative;
+  /* 댓글 우측 메뉴 버튼 스타일 */
+  /* 댓글용 작은 모달창 */
 }
 .commPostPage .commentSection .commentItem img {
   width: 34px;
   height: 34px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 .commPostPage .commentSection .commentItem .commTxt {
   flex: 1;
   background: #F2F5F2;
   padding: 10px 14px;
   border-radius: 0 16px 16px 16px;
+  /* 글자 넘침 방지 핵심 */
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 .commPostPage .commentSection .commentItem .commTxt strong {
   display: block;
@@ -366,6 +380,47 @@
   line-height: 1.4;
   color: #1A1C19;
   line-height: 1.4;
+}
+.commPostPage .commentSection .commentItem .commentMenuBtn {
+  padding: 5px;
+  cursor: pointer;
+  color: #6B6B6B;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.commPostPage .commentSection .commentItem .commentMenuBtn svg {
+  font-size: 1.1rem;
+}
+.commPostPage .commentSection .commentItem .commentModal {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  background: #fff;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 20;
+  border: 1px solid #F2F5F2;
+  overflow: hidden;
+}
+.commPostPage .commentSection .commentItem .commentModal button {
+  display: block;
+  width: 100px;
+  padding: 10px;
+  border: none;
+  background: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+  text-align: center;
+}
+.commPostPage .commentSection .commentItem .commentModal button:first-child {
+  border-bottom: 1px solid #F2F5F2;
+}
+.commPostPage .commentSection .commentItem .commentModal button:active {
+  background-color: #F2F5F2;
 }
 
 .swiper-pagination-bullet-active {
