@@ -1,86 +1,208 @@
 @use "../../../styles/_config" as *;
-@use "../../../styles/_config2" as *; 
+@use "../../../styles/_config2" as *;
 
 .commTagPage {
+  // 1. 전체 레이아웃 고정 (화면 꽉 차게)
+  @include mobileParentLayout;
   background-color: #000;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  color: #fff;
+  height: 100dvh; // 동적 뷰포트 높이 대응
 
+  /* 상단 안내 문구 */
   .tagInstruction {
+    flex-shrink: 0; // 줄어들지 않게 고정
     text-align: center;
-    padding: 3rem 0;
+    padding: 2rem 0;
+    @include fontText02;
+    color: $colorWhite;
     line-height: 1.5;
-    font-size: 1.1rem;
   }
 
-  .tagImageContainer {
-    position: relative;
-    width: 100%;
-    
-    .fullImage { width: 100%; display: block; }
+  /* 헤더 스타일 */
+  .tagHeader {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: $colorWhite;
+    box-shadow: $bottomShadow;
 
-    /* 네 번째 사진 좌측 하단 아이콘 */
-    .tagIconOverlay {
-      position: absolute;
-      bottom: 15px; left: 15px;
-      background: rgba(0,0,0,0.6);
-      padding: 8px; border-radius: 50%;
-      display: flex; align-items: center;
-      svg { font-size: 1.5rem; color: #fff; }
+    .title {
+      @include fontHead02;
+      color: $colorDKGray;
     }
 
-    /* 태그 레이블 스타일 */
-    .addedTagMarker {
-      position: absolute; transform: translate(-50%, -50%);
-      .tagLabel {
-        background: rgba(0,0,0,0.7);
-        padding: 6px 12px; border-radius: 8px;
-        display: flex; flex-direction: column;
-        .name { font-size: 14px; font-weight: bold; }
-        .price { font-size: 12px; color: #ccc; }
+    button {
+      background: none;
+      border: none;
+      @include fontText02;
+      cursor: pointer;
+
+      &.doneBtn {
+        color: $colorPrimary;
+        font-weight: $weightBold;
       }
     }
   }
 
-  /* 하단 버튼 바 */
-  .tagFooter {
-    margin-top: auto; padding: 2rem;
-    display: flex; gap: 15px;
-    button {
-      flex: 1; height: 50px; border-radius: 12px; border: none; font-size: 1.1rem; font-weight: bold;
-      &.backBtn { background: #d9d9d9; color: #555; }
-      &.doneBtn { background: #67b473; color: #fff; }
+  /* 2. 이미지 컨테이너 */
+  .tagImageContainer {
+    flex: 1; // 남은 중간 공간을 다 차지함
+    overflow-y: auto; // 이미지가 길면 이 안에서만 스크롤 발생
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center; // 이미지가 작을 땐 세로 중앙 정렬
+
+    &::-webkit-scrollbar {
+      width: 0; // 스크롤바 숨기기
+    }
+
+    .fullImage {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 태그 아이콘 */
+    .tagIconOverlay {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: $colorDKGray;
+      padding: 10px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      svg {
+        font-size: 1.5rem;
+        color: $colorWhite !important;
+      }
+    }
+
+    /* 태그 레이블 */
+    .addedTagMarker {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      
+      .tagLabel {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 6px 12px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+
+        .name {
+          @include fontText04; // 12px
+          font-weight: $weightBold;
+          color: $colorWhite;
+        }
+        .price {
+          @include fontText05; // 9px
+          color: $colorSmGray;
+        }
+      }
     }
   }
 
-  /* 모달 스타일 (두 번째, 세 번째 사진) */
-  .modalOverlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    display: flex; align-items: center; justify-content: center; z-index: 100;
-    
-    .tagModalContent {
-      background: #fff; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; color: #333;
-      h3 { text-align: center; margin-bottom: 20px; }
+  /* 3. 하단 버튼 바 (기존 bottomBtn 믹스인 활용) */
+  .tagFooter {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: $topShadow;
 
-      /* 가로 스와이프 리스트 */
+    .backBtn {
+      @include linkButtonHalf($colorMdGray);
+      cursor: pointer;
+    }
+
+    .doneBtn {
+      @include linkButtonHalf($colorPrimary);
+      cursor: pointer;
+      color: $colorWhite;
+    }
+  }
+
+  /* 모달 스타일 (config 변수 적용) */
+  .modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .tagModalContent {
+      background: $colorWhite;
+      width: 92%;
+      max-width: 400px;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: $bottomShadow;
+
+      h3 {
+        text-align: center;
+        @include fontHead02;
+        margin-bottom: 20px;
+        color: $colorDKGray;
+      }
+
       .goodsListSwipe {
-        max-height: 350px; overflow-y: auto; // 세로 리스트일 경우
-        // 만약 가로 스와이프가 필요하다면 display: flex; overflow-x: auto; 로 변
-        
+        max-height: 300px;
+        overflow-y: auto;
+
         .goodsItem {
-          display: flex; align-items: center; gap: 15px; padding: 12px;
-          border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px;
-          img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
-          .info { flex: 1; .name { font-weight: bold; } .price { font-size: 13px; color: #888; } }
-          .radioCircle { width: 18px; height: 18px; border: 2px solid #ddd; border-radius: 50%; }
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 12px;
+          border: 1px solid $colorLgGray;
+          border-radius: 12px;
+          margin-bottom: 10px;
+          cursor: pointer;
+
+          &:active { background-color: $colorLgGray; }
+
+          img {
+            width: 54px;
+            height: 54px;
+            border-radius: 8px;
+            object-fit: cover;
+          }
+
+          .info {
+            flex: 1;
+            .name { @include fontText02; color: $colorDKGray; }
+            .price { @include fontText04; color: $colorMdGray; }
+          }
+
+          .radioCircle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid $colorSmGray;
+            border-radius: 50%;
+          }
         }
       }
 
-      .registerActionBtn, .goTradeBtn {
-        width: 100%; height: 50px; border: none; border-radius: 10px;
-        background: #e57373; color: #fff; font-weight: bold; margin-top: 15px;
+      .registerActionBtn,
+      .goTradeBtn {
+        width: 100%;
+        height: 50px;
+        border: none;
+        border-radius: 12px;
+        background: $colorEtcRed;
+        color: $colorWhite;
+        @include fontText01;
+        margin-top: 20px;
+        cursor: pointer;
       }
     }
   }

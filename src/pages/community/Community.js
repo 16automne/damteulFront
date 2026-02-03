@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-// import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles/community.css';
 import WriteBtn from '../../components/writeBtn/WriteBtn';
 
@@ -13,9 +13,16 @@ import { IoMdHeart, IoMdMore } from "react-icons/io";
 import { PiChatCircleTextFill } from "react-icons/pi";
 
 const Community = () => {
+  // navigate 함수 정의 추가
+  const navigate = useNavigate(); 
   // 현재 선택된 카테고리 상태 관리 (기본값: 'ticket')
   const [selectedCategory, setSelectedCategory] = useState('/ticket');
   const listRef = useRef(null);
+
+  // 3. 피드 클릭 시 상세 페이지로 이동
+  const handleFeedClick = (feed) => {
+    navigate('/community/post', { state: { feedData: feed } });
+  };
 
   const commCatea = [
     { to: "/ticket", label: "티켓/교환권", icon: <HiOutlineTicket />, activeIcon: <HiTicket /> },
@@ -60,6 +67,7 @@ const Community = () => {
     { id: 23, category: "/digit", img: "https://placehold.co/180", heart: 351, chat: 10 },
   ];
 
+
   // 선택된 카테고리에 맞는 데이터만 필터링
   const filteredFeeds = allFeeds.filter(feed => feed.category === selectedCategory);
   console.log("선택된 카테고리:", selectedCategory);
@@ -97,7 +105,12 @@ const Community = () => {
         {/* ref={listRef}를 통해 나중에 스크롤 위치를 조절하거나 높이를 계산할 수 있도록 이름표를 달아둔 것 */}
         <ul className="comFeedWrap">
           {filteredFeeds.map(feed => ( //데이터 매칭
-            <li key={feed.id} className="comFeedItem">
+            <li 
+              key={feed.id} 
+              className="comFeedItem" 
+              onClick={() => handleFeedClick(feed)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="imgBox">
                 <img src={feed.img} alt={`피드 ${feed.id}`} />
                 <div className="moreIcon">
