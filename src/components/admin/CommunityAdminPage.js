@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 관리자 페이지 공통 스타일
-import { sampleCommunityPosts } from './data/sampleCommunityPosts';
 import { IoSettingsOutline } from "react-icons/io5";
-
+import api from "app/api/axios";
 
 
 /* ===========================
@@ -10,6 +9,52 @@ import { IoSettingsOutline } from "react-icons/io5";
 =========================== */
 
 const CommunityAdminPage = () => {
+  const [community, setCommunity] = useState([]);
+  const [error, setError] = useState('');
+
+  const fetchCommunity = useCallback(async () => {
+    try {
+      setError('');
+      const { data } = await api.get('/api/admin/community');
+
+      if (!data?.success) {
+        setError(data?.message || "커뮤니티 정보 조회 실패");
+        setCommunity([]);
+        return;
+      }
+
+      setCommunity(Array.isArray(data.community) ? data.community : []);
+    } catch (err) {
+      console.error(err);
+      setError(
+        err?.response?.data?.message ||
+        err?.message ||
+        "거래 데이터를 불러오지 못했어요."
+      );
+      setCommunity([]);
+    }
+  }, []);
+
+  // ✅ 최초 1회 조회
+  useEffect(() => {
+    fetchCommunity();
+  }, [fetchCommunity]);
+
+  // ✅ 상세(새창)에서 오는 "삭제완료" 메시지 받으면 재조회
+  useEffect(() => {
+    const onMessage = (event) => {
+      // 같은 도메인에서만 받도록(보안)
+      if (event.origin !== window.location.origin) return;
+
+      if (event.data?.type === "DELETED") {
+        fetchCommunity(); // ✅ 삭제 후 재조회
+      }
+    };
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [fetchCommunity]);
+
   /* ===========================
      🔹 입력용 상태 (타이핑만)
   =========================== */
@@ -46,18 +91,11 @@ const CommunityAdminPage = () => {
   };
 
   /* ===========================
-     4️⃣ 최신글 우선 정렬
-  =========================== */
-  const sortedCommunities = [...sampleCommunityPosts].sort(
-    (a, b) => b.id - a.id
-  );
-
-  /* ===========================
      5️⃣ 필터링 로직
      - 상태 필터
      - 제목/카테고리 검색
   =========================== */
-  const filteredCommunities = sortedCommunities.filter(item => {
+  const filteredCommunities = community.filter(item => {
     const matchStatus = statusFilter
       ? item.status === statusFilter
       : true;
@@ -92,6 +130,13 @@ const CommunityAdminPage = () => {
           커뮤니티 게시글과 모임 상태를 관리합니다
         </span>
       </div>
+
+      {/* 에러 표시 */}
+      {error && (
+        <div style={{ marginBottom: 12, color: "crimson" }}>
+          {error}
+        </div>
+      )}
 
       {/* ===========================
          🔍 검색 / 필터 영역
@@ -142,7 +187,7 @@ const CommunityAdminPage = () => {
             <th>카테고리</th>
             <th>제목</th>
             <th>모임 날짜</th>
-            <th>상태</th>
+            <th>작성자</th>
             <th>관리</th>
           </tr>
         </thead>
@@ -157,15 +202,8 @@ const CommunityAdminPage = () => {
                 <td>{item.id}</td>
                 <td>{item.category}</td>
                 <td>{item.title}</td>
-                <td>{item.date}</td>
-                <td>
-                  <span
-                    className={`statusBadge ${item.status === '진행중' ? 'new' : 'end'
-                      }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
+                <td>{item.created_at}</td>
+                <td>{item.user}</td>
                 <td>
                   <button
                     className="btn-sm"
