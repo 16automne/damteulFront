@@ -1,4 +1,5 @@
 @use '../../../styles/_config' as *;
+@use "sass:color";       
 
 .pageWrapper {
     background-color: $colorLgGray;
@@ -184,8 +185,8 @@
     padding: 4px 10px;
     border-radius: 12px;
     color: #fff;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 500;
+    // font-size: 0.9rem;
     min-width: 50px;
     text-align: center;
 
@@ -244,19 +245,18 @@ button {
         background-color: $colorPrimary;
 
         &:hover {
-            background-color: darken($colorPrimary, 5%);
+            background-color: color.adjust($colorPrimary, -5%);
+
         }
     }
 
     &.danger {
         @extend .buttonBase;
         background-color: $colorEtcRed;
-
-
-    
+   
 
         &:hover {
-            background-color: darken($colorEtcRed, 5%);
+            background-color: color.adjust($colorEtcRed, $lightness: -5%);
         }
     }
 }
