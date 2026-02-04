@@ -177,7 +177,7 @@ export const routes = [
 
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
   { path: "/admin/users/detail/:user_id", element: <UserDetailPage /> },
-  { path: "/admin/posts/detail/:id", element: <PostDetailPage /> },
+  { path: "/admin/:cate/detail/:id", element: <PostDetailPage /> },
   { path: "/admin/reports/detail/:id", element: <ReportDetailPage /> },
   { path: "/admin/trades/detail/:id", element: <TradeDetailPage /> },
   { path: "/admin/notice/detail/:id", element: <NoticeDetailPage /> },
