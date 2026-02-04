@@ -150,19 +150,24 @@
 }
 
 /* 상태별 색상 */
-.승인 {
-    background-color: #4caf50;
+.처리중 {
+    background-color: $colorSecond;
+    /* 노랑 */
+}
+
+.무효 {
+    background-color: $colorPrimary;
     /* 초록 */
 }
 
-.보류 {
-    background-color: #9c27b0;
+.경고 {
+    background-color: $colorEtcPurple;
     /* 보라 */
 }
 
-.반려 {
-    background-color: #9e9e9e;
-    /* 회색 */
+.정지 {
+    background-color: $colorEtcRed;
+    /* 빨강 */
 }
 
 /* =========================
