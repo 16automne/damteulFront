@@ -8,7 +8,7 @@
   background-color: $colorWhite;
   padding-bottom: 70px; // 하단 입력창이나 탭바 여유 공간
 
-  /* 6. 관리 메뉴 헤더 */
+  /* 사용자프로필 헤더 */
   .postHeader {
     display: flex;
     justify-content: space-between;
@@ -22,8 +22,8 @@
 
       // 1. 프로필 이미지: userInfo의 '직계 자식' img만 선택
       > img {
-        width: 36px;
-        height: 36px;
+        width: 2.25rem;
+        height: 2.25rem;
         border-radius: 50%; // 여기만 동그랗게
         object-fit: cover;
       }
@@ -35,8 +35,8 @@
 
         // 2. 등급 아이콘: 클래스명을 사용하여 명확히 분리
         .gradeBadge {
-          width: 20px;
-          height: 20px;
+          width: 1.25rem;
+          height: 1.25rem;
           object-fit: contain;
           // 부모로부터 상속받을 수 있는 radius를 0으로 강제 초기화
           border-radius: 0 !important; 
@@ -55,18 +55,18 @@
       .adminMenu {
         position: absolute;
         right: 0;
-        top: 30px;
+        top: 1.8rem;
         background: $colorWhite;
         box-shadow: $bottomShadow;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         z-index: 50;
         overflow: hidden;
         border: 1px solid $colorLgGray;
 
         button {
           display: block;
-          width: 100px;
-          padding: 12px;
+          width: 6.25rem;
+          padding: 0.75rem;
           border: none;
           background: none;
           @include fontText03;
@@ -74,7 +74,8 @@
           text-align: center;
 
           &:first-child { border-bottom: 1px solid $colorLgGray; }
-          &:active { background-color: $colorLgGray; }
+          &:last-child { color: $colorEtcRed; }
+          &:active { font-weight: bold; }
         }
       }
     }
@@ -85,14 +86,22 @@
     position: relative;
     width: 100%;
 
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
     .imgWrap {
       position: relative;
       width: 100%;
+      aspect-ratio: 1 / 1.2; // 📸 원하는 비율로 설정 (예: 1:1.2 또는 4:5)
       background-color: $colorLgGray;
+      overflow: hidden; // 넘치는 이미지 방지
 
       img {
         width: 100%;
-        height: auto;
+        height: 100%; // 부모 높이에 맞춤
+        object-fit: cover; // 🌟 핵심: 이미지가 비율을 유지하며 영역을 가득 채움
         display: block;
       }
     }
@@ -140,7 +149,8 @@
         }
       }
     }
-  }
+  } 
+
 
   /* 3. 태그된 상품 리스트 (가로 스와이프) */
   .tagListRow {
@@ -211,15 +221,14 @@
     .commentItem {
       display: flex;
       gap: 12px;
-      margin-bottom: 16px;
-      cursor: pointer;
-
-      &:active { opacity: 0.7; } // 롱프레스 유도를 위한 피드백
+      margin-bottom: 20px;
+      position: relative; // 메뉴 배치를 위해 추가
 
       img {
         width: 34px;
         height: 34px;
         border-radius: 50%;
+        flex-shrink: 0; // 이미지 크기 고정
       }
 
       .commTxt {
@@ -227,6 +236,10 @@
         background: $colorLgGray;
         padding: 10px 14px;
         border-radius: 0 16px 16px 16px;
+        
+        /* 글자 넘침 방지 핵심 */
+        word-break: break-all; // 단어 단위로 끊어서 줄바꿈
+        overflow-wrap: break-word; // 긴 단어도 줄바꿈 처리
 
         strong {
           display: block;
@@ -238,6 +251,42 @@
           @include fontText03;
           color: $colorDKGray;
           line-height: 1.4;
+        }
+      }
+
+      /* 댓글 우측 메뉴 버튼 스타일 */
+      .commentMenuBtn {
+        padding: 5px;
+        cursor: pointer;
+        color: $colorMdGray;
+        height: fit-content;
+        
+        svg { font-size: 1.1rem; }
+      }
+
+      /* 댓글용 작은 모달창 */
+      .commentModal {
+        position: absolute;
+        right: 0;
+        top: 30px;
+        background: #fff;
+        box-shadow: $bottomShadow;
+        border-radius: 8px;
+        z-index: 20;
+        border: 1px solid $colorLgGray;
+        overflow: hidden;
+
+        button {
+          display: block;
+          width: 100px;
+          padding: 10px;
+          border: none;
+          background: none;
+          @include fontText04;
+          color: $colorDKGray;
+          text-align: center;
+          &:first-child { border-bottom: 1px solid $colorLgGray; }
+          &:active { background-color: $colorLgGray; }
         }
       }
     }

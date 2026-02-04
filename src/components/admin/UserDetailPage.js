@@ -4,6 +4,7 @@ import styles from "../admin/styles/UserDetailPage.module.css";
 import { gradeInfo } from "./constants/gradeInfo";
 import api from "app/api/axios";
 import { handleDelete } from "./delete/handleDelete";
+
 const UserDetailPage = () => {
   const navigate = useNavigate();
   const { user_id } = useParams();
@@ -12,7 +13,7 @@ const UserDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ✅ 서버에서 유저 상세 불러오기
+  // 서버에서 유저 상세 불러오기
   useEffect(() => {
     const getUserDetail = async () => {
       try {

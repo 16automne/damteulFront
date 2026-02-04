@@ -176,47 +176,8 @@ export const routes = [
   },
 
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
-<<<<<<< HEAD
-  {
-    path: "/admin/users/detail/:user_id",
-    element: <UserDetailPage />
-  },
-  {
-    path: "/admin/posts/detail/:id",
-    element: <PostDetailPage />
-  },
-  {
-    path: "/admin/reports/detail/:id",
-    element: <ReportDetailPage />
-  },
-  {
-    path: "/admin/trades/detail/:id",
-    element: <TradeDetailPage />
-  },
-  {
-    path: "/admin/notice/detail/:id",
-    element: <NoticeDetailPage />
-  },
-  {
-    path: "/admin/event/detail/:id",
-    element: <EventDetailPage />
-  },
-  {
-    path: "/admin/community/detail/:id",
-    element: <CommunityDetailPage />
-  },
-  {
-    path: '/admin/notice/write',
-    element: <NoticeEventWritePage defaultTab="notice" />
-  },
-  {
-    path: '/admin/event/write',
-    element: <NoticeEventWritePage defaultTab="event" />
-  }
-
-=======
-  { path: "/admin/users/detail/:id", element: <UserDetailPage /> },
-  { path: "/admin/posts/detail/:id", element: <PostDetailPage /> },
+  { path: "/admin/users/detail/:user_id", element: <UserDetailPage /> },
+  { path: "/admin/:cate/detail/:id", element: <PostDetailPage /> },
   { path: "/admin/reports/detail/:id", element: <ReportDetailPage /> },
   { path: "/admin/trades/detail/:id", element: <TradeDetailPage /> },
   { path: "/admin/notice/detail/:id", element: <NoticeDetailPage /> },
@@ -224,5 +185,4 @@ export const routes = [
   { path: "/admin/community/detail/:id", element: <CommunityDetailPage /> },
   { path: '/admin/notice/write', element: <NoticeEventWritePage defaultTab="notice" /> },
   { path: '/admin/event/write', element: <NoticeEventWritePage defaultTab="event" /> }
->>>>>>> 498ec907f4f68efdc2939ed74a8038b5daa36637
 ];

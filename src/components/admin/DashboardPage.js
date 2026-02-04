@@ -152,8 +152,8 @@ const Dashboard = () => {
 
           <ul>
             {summaryData.map(item => (
-              <li key={item.date}>
-                <strong>{formatDateNumber(item.date)}</strong>
+              <li key={formatDateNumber(item.date)}>
+                <strong>{item.date}</strong>
                 <span> 가입자 {item.users}</span>
                 <span> · 신고 {item.reports}</span>
                 <span> · 게시물 {item.posts}</span>
@@ -177,6 +177,7 @@ const Dashboard = () => {
 
             <tbody>
               {eventsData.map(item => (
+
                 <tr key={item.id}>
                   <td
                     className="clickableCell"
@@ -188,8 +189,8 @@ const Dashboard = () => {
                   >
                     {item.title}
                   </td>
-                  <td>{item.type}</td>
-                  <td>{item.date}</td>
+                  <td>{item.type===0?'이벤트':'공지사항'}</td>
+                  <td>{formatDateNumber(item.date)}</td>
                 </tr>
               ))}
             </tbody>

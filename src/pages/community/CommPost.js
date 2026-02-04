@@ -27,7 +27,6 @@ const CommPost = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  
   // 1. 데이터 받기 - 예시
   const post = location.state?.feedData || {
     id: 999,
@@ -44,7 +43,6 @@ const CommPost = () => {
     grade: post.userGrade || "level03",
   };
 
-
   // 2. 상태 관리
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.heart);
@@ -52,7 +50,7 @@ const CommPost = () => {
   const [showMenu, setShowMenu] = useState(false); // 6번 기능: 수정/삭제 모달
   const [comments, setComments] = useState([
     { id: 1, user: '빛과부', text: '정보 궁금해요!', profile: 'https://placehold.co/40' },
-    { id: 2, user: '마르고닳도록', text: '봄에 입으면 너무 예쁠 것 같아요', profile: 'https://placehold.co/40' }
+    { id: 2, user: '마르고닳도록', text: '봄에 입으면 너무 예쁠 것 같아요. 봄에 입으면 너무 예쁠 것 같아요. 봄에 입으면 너무 예쁠 것 같아요. 봄에 입으면 너무 예쁠 것 같아요. ', profile: 'https://placehold.co/40' }
   ]);
 
   // 좋아요 핸들러 (4번 기능)
@@ -61,10 +59,17 @@ const CommPost = () => {
     setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
   };
 
-  // 댓글 삭제 핸들러 (5번 기능: 롱프레스 대용 confirm)
-  const handleCommentDelete = (id) => {
+  // 열려있는 댓글 메뉴 ID
+  const [activeCommentMenu, setActiveCommentMenu] = useState(null);
+  // 메뉴 토글 함수
+  const toggleCommentMenu = (id) => {
+    setActiveCommentMenu(activeCommentMenu === id ? null : id);
+  };
+  // 댓글 삭제 함수
+  const handleDeleteComment = (id) => {
     if (window.confirm("댓글을 삭제하시겠습니까?")) {
       setComments(comments.filter(c => c.id !== id));
+      setActiveCommentMenu(null);
     }
   };
 
@@ -101,14 +106,13 @@ const CommPost = () => {
       {/* 1, 2. 이미지 스와이퍼 및 태그 표시 */}
       <div className="imageSection">
         <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
+          {/* 첫 번째 슬라이드 */}
           <SwiperSlide>
             <div className="imgWrap">
               <img src={post.img} alt="post" />
-              {/* 태그 아이콘 클릭 시 토글 */}
               <button className="tagToggleBtn" onClick={() => setShowTags(!showTags)}>
                 <AiFillTag />
               </button>
-              {/* 이미지 위 태그들 */}
               {showTags && post.tags?.map(tag => (
                 <div key={tag.id} className="postTagMarker" style={{ left: `${tag.x}%`, top: `${tag.y}%` }}>
                   <div className="tagBox">
@@ -119,8 +123,12 @@ const CommPost = () => {
               ))}
             </div>
           </SwiperSlide>
+
+          {/* 두 번째 슬라이드 (동일한 imgWrap 적용) */}
           <SwiperSlide>
-            <img src="https://placehold.co/180" alt="slide2" />
+            <div className="imgWrap">
+              <img src="https://placehold.co/180" alt="slide2" />
+            </div>
           </SwiperSlide>
         </Swiper>
       </div>
@@ -141,7 +149,7 @@ const CommPost = () => {
       {/* 4. 좋아요 및 댓글 수 */}
       <div className="interactionBar">
         <div className="iconItem" onClick={handleLike}>
-          {isLiked ? <FaHeart style={{color:'#E06868'}} /> : <FaRegHeart />}
+          {isLiked ? <FaHeart /> : <FaRegHeart />}
           <span>{likeCount}</span>
         </div>
         <div className="iconItem">
@@ -150,19 +158,32 @@ const CommPost = () => {
         </div>
       </div>
 
-      {/* 5. 댓글 영역 (우클릭/롱프레스 삭제) */}
+      {/* 5. 댓글 영역 */}
       <div className="commentSection">
         {comments.map(comment => (
-          <div 
-            key={comment.id} 
-            className="commentItem"
-            onContextMenu={(e) => { e.preventDefault(); handleCommentDelete(comment.id); }}
-          >
+          <div key={comment.id} className="commentItem">
             <img src={comment.profile} alt="p" />
+            
             <div className="commTxt">
               <strong>{comment.user}</strong>
               <p>{comment.text}</p>
             </div>
+
+            {/* 댓글 우측 점 세개 버튼 */}
+            <div className="commentMenuBtn" onClick={(e) => {
+              e.stopPropagation(); // 배경 클릭 이벤트 전파 방지
+              toggleCommentMenu(comment.id);
+            }}>
+              <BsThreeDotsVertical />
+            </div>
+
+            {/* 댓글 개별 모달 */}
+            {activeCommentMenu === comment.id && (
+              <div className="commentModal">
+                <button onClick={() => alert('대댓글 기능 준비 중!')}>댓글달기</button>
+                <button onClick={() => handleDeleteComment(comment.id)}>삭제하기</button>
+              </div>
+            )}
           </div>
         ))}
       </div>
