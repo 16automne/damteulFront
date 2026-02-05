@@ -215,9 +215,10 @@
 ============================= */
 .actionButtons {
     display: flex;
-    justify-content: flex-end; // 오른쪽 정렬
+    justify-content: space-between;
+    //space-around; 양끝 여백 조금 + 균등
     gap: 12px; // 버튼 간 간격
-    margin-top: 20px;
+    margin-top: 20px;}
 
 /* ==============================
    버튼 스타일
@@ -259,5 +260,4 @@ button {
             background-color: color.adjust($colorEtcRed, $lightness: -5%);
         }
     }
-}
 }

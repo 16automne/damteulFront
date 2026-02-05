@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "app/api/axios";
+import styles from '../admin/styles/AdminLogin.module.css';
 
 export default function AdminLogin() {
   const [admin, setAdmin] = useState({
@@ -109,32 +110,53 @@ export default function AdminLogin() {
 
   return (
     <>
-      <div className="adminFormWrap">
+      <div className={styles.adminFormWrap}>
+      <form onSubmit={adminSubmit}>
+      <h1 className={styles.logo}>
         <Link to='/' title='메인페이지'>
-          <h1>
             <img src={`${process.env.PUBLIC_URL}/images/logo1.png`} alt='메인로고' />
-          </h1>
         </Link>
-        <form onSubmit={adminSubmit}>
-          <div className="adminForm">
+        </h1>
+
+          <div className={styles.adminForm}>
             <label htmlFor="admin_id">로그인</label>
             <input type='text' id='admin_id' name='admin_id' value={admin.admin_id} onChange={adminChange} placeholder="아이디를 입력해주세요" />
           </div>
 
-          <div className="adminForm">
+          <div className={styles.adminForm}>
             <label htmlFor="admin_pw">비밀번호</label>
             <input type='password' id='admin_pw' name='admin_pw' value={admin.admin_pw} onChange={adminChange} placeholder="비밀번호를 입력해주세요" />
           </div>
 
-          <label className="adminCheck" htmlFor="rememberId">
+          <label className={styles.adminCheck} htmlFor="rememberId">
             <input type='checkbox' checked={rememberId} id='rememberId' onChange={remberChange} />
             아이디 저장
           </label>
 
-          <div className="adminFormBtn">
+          <div className={styles.adminFormBtn}>
             <button type="submit">로그인</button>
           </div>
+
+          <div className={styles.adminFooter1}>
+          <Link to="/find-id">아이디 찾기&nbsp;</Link>
+          <span className={styles.divider}>|</span>
+          <Link to="/find-password">&nbsp;비밀번호 찾기</ Link>
+        </div>
+
+        <div className={styles.adminFooter2}>
+        <div className={styles.linkGroup}>
+          <Link to="/terms">이용약관&nbsp;</Link>
+          <span className={styles.divider}>|</span>
+          <Link to="/privacy">&nbsp;개인정보처리방침</Link>
+        </div>
+
+        <div className={styles.copyright}>
+          © 2026 Damteul. All rights reserved.
+        </div>
+      </div>
         </form>
+
+       
       </div>
     </>
   );
