@@ -121,9 +121,9 @@ export const routes = [
       {path:"/community/write", element: <CommWrite />},
       {path:"/community/post", element: <CommPost />},
       {path:"/goodstrade", element: <GoodsTrade />},
-      {path:"/goodsdetail", element: <GoodsDetail />},
+      {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
-      {path:"/nanumdetail", element:<NanumDetail />},
+      {path:"/nanumdetail/:nanum_id", element:<NanumDetail />},
       {path:"/myprofileedit", element:<MyProfileEdit/>},
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},
@@ -132,7 +132,7 @@ export const routes = [
       {path:"/alarm", element:<Alarm/>},
       {path:"/submitreport", element:<SubmitReport/>},
       {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
-      { path:"/payment", element:<Payment />}
+      { path:"/payment/:goods_id", element:<Payment />}
     ],
   },
 
