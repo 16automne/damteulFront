@@ -5,15 +5,13 @@ import './styles/main.css';
 import WriteBtn from 'components/writeBtn/WriteBtn';
 // 상품목록
 import GoodsList from 'components/GoodsList/GoodsList';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SearchBar from 'components/SearchBar/SearchBar';
 
 
 const HomePage = () => {
 	// 주소에 같이 오는 state값 가져오기 위한 location
-	const location = useLocation();
-
-	const navigate = useNavigate();
+	const location = useLocation();;
 
 	// 로그인,회원가입에서 home 방문시 로그인완료 뜨게하기
 	const [loginSuccess, setLoginSuccess] = useState(false);
