@@ -1,29 +1,70 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import '../admin/styles/PostAdminPage.css'; // 공통 관리자 테이블 스타일
-// import ReportAdminModal from './ReportAdminModal';
 // import { useNavigate } from 'react-router-dom';
 // import { sampleReports } from './data/sampleReports';
-import { sampleReports } from './data/sampleReports';
 import { IoSettingsOutline } from "react-icons/io5";
-
+import api from "app/api/axios";
 
 /* =================================================
    2️⃣ ReportAdminPage
 ================================================= */
 const ReportAdminPage = () => {
-  // const navigate = useNavigate();
 
-  /* =================================================
-     🔹 [모달 제어 상태]
-     - 현재 선택된 신고 데이터
-     - null이면 모달 닫힘
-  ================================================= */
-  // const [selectedReport, setSelectedReport] = useState(null);
+  const [reports, setReports] = useState([]);
+  const [error, setError] = useState('');
+
+
+  // ==============================
+  // DB에서 유저 목록 가져오기 (1회)
+  // ==============================
+// ✅ 목록 재조회 함수로 분리
+  const fetchReports = useCallback(async () => {
+    try {
+      setError('');
+      const { data } = await api.get('/api/admin/reports');
+
+      if (!data?.success) {
+        setError(data?.message || "신고내용 조회 실패");
+        setReports([]);
+        return;
+      }
+
+      setReports(Array.isArray(data.reports) ? data.reports : []);
+    } catch (err) {
+      console.error(err);
+      setError(
+        err?.response?.data?.message ||
+        err?.message ||
+        "신고 데이터를 불러오지 못했어요."
+      );
+      setReports([]);
+    }
+  }, []);
+
+  // ✅ 최초 1회 조회
+  useEffect(() => {
+    fetchReports();
+  }, [fetchReports]);
+
+  // ✅ 상세(새창)에서 오는 "삭제완료" 메시지 받으면 재조회
+  useEffect(() => {
+    const onMessage = (event) => {
+      // 같은 도메인에서만 받도록(보안)
+      if (event.origin !== window.location.origin) return;
+
+      if (event.data?.type === "DELETED" || event.data?.type === "UPDATED") {
+        fetchReports(); // ✅ 삭제 후 재조회
+      }
+    };
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [fetchReports]);
 
   /* -------------------------------------------------
-     🔹 입력 전용 상태 (즉시 반응 ❌)
-     - 검색 input, select 값
-     - 검색 버튼을 눌러야 실제 필터 적용됨
+    🔹 입력 전용 상태 (즉시 반응 ❌)
+    - 검색 input, select 값
+    - 검색 버튼을 눌러야 실제 필터 적용됨
   ------------------------------------------------- */
   const [inputKeyword, setInputKeyword] = useState('');
   const [inputStatus, setInputStatus] = useState('');
@@ -51,18 +92,12 @@ const ReportAdminPage = () => {
     setCurrentPage(1);
   };
 
-  /* -------------------------------------------------
-     🔹 최신 신고가 위로 오도록 정렬
-  ------------------------------------------------- */
-  const reportsDescending = [...sampleReports].sort(
-    (a, b) => b.id - a.id
-  );
 
   /* -------------------------------------------------
      🔹 필터링 로직
      - 검색 버튼 클릭 후에만 반영됨
   ------------------------------------------------- */
-  const filteredReports = reportsDescending.filter(report => {
+  const filteredReports = reports.filter(report => {
     const matchStatus = statusFilter
       ? report.status === statusFilter
       : true;
@@ -99,6 +134,14 @@ const ReportAdminPage = () => {
           </span>
         </div>
 
+        {/* 에러 표시 */}
+        {error && (
+          <div style={{ marginBottom: 12, color: "crimson" }}>
+            {error}
+          </div>
+        )}
+
+
         {/* =========================
          🔹 검색 / 필터 영역
       ========================= */}
@@ -117,9 +160,8 @@ const ReportAdminPage = () => {
             onChange={(e) => setInputStatus(e.target.value)}
           >
             <option value="">전체 상태</option>
-            <option value="보류">보류</option>
-            <option value="승인">승인</option>
-            <option value="반려">반려</option>
+            <option value="처리중">처리중</option>
+            <option value="완료">완료</option>
           </select>
 
           <button onClick={handleSearch}>검색</button>
@@ -167,21 +209,12 @@ const ReportAdminPage = () => {
                   <td>{report.category}</td>
                   <td>{report.reporter}</td>
                   <td>{report.reported}</td>
-                  <td>{report.createdAt}</td>
+                  <td>{report.created_at}</td>
 
 
                   {/* 🔹 상태 뱃지 */}
                   <td>
-                    {/* <span
-                    className={`statusBadge ${report.status === '보류'
-                      ? 'new'
-                      : report.status === '승인'
-                        ? 'used'
-                        : 'ignored'
-                      }`}
-                  > */}
-
-                    <span className={`statusBadge ${report.status}`}>
+                    <span className={`statusBadge ${report.status==='처리중'?'used':'new'}`}>
                       {report.status}
                     </span>
 
@@ -192,11 +225,11 @@ const ReportAdminPage = () => {
                     {/* =========================
                    🔹 관리 버튼 영역
                 ========================= */}
-                    <button button
+                    <button type='button'
                       className="btn-sm gearButton"
                       onClick={() => {
                         const url = `/admin/reports/detail/${report.id}`;
-                        window.open(url, '_blank', 'width=1000,height=800'); // 새 창
+                        window.open(url, '_blank', 'width=1000,height=800'); //
                       }}
                     >
                       <IoSettingsOutline />

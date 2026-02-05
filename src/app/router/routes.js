@@ -120,9 +120,9 @@ export const routes = [
       {path:"/community/write", element: <CommWrite />},
       {path:"/community/post", element: <CommPost />},
       {path:"/goodstrade", element: <GoodsTrade />},
-      {path:"/goodsdetail", element: <GoodsDetail />},
+      {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
-      {path:"/nanumdetail", element:<NanumDetail />},
+      {path:"/nanumdetail/:nanum_id", element:<NanumDetail />},
       {path:"/myprofileedit", element:<MyProfileEdit/>},
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},
@@ -131,7 +131,7 @@ export const routes = [
       {path:"/alarm", element:<Alarm/>},
       {path:"/submitreport", element:<SubmitReport/>},
       {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
-      { path:"/payment", element:<Payment />}
+      { path:"/payment/:goods_id", element:<Payment />}
     ],
   },
 
@@ -177,12 +177,12 @@ export const routes = [
 
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
   { path: "/admin/users/detail/:user_id", element: <UserDetailPage /> },
-  { path: "/admin/:cate/detail/:id", element: <PostDetailPage /> },
   { path: "/admin/reports/detail/:id", element: <ReportDetailPage /> },
   { path: "/admin/trades/detail/:id", element: <TradeDetailPage /> },
   { path: "/admin/notice/detail/:id", element: <NoticeDetailPage /> },
   { path: "/admin/event/detail/:id", element: <EventDetailPage /> },
   { path: "/admin/community/detail/:id", element: <CommunityDetailPage /> },
   { path: '/admin/notice/write', element: <NoticeEventWritePage defaultTab="notice" /> },
-  { path: '/admin/event/write', element: <NoticeEventWritePage defaultTab="event" /> }
+  { path: '/admin/event/write', element: <NoticeEventWritePage defaultTab="event" /> },
+  { path: "/admin/:cate/detail/:id", element: <PostDetailPage /> },
 ];

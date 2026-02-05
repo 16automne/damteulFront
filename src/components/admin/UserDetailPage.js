@@ -165,8 +165,8 @@ const UserDetailPage = () => {
         <div className={styles.actionButtons}>
             <button
             className={styles.primary}
-            onClick={() => {window.close(); navigate("/admin/users");}
-            }>
+            onClick={() => {window.close();}}
+            >
             확인
             </button>
 

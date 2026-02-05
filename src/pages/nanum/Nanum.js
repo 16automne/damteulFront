@@ -1,4 +1,5 @@
 import GoodsList from 'components/GoodsList/GoodsList';
+import SearchBar from 'components/SearchBar/SearchBar';
 import WriteBtn from 'components/writeBtn/WriteBtn';
 import React, {useState} from 'react';
 
@@ -34,6 +35,7 @@ const Nanum = () => {
   return (
     <main>
       <section style={{marginTop:'60px', marginBottom:'80px'}}>
+        <SearchBar/>
           <div className='btnContainer'>
 						<button className={filter === 'nanum'?'btnActive':''}
             onClick={()=>setFilter('nanum')}>나눔</button>
