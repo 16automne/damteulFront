@@ -26,7 +26,7 @@ function TitleHeader() {
 
         {/* 오른쪽: 알림 아이콘 */}
         <div className="headerRight">
-          <Link className="headerIcon">
+          <Link className="headerIcon" to='/alarm' title='알림 페이지로 이동'>
             <TbBell />
           </Link>
         </div>

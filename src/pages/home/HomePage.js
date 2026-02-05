@@ -62,6 +62,10 @@ const HomePage = () => {
 		fetchGoods();
 	},[]);
 
+	const filteredList = filter === 'all'
+	? [...list].sort(()=> Math.random()- 0.5)
+	:list;
+
 	return (
 		<main>
 			{/* 로그인 성공시 나오는 메시지 */}
@@ -80,8 +84,8 @@ const HomePage = () => {
 						onClick={()=>setFilter('latest')}>최신글</button>
 					</div>
 					{/* GoodsList */}
-					{list.length > 0 ?(
-						list.map((item)=>(
+					{filteredList.length > 0 ?(
+						filteredList.map((item)=>(
 							<GoodsList key={item.goods_id}
 							title={item.title}
 							status={item.condition_type === '0'?'중고상품':'새상품'}

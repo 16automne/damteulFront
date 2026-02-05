@@ -51,8 +51,10 @@ function NanumDetail(props) {
 
 		if (diff < 60) {
 			return `${Math.floor(diff)}분 전`;
-		} else {
+		} else if (diff < 1440) {
 			return `${Math.floor(diff / 60)}시간 전`;
+		}else{
+			return `${Math.floor(diff / 1440)}일 전`;
 		}
 	};
 

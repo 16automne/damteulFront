@@ -26,6 +26,22 @@ function GoodsDetail(props) {
 	const {goods_id} = useParams();
 	const [goods, setGoods] = useState(null);
 
+	// 1. 게시 시간 계산 함수 추가
+  const getTimeDiff = (date) => {
+    if (!date) return "시간 정보 없음";
+    const start = new Date(date);
+    const now = new Date();
+    const diff = (now - start) / 1000 / 60; // 분 단위
+
+    if (diff < 60) {
+      return `${Math.floor(Math.max(0, diff))}분 전`;
+    } else if (diff < 1440) {
+      return `${Math.floor(diff / 60)}시간 전`;
+    }else{
+			return `${Math.floor(diff / 1440)}일 전`;
+		}
+  };
+
 	useEffect(() => {
     // 2. 해당 ID의 상세 데이터 요청
     const fetchDetail = async () => {
@@ -89,7 +105,7 @@ function GoodsDetail(props) {
 				{/* 제품상세정보 텍스트 영역 */}
 				<div className='goodsInfo'>
 					<h3>{goods.title}</h3>
-					<p>00분전 &#10072; {categoryMap[goods?.category_id]||"기타"}</p>
+					<p>{getTimeDiff(goods.created_at)} &#10072; {categoryMap[goods?.category_id]||"기타"}</p>
 					<p>{goods?.price?.toLocaleString()}원</p>
 					{/* 좋아요/댓글 */}
 					<div className='reaction'>
