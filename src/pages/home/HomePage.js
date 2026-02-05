@@ -43,9 +43,7 @@ const HomePage = () => {
 		}
 	},[location.state?.showWelcome]);
 
-	// 더미 데이터(추후삭제예정)
-	
-
+	// 전체/최신글 상태변수
 	const [filter, setFilter] = useState('all');
 
 	// DB데이터 상태변수
