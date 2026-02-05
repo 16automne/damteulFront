@@ -18,7 +18,6 @@ function NanumDetail(props) {
 
 		// 현재 게시글 나눔인지 이벤트인지 판단
 		const isEvent = post && post.event_id !== undefined;
-		const data = post?.data;
 
 		//응모 남은 시간 상태변수
 		const [timeLeft, setTimeLeft] = useState("");
