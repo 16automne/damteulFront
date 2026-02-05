@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from 'app/api/axios';
 import './styles/main.css';
 // 글쓰기버튼
 import WriteBtn from 'components/writeBtn/WriteBtn';
@@ -51,7 +51,7 @@ const HomePage = () => {
 	useEffect(()=>{
 		const fetchGoods = async()=>{
 			try{
-				const res = await axios.get('http://localhost:9070/api/goods');
+				const res = await api.get('/api/goods');
 				if(res.data.ok){
 					setList(res.data.list);
 				}

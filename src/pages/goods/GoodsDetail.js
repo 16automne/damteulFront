@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
 import './styles/goodsDetail.css';
 // 더보기버튼
 import { IoIosMore } from "react-icons/io";
@@ -46,7 +46,7 @@ function GoodsDetail(props) {
     // 2. 해당 ID의 상세 데이터 요청
     const fetchDetail = async () => {
       try {
-        const res = await axios.get(`http://localhost:9070/api/goods/${goods_id}`);
+        const res = await api.get(`http://localhost:9070/api/goods/${goods_id}`);
         if (res.data.ok) {
           setGoods(res.data.data);
         }

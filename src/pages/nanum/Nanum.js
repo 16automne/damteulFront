@@ -2,9 +2,10 @@ import GoodsList from 'components/GoodsList/GoodsList';
 import SearchBar from 'components/SearchBar/SearchBar';
 import WriteBtn from 'components/writeBtn/WriteBtn';
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import api from 'app/api/axios';
 
 const Nanum = () => {
+
 
 
     // DB데이터 상태변수
@@ -14,16 +15,22 @@ const Nanum = () => {
   
     // 서버에서 데이터 가져오기
     useEffect(()=>{
-      const fetchNanum = async()=>{
+      const fetchData = async()=>{
         try{
-          const res = await axios.get('http://localhost:9070/api/nanum');
-            setList(res.data);
+          // filter값으로 나눔 or 이벤트 구분
+          const url = filter ==='nanum'
+          ?'/api/nanum'
+          :'/api/nanum/event';
+
+          const res = await api.get(url);
+          setList(res.data.list || res.data);
         }catch(err){
           console.error("목록 로드 실패 : ", err);
+          setList([]);
         }
       };
-      fetchNanum();
-    },[]);
+      fetchData();
+    },[filter]);
 
     // 타이머 설정
     const getRemainingTime = (endTime) =>{
@@ -41,17 +48,19 @@ const Nanum = () => {
         <SearchBar/>
           <div className='btnContainer'>
 						<button className={filter === 'nanum'?'btnActive':''}
-            onClick={()=>setFilter('nanum')}>나눔</button>
+            onClick={()=>{setList([]);setFilter('nanum');}}>나눔</button>
 						<button className={filter === 'event'?'btnActive':''}
-            onClick={()=>setFilter('event')}>이벤트</button>
+            onClick={()=>{setList([]);setFilter('event');}}>이벤트</button>
 					</div>
           {list && list.length > 0?(
             list.map((item)=>(
-              <GoodsList key={item.nanum_id}
-              linkTo={`/nanumdetail/${item.nanum_id}`}
+              <GoodsList key={filter === 'nanum'? `nanum-${item.nanum_id}`:`event-${item.event_id}`}
+              linkTo={filter === 'nanum'
+                ?`/nanumdetail/${item.nanum_id}`
+                :`/nanumdetail/event/${item.event_id}`}
               title={item.title}
               status={filter==='nanum'?'무료나눔':'이벤트'}
-              timer={getRemainingTime(item.end_nanum)} />
+              timer={filter === 'nanum'?getRemainingTime(item.end_nanum):""} />
             ))
           ):(
             <p style={{textAlign: 'center', marginTop: '20px'}}>등록된 글이 없습니다.</p>

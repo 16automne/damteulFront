@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
 import { Link } from 'react-router-dom';
 import { IoIosMore } from 'react-icons/io';
 import { FaUser } from "react-icons/fa";
@@ -16,11 +16,15 @@ function NanumDetail(props) {
 		const {nanum_id} = useParams();
 		const [post, setPost] = useState(null);
 
+		// 현재 게시글 나눔인지 이벤트인지 판단
+		const isEvent = post && post.event_id !== undefined;
+		const data = post?.data;
+
 		//응모 남은 시간 상태변수
 		const [timeLeft, setTimeLeft] = useState("");
 		//남은 시간 갱신
 		useEffect(() => {
-			if (!post) return;
+			if (!post || isEvent || !post.end_nanum) return;
 
 			// 1초마다 타이머 갱신
 			const timer = setInterval(() => {
@@ -28,19 +32,20 @@ function NanumDetail(props) {
 			}, 1000);
 
 			return () => clearInterval(timer); // 언마운트 시 정리
-		}, [post]);
+		}, [post, isEvent]);
 
+		// 데이터 받아오기
 		useEffect(()=>{
 			const getDetail = async()=>{
 				try{
-					const response = await axios.get(`http://localhost:9070/api/nanum/${nanum_id}`);
+					const response = await api.get(`http://localhost:9070/api/nanum/${nanum_id}`);
 					setPost(response.data);
 				}catch(err){
 					console.error("데이터 로드 실패 : ", err);
 				}
 			};
 			getDetail();
-		},[nanum_id, setPost]);
+		},[nanum_id]);
 		if(!post) return <div>로딩중...</div>;
 
 		//게시 시간 타이머
@@ -81,7 +86,7 @@ function NanumDetail(props) {
 	const handleApply = async () => {
   try {
     const user_id = "11"; // 로그인 세션에서 가져오거나 임시 ID 사용
-    const response = await axios.post("http://localhost:9070/api/nanum/apply", {
+    const response = await api.post("http://localhost:9070/api/nanum/apply", {
       nanum_id: nanum_id,
       user_id: user_id
     });
@@ -113,7 +118,7 @@ function NanumDetail(props) {
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
 					<img src='https://placehold.co/100x100' alt='사용자 프로필'/>
-					<p>{post.user_nickname}</p>
+					<p>{isEvent?'관리자':post.user_nickname}</p>
 					<img src='https://placehold.co/100x100' alt='회원등급'/>
 					<IoIosMore className='moreBtn'
 					onClick={()=>{setIsOpen(!isOpen)}}/>
@@ -143,7 +148,8 @@ function NanumDetail(props) {
 				<div className='goodsInfo'>
 					<h3>{post.title}</h3>
 					<p>{getTimeDiff(post.created_at)} &#10072; 이벤트</p>
-					<p>{timeLeft}</p>
+					{!isEvent && <p>{timeLeft}</p>}
+					
 					{/* 좋아요/댓글 */}
 					<div className='reaction'>
 						<p>

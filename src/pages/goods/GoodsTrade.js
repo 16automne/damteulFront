@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './styles/goodsTrade.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
 
 // 서버에 전송할 함수
 const createPost = async(formData, file) =>{
@@ -21,7 +21,7 @@ const createPost = async(formData, file) =>{
 			data.append('fileUpload',f);
 		})
 	}
-	const response = await axios.post('http://localhost:9070/api/goods',data,{
+	const response = await api.post('http://localhost:9070/api/goods',data,{
 		headers:{'Content-Type':'multipart/form-data'}
 	});
 	return response.data;
