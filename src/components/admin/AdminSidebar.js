@@ -1,15 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import '../admin/styles/AdminSidebar.css';
 
 function AdminSidebar() {
 
-
+  const navigate = useNavigate();
   
   // 로그아웃
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    window.location.href = "/login";
+    localStorage.removeItem("admin_info");
+    localStorage.removeItem("admin_token");
+    // window.location.href = "/admin/login";
+    navigate('/admin/login', {replace:true});
   };
 
   return (
