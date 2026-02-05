@@ -53,15 +53,17 @@ const NoticeEventAdminPage = () => {
         setTableData((prev) => ({ ...prev, [tab]: [] }));
         return;
       }
+      
       const list =
-        tab === "event" ? (data?.events ?? data?.list ?? [])
-        : (data?.notices ?? data?.list ?? []);
-
+        tab === "event"
+          ? (data?.events ?? [])
+          : (data?.notices ?? []);
 
         setTableData((prev) => ({
           ...prev,
           [tab]: Array.isArray(list) ? list : [],
         }));
+
       } catch (err) {
         console.error(err);
         setError((prev) => ({
@@ -251,15 +253,20 @@ const NoticeEventAdminPage = () => {
             <th>ID</th>
             <th>제목</th>
             <th>{activeTab === 'event' ? '시작일' : '게시일'}</th>
-            <th>종료일</th>
-            <th>상태</th>
+            {
+              activeTab === 'event' &&
+              <>
+              <th>종료일</th>
+              <th>상태</th>
+              </>
+            }
             <th>관리</th>
           </tr>
         </thead>
         <tbody>
           {currentData.length === 0 ? (
             <tr>
-              <td colSpan="6">데이터가 없습니다.</td>
+              <td colSpan={activeTab === 'event'?'6':'4'}>데이터가 없습니다.</td>
             </tr>
           ) : (
             currentData.map((item) => (
@@ -267,23 +274,20 @@ const NoticeEventAdminPage = () => {
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>{activeTab === 'event' ? item.startDate : item.postDate}</td>
-                <td>{item.endDate}</td>
-
-                {/* <span
-                    className={`${styles.statusBadge} ${item.status === '진행중' ? 'new' : 'used'
-                      }`}
-                  >
-                    {item.status}
-                  </span> */}
-                <td>
-                  <span
-                    className={`${styles.statusBadge} ${item.status === '진행중' ? styles.new : styles.used
-                      }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-
+                {
+                  activeTab === 'event' &&
+                <>
+                  <td>{item.endDate}</td>
+                  <td>
+                    <span
+                      className={`${styles.statusBadge} ${item.status === '진행중' ? styles.new : styles.used
+                        }`}
+                    >
+                      {item.status}
+                    </span>
+                  </td>
+                </>
+                }
 
                 <td>
                   <button
