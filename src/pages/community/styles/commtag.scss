@@ -1,2 +1,209 @@
 @use "../../../styles/_config" as *;
 @use "../../../styles/_config2" as *;
+
+.commTagPage {
+  // 1. 전체 레이아웃 고정 (화면 꽉 차게)
+  @include mobileParentLayout;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh; // 동적 뷰포트 높이 대응
+
+  /* 상단 안내 문구 */
+  .tagInstruction {
+    flex-shrink: 0; // 줄어들지 않게 고정
+    text-align: center;
+    padding: 2rem 0;
+    @include fontText02;
+    color: $colorWhite;
+    line-height: 1.5;
+  }
+
+  /* 헤더 스타일 */
+  .tagHeader {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: $colorWhite;
+    box-shadow: $bottomShadow;
+
+    .title {
+      @include fontHead02;
+      color: $colorDKGray;
+    }
+
+    button {
+      background: none;
+      border: none;
+      @include fontText02;
+      cursor: pointer;
+
+      &.doneBtn {
+        color: $colorPrimary;
+        font-weight: $weightBold;
+      }
+    }
+  }
+
+  /* 2. 이미지 컨테이너 */
+  .tagImageContainer {
+    flex: 1; // 남은 중간 공간을 다 차지함
+    overflow-y: auto; // 이미지가 길면 이 안에서만 스크롤 발생
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center; // 이미지가 작을 땐 세로 중앙 정렬
+
+    &::-webkit-scrollbar {
+      width: 0; // 스크롤바 숨기기
+    }
+
+    .fullImage {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 태그 아이콘 */
+    .tagIconOverlay {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: $colorDKGray;
+      padding: 10px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      svg {
+        font-size: 1.5rem;
+        color: $colorWhite !important;
+      }
+    }
+
+    /* 태그 레이블 */
+    .addedTagMarker {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      
+      .tagLabel {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 6px 12px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+
+        .name {
+          @include fontText04; // 12px
+          font-weight: $weightBold;
+          color: $colorWhite;
+        }
+        .price {
+          @include fontText05; // 9px
+          color: $colorSmGray;
+        }
+      }
+    }
+  }
+
+  /* 3. 하단 버튼 바 (기존 bottomBtn 믹스인 활용) */
+  .tagFooter {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: $topShadow;
+
+    .backBtn {
+      @include linkButtonHalf($colorMdGray);
+      cursor: pointer;
+    }
+
+    .doneBtn {
+      @include linkButtonHalf($colorPrimary);
+      cursor: pointer;
+      color: $colorWhite;
+    }
+  }
+
+  /* 모달 스타일 (config 변수 적용) */
+  .modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .tagModalContent {
+      background: $colorWhite;
+      width: 92%;
+      max-width: 400px;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: $bottomShadow;
+
+      h3 {
+        text-align: center;
+        @include fontHead02;
+        margin-bottom: 20px;
+        color: $colorDKGray;
+      }
+
+      .goodsListSwipe {
+        max-height: 300px;
+        overflow-y: auto;
+
+        .goodsItem {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 12px;
+          border: 1px solid $colorLgGray;
+          border-radius: 12px;
+          margin-bottom: 10px;
+          cursor: pointer;
+
+          &:active { background-color: $colorLgGray; }
+
+          img {
+            width: 54px;
+            height: 54px;
+            border-radius: 8px;
+            object-fit: cover;
+          }
+
+          .info {
+            flex: 1;
+            .name { @include fontText02; color: $colorDKGray; }
+            .price { @include fontText04; color: $colorMdGray; }
+          }
+
+          .radioCircle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid $colorSmGray;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .registerActionBtn,
+      .goTradeBtn {
+        width: 100%;
+        height: 50px;
+        border: none;
+        border-radius: 12px;
+        background: $colorEtcRed;
+        color: $colorWhite;
+        @include fontText01;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

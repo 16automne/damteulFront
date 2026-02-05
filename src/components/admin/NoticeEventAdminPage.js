@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { sampleEvents } from './data/sampleEvents';
 import { sampleNotices } from './data/sampleNotices';
+import { IoSettingsOutline } from "react-icons/io5";
 import styles from '../admin/styles/NoticeEventAdminPage.module.css'; // 모듈 import
 
 const NoticeEventAdminPage = () => {
@@ -31,9 +32,9 @@ const NoticeEventAdminPage = () => {
      🔹 페이지네이션
   ========================== */
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
-  /* ==========================
+ /* ==========================
      3️⃣ 검색 버튼 클릭
   ========================== */
   const handleSearch = () => {
@@ -220,7 +221,7 @@ const NoticeEventAdminPage = () => {
                       );
                     }}
                   >
-                    ⚙
+                    <IoSettingsOutline />
                   </button>
                 </td>
               </tr>

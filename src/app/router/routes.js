@@ -32,6 +32,7 @@ import ChatRoom from "pages/chat/ChatRoom";
 
 // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
 import CommWrite from "pages/community/CommWrite";
+import CommPost from "pages/community/CommPost";
 import GoodsTrade from "pages/goods/GoodsTrade";
 import GoodsDetail from 'pages/goods/GoodsDetail';
 import NanumPost from 'pages/nanum/NanumPost';
@@ -54,7 +55,6 @@ import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 import AddressSearch from "pages/auth/AddressSearch";
 import CommTag from "pages/community/CommTag";
-
 import Start from "pages/intro/Start";
 
 
@@ -109,7 +109,7 @@ export const routes = [
       { path: "/mypage/support/notice", element: <Notice /> },
       { path: "/mypage/support/notice/noticedetail", element: <NoticeDetail /> },
       { path: "/mypage/setting", element: <Setting /> },
-      { path: "/chat/chatRoom", element: <ChatRoom /> },
+      { path: "/chat/chatRoom", element: <ChatRoom /> }
     ],
   },
 
@@ -118,6 +118,7 @@ export const routes = [
     element: <NoTabsBackLayout />,
     children: [
       {path:"/community/write", element: <CommWrite />},
+      {path:"/community/post", element: <CommPost />},
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
@@ -175,41 +176,13 @@ export const routes = [
   },
 
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
-  {
-    path: "/admin/users/detail/:id",
-    element: <UserDetailPage />
-  },
-  {
-    path: "/admin/posts/detail/:id",
-    element: <PostDetailPage />
-  },
-  {
-    path: "/admin/reports/detail/:id",
-    element: <ReportDetailPage />
-  },
-  {
-    path: "/admin/trades/detail/:id",
-    element: <TradeDetailPage />
-  },
-  {
-    path: "/admin/notice/detail/:id",
-    element: <NoticeDetailPage />
-  },
-  {
-    path: "/admin/event/detail/:id",
-    element: <EventDetailPage />
-  },
-  {
-    path: "/admin/community/detail/:id",
-    element: <CommunityDetailPage />
-  },
-  {
-    path: '/admin/notice/write',
-    element: <NoticeEventWritePage defaultTab="notice" />
-  },
-  {
-    path: '/admin/event/write',
-    element: <NoticeEventWritePage defaultTab="event" />
-  }
-
+  { path: "/admin/users/detail/:user_id", element: <UserDetailPage /> },
+  { path: "/admin/reports/detail/:id", element: <ReportDetailPage /> },
+  { path: "/admin/trades/detail/:id", element: <TradeDetailPage /> },
+  { path: "/admin/notice/detail/:id", element: <NoticeDetailPage /> },
+  { path: "/admin/event/detail/:id", element: <EventDetailPage /> },
+  { path: "/admin/community/detail/:id", element: <CommunityDetailPage /> },
+  { path: '/admin/notice/write', element: <NoticeEventWritePage defaultTab="notice" /> },
+  { path: '/admin/event/write', element: <NoticeEventWritePage defaultTab="event" /> },
+  { path: "/admin/:cate/detail/:id", element: <PostDetailPage /> },
 ];

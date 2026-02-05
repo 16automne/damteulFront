@@ -1,0 +1,299 @@
+@use "../../../styles/_config" as *;
+@use "../../../styles/_config2" as *;
+
+.bodyParent:has(.commPostPage) {background-color: $colorWhite !important;}
+.commPostPage {
+  padding-top: calc(3.5rem + env(safe-area-inset-top));
+  @include mobileParentLayout; // 전체 레이아웃 가이드 적용
+  background-color: $colorWhite;
+  padding-bottom: 70px; // 하단 입력창이나 탭바 여유 공간
+
+  /* 사용자프로필 헤더 */
+  .postHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      // 1. 프로필 이미지: userInfo의 '직계 자식' img만 선택
+      > img {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%; // 여기만 동그랗게
+        object-fit: cover;
+      }
+
+      .nameWrap {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        // 2. 등급 아이콘: 클래스명을 사용하여 명확히 분리
+        .gradeBadge {
+          width: 1.25rem;
+          height: 1.25rem;
+          object-fit: contain;
+          // 부모로부터 상속받을 수 있는 radius를 0으로 강제 초기화
+          border-radius: 0 !important; 
+        }
+      }
+    }
+
+    .menuWrap {
+      position: relative;
+      svg {
+        font-size: 1.4rem;
+        color: $colorMdGray;
+        cursor: pointer;
+      }
+
+      .adminMenu {
+        position: absolute;
+        right: 0;
+        top: 1.8rem;
+        background: $colorWhite;
+        box-shadow: $bottomShadow;
+        border-radius: 0.5rem;
+        z-index: 50;
+        overflow: hidden;
+        border: 1px solid $colorLgGray;
+
+        button {
+          display: block;
+          width: 6.25rem;
+          padding: 0.75rem;
+          border: none;
+          background: none;
+          @include fontText03;
+          color: $colorDKGray;
+          text-align: center;
+
+          &:first-child { border-bottom: 1px solid $colorLgGray; }
+          &:last-child { color: $colorEtcRed; }
+          &:active { font-weight: bold; }
+        }
+      }
+    }
+  }
+
+  /* 1, 2. 이미지 스와이퍼 영역 */
+  .imageSection {
+    position: relative;
+    width: 100%;
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .imgWrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1.2; // 📸 원하는 비율로 설정 (예: 1:1.2 또는 4:5)
+      background-color: $colorLgGray;
+      overflow: hidden; // 넘치는 이미지 방지
+
+      img {
+        width: 100%;
+        height: 100%; // 부모 높이에 맞춤
+        object-fit: cover; // 🌟 핵심: 이미지가 비율을 유지하며 영역을 가득 채움
+        display: block;
+      }
+    }
+
+    // 태그 토글 버튼 (좌측 하단)
+    .tagToggleBtn {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      padding: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      svg { color: $colorWhite; font-size: 1.2rem; }
+    }
+
+    // 이미지 위 태그 말풍선
+    .postTagMarker {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+
+      .tagBox {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 6px 10px;
+        border-radius: 6px;
+        color: $colorWhite;
+        backdrop-filter: blur(2px);
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+
+        span {
+          display: block;
+          @include fontText04;
+          font-weight: $weightBold;
+        }
+        small {
+          display: block;
+          @include fontText05;
+          color: $colorSmGray;
+        }
+      }
+    }
+  } 
+
+
+  /* 3. 태그된 상품 리스트 (가로 스와이프) */
+  .tagListRow {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    overflow-x: auto;
+    background-color: $colorWhite;
+    
+    // 스크롤바 숨기기
+    &::-webkit-scrollbar { display: none; }
+
+    .tagItemCard {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: $colorLgGray;
+      border-radius: 12px;
+      border: 1px solid $colorSmGray;
+
+      img {
+        width: 44px;
+        height: 44px;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      .txt {
+        p { @include fontText04; font-weight: $weightBold; color: $colorDKGray; }
+        span { @include fontText05; color: $colorMdGray; }
+      }
+    }
+  }
+
+  /* 4. 좋아요 & 댓글 반응 바 */
+  .interactionBar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 16px;
+
+    .iconItem {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+
+      svg {
+        font-size: 1.5rem;
+        color: $colorMdGray;
+        &.active { color: $colorEtcRed; } // 좋아요 활성화 시 빨간색
+      }
+
+      span {
+        @include fontText03;
+        font-weight: $weightBold;
+        color: $colorDKGray;
+      }
+    }
+  }
+
+  /* 5. 댓글 영역 */
+  .commentSection {
+    padding: 16px;
+
+    .commentItem {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      position: relative; // 메뉴 배치를 위해 추가
+
+      img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        flex-shrink: 0; // 이미지 크기 고정
+      }
+
+      .commTxt {
+        flex: 1;
+        background: $colorLgGray;
+        padding: 10px 14px;
+        border-radius: 0 16px 16px 16px;
+        
+        /* 글자 넘침 방지 핵심 */
+        word-break: break-all; // 단어 단위로 끊어서 줄바꿈
+        overflow-wrap: break-word; // 긴 단어도 줄바꿈 처리
+
+        strong {
+          display: block;
+          @include fontText04;
+          font-weight: $weightBold;
+          margin-bottom: 2px;
+        }
+        p {
+          @include fontText03;
+          color: $colorDKGray;
+          line-height: 1.4;
+        }
+      }
+
+      /* 댓글 우측 메뉴 버튼 스타일 */
+      .commentMenuBtn {
+        padding: 5px;
+        cursor: pointer;
+        color: $colorMdGray;
+        height: fit-content;
+        
+        svg { font-size: 1.1rem; }
+      }
+
+      /* 댓글용 작은 모달창 */
+      .commentModal {
+        position: absolute;
+        right: 0;
+        top: 30px;
+        background: #fff;
+        box-shadow: $bottomShadow;
+        border-radius: 8px;
+        z-index: 20;
+        border: 1px solid $colorLgGray;
+        overflow: hidden;
+
+        button {
+          display: block;
+          width: 100px;
+          padding: 10px;
+          border: none;
+          background: none;
+          @include fontText04;
+          color: $colorDKGray;
+          text-align: center;
+          &:first-child { border-bottom: 1px solid $colorLgGray; }
+          &:active { background-color: $colorLgGray; }
+        }
+      }
+    }
+  }
+}
+
+// Swiper 페이지네이션 커스텀
+.swiper-pagination-bullet-active {
+  background: $colorPrimary !important;
+}

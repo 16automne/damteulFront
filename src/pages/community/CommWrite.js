@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './styles/commwrite.css';
 
 
@@ -8,6 +8,8 @@ import { IoCloseCircle } from "react-icons/io5";
 
 const CommWrite = () => {
   const navigate = useNavigate();
+
+  const location = useLocation();
   const [images, setImages] = useState([]);
 
   // 이미지 추가 핸들러
@@ -32,12 +34,33 @@ const CommWrite = () => {
     setImages((prev) => prev.filter((img) => img.id !== id));
   };
 
-  // 이미지 클릭 시 태그 페이지 이동
-  const goToTagPage =(img)=> {
+  // 페이지 이동 시 현재 이미지 리스트를 보따리에 싸서 보냄
+  const goToTagPage = (img) => {
     navigate(`/community/tag/${img.id}`, { 
-      state: { imgUrl: img.url } // 이미지 주소도 보따리에 넣기
-    }); // 이미지를 클릭하면 해당 이미지의 ID를 가지고 태그 편집 페이지로 이동
+      state: { 
+        imgUrl: img.url,
+        // [추가] 이 사진에 이미 저장된 태그가 있다면 같이 보냅니다.
+        existingTags: img.tags || [], 
+        currentImages: images 
+      } 
+    });
   };
+
+  // 페이지가 다시 렌더링될 때 태그 정보 업데이트
+  useEffect(() => {
+  // 1. 태그 수정 후 돌아온 경우 처리
+  if (location.state?.updatedTag) {
+    const { id, tags } = location.state.updatedTag;
+    setImages((prev) => {
+      // 만약 prev가 비어있다면, 보따리에 함께 담겨온 기존 이미지 리스트를 복구해야 함
+      const baseImages = prev.length > 0 ? prev : (location.state?.currentImages || []);
+      return baseImages.map((img) => 
+        img.id === Number(id) ? { ...img, tags: tags } : img
+      );
+    });
+  } 
+  // 2. 그냥 뒤로가기로 돌아온 경우를 위해 기존 이미지 보관 로직 필요 (선택사항)
+}, [location.state]);
 
   return (
     <main className="commWritePage">
@@ -99,7 +122,7 @@ const CommWrite = () => {
 
       <div className="bottomBtn">
         <button type="button" className="commCancelBtn" 
-        onClick={() => navigate(-1)}>취소</button>
+        onClick={() => navigate('/community')}>취소</button>
         <button type="button" className="commAcceptBtn">완료</button>
       </div>
     </main>
