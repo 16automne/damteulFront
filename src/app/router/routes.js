@@ -60,6 +60,7 @@ import Start from "pages/intro/Start";
 
 
 // 6) 관리자 페이지 (AdminPage)
+import AdminLogin from "components/admin/AdminLogin";
 import DashboardPage from "components/admin/DashboardPage";
 import UserAdminPage from "components/admin/UserAdminPage";
 import UserDetailPage from "components/admin/UserDetailPage"; // 새 페이지용
@@ -158,6 +159,7 @@ export const routes = [
   },
 
   // 6) 관리자 페이지 (AdminPage)
+  { path: "/admin/login", element: <AdminLogin />},
   {
     path: "/admin",
     element: <AdminIndex />,

@@ -147,14 +147,6 @@ const TradeAdminPage = () => {
             />
           </div>
 
-          <select
-            value={inputStatus}
-            onChange={(e) => setInputStatus(e.target.value)}
-          >
-            <option value="">전체 상태</option>
-            <option value="완료">거래 완료</option>
-            <option value="거래중">미완료</option>
-          </select>
 
           <button onClick={handleSearch}>검색</button>
           <button onClick={handleReset}>초기화</button>

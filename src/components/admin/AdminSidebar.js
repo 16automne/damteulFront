@@ -1,18 +1,22 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import '../admin/styles/AdminSidebar.css';
 
 function AdminSidebar() {
 
+  const navigate = useNavigate();
+  const adminInfo = JSON.parse(localStorage.getItem("admin_info") || "{}");
 
-  
   // 로그아웃
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    window.location.href = "/login";
+    localStorage.removeItem("admin_info");
+    localStorage.removeItem("admin_token");
+    // window.location.href = "/admin/login";
+    navigate('/admin/login', {replace:true});
   };
 
   return (
+    <>
     <aside className="sidebar">
 
       <NavLink 
@@ -31,7 +35,7 @@ function AdminSidebar() {
       <div className="sidebar-profile">
         <img src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt="admin" className="profile-img" />
         <div className="profile-info">
-          <p className="name">관리자 이름</p>
+          <p className="name">{adminInfo.admin_name}</p>
           <p className="role">관리자</p>
         </div>
       </div>
@@ -116,6 +120,7 @@ function AdminSidebar() {
         </ul>
       </div>
     </aside>
+    </>
   );
 }
 
