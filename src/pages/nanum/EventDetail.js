@@ -44,7 +44,7 @@ function EventDetail() {
   const handleEventApply = async () => {
     try {
       const user_id = "11"; 
-      const response = await api.post("http://localhost:9070/api/event/apply", {
+      const response = await api.post("/api/event/apply", {
         event_id: id,
         user_id: user_id
       });

@@ -85,7 +85,7 @@ function NanumDetail(props) {
 	const handleApply = async () => {
   try {
     const user_id = "11"; // 로그인 세션에서 가져오거나 임시 ID 사용
-    const response = await api.post("http://localhost:9070/api/nanum/apply", {
+    const response = await api.post("/api/nanum/apply", {
       nanum_id: nanum_id,
       user_id: user_id
     });

@@ -30,7 +30,7 @@ function NanumPost(props) {
 			status:0
 		};
 		try{
-			const response = await api.post('http://localhost:9070/api/nanum',postData);
+			const response = await api.post('/api/nanum',postData);
 			if(response.status === 200){
 				// 나눔글 번호 추출
 				const {nanum_id} = response.data;

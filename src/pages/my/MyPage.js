@@ -12,17 +12,21 @@ import { MdOutlineSettings } from "react-icons/md";
 import { FaAngleRight } from "react-icons/fa6";
 import api from 'app/api/axios';
 import './styles/myPage.css';
+import { getUserId } from 'components/getUserId/getUserId';
 
 
 
 const MyPage = () => {
   // profile.controllers에서 유저정보 가져오기
   const [userData, setUserData] = useState({});
+  
 
   useEffect(()=>{
+    const userId = getUserId();
     const getProfile =async()=>{
+      if(!userId) return;
       try{
-        const res = await api.get('/api/profile/12'); //user_id변경필요
+        const res = await api.get(`/api/profile/${userId}`);
         setUserData(res.data);
       }catch(err){
         console.error(err);

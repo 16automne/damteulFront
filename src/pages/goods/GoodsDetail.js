@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import api from 'app/api/axios';
+import { getUserId } from 'components/getUserId/getUserId';
 import './styles/goodsDetail.css';
 // 더보기버튼
 import { IoIosMore } from "react-icons/io";
@@ -16,6 +17,7 @@ import { FaRegComment } from "react-icons/fa";
 
 
 function GoodsDetail(props) {
+	const userId = getUserId();
 
 	// 더보기버튼 상태변수
 	const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +48,7 @@ function GoodsDetail(props) {
     // 2. 해당 ID의 상세 데이터 요청
     const fetchDetail = async () => {
       try {
-        const res = await api.get(`http://localhost:9070/api/goods/${goods_id}`);
+        const res = await api.get(`/api/goods/${goods_id}`);
         if (res.data.ok) {
           setGoods(res.data.data);
         }

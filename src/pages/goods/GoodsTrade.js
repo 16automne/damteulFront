@@ -21,7 +21,7 @@ const createPost = async(formData, file) =>{
 			data.append('fileUpload',f);
 		})
 	}
-	const response = await api.post('http://localhost:9070/api/goods',data,{
+	const response = await api.post('/api/goods',data,{
 		headers:{'Content-Type':'multipart/form-data'}
 	});
 	return response.data;
