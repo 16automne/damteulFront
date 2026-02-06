@@ -15,8 +15,7 @@
 .adminFormWrap h1 img {
   width: 160px;
 }
-
-form {
+.adminFormWrap form {
   display: flex;
   flex-direction: column;
   align-items: center;

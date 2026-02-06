@@ -89,7 +89,7 @@ const NoticeEventAdminPage = () => {
     const onMessage = (event) => {
       if (event.origin !== window.location.origin) return;
 
-      if (event.data?.type === "DELETED") {
+      if (event.data?.type === "DELETED" || event.data?.type === "UPDATED") {
         fetchTable(activeTab, { force: true });
       }
     };
@@ -211,13 +211,15 @@ const NoticeEventAdminPage = () => {
             onChange={(e) => setInputKeyword(e.target.value)}
           />
         </div>
-
+        {
+          activeTab === 'event' &&
         <select value={inputStatus} onChange={(e) => setInputStatus(e.target.value)}>
           <option value="">전체 상태</option>
           <option value="진행중">진행중</option>
+          <option value="예정">예정</option>
           <option value="종료">종료</option>
         </select>
-
+        }
         <button onClick={handleSearch}>검색</button>
         <button
           onClick={() => {
@@ -280,10 +282,14 @@ const NoticeEventAdminPage = () => {
                   <td>{item.endDate}</td>
                   <td>
                     <span
-                      className={`${styles.statusBadge} ${item.status === '진행중' ? styles.new : styles.used
+                      className={`${styles.statusBadge} 
+                      ${item.status === '진행중' ? styles.start
+                        : item.status === '예정' ? styles.new
+                        : styles.end
                         }`}
                     >
                       {item.status}
+                      {/* 진행중 */}
                     </span>
                   </td>
                 </>

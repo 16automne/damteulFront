@@ -151,14 +151,6 @@ const CommunityAdminPage = () => {
           />
         </div>
 
-        <select
-          value={inputStatus}
-          onChange={(e) => setInputStatus(e.target.value)}
-        >
-          <option value="">전체 상태</option>
-          <option value="진행중">진행중</option>
-          <option value="종료">종료</option>
-        </select>
 
         {/* 🔹 검색 버튼 클릭 시에만 실제 검색 */}
         <button onClick={handleSearch}>검색</button>
@@ -186,7 +178,7 @@ const CommunityAdminPage = () => {
             <th>ID</th>
             <th>카테고리</th>
             <th>제목</th>
-            <th>모임 날짜</th>
+            <th>작성일</th>
             <th>작성자</th>
             <th>관리</th>
           </tr>

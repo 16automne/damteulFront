@@ -106,12 +106,13 @@
   text-align: center;
   width: auto;
 }
-
-.진행중 {
-  background-color: #2196f3;
+.statusBadge.new {
+  background-color: #2D4356;
 }
-
-.종료 {
+.statusBadge.start {
+  background-color: #58A563;
+}
+.statusBadge.end {
   background-color: #9e9e9e;
 }
 
@@ -120,6 +121,7 @@
   justify-content: flex-end;
   gap: 12px;
   margin-top: 20px;
+  z-index: 1000;
 }
 .actionButtons .buttonBase, .actionButtons button.danger, .actionButtons button.primary {
   padding: 10px 50px;

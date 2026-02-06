@@ -7,7 +7,7 @@ import api from "app/api/axios";
 // const imageList = await uploadMultiImages(files);
 
 
-const uploadMultiImages = async (files, url) => {
+export const uploadMultiImages = async (files, url) => {
   const formData = new FormData();
 
   // 서버에서 array("images")로 받기 때문에 key = "images"

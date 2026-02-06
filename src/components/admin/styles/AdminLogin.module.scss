@@ -1,4 +1,5 @@
 @use '../../../styles/_config' as *;
+@use "sass:color";
 
 .adminFormWrap {
   @include pcContainer;
@@ -15,18 +16,20 @@
       width: 160px;
     }
   }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    // background-color: $colorWhite;
+    // box-shadow: $bottomShadow;
+  }
+
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 360px;
-  padding: 2.5rem 2rem;
-  border-radius: 8px;
-  // background-color: $colorWhite;
-  // box-shadow: $bottomShadow;
-}
 
 .adminForm {
   display: flex;
@@ -59,7 +62,7 @@ form {
 }
 
 .adminCheck {
-  align-self: flex-start; 
+  align-self: flex-start;
   display: flex;
   gap: 0.5rem;
   margin: 0.6rem 0 2rem;
@@ -74,24 +77,24 @@ form {
 }
 
 .adminFormBtn {
-      width: 100%;
+  width: 100%;
 
-    button {
-      @include webFontText02;
-      width: 100%;
-      height: 48px;
-      border: none;
-      border-radius: 6px;
-      background-color: $colorPrimary;
-      color: $colorWhite;
-      margin-bottom: 1.5rem; // footer와 간격 확보
-      cursor: pointer;
-  
-      &:hover {
-        background-color: darken($colorPrimary, 5%);
-      }
+  button {
+    @include webFontText02;
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 6px;
+    background-color: $colorPrimary;
+    color: $colorWhite;
+    margin-bottom: 1.5rem; // footer와 간격 확보
+    cursor: pointer;
+
+    &:hover {
+      background-color: color.adjust($colorPrimary, $lightness: -5%);
     }
   }
+}
 
 .adminFooter1 {
   width: 100%;
@@ -119,39 +122,38 @@ form {
     color: $colorSmGray;
   }
 
-  
-.adminFooter2 {
-  width: 100%;
 
-  @include webFontText04;
-  color: $colorMdGray;
+  .adminFooter2 {
+    width: 100%;
 
-  .linkGroup {
-    // display: flex;
-    // justify-content: center; // 묶음 중앙 정렬
-    // margin-bottom: 0.5rem; 
+    @include webFontText04;
+    color: $colorMdGray;
 
-    a {
-      color: $colorMdGray;
-      text-decoration: none;
+    .linkGroup {
+      // display: flex;
+      // justify-content: center; // 묶음 중앙 정렬
+      // margin-bottom: 0.5rem; 
 
-      &:hover {
-        color: $colorPrimary;
-        text-decoration: underline;
+      a {
+        color: $colorMdGray;
+        text-decoration: none;
+
+        &:hover {
+          color: $colorPrimary;
+          text-decoration: underline;
+        }
+      }
+
+      .divider {
+        color: $colorSmGray;
       }
     }
 
-    .divider {
-      color: $colorSmGray;
+    .copyright {
+      text-align: center;
+      color: $colorMdGray;
     }
-  }
-  
-  .copyright {
-    text-align: center;
-    color: $colorMdGray;
+
   }
 
 }
-
-}
-
