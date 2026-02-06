@@ -37,6 +37,7 @@ import GoodsTrade from "pages/goods/GoodsTrade";
 import GoodsDetail from 'pages/goods/GoodsDetail';
 import NanumPost from 'pages/nanum/NanumPost';
 import NanumDetail from 'pages/nanum/NanumDetail';
+import EventDetail from 'pages/nanum/EventDetail';
 import MyProfileEdit from 'pages/my/MyProfileEdit';
 import MyBuynSell from 'pages/my/MyBuynSell';
 import MyHistory from 'pages/my/MyHistory';
@@ -76,6 +77,7 @@ import NoticeEventWritePage from "components/admin/NoticeEventWritePage";// 새 
 import EventDetailPage from "components/admin/EventDetailPage"; // 새 페이지용
 import CommunityAdminPage from "components/admin/CommunityAdminPage";
 import CommunityDetailPage from "components/admin/CommunityDetailPage"; // 새 페이지용
+
 
 
 
@@ -124,6 +126,7 @@ export const routes = [
       {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},
       {path:"/nanumdetail/:nanum_id", element:<NanumDetail />},
+      {path:"/eventdetail/:id", element:<EventDetail/>},
       {path:"/myprofileedit", element:<MyProfileEdit/>},
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},

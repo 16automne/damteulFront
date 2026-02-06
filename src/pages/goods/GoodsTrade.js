@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './styles/goodsTrade.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
+import { getUserId } from 'components/getUserId/getUserId';
 
 // 서버에 전송할 함수
 const createPost = async(formData, file) =>{
@@ -21,7 +22,7 @@ const createPost = async(formData, file) =>{
 			data.append('fileUpload',f);
 		})
 	}
-	const response = await axios.post('http://localhost:9070/api/goods',data,{
+	const response = await api.post('/api/goods',data,{
 		headers:{'Content-Type':'multipart/form-data'}
 	});
 	return response.data;
@@ -29,12 +30,13 @@ const createPost = async(formData, file) =>{
 }
 
 function GoodsTrade(props) {
+	const userId = getUserId();
 	const navigate = useNavigate();
 	const [file,setFile] = useState([]);
 
 	// 폼 입력값 상태변수 생성
 	const [formData, setFormData] = useState({
-		user_id:'5',
+		user_id:'',
 		category_id:'',
 		title:'',
 		conversation_type:'0',
@@ -64,16 +66,20 @@ function GoodsTrade(props) {
 		e.preventDefault();
 
 		// 유저 ID가져오기
-		// 임의로 12번추가 추후 로그인로직 정상작동하면 삭제예정
-		const storeUserId = localStorage.getItem('user_id') || 12
+		const userId = getUserId();
 		try{
-			// API 전송(JSON형태로)
-			const result = await createPost({
+			const finalData = {
 				...formData,
-				user_id:storeUserId //ID 전송
-			}, file);
-			alert('글이 정상적으로 등록되었습니다.');
-			navigate(`/goodsdetail/${result.id}`);// 성공 시 상세 페이지로
+				user_id:userId,
+				category_id:Number(formData.category_id),
+				price:Number(formData.price),
+			};
+			const result = await createPost(finalData, file);
+
+			if(result.ok){
+				alert('글이 정상적으로 등록되었습니다.');
+				navigate(`/goodsdetail/${result.id}`);
+			}
 		}catch(error){
 			alert('등록에 실패했습니다.');
 		}
@@ -137,6 +143,7 @@ function GoodsTrade(props) {
 					>
 					</textarea>
 				</p>
+				{/* 이미지 들어갈 부분 */}
 				<label className='fileWrapper' 
 				htmlFor='fileUpload'>
 					<input 

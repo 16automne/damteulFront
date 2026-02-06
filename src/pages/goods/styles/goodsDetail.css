@@ -346,4 +346,10 @@
   display: inline-block;
   line-height: 50px;
   text-align: center;
+}
+.goodsDetail > .bottomBtn > button:first-child {
+  background: #E06868;
+}
+.goodsDetail > .bottomBtn > button:last-child {
+  background: #82BC62;
 }/*# sourceMappingURL=goodsDetail.css.map */

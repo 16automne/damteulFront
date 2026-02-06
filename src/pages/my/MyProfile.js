@@ -1,10 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useEffect } from 'react';
+import api from 'app/api/axios';
 import './styles/myProfile.css';
 import { CiCircleInfo } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 
 
 function MyProfile(props) {
+
+  const [userData, setUserData] = useState({});
+	
+	// profile.controllers에서 유저정보 가져오기
+  useEffect(()=>{
+    const getProfile =async()=>{
+      try{
+        const res = await api.get('/api/profile/12'); //user_id변경필요
+        setUserData(res.data);
+      }catch(err){
+        console.error(err);
+      }
+    }; getProfile();
+  },[]);
+
+	// 사용자 가입날짜 string 변경하기
+	const formatData = (dateString) => {
+		if (!dateString) return "";
+		const date = new Date(dateString);
+		const year = date.getFullYear();
+		const month = date.getMonth()+1;
+		const day = date.getDate();
+		return `${year}년 ${month}월 ${day}일 가입`;
+	}
 	// 더미데이터 추후삭제예정
 	const dummyData = [
   { id: 1, name: '빈티지 체어', price: '35,000원', img: 'https://placehold.co/600x400' },
@@ -23,10 +49,10 @@ function MyProfile(props) {
             <img src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='사용자 이미지'/>
           </h3>
 					<div className='myProfileCheckAlign'>
-            <p>닉네임</p>
+            <p>{userData.user_nickname}</p>
             <img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용등급'/>
 					</div>
-					<p>0000년00월 00일 가입</p>
+					<p>{formatData(userData.created_at)}</p>
 					<Link to='/myprofileedit' title='프로필 수정페이지로 이동'
 					>프로필 수정</Link>
 				</div>
@@ -36,7 +62,7 @@ function MyProfile(props) {
 					<div></div>
 					<CiCircleInfo />
 					<img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용자 이미지'/>
-					<p>ㅇㅇㅇ님은 <span>준비된 이웃</span> 입니다</p>
+					<p>{userData.user_name}님은 <span>준비된 이웃</span> 입니다</p>
 				</div>
 				{/* 판매물품 영역 */}
 				<div className='myContainer mySell'>

@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from 'app/api/axios';
 import './styles/main.css';
 // 글쓰기버튼
 import WriteBtn from 'components/writeBtn/WriteBtn';
 // 상품목록
 import GoodsList from 'components/GoodsList/GoodsList';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SearchBar from 'components/SearchBar/SearchBar';
 
 
 const HomePage = () => {
 	// 주소에 같이 오는 state값 가져오기 위한 location
-	const location = useLocation();
-
-	const navigate = useNavigate();
+	const location = useLocation();;
 
 	// 로그인,회원가입에서 home 방문시 로그인완료 뜨게하기
 	const [loginSuccess, setLoginSuccess] = useState(false);
@@ -43,9 +41,7 @@ const HomePage = () => {
 		}
 	},[location.state?.showWelcome]);
 
-	// 더미 데이터(추후삭제예정)
-	
-
+	// 전체/최신글 상태변수
 	const [filter, setFilter] = useState('all');
 
 	// DB데이터 상태변수
@@ -55,7 +51,7 @@ const HomePage = () => {
 	useEffect(()=>{
 		const fetchGoods = async()=>{
 			try{
-				const res = await axios.get('http://localhost:9070/api/goods');
+				const res = await api.get('/api/goods');
 				if(res.data.ok){
 					setList(res.data.list);
 				}
@@ -65,6 +61,10 @@ const HomePage = () => {
 		};
 		fetchGoods();
 	},[]);
+
+	const filteredList = filter === 'all'
+	? [...list].sort(()=> Math.random()- 0.5)
+	:list;
 
 	return (
 		<main>
@@ -84,8 +84,8 @@ const HomePage = () => {
 						onClick={()=>setFilter('latest')}>최신글</button>
 					</div>
 					{/* GoodsList */}
-					{list.length > 0 ?(
-						list.map((item)=>(
+					{filteredList.length > 0 ?(
+						filteredList.map((item)=>(
 							<GoodsList key={item.goods_id}
 							title={item.title}
 							status={item.condition_type === '0'?'중고상품':'새상품'}

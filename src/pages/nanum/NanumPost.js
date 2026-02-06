@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
 
 function NanumPost(props) {
 
@@ -30,7 +30,7 @@ function NanumPost(props) {
 			status:0
 		};
 		try{
-			const response = await axios.post('http://localhost:9070/api/nanum',postData);
+			const response = await api.post('/api/nanum',postData);
 			if(response.status === 200){
 				// 나눔글 번호 추출
 				const {nanum_id} = response.data;

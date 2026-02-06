@@ -213,5 +213,11 @@
 		line-height: 50px;
 		text-align: center;
 	}
+	>.bottomBtn>button:first-child{
+		background: $colorEtcRed;
+	}
+	>.bottomBtn>button:last-child{
+		background: $colorEtcLgGreen;
+	}
 }
 	

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
+import { getUserId } from 'components/getUserId/getUserId';
 import './styles/goodsDetail.css';
 // 더보기버튼
 import { IoIosMore } from "react-icons/io";
@@ -16,6 +17,7 @@ import { FaRegComment } from "react-icons/fa";
 
 
 function GoodsDetail(props) {
+	const userId = getUserId();
 
 	// 더보기버튼 상태변수
 	const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +28,27 @@ function GoodsDetail(props) {
 	const {goods_id} = useParams();
 	const [goods, setGoods] = useState(null);
 
+	// 1. 게시 시간 계산 함수 추가
+  const getTimeDiff = (date) => {
+    if (!date) return "시간 정보 없음";
+    const start = new Date(date);
+    const now = new Date();
+    const diff = (now - start) / 1000 / 60; // 분 단위
+
+    if (diff < 60) {
+      return `${Math.floor(Math.max(0, diff))}분 전`;
+    } else if (diff < 1440) {
+      return `${Math.floor(diff / 60)}시간 전`;
+    }else{
+			return `${Math.floor(diff / 1440)}일 전`;
+		}
+  };
+
 	useEffect(() => {
     // 2. 해당 ID의 상세 데이터 요청
     const fetchDetail = async () => {
       try {
-        const res = await axios.get(`http://localhost:9070/api/goods/${goods_id}`);
+        const res = await api.get(`/api/goods/${goods_id}`);
         if (res.data.ok) {
           setGoods(res.data.data);
         }
@@ -40,6 +58,22 @@ function GoodsDetail(props) {
     };
     fetchDetail();
   }, [goods_id]);
+
+	// 작성글 삭제하기
+	const handleDelete = async () => {
+  if (!window.confirm("정말로 이 게시글을 삭제하시겠습니까?")) return;
+
+  try {
+    const res = await api.delete(`/api/goods/${goods_id}`);
+    if (res.data.ok) {
+      alert("삭제되었습니다.");
+      window.location.href = "/"; // 삭제 후 메인으로 이동
+    }
+  } catch (err) {
+    console.error("삭제 실패:", err);
+    alert("삭제 중 오류가 발생했습니다.");
+  }
+};
 
 	const categoryMap ={
 		1:"티켓/교환권",
@@ -89,7 +123,7 @@ function GoodsDetail(props) {
 				{/* 제품상세정보 텍스트 영역 */}
 				<div className='goodsInfo'>
 					<h3>{goods.title}</h3>
-					<p>00분전 &#10072; {categoryMap[goods?.category_id]||"기타"}</p>
+					<p>{getTimeDiff(goods.created_at)} &#10072; {categoryMap[goods?.category_id]||"기타"}</p>
 					<p>{goods?.price?.toLocaleString()}원</p>
 					{/* 좋아요/댓글 */}
 					<div className='reaction'>
@@ -154,13 +188,23 @@ function GoodsDetail(props) {
 				</div>
 				</div>
 				<div className='bottomBtn'>
-					{goods.conversation_type === 0?(
-						<button>채팅불가</button>
+					{Number(userId) === Number(goods.user_id)?(
+						<>
+						<button onClick={handleDelete}>삭제하기</button>
+						<button>수정하기</button>
+						</>
 					):(
-						<Link>채팅하기</Link>
-					)}
+						<>
+						{goods.conversation_type === 0?(
+							<Link>채팅불가</Link>
+						):(
+							<Link>채팅하기</Link>
+						)}
+						
+						<Link to={`/payment/${goods.goods_id}`} state={{goods:goods}}>결제하기</Link>
+							</>
+						)}
 					
-					<Link to={`/payment/${goods.goods_id}`} state={{goods:goods}}>결제하기</Link>
 				</div>
 			</section>
 		</main>
