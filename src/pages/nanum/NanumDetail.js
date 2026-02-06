@@ -37,7 +37,7 @@ function NanumDetail(props) {
 		useEffect(()=>{
 			const getDetail = async()=>{
 				try{
-					const response = await api.get(`http://localhost:9070/api/nanum/${nanum_id}`);
+					const response = await api.get(`/api/nanum/${nanum_id}`);
 					setPost(response.data);
 				}catch(err){
 					console.error("데이터 로드 실패 : ", err);
@@ -146,7 +146,7 @@ function NanumDetail(props) {
 				{/* 제품상세정보 텍스트 영역 */}
 				<div className='goodsInfo'>
 					<h3>{post.title}</h3>
-					<p>{getTimeDiff(post.created_at)} &#10072; 이벤트</p>
+					<p>{getTimeDiff(post.created_at)} &#10072; 나눔</p>
 					{!isEvent && <p>{timeLeft}</p>}
 					
 					{/* 좋아요/댓글 */}

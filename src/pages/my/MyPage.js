@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState} from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GrShop } from "react-icons/gr";
 import { TfiReceipt } from "react-icons/tfi";
@@ -9,16 +10,26 @@ import { FaRegClock } from "react-icons/fa";
 import { IoMdHeadset } from "react-icons/io";
 import { MdOutlineSettings } from "react-icons/md";
 import { FaAngleRight } from "react-icons/fa6";
-
-
-
-
-
+import api from 'app/api/axios';
 import './styles/myPage.css';
 
 
 
 const MyPage = () => {
+  // profile.controllers에서 유저정보 가져오기
+  const [userData, setUserData] = useState({});
+
+  useEffect(()=>{
+    const getProfile =async()=>{
+      try{
+        const res = await api.get('/api/profile/12'); //user_id변경필요
+        setUserData(res.data);
+      }catch(err){
+        console.error(err);
+      }
+    }; getProfile();
+  },[]);
+
   return (
     <main>
       <section className='myPage'>
@@ -30,7 +41,7 @@ const MyPage = () => {
           </h3>
           <Link to='/myprofile' title='내 프로필'>
             <div className='profileCheck'>
-            <p>닉네임</p>
+            <p>{userData?.user_nickname}</p>
             <img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용등급'/>
             <FaAngleRight />
             </div>

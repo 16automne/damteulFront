@@ -20,10 +20,10 @@ const Nanum = () => {
           // filter값으로 나눔 or 이벤트 구분
           const url = filter ==='nanum'
           ?'/api/nanum'
-          :'/api/nanum/event';
-
+          :'/api/event';
           const res = await api.get(url);
-          setList(res.data.list || res.data);
+          console.log(`${filter}데이터: `,res.data)
+          setList(res.data);
         }catch(err){
           console.error("목록 로드 실패 : ", err);
           setList([]);
@@ -52,19 +52,21 @@ const Nanum = () => {
 						<button className={filter === 'event'?'btnActive':''}
             onClick={()=>{setList([]);setFilter('event');}}>이벤트</button>
 					</div>
-          {list && list.length > 0?(
-            list.map((item)=>(
-              <GoodsList key={filter === 'nanum'? `nanum-${item.nanum_id}`:`event-${item.event_id}`}
+          {list && list.length > 0 ? (
+          list.map((item) => (
+            <GoodsList
+              key={`${filter}-${filter === 'nanum' ? item.nanum_id : item.event_id}`}
               linkTo={filter === 'nanum'
-                ?`/nanumdetail/${item.nanum_id}`
-                :`/nanumdetail/event/${item.event_id}`}
+                ? `/nanumdetail/${item.nanum_id}`
+                : `/eventdetail/${item.event_id}`} // 이벤트 상세 경로 분리 권장
               title={item.title}
-              status={filter==='nanum'?'무료나눔':'이벤트'}
-              timer={filter === 'nanum'?getRemainingTime(item.end_nanum):""} />
-            ))
-          ):(
-            <p style={{textAlign: 'center', marginTop: '20px'}}>등록된 글이 없습니다.</p>
-          )}
+              status={filter === 'nanum' ? '무료나눔' : '이벤트'}
+              timer={filter === 'nanum' ? getRemainingTime(item.end_nanum) : ""}
+            />
+          ))
+        ) : (
+          <p style={{ textAlign: 'center', marginTop: '20px' }}>등록된 글이 없습니다.</p>
+        )}
           <WriteBtn />
       </section>
     </main>
