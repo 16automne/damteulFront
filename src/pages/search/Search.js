@@ -25,9 +25,9 @@ const Search = () => {
           {/* myTabMenu서식은 MybuynSell 참조 */}
           <ul className='myTabMenu'>
             <li onClick={()=>setSearch('used')}
-              className={search=='used'?'active':''}>중고상품</li>
+              className={search==='used'?'active':''}>중고상품</li>
             <li onClick={()=>setSearch('event')}
-              className={search=='event'?'active':''}>나눔/이벤트</li>
+              className={search==='event'?'active':''}>나눔/이벤트</li>
           </ul>
 
           {/* 최근 검색어 나올영역 localstorage */}

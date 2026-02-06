@@ -59,6 +59,22 @@ function GoodsDetail(props) {
     fetchDetail();
   }, [goods_id]);
 
+	// 작성글 삭제하기
+	const handleDelete = async () => {
+  if (!window.confirm("정말로 이 게시글을 삭제하시겠습니까?")) return;
+
+  try {
+    const res = await api.delete(`/api/goods/${goods_id}`);
+    if (res.data.ok) {
+      alert("삭제되었습니다.");
+      window.location.href = "/"; // 삭제 후 메인으로 이동
+    }
+  } catch (err) {
+    console.error("삭제 실패:", err);
+    alert("삭제 중 오류가 발생했습니다.");
+  }
+};
+
 	const categoryMap ={
 		1:"티켓/교환권",
 		2:"의류",
@@ -172,13 +188,23 @@ function GoodsDetail(props) {
 				</div>
 				</div>
 				<div className='bottomBtn'>
-					{goods.conversation_type === 0?(
-						<button>채팅불가</button>
+					{Number(userId) === Number(goods.user_id)?(
+						<>
+						<button onClick={handleDelete}>삭제하기</button>
+						<button>수정하기</button>
+						</>
 					):(
-						<Link>채팅하기</Link>
-					)}
+						<>
+						{goods.conversation_type === 0?(
+							<Link>채팅불가</Link>
+						):(
+							<Link>채팅하기</Link>
+						)}
+						
+						<Link to={`/payment/${goods.goods_id}`} state={{goods:goods}}>결제하기</Link>
+							</>
+						)}
 					
-					<Link to={`/payment/${goods.goods_id}`} state={{goods:goods}}>결제하기</Link>
 				</div>
 			</section>
 		</main>
