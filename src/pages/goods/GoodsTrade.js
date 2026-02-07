@@ -5,23 +5,8 @@ import api from 'app/api/axios';
 import { getUserId } from 'components/getUserId/getUserId';
 
 // 서버에 전송할 함수
-const createPost = async(formData, file) =>{
-	// 로그인 들어오면 주석풀기
-	// const token = localStorage.getItem('userToken');
-	// 이미지는 file로 따로 전송
-	const data = new FormData();
+const createPost = async(data) =>{
 
-	// 일반 텍스트 데이터 추가
-	Object.keys(formData).forEach(key =>{
-		data.append(key, formData[key]);
-	});
-
-	// 이미지 파일 데이터 추가
-	if(file && file.length>0){
-		file.forEach(f =>{
-			data.append('fileUpload',f);
-		})
-	}
 	const response = await api.post('/api/goods',data,{
 		headers:{'Content-Type':'multipart/form-data'}
 	});
@@ -30,7 +15,6 @@ const createPost = async(formData, file) =>{
 }
 
 function GoodsTrade(props) {
-	const userId = getUserId();
 	const navigate = useNavigate();
 	const [file,setFile] = useState([]);
 
@@ -62,25 +46,42 @@ function GoodsTrade(props) {
 	};
 
 	// 폼 제출 시 실행될 함수
-	const handleSubmit = async(e)=>{
-		e.preventDefault();
+	const handleSubmit = async (e) => {
+  e.preventDefault();
 
-		// 유저 ID가져오기
-		const userId = getUserId();
-		try{
-			const finalData = {
-				...formData,
-				user_id:userId,
-				category_id:Number(formData.category_id),
-				price:Number(formData.price),
-			};
-			const result = await createPost(finalData, file);
+  try {
+    const data = new FormData();
+    const userId = getUserId();
 
-			if(result.ok){
-				alert('글이 정상적으로 등록되었습니다.');
-				navigate(`/goodsdetail/${result.id}`);
-			}
-		}catch(error){
+    // 1. 기존 입력값들 넣기
+    Object.keys(formData).forEach((key) => {
+      // user_id는 여기서 처리하지 않고 건너뜀 (아래에서 명시적으로 넣기 위함)
+      if (key === 'user_id') return; 
+
+      if (key === 'category_id' || key === 'price') {
+        data.append(key, Number(formData[key]));
+      } else {
+        data.append(key, formData[key]);
+      }
+    });
+
+    // 2. 유저 ID 넣기 (중복 방지를 위해 위에서 제외하고 여기서 한 번만 넣음)
+    data.append('user_id', userId);
+
+    // 3. 파일 넣기
+    if (file && file.length > 0) {
+      file.forEach((f) => data.append('fileUpload', f));
+    }
+
+    // 4. 서버 전송
+    const result = await createPost(data);
+
+    if (result.ok) {
+      alert('글이 정상적으로 등록되었습니다.');
+      navigate(`/goodsdetail/${result.id}`);
+    }
+		} catch (error) {
+			console.error(error);
 			alert('등록에 실패했습니다.');
 		}
 	};

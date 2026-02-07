@@ -27,6 +27,8 @@ function GoodsDetail(props) {
 	// URL의 :goods_id값
 	const {goods_id} = useParams();
 	const [goods, setGoods] = useState(null);
+	// 관련 상품 상태변수
+	const [relevance, setRelevance] = useState([]);
 
 	// 1. 게시 시간 계산 함수 추가
   const getTimeDiff = (date) => {
@@ -48,33 +50,59 @@ function GoodsDetail(props) {
     // 2. 해당 ID의 상세 데이터 요청
     const fetchDetail = async () => {
       try {
-        const res = await api.get(`/api/goods/${goods_id}`);
+        const res = await api.get(`/api/goods/${goods_id}?user_id=${userId}`);
         if (res.data.ok) {
           setGoods(res.data.data);
+					setLike(res.data.data.like_status === 1);
+					setRelevance(res.data.relevance || []);
         }
       } catch (err) {
         console.error("상세 정보 로드 실패:", err);
       }
     };
     fetchDetail();
-  }, [goods_id]);
+  }, [goods_id, userId]);
 
 	// 작성글 삭제하기
 	const handleDelete = async () => {
-  if (!window.confirm("정말로 이 게시글을 삭제하시겠습니까?")) return;
+		if (!window.confirm("정말로 이 게시글을 삭제하시겠습니까?")) return;
 
-  try {
-    const res = await api.delete(`/api/goods/${goods_id}`);
-    if (res.data.ok) {
-      alert("삭제되었습니다.");
-      window.location.href = "/"; // 삭제 후 메인으로 이동
-    }
-  } catch (err) {
-    console.error("삭제 실패:", err);
-    alert("삭제 중 오류가 발생했습니다.");
-  }
-};
+		try {
+			const res = await api.delete(`/api/goods/${goods_id}`);
+			if (res.data.ok) {
+				alert("삭제되었습니다.");
+				window.location.href = "/"; // 삭제 후 메인으로 이동
+			}
+		} catch (err) {
+			console.error("삭제 실패:", err);
+			alert("삭제 중 오류가 발생했습니다.");
+		}
+	};
 
+	// 좋아요 토글 함수
+	const handleLikeClick = async() => {
+		const userId = getUserId();
+		try{
+			const res = await api.post('/api/goods/like',{
+				goods_id:goods.goods_id,
+				user_id:userId
+			});
+			if(res.data.ok){
+				// 서버 status가 1이면 true, 0 false
+				const isLiked = res.data.status === 1;
+				setLike(isLiked);
+				// like_count상태 업데이트
+				setGoods(prev =>({
+					...prev,
+					like_count : isLiked
+					?(prev.like_count || 0) +1
+					:Math.max(0,(prev.like_count || 0) - 1)
+				}));
+			}
+		}catch(err){
+			console.error("좋아요 처리 실패 : ", err);
+		}
+	};
 	const categoryMap ={
 		1:"티켓/교환권",
 		2:"의류",
@@ -128,13 +156,16 @@ function GoodsDetail(props) {
 					{/* 좋아요/댓글 */}
 					<div className='reaction'>
 						<p>
-						<FaRegHeart /><span>nnn</span>
+						<FaRegHeart /><span>{goods.like_count || 0}</span>
 						</p>
-						<p>
+						{goods.conversation_type === 1 &&
+							<p>
 							<FaRegComment /><span>nnn</span>
-						</p>
+							</p>
+						}
+						
 					</div>
-					<button className='favorite' onClick={()=>setLike(!like)}>
+					<button className='favorite' onClick={handleLikeClick}>
 						{like === true?(<FaHeart />):(<FaRegHeart />)}
 					
 					</button>
@@ -165,26 +196,20 @@ function GoodsDetail(props) {
 				<h3>관련상품</h3>
 				{/* 상품 이미지/정보표시영역 */}
 				<div className='relevanceGrid'>
-					<div className='relevanceItem'>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<h3>Title</h3>
-						<p>txttxt원</p>
-					</div>
-					<div className='relevanceItem'>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<h3>Title</h3>
-						<p>txttxt원</p>
-					</div>
-					<div className='relevanceItem'>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<h3>Title</h3>
-						<p>txttxt원</p>
-					</div>
-					<div className='relevanceItem'>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<h3>Title</h3>
-						<p>txttxt원</p>
-					</div>
+					{relevance && relevance.length > 0?(
+						relevance.map((item)=>(
+						<Link to={`/goods${item.goods_id}`}
+						key={item.goods_id}
+						className='relevanceItem'>
+							<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
+							<h3>{item.title}</h3>
+							<p>{item.price?.toLocaleString()}원</p>
+						</Link>
+					))
+					):(
+						<p>등록된 관련 상품이 없습니다.</p>
+					)}
+					
 				</div>
 				</div>
 				<div className='bottomBtn'>

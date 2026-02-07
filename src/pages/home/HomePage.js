@@ -91,6 +91,7 @@ const HomePage = () => {
 							status={item.condition_type === '0'?'중고상품':'새상품'}
 							price={item.price.toLocaleString()}
 							linkTo={`/goodsdetail/${item.goods_id}`}
+							likeCount={item.like_count}
 							/>
 						))
 					):(
