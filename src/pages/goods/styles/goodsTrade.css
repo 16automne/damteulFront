@@ -182,6 +182,34 @@
   width: 0;
   height: 0;
 }
+.writeForm .fileWrapper svg {
+  font-size: 16px;
+  margin-top: 0.5rem;
+  margin-bottom: 10%;
+  fill: #fff;
+}
+.writeForm .previewWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.writeForm .previewWrapper .previewItem {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.writeForm .previewWrapper .previewItem img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.writeForm .previewWrapper .previewItem button:hover {
+  background: #d32f2f;
+}
 .writeForm .fileOrange {
   background: #EE955E;
 }

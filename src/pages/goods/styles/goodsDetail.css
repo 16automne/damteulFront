@@ -341,6 +341,9 @@
   line-height: 50px;
   text-align: center;
 }
+.goodsDetail > .bottomBtn > a:first-child.disabled {
+  background: #6B6B6B !important;
+}
 .goodsDetail > .bottomBtn > a:last-child {
   background: #E06868;
   display: inline-block;
