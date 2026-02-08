@@ -3,6 +3,8 @@ import './styles/goodsTrade.css';
 import { useNavigate } from 'react-router-dom';
 import api from 'app/api/axios';
 import { getUserId } from 'components/getUserId/getUserId';
+import { FaPlus } from "react-icons/fa";
+
 
 // 서버에 전송할 함수
 const createPost = async(data) =>{
@@ -144,20 +146,52 @@ function GoodsTrade(props) {
 					>
 					</textarea>
 				</p>
-				{/* 이미지 들어갈 부분 */}
-				<label className='fileWrapper' 
-				htmlFor='fileUpload'>
-					<input 
-					type='file'
-					id='fileUpload'
-					name='fileUpload'
-					onChange={handleFileChange}
-					className='file'
-					multiple
-					/>
-						<img src='https://placehold.co/30x30' alt=''/>
-						n/10
-				</label>
+
+		{/* 이미지 선택 버튼과 미리보기 영역 */}
+		{/* 이미지 업로드 및 미리보기 영역 */}
+		<div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+  	{/* 업로드 버튼 */}
+		<label className='fileWrapper' htmlFor='fileUpload'>
+			<input 
+				type='file'
+				id='fileUpload'
+				name='fileUpload'
+				onChange={handleFileChange}
+				className='file'
+				multiple
+				accept="image/*"
+			/>
+			<FaPlus />
+    	{file.length}/10
+  	</label>
+
+  {/* 미리보기 리스트 */}
+  <div className="previewWrapper">
+    {file.map((f, index) => (
+      <div key={index} className="previewItem" style={{ position: 'relative' }}>
+        <img 
+          src={URL.createObjectURL(f)} 
+          alt={`preview-${index}`} 
+          style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} 
+        />
+        {/* 삭제 버튼: 필요하면 유지, 아니면 삭제 가능 */}
+        <button 
+          type="button"
+          onClick={() => setFile(file.filter((_, i) => i !== index))}
+          style={{ 
+            position: 'absolute', top: '-5px', right: '-5px', 
+            background: '#ff4d4f', color: '#fff', border: 'none', 
+            borderRadius: '50%', width: '18px', height: '18px', 
+            fontSize: '12px', cursor: 'pointer', display: 'flex',
+            justifyContent: 'center', alignItems: 'center'
+          }}
+        >
+          ✕
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
 				<p>
 					<label htmlFor='condition_type'>제품 상태</label>
 					<select className='inputForm'

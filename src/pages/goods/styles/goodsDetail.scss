@@ -206,6 +206,9 @@
 		display: inline-block;
 		line-height: 50px;
 		text-align: center;
+		&.disabled{
+			background: $colorMdGray !important;
+		}
 	}
 	>.bottomBtn>a:last-child{
 		background: $colorEtcRed;

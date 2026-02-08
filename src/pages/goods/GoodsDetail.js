@@ -221,7 +221,7 @@ function GoodsDetail(props) {
 					):(
 						<>
 						{goods.conversation_type === 0?(
-							<Link>채팅불가</Link>
+							<Link className={goods.conversation_type === 0?'disabled':''}>채팅불가</Link>
 						):(
 							<Link>채팅하기</Link>
 						)}
