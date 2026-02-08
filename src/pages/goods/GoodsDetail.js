@@ -198,7 +198,7 @@ function GoodsDetail(props) {
 						{goods.conversation_type === 0?(
 							<Link>채팅불가</Link>
 						):(
-							<Link>채팅하기</Link>
+							<Link to={`/chat/start/${goods.goods_id}`}>채팅하기</Link>
 						)}
 						
 						<Link to={`/payment/${goods.goods_id}`} state={{goods:goods}}>결제하기</Link>

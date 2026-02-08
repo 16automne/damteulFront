@@ -108,7 +108,7 @@
   gap: 8px;
   /* input - button 간격 */
   position: relative;
-  top: 40px;
+  top: 10px;
   height: 50px;
 }
 .addressSearchBox > label {
@@ -137,12 +137,13 @@
   font-size: 20px;
   cursor: pointer;
   color: #1A1C19;
+  transform: translateY(2px);
 }
 
 .addressValueWrap {
   width: 100%;
   min-width: 360px;
-  margin-top: 60px;
+  margin-top: 30px;
   line-height: 30px;
 }
 .addressValueWrap .neighbor {
@@ -164,7 +165,7 @@
   line-height: 1.4;
   color: #1A1C19;
   text-align: center;
-  margin-top: 250px;
+  margin-top: 200px;
 }
 .addressValueWrap .addressValue .value {
   width: 100%;
@@ -206,10 +207,15 @@
 }
 
 .formButtonWrapper {
+  background-color: #F2F5F2;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 70px;
+  padding-bottom: 15px;
+  bottom: 0px;
+  padding: 0 30px;
+  transform: translateX(-30px);
   align-items: center;
   height: 70px;
   width: 100%;

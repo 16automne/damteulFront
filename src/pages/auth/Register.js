@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./css/auth.css";
-
+import {closeMobileKeyboard} from "components/closeMobileKeyboard/closeMobileKeyboard";
 // axios
 import api from "app/api/axios";
 
@@ -100,7 +100,7 @@ export default function Register() {
   // 회원가입 눌렀을때
   const onSubmitRegister = async (e) => {
     e.preventDefault();
-
+    closeMobileKeyboard();
     // 유효성및 작성 검사
     const phoneErr = validatePhone(registerForm.user_phone);
     const nameErr = validateText(registerForm.user_name, "이름");
@@ -158,6 +158,10 @@ export default function Register() {
   };
   if(!address) return null;
   return (
+    <>
+    <header className="authPageHeaderStyle">
+      <h2>내 정보 입력하기</h2>
+    </header>
     <main>
       <form className="authForm" onSubmit={onSubmitRegister}>
         <legend>회원가입폼</legend>
@@ -224,5 +228,6 @@ export default function Register() {
         </fieldset>
       </form>
     </main>
+    </>
   );
 }

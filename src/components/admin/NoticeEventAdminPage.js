@@ -302,8 +302,8 @@ const NoticeEventAdminPage = () => {
                       e.stopPropagation();
                       window.open(
                         activeTab === 'event'
-                          ? `/admin/event/detail/${item.id}`
-                          : `/admin/notice/detail/${item.id}`,
+                          ? `/admin/${activeTab}/detail/${item.id}`
+                          : `/admin/${activeTab}/detail/${item.id}`,
                         '_blank',
                         'width=1000,height=800'
                       );

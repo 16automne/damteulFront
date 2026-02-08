@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import './css/auth.css';
-
+import {closeMobileKeyboard} from "components/closeMobileKeyboard/closeMobileKeyboard";
 // axios
 import api from "app/api/axios";
 
@@ -86,7 +86,7 @@ export default function Login() {
   // 로그인 눌렀을때
   const onSubmitLogin = async (e) => {
     e.preventDefault();
-
+    closeMobileKeyboard();
     // 유효성및 작성 검사
     const phoneErr = validatePhone(loginForm.user_phone);
     const nameErr = validateText(loginForm.user_name);
@@ -133,6 +133,10 @@ export default function Login() {
     }
   }
   return (
+    <>
+    <header className="authPageHeaderStyle">
+      <h2>로그인</h2>
+    </header>
     <main>
       {/* 로그인 입력란 */}
       <form className="authForm" onSubmit={onSubmitLogin}>
@@ -182,5 +186,6 @@ export default function Login() {
         </fieldset>
       </form>
     </main>
+    </>
   );
 };

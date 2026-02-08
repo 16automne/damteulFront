@@ -10,7 +10,7 @@ export const handleDelete = async (id, confirmTxt, setError, url) => {
 
     try {
         setError("");
-        const { data } = await api.delete(`/api/admin/${url}/${id}`);
+        const { data } = await api.put(`/api/admin/${url}/${id}/delete`);
         
         if (!data?.success) {
         alert(data?.message || "삭제 실패");
