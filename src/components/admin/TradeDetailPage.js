@@ -1,12 +1,11 @@
 // src/components/admin/TradeDetailPage.js
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from '../admin/styles/TradeDetailPage.module.css';
 import api from "app/api/axios";
 import { handleDelete } from "./delete/handleDelete";
 
 const TradeDetailPage = () => {
-    const navigate = useNavigate();
     const { id } = useParams();
 
     const [trade, setTrade] = useState(null);
@@ -15,29 +14,29 @@ const TradeDetailPage = () => {
 
     useEffect(() => {
         const getTradeDetail = async () => {
-          try {
+        try {
             setLoading(true);
             setError("");
     
             const { data } = await api.get(`/api/admin/trades/${id}`);
     
             if (!data?.success) {
-              setError(data?.message || "거래 정보를 불러오지 못했습니다.");
-              setTrade(null);
-              return;
+            setError(data?.message || "거래 정보를 불러오지 못했습니다.");
+            setTrade(null);
+            return;
             }
     
             setTrade(data.trade);
-          } catch (err) {
+        } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || err?.message || "서버 오류 발생");
-          } finally {
+        } finally {
             setLoading(false);
-          }
+        }
         };
     
         if (id) getTradeDetail();
-      }, [id]);
+    }, [id]);
 
     if (!id) {
         return <div className={styles.pageWrapper}>거래 정보를 찾을 수 없습니다.</div>;

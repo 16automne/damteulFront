@@ -6,7 +6,7 @@ import api from "app/api/axios";
 // 해당 페이지에서 사용할때 (단일)
 // const profileUrl = await uploadSingleImage(file);
 
-const uploadSingleImage = async (file, url) => {
+export const uploadSingleImage = async (file, url) => {
   const formData = new FormData();
 
   // 서버에서 single("image")로 받기 때문에 key = "image"

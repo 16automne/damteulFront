@@ -254,12 +254,15 @@
     text-align: center;
     min-width: 50px;
 
-    &.new {
+    &.start {
       // 진행중
       background-color: #4caf50;
     }
-
-    &.used {
+    &.new{
+      // 예정
+      background-color: $colorSub;
+    }
+    &.end {
       // 종료
       background-color: #9e9e9e;
     }
