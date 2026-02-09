@@ -10,7 +10,7 @@ function AllowHeader() {
   const navigate = useNavigate();
   
   return (
-    <div className={`headerWrap ${isVisible ? '' : 'hide'}`}>
+    <header className={`headerWrap ${isVisible ? '' : 'hide'}`}>
       <div className="headerInner">
         {/* 왼쪽: 전페이지 */}
         <div className="headerLeft">
@@ -26,7 +26,7 @@ function AllowHeader() {
           </Link>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 
