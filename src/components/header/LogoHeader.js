@@ -13,7 +13,7 @@ const LogoHeader = () => {
       <div className="headerInner">
         {/* 왼쪽: 로고 */}
         <div className="headerLeft">
-          <div className="headerIcon" onClick={() => navigate(-1)}>
+          <div className="headerIcon" onClick={() => navigate('/')}>
             <img src={`${process.env.PUBLIC_URL}/images/logo1.png`} alt="로고" />
           </div>
         </div>

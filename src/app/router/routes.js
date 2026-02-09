@@ -118,7 +118,7 @@ export const routes = [
     element: <NoTabsBackLayout />,
     children: [
       {path:"/community/write", element: <CommWrite />},
-      {path:"/community/post", element: <CommPost />},
+      {path:"/community/post/:id", element: <CommPost />},
       {path:"/goodstrade", element: <GoodsTrade />},
       {path:"/goodsdetail", element: <GoodsDetail />},
       {path:"/nanumpost", element:<NanumPost />},

@@ -105,7 +105,6 @@
 }
 
 .commPostPage {
-  padding-top: calc(3.5rem + env(safe-area-inset-top));
   width: 100%;
   height: 100%;
   min-height: 100dvh;
@@ -113,18 +112,17 @@
   margin: 0 auto;
   overflow: hidden;
   background-color: #fff;
-  padding-bottom: 70px;
-  /* 사용자프로필 헤더 */
-  /* 1, 2. 이미지 스와이퍼 영역 */
-  /* 3. 태그된 상품 리스트 (가로 스와이프) */
-  /* 4. 좋아요 & 댓글 반응 바 */
-  /* 5. 댓글 영역 */
+  padding-bottom: 100px;
+  /* 사용자 헤더 */
+  /* 이미지 섹션 */
+  /* 게시글 텍스트 영역 */
+  /* ✅ 1. 하단 등록 버튼 디자인 (고정 및 중앙 정렬) */
 }
 .commPostPage .postHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 3rem 0 1rem;
 }
 .commPostPage .postHeader .userInfo {
   display: flex;
@@ -132,8 +130,8 @@
   gap: 10px;
 }
 .commPostPage .postHeader .userInfo > img {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -143,12 +141,17 @@
   align-items: center;
   gap: 4px;
 }
+.commPostPage .postHeader .userInfo .nameWrap .nickname {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  font-weight: 700;
+}
 .commPostPage .postHeader .userInfo .nameWrap .gradeBadge {
-  width: 1.25rem;
-  height: 1.25rem;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border-radius: 0 !important;
+  width: 20px;
+  height: 20px;
 }
 .commPostPage .postHeader .menuWrap {
   position: relative;
@@ -161,26 +164,24 @@
 .commPostPage .postHeader .menuWrap .adminMenu {
   position: absolute;
   right: 0;
-  top: 1.8rem;
+  top: 30px;
   background: #fff;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
+  border-radius: 8px;
   z-index: 50;
-  overflow: hidden;
   border: 1px solid #F2F5F2;
 }
 .commPostPage .postHeader .menuWrap .adminMenu button {
   display: block;
-  width: 6.25rem;
-  padding: 0.75rem;
+  width: 100px;
+  padding: 12px;
   border: none;
   background: none;
   font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-  color: #1A1C19;
   text-align: center;
 }
 .commPostPage .postHeader .menuWrap .adminMenu button:first-child {
@@ -189,30 +190,59 @@
 .commPostPage .postHeader .menuWrap .adminMenu button:last-child {
   color: #E06868;
 }
-.commPostPage .postHeader .menuWrap .adminMenu button:active {
-  font-weight: bold;
-}
 .commPostPage .imageSection {
   position: relative;
-  width: 100%;
-}
-.commPostPage .imageSection .swiper {
-  width: 100%;
-  height: 100%;
 }
 .commPostPage .imageSection .imgWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1.2;
-  background-color: #F2F5F2;
-  overflow: hidden;
+  aspect-ratio: 1/1;
 }
 .commPostPage .imageSection .imgWrap img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  display: block;
+}
+.commPostPage .imageSection .imgWrap .postTagMarker {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.commPostPage .imageSection .imgWrap .postTagMarker .tagBox {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.commPostPage .imageSection .imgWrap .postTagMarker .tagBox span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.commPostPage .imageSection .imgWrap .postTagMarker .tagBox::after {
+  content: " >";
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.commPostPage .imageSection .imgWrap .postTagMarker::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
 }
 .commPostPage .imageSection .tagToggleBtn {
   position: absolute;
@@ -225,204 +255,124 @@
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
 }
 .commPostPage .imageSection .tagToggleBtn svg {
-  color: #fff;
+  fill: #fff !important;
+  color: #fff !important;
   font-size: 1.2rem;
 }
-.commPostPage .imageSection .postTagMarker {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+.commPostPage .goodsInfo {
+  padding: 20px 0;
 }
-.commPostPage .imageSection .postTagMarker .tagBox {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 6px 10px;
-  border-radius: 6px;
-  color: #fff;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-.commPostPage .imageSection .postTagMarker .tagBox span {
-  display: block;
+.commPostPage .goodsInfo h3 {
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  font-weight: 700;
-}
-.commPostPage .imageSection .postTagMarker .tagBox small {
-  display: block;
-  font-family: "Inter", sans-serif;
-  font-size: 0.5625rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #D7D7D7;
-}
-.commPostPage .tagListRow {
-  display: flex;
-  gap: 12px;
-  padding: 16px;
-  overflow-x: auto;
-  background-color: #fff;
-}
-.commPostPage .tagListRow::-webkit-scrollbar {
-  display: none;
-}
-.commPostPage .tagListRow .tagItemCard {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  background: #F2F5F2;
-  border-radius: 12px;
-  border: 1px solid #D7D7D7;
-}
-.commPostPage .tagListRow .tagItemCard img {
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.commPostPage .tagListRow .tagItemCard .txt p {
-  font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #1A1C19;
+  line-height: 1.4;
+  color: #1A1C19;
+  margin-bottom: 4px;
 }
-.commPostPage .tagListRow .tagItemCard .txt span {
+.commPostPage .goodsInfo .meta {
   font-family: "Inter", sans-serif;
-  font-size: 0.5625rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
   color: #6B6B6B;
+  margin-bottom: 16px;
 }
-.commPostPage .interactionBar {
+.commPostPage .goodsInfo .postMainText {
+  margin-bottom: 24px;
+}
+.commPostPage .goodsInfo .postMainText p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1A1C19;
+  line-height: 1.4;
+  line-height: 1.6;
+  color: #1A1C19;
+  white-space: pre-wrap;
+}
+.commPostPage .goodsInfo .interactionBar {
   display: flex;
-  align-items: center;
   gap: 20px;
-  padding: 10px 16px;
+  padding-top: 15px;
+  border-top: 1px solid #F2F5F2;
 }
-.commPostPage .interactionBar .iconItem {
+.commPostPage .goodsInfo .interactionBar .iconItem {
   display: flex;
   align-items: center;
   gap: 6px;
-  cursor: pointer;
 }
-.commPostPage .interactionBar .iconItem svg {
-  font-size: 1.5rem;
+.commPostPage .goodsInfo .interactionBar .iconItem svg {
+  font-size: 1.4rem;
   color: #6B6B6B;
 }
-.commPostPage .interactionBar .iconItem svg.active {
+.commPostPage .goodsInfo .interactionBar .iconItem svg.active {
   color: #E06868;
 }
-.commPostPage .interactionBar .iconItem span {
+.commPostPage .goodsInfo .interactionBar .iconItem span {
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
   font-weight: 700;
-  color: #1A1C19;
 }
-.commPostPage .commentSection {
-  padding: 16px;
-}
-.commPostPage .commentSection .commentItem {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-  position: relative;
-  /* 댓글 우측 메뉴 버튼 스타일 */
-  /* 댓글용 작은 모달창 */
-}
-.commPostPage .commentSection .commentItem img {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.commPostPage .commentSection .commentItem .commTxt {
-  flex: 1;
-  background: #F2F5F2;
-  padding: 10px 14px;
-  border-radius: 0 16px 16px 16px;
-  /* 글자 넘침 방지 핵심 */
-  word-break: break-all;
-  overflow-wrap: break-word;
-}
-.commPostPage .commentSection .commentItem .commTxt strong {
-  display: block;
-  font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-.commPostPage .commentSection .commentItem .commTxt p {
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #1A1C19;
-  line-height: 1.4;
-  color: #1A1C19;
-  line-height: 1.4;
-}
-.commPostPage .commentSection .commentItem .commentMenuBtn {
-  padding: 5px;
-  cursor: pointer;
-  color: #6B6B6B;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.commPostPage .commentSection .commentItem .commentMenuBtn svg {
-  font-size: 1.1rem;
-}
-.commPostPage .commentSection .commentItem .commentModal {
-  position: absolute;
-  right: 0;
-  top: 30px;
+.commPostPage .bottomInteractionBar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 767px;
   background: #fff;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 20;
-  border: 1px solid #F2F5F2;
-  overflow: hidden;
+  border-top: 1px solid #F2F5F2;
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+  z-index: 100;
 }
-.commPostPage .commentSection .commentItem .commentModal button {
-  display: block;
-  width: 100px;
-  padding: 10px;
-  border: none;
-  background: none;
+.commPostPage .bottomInteractionBar .bottomInner {
+  width: 92%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.commPostPage .bottomInteractionBar .bottomInner .commentInputPlaceholder {
+  flex: 1;
+  height: 44px;
+  background: #F2F5F2;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 10px;
+}
+.commPostPage .bottomInteractionBar .bottomInner .commentInputPlaceholder img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.commPostPage .bottomInteractionBar .bottomInner .commentInputPlaceholder span {
   font-family: "Inter", sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
+  color: #6B6B6B;
+}
+.commPostPage .bottomInteractionBar .bottomInner .sendBtn {
+  background: none;
+  border: none;
+  color: #58A563;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
   color: #1A1C19;
-  text-align: center;
-}
-.commPostPage .commentSection .commentItem .commentModal button:first-child {
-  border-bottom: 1px solid #F2F5F2;
-}
-.commPostPage .commentSection .commentItem .commentModal button:active {
-  background-color: #F2F5F2;
-}
-
-.swiper-pagination-bullet-active {
-  background: #58A563 !important;
+  line-height: 1.4;
+  padding: 5px;
 }/*# sourceMappingURL=commpost.css.map */

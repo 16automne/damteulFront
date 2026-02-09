@@ -167,7 +167,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  /* 태그 아이콘 */
   /* 태그 레이블 */
 }
 .commTagPage .tagImageContainer::-webkit-scrollbar {
@@ -177,20 +176,6 @@
   width: 100%;
   height: auto;
   display: block;
-}
-.commTagPage .tagImageContainer .tagIconOverlay {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: #1A1C19;
-  padding: 10px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-}
-.commTagPage .tagImageContainer .tagIconOverlay svg {
-  font-size: 1.5rem;
-  color: #fff !important;
 }
 .commTagPage .tagImageContainer .addedTagMarker {
   position: absolute;

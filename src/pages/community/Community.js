@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import App from 'app/api/axios';
 import './styles/community.css';
 import WriteBtn from '../../components/writeBtn/WriteBtn';
 
@@ -12,16 +13,41 @@ import { FaDumbbell } from "react-icons/fa6";
 import { IoMdHeart, IoMdMore } from "react-icons/io";
 import { PiChatCircleTextFill } from "react-icons/pi";
 
+const IMAGE_BASE_URL = "http://localhost:9070/uploads/community/";
+
 const Community = () => {
-  // navigate 함수 정의 추가
-  const navigate = useNavigate(); 
-  // 현재 선택된 카테고리 상태 관리 (기본값: 'ticket')
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('/ticket');
+  const [feeds, setFeeds] = useState([]);
   const listRef = useRef(null);
 
-  // 3. 피드 클릭 시 상세 페이지로 이동
+  const categoryMap = {
+    "/ticket": "1",
+    "/clothes": "2",
+    "/beauty": "3",
+    "/baby": "4",
+    "/book": "5",
+    "/sports": "6",
+    "/digit": "7"
+  };
+
+  const fetchFeeds = () => {
+    App.get("/api/community")
+      .then((res) => setFeeds(res.data))
+      .catch((err) => console.error("데이터 로딩 실패:", err));
+  };
+
+  useEffect(() => {
+    fetchFeeds();
+  }, []);
+
   const handleFeedClick = (feed) => {
-    navigate('/community/post', { state: { feedData: feed } });
+    console.log("클릭한 피드 데이터:", feed); // 데이터에 id가 들어오는지 확인용
+    if (feed.id) {
+      navigate(`/community/post/${feed.id}`); 
+    } else {
+      console.error("게시글 ID가 없습니다. 백엔드 쿼리의 'AS id'를 확인하세요.");
+    }
   };
 
   const commCatea = [
@@ -34,54 +60,16 @@ const Community = () => {
     { to: "/digit", label: "디지털기기", icon: <PiMonitor />, activeIcon: <PiMonitorFill /> }
   ];
 
-  // 임시 데이터
-  const allFeeds = [
-    { id: 1, category: "/ticket", img: "https://placehold.co/180", heart: 683, chat: 15 },
-    { id: 2, category: "/ticket", img: "https://placehold.co/180", heart: 683, chat: 15 },
-    { id: 3, category: "/ticket", img: "https://placehold.co/180", heart: 683, chat: 15 },
-    { id: 4, category: "/ticket", img: "https://placehold.co/180", heart: 683, chat: 15 },
-    { id: 5, category: "/ticket", img: "https://placehold.co/180", heart: 683, chat: 15 },
-
-    { id: 6, category: "/clothes", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 7, category: "/clothes", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 8, category: "/clothes", img: "https://placehold.co/180", heart: 351, chat: 10 },
-
-    { id: 9, category: "/beauty", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 10, category: "/beauty", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 11, category: "/beauty", img: "https://placehold.co/180", heart: 351, chat: 10 },
-
-    { id: 12, category: "/baby", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 13, category: "/baby", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 14, category: "/baby", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    
-    { id: 15, category: "/book", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 16, category: "/book", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 17, category: "/book", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    
-    { id: 18, category: "/sports", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 19, category: "/sports", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 20, category: "/sports", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    
-    { id: 21, category: "/digit", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 22, category: "/digit", img: "https://placehold.co/180", heart: 351, chat: 10 },
-    { id: 23, category: "/digit", img: "https://placehold.co/180", heart: 351, chat: 10 },
-  ];
-
-
-  // 선택된 카테고리에 맞는 데이터만 필터링
-  const filteredFeeds = allFeeds.filter(feed => feed.category === selectedCategory);
-  console.log("선택된 카테고리:", selectedCategory);
-  console.log("필터링된 데이터 개수:", filteredFeeds.length);
+  const filteredFeeds = feeds.filter(feed => String(feed.cate) === categoryMap[selectedCategory]);
+  
 
   return (
     <main className="communityContainer">
       <div className="commBaseLayout">
-        {/* 1. 추천 */}
         <section className="commRecSection">
-          <h2><span>OOO님</span>에게 추천드리는 커뮤니티</h2>
+          <h2><span style={{fontWeight:'bold'}}>사용자</span>님에게 추천드리는 커뮤니티</h2>
         </section>
         
-        {/* 2. 카테고리 메뉴 */}
         <nav className='commCateList'>
           {commCatea.map((item) => (
             <div 
@@ -100,11 +88,9 @@ const Community = () => {
         </nav>
       </div>
 
-      {/* 3. 이미지 피드 */}
       <section className="comFeedSection" ref={listRef}>
-        {/* ref={listRef}를 통해 나중에 스크롤 위치를 조절하거나 높이를 계산할 수 있도록 이름표를 달아둔 것 */}
         <ul className="comFeedWrap">
-          {filteredFeeds.map(feed => ( //데이터 매칭
+          {filteredFeeds.map(feed => (
             <li 
               key={feed.id} 
               className="comFeedItem" 
@@ -112,21 +98,27 @@ const Community = () => {
               style={{ cursor: 'pointer' }}
             >
               <div className="imgBox">
-                <img src={feed.img} alt={`피드 ${feed.id}`} />
+                <img 
+                  src={`${IMAGE_BASE_URL}${feed.image_url}`}
+                  alt={feed.title} 
+                />
+                
+                {/* 1. 더보기 아이콘 (상단 우측) */}
                 <div className="moreIcon">
                   <span><IoMdMore /></span>
                 </div>
+
+                {/* 2. 피드 정보 (하트 및 댓글 개수 - 하단) */}
                 <div className="feedInfo">
-                  <span><IoMdHeart /> {feed.heart}</span>
-                  <span><PiChatCircleTextFill /> {feed.chat}</span>
+                  {/* 하트와 댓글은 현재 DB에서 안 가져오므로 임시로 0 또는 feed 속성 연결 */}
+                  <span><IoMdHeart /> {feed.heart || 0}</span>
+                  <span><PiChatCircleTextFill /> {feed.chat || 0}</span>
                 </div>
               </div>
             </li>
-          ))}
+))}
         </ul>
       </section>
-
-      {/* 글쓰기 버튼 */}
       <WriteBtn />
     </main>
   );
