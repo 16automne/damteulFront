@@ -39,3 +39,23 @@
 		}
 	}
 }
+
+/* 게시자 정보(상단) 공통 스타일: 작은 레벨 아이콘 20x20 고정 */
+.postUser{
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	> img:first-of-type{
+		width: 50px; height: 50px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+	> img:last-of-type{
+		width: 20px; height: 20px;
+		margin-left: 0;
+		object-fit: contain;
+		display: block;
+		border-radius: 0;
+	}
+}

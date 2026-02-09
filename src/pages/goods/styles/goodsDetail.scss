@@ -26,8 +26,12 @@
 		border-radius: 50%;
 	}
 	img:last-of-type{
-		width: 20px; height: 20px;
-		margin-left: -5px;
+			width: 20px; height: 20px;
+			margin-left: 0;
+			object-fit: contain;
+			display: block;
+			flex-shrink: 0;
+			border-radius: 0;
 	}
 	.moreBtn{
 		width: 35px; height: 35px;

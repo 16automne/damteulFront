@@ -149,9 +149,13 @@ console.log('최종 주소 리스트:', goodsImages);
 
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
-          <img src={goods.profile ? `${imgBase}${goods.profile}` : 'https://placehold.co/100x100'} alt='사용자 프로필'/>
-          <p>{goods.user_nickname}</p>
-          <img src='https://placehold.co/100x100' alt='회원등급'/>
+				  <img src={goods.profile ? `${imgBase}${goods.profile}` : `${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='사용자 프로필' onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/defaultProfile.png`; }}/>
+				  <p>{goods.user_nickname}</p>
+				  <img
+					  src={goods.level_code ? `${process.env.PUBLIC_URL}/images/level0${goods.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+					  alt='회원등급'
+					  onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
+				  />
           <IoIosMore className='moreBtn'
           onClick={()=>{setIsOpen(!isOpen)}}/>
           {isOpen && 

@@ -4,6 +4,7 @@ import api from 'app/api/axios';
 import './styles/myProfile.css';
 import { CiCircleInfo } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { getUserId } from '../../components/getUserId/getUserId';
 
 
 function MyProfile(props) {
@@ -12,15 +13,21 @@ function MyProfile(props) {
 	
 	// profile.controllers에서 유저정보 가져오기
   useEffect(()=>{
+    const userId = getUserId();
     const getProfile =async()=>{
+      if(!userId) {
+        console.error('로그인 정보가 없습니다.');
+        return;
+      }
       try{
-        const res = await api.get('/api/profile/12'); //user_id변경필요
+        const res = await api.get(`/api/profile/${userId}`);
+        console.log('API 응답 데이터:', res.data);
         setUserData(res.data);
       }catch(err){
-        console.error(err);
+        console.error('프로필 조회 실패:', err);
       }
     }; getProfile();
-  },[]);
+  },[]);;
 
 	// 사용자 가입날짜 string 변경하기
 	const formatData = (dateString) => {
@@ -49,8 +56,12 @@ function MyProfile(props) {
             <img src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='사용자 이미지'/>
           </h3>
 					<div className='myProfileCheckAlign'>
-            <p>{userData.user_nickname}</p>
-            <img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용등급'/>
+								<p>{userData?.user_nickname}</p>
+								<img
+									src={userData?.level_code ? `${process.env.PUBLIC_URL}/images/level0${userData.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+									alt='사용등급'
+									onError={(e)=>{ e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
+								/>
 					</div>
 					<p>{formatData(userData.created_at)}</p>
 					<Link to='/myprofileedit' title='프로필 수정페이지로 이동'
@@ -61,8 +72,12 @@ function MyProfile(props) {
 					{/* 말풍선 영역 */}
 					<div></div>
 					<CiCircleInfo />
-					<img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용자 이미지'/>
-					<p>{userData.user_name}님은 <span>준비된 이웃</span> 입니다</p>
+					<img
+						src={userData?.level_code ? `${process.env.PUBLIC_URL}/images/level0${userData.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+						alt='사용자 이미지'
+						onError={(e)=>{ e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
+					/>
+					<p>{userData?.user_name}님은 <span>준비된 이웃</span> 입니다</p>
 				</div>
 				{/* 판매물품 영역 */}
 				<div className='myContainer mySell'>

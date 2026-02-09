@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import './styles/myProfileEdit.css';
 import { useNavigate } from 'react-router-dom';
 import api from 'app/api/axios';
+import { getUserId } from '../../components/getUserId/getUserId';
 
 function MyProfileEdit(props) {
 	const navigate = useNavigate();
@@ -15,29 +16,47 @@ function MyProfileEdit(props) {
 	
 	// profile.controllers에서 유저정보 가져오기
   useEffect(()=>{
+    const userId = getUserId();
     const getProfile =async()=>{
+      if(!userId) {
+        console.error('로그인 정보가 없습니다.');
+        return;
+      }
       try{
-        const res = await api.get('/api/profile/12'); //user_id변경필요
+        const res = await api.get(`/api/profile/${userId}`);
         setUserData(res.data);
+        console.log('프로필 데이터:', res.data);
       }catch(err){
-        console.error(err);
+        console.error('프로필 조회 실패:', err);
       }
     }; getProfile();
-  },[]);
+  },[])
+	
+	// 전화번호 포맷팅 함수
+	const formatPhoneNumber = (phone) => {
+		if (!phone) return '';
+		const phoneStr = String(phone).replace(/[^0-9]/g, '');
+		if (phoneStr.length === 11) {
+			return `${phoneStr.slice(0, 3)}-${phoneStr.slice(3, 7)}-${phoneStr.slice(7)}`;
+		}
+		return phoneStr;
+	};
 	
 	// 닉네임 변경 함수
 	const handleUpdateNickname = async () => {
+		const userId = getUserId();
 		if (!newNickname.trim()) return alert("닉네임을 입력해주세요.");
+		if (!userId) return alert("로그인 정보가 없습니다.");
 
 		try {
 			const response = await api.put("/api/profile/nickname", {
-				user_id: 12, // 현재 테스트 중인 ID
+				user_id: userId,
 				newNickname: newNickname,
 			});
 
 			if (response.status === 200) {
 				alert("닉네임이 성공적으로 변경되었습니다!");
-				// 변경 후 마이페이지로 이동하거나 상태 업데이트
+				navigate(-1);
 			}
 		} catch (err) {
 			console.error("닉네임 변경 실패:", err);
@@ -87,7 +106,7 @@ function MyProfileEdit(props) {
 						</div>
 						<div className='checkProfileItem'>
 						<dt>전화번호</dt>
-						<dd>{userData.user_phone}</dd>
+						<dd>{formatPhoneNumber(userData.user_phone)}</dd>
 						</div>
 						<div className='checkProfileItem'>
 						<dt>내 동네</dt>

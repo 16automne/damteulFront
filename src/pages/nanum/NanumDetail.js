@@ -4,6 +4,7 @@ import api from 'app/api/axios';
 import { API_ORIGIN } from 'app/api/apiOrigin';
 import { Link } from 'react-router-dom';
 import { IoIosMore } from 'react-icons/io';
+import { getUserId } from 'components/getUserId/getUserId';
 import { FaUser } from "react-icons/fa";
 import './styles/nanumDetail.css';
 
@@ -16,6 +17,7 @@ function NanumDetail(props) {
 
 		const {nanum_id} = useParams();
 		const [post, setPost] = useState(null);
+		const myUserId = Number(getUserId());
 
 		// 현재 게시글 나눔인지 이벤트인지 판단
 		const isEvent = post && post.event_id !== undefined;
@@ -71,6 +73,23 @@ function NanumDetail(props) {
 		} catch (err) {
 			console.error("응모 실패 : ", err);
 			alert("이미 응모했거나 응모 처리 중 오류가 발생했습니다.");
+		}
+	};
+
+	const handleDelete = async () => {
+		if (!window.confirm('정말로 이 게시글을 삭제하시겠습니까?')) return;
+		try {
+			const res = await api.delete(`/api/nanum/${nanum_id}`);
+			if (res.data?.ok || res.status === 200) {
+				alert('삭제되었습니다.');
+				window.location.href = '/';
+			} else {
+				console.error('삭제 실패 응답:', res.data);
+				alert('삭제에 실패했습니다.');
+			}
+		} catch (err) {
+			console.error('삭제 실패 : ', err);
+			alert('삭제 중 오류가 발생했습니다.');
 		}
 	};
 		//남은 시간 갱신
@@ -137,9 +156,13 @@ function NanumDetail(props) {
 			<section className='nanumDetail'>
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
-					<img src='https://placehold.co/100x100' alt='사용자 프로필'/>
+					<img src={post.profile ? `${imgBase}${post.profile}` : `${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='사용자 프로필' onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/defaultProfile.png`; }}/>
 					<p>{isEvent?'관리자':post.user_nickname}</p>
-					<img src='https://placehold.co/100x100' alt='회원등급'/>
+					<img
+						src={post.level_code ? `${process.env.PUBLIC_URL}/images/level0${post.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+						alt='회원등급'
+						onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
+					/>
 					<IoIosMore className='moreBtn'
 					onClick={()=>{setIsOpen(!isOpen)}}/>
 					{isOpen && 
@@ -199,8 +222,15 @@ function NanumDetail(props) {
 			</div>
 
 			<div className='bottomBtn nanumBtnCustom'>
-				<button onClick={handleApply}>응모하기</button>
-			</div>
+					{Number(myUserId) === Number(post.user_id) ? (
+						<>
+							<button onClick={handleDelete}>삭제하기</button>
+							<Link to={`/nanum/edit/${post.nanum_id}`}><button>수정하기</button></Link>
+						</>
+					) : (
+						<button onClick={handleApply}>응모하기</button>
+					)}
+					</div>
 		</section>
 	</main>
 	);

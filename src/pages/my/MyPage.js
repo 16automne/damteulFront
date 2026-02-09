@@ -46,7 +46,11 @@ const MyPage = () => {
           <Link to='/myprofile' title='내 프로필'>
             <div className='profileCheck'>
             <p>{userData?.user_nickname}</p>
-            <img src={`${process.env.PUBLIC_URL}/images/level02.png`} alt='사용등급'/>
+            <img
+              src={userData?.level_code ? `${process.env.PUBLIC_URL}/images/level0${userData.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+              alt='사용등급'
+              onError={(e)=>{ e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
+            />
             <FaAngleRight />
             </div>
           </Link>
