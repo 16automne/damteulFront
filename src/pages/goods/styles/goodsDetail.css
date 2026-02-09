@@ -68,7 +68,7 @@
   box-shadow: 0px -5px 15px -9px rgba(0, 0, 0, 0.25);
   padding-top: 10px;
 }
-.bottomBtn button:first-child {
+.bottomBtn button:first-child, .bottomBtn a:first-child {
   width: 48%;
   min-width: 170px;
   height: 50px;
@@ -83,7 +83,7 @@
   background-color: #6B6B6B;
   cursor: pointer;
 }
-.bottomBtn button:last-child {
+.bottomBtn button:last-child, .bottomBtn a:last-child {
   width: 48%;
   min-width: 170px;
   height: 50px;
@@ -335,9 +335,24 @@
   margin-top: 40px;
   margin-bottom: 100px;
 }
-.goodsDetail > .bottomBtn > button:first-child {
+.goodsDetail > .bottomBtn > a:first-child {
   background: #EEC75E;
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
+}
+.goodsDetail > .bottomBtn > a:first-child.disabled {
+  background: #6B6B6B !important;
+}
+.goodsDetail > .bottomBtn > a:last-child {
+  background: #E06868;
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
+}
+.goodsDetail > .bottomBtn > button:first-child {
+  background: #E06868;
 }
 .goodsDetail > .bottomBtn > button:last-child {
-  background: #E06868;
+  background: #82BC62;
 }/*# sourceMappingURL=goodsDetail.css.map */

@@ -1,46 +1,49 @@
 // src/components/admin/TradeDetailPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../admin/styles/TradeDetailPage.module.css';
-import { sampleTransactions } from './data/sampleTransactions';
+import api from "app/api/axios";
+import { handleDelete } from "./delete/handleDelete";
 
 const TradeDetailPage = () => {
     const { id } = useParams();
-    const trade = sampleTransactions.find(item => item.id === Number(id));
 
+    const [trade, setTrade] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const getTradeDetail = async () => {
+        try {
+            setLoading(true);
+            setError("");
     
+            const { data } = await api.get(`/api/admin/trades/${id}`);
+    
+            if (!data?.success) {
+            setError(data?.message || "거래 정보를 불러오지 못했습니다.");
+            setTrade(null);
+            return;
+            }
+    
+            setTrade(data.trade);
+        } catch (err) {
+            console.error(err);
+            setError(err?.response?.data?.message || err?.message || "서버 오류 발생");
+        } finally {
+            setLoading(false);
+        }
+        };
+    
+        if (id) getTradeDetail();
+    }, [id]);
 
-    // 🔹 게시글 숨김/보이기 상태
-    const [showArticle, setShowArticle] = useState(true);
-
-    // 🔹 거래 상태 (변경 불가)
-    const status = trade.completed;
-
-
-    if (!trade) {
+    if (!id) {
         return <div className={styles.pageWrapper}>거래 정보를 찾을 수 없습니다.</div>;
     }
-
-
-
-// 🔹 저장 버튼 클릭 시 실행될 함수
-const handleUpdateStatus = () => {
-    // 1. selectedStatus 대신 실제 데이터인 status(trade.completed)를 사용하거나,
-    // 2. 현재 화면의 설정값(showArticle 등)을 확인하도록 수정합니다.
-    console.log('저장 시도: ', {
-        거래ID: trade.id,
-        거래상태: status, // trade.completed 값
-        게시글표시: showArticle
-    });
-    
-    alert('설정이 저장되었습니다.');
-};
-
-    const handleDeleteReport = () => {
-        console.log('게시글 표시 여부:', showArticle);
-        // TODO: API 호출하여 게시글 숨김/보이기 적용
-    };
-
+    if (loading) return <div className={styles.pageWrapper}>로딩중...</div>;
+    if (error) return <div className={styles.pageWrapper}>{error}</div>;
+    if (!trade) return <div className={styles.pageWrapper}>거래정보를 찾을 수 없습니다.</div>;
     return (
         <div className={styles.pageWrapper}>
             <div className={styles.wrapper}>
@@ -62,27 +65,7 @@ const handleUpdateStatus = () => {
 
                     <div className={styles.formGroup}>
                         <label>설명</label>
-                        <textarea value={trade.description} readOnly />
-                    </div>
-
-                    {/* 이미지 */}
-                    <div className={styles.formGroup}>
-                        <label>이미지</label>
-                        <div className={styles.imageGrid}>
-                            {trade.images.map((img, idx) => (
-                                <img
-                                    key={idx}
-                                    src={img}
-                                    alt={`상품 이미지 ${idx + 1}`}
-                                    style={{
-                                        width: '150px',
-                                        height: '100px',
-                                        objectFit: 'cover',
-                                        borderRadius: '8px',
-                                    }}
-                                />
-                            ))}
-                        </div>
+                        <textarea value={trade.content} readOnly />
                     </div>
 
                     {/* 거래 정보 */}
@@ -100,57 +83,25 @@ const handleUpdateStatus = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label>거래 일시</label>
-                        <input type="text" value={trade.date} readOnly />
+                        <input type="text" value={trade.created_at} readOnly />
                     </div>
                     <div className={styles.formGroup}>
                         <label>거래 금액</label>
                         <input type="text" value={`${trade.price.toLocaleString()}원`} readOnly />
-                    </div>
-
-                    {/* 거래 상태 (변경 불가) */}
-                    <div className={styles.formGroup}>
-                        <label>거래 상태</label>
-                        <section className={styles.formSection}>
-                            <span
-                                className={`${styles.statusBadge} ${status === '완료'
-                                    ? styles.승인
-                                    : status === '거래중'
-                                        ? styles.보류
-                                        : styles.반려
-                                    }`}
-                            >
-                                {status}
-                            </span>
-                        </section>
-                    </div>
-
-                    {/* 게시글 숨김/보이기 선택 */}
-                    <div className={styles.formGroup}>
-                        <label>게시글 표시 여부</label>
-                        <div className={styles.formSection}>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    type="checkbox"
-                                    checked={showArticle}
-                                    onChange={(e) => setShowArticle(e.target.checked)}
-                                />
-                                표시
-                            </label>
-                        </div>
                     </div>
                 </div>
 
                 {/* 하단 버튼 */}
                 <div className={styles.actionButtons}>
 
-                <button
+                    <button
                         className={styles.primary}
-                        onClick={() => handleUpdateStatus()}
+                        onClick={() => {window.close();}}
                     >
-                        저장
+                        확인
                     </button>
 
-                    <button className={styles.danger} onClick={handleDeleteReport}>
+                    <button className={styles.danger} onClick={()=>handleDelete(Number(id), '거래정보를', setError, 'trades')}>
                         삭제
                     </button>
                 </div>

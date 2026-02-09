@@ -1,20 +1,103 @@
 // src/components/admin/NoticeEventAdminPage.js
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { sampleEvents } from './data/sampleEvents';
-import { sampleNotices } from './data/sampleNotices';
 import { IoSettingsOutline } from "react-icons/io5";
 import styles from '../admin/styles/NoticeEventAdminPage.module.css'; // 모듈 import
-
+import api from "app/api/axios";
 const NoticeEventAdminPage = () => {
+  const [tableData, setTableData] = useState({
+    notice: null,
+    event: null
+  });
+  const [error, setError] = useState({
+    notice: '',
+    event: ''
+  });
+  
   const location = useLocation();
 
-  /* ==========================
-     🔹 탭 상태
-  ========================== */
+
+  // 탭 상태
+
   const [activeTab, setActiveTab] = useState(
     location.state?.activeTab === '공지사항' ? 'notice' : 'event'
   );
+
+  const TAB_API = useMemo(
+    () => ({
+      event: "/api/admin/events",   // ✅ 여기 수정 가능
+      notice: "/api/admin/notices", // ✅ 여기 수정 가능
+    }),
+    []
+  );
+
+  const fetchTable = useCallback(async (tab, { force = false } = {}) => {
+      if (!tab) return;
+
+      // ✅ 이미 데이터가 있고 강제 재조회 아니면 스킵(캐싱)
+      if (!force && Array.isArray(tableData[tab])) return;
+
+
+    try {
+      setError((prev) => ({ ...prev, [tab]: "" }));
+
+      const url = TAB_API[tab];
+
+      const { data } = await api.get(url);
+
+      if (!data?.success) {
+        setError((prev) => ({
+          ...prev,
+          [tab]: data?.message || "데이터 조회 실패",
+        }));
+        setTableData((prev) => ({ ...prev, [tab]: [] }));
+        return;
+      }
+      
+      const list =
+        tab === "event"
+          ? (data?.events ?? [])
+          : (data?.notices ?? []);
+
+        setTableData((prev) => ({
+          ...prev,
+          [tab]: Array.isArray(list) ? list : [],
+        }));
+
+      } catch (err) {
+        console.error(err);
+        setError((prev) => ({
+          ...prev,
+          [tab]:
+            err?.response?.data?.message ||
+            err?.message ||
+            "데이터를 불러오지 못했어요.",
+        }));
+        setTableData((prev) => ({ ...prev, [tab]: [] }));
+      }
+    },
+    [TAB_API, tableData]
+  );
+
+  // ✅ activeTab 바뀔 때마다 해당 탭 데이터 불러오기
+  useEffect(() => {
+    fetchTable(activeTab);
+  }, [activeTab, fetchTable]);
+
+  // ✅ 상세(새창)에서 오는 "삭제완료" 메시지 받으면 현재 탭만 강제 재조회
+  useEffect(() => {
+    const onMessage = (event) => {
+      if (event.origin !== window.location.origin) return;
+
+      if (event.data?.type === "DELETED" || event.data?.type === "UPDATED") {
+        fetchTable(activeTab, { force: true });
+      }
+    };
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [activeTab, fetchTable]);
+
 
   /* ==========================
      🔹 검색 입력 상태 (UI)
@@ -59,15 +142,12 @@ const NoticeEventAdminPage = () => {
 
 
   /* ==========================
-     4️⃣ 현재 탭 데이터 선택
+    4️⃣ 현재 탭 데이터 선택
   ========================== */
-  const data =
-    activeTab === 'event'
-      ? [...sampleEvents].sort((a, b) => b.id - a.id)
-      : [...sampleNotices].sort((a, b) => b.id - a.id);
+  const data = Array.isArray(tableData[activeTab]) ? tableData[activeTab] : [];
 
   /* ==========================
-     5️⃣ 필터링
+    5️⃣ 필터링
   ========================== */
   const filteredData = data.filter((item) => {
     const matchKeyword = keyword ? item.title.includes(keyword) : true;
@@ -131,13 +211,15 @@ const NoticeEventAdminPage = () => {
             onChange={(e) => setInputKeyword(e.target.value)}
           />
         </div>
-
+        {
+          activeTab === 'event' &&
         <select value={inputStatus} onChange={(e) => setInputStatus(e.target.value)}>
           <option value="">전체 상태</option>
           <option value="진행중">진행중</option>
+          <option value="예정">예정</option>
           <option value="종료">종료</option>
         </select>
-
+        }
         <button onClick={handleSearch}>검색</button>
         <button
           onClick={() => {
@@ -173,15 +255,20 @@ const NoticeEventAdminPage = () => {
             <th>ID</th>
             <th>제목</th>
             <th>{activeTab === 'event' ? '시작일' : '게시일'}</th>
-            <th>종료일</th>
-            <th>상태</th>
+            {
+              activeTab === 'event' &&
+              <>
+              <th>종료일</th>
+              <th>상태</th>
+              </>
+            }
             <th>관리</th>
           </tr>
         </thead>
         <tbody>
           {currentData.length === 0 ? (
             <tr>
-              <td colSpan="6">데이터가 없습니다.</td>
+              <td colSpan={activeTab === 'event'?'6':'4'}>데이터가 없습니다.</td>
             </tr>
           ) : (
             currentData.map((item) => (
@@ -189,23 +276,24 @@ const NoticeEventAdminPage = () => {
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>{activeTab === 'event' ? item.startDate : item.postDate}</td>
-                <td>{item.endDate}</td>
-
-                {/* <span
-                    className={`${styles.statusBadge} ${item.status === '진행중' ? 'new' : 'used'
-                      }`}
-                  >
-                    {item.status}
-                  </span> */}
-                <td>
-                  <span
-                    className={`${styles.statusBadge} ${item.status === '진행중' ? styles.new : styles.used
-                      }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-
+                {
+                  activeTab === 'event' &&
+                <>
+                  <td>{item.endDate}</td>
+                  <td>
+                    <span
+                      className={`${styles.statusBadge} 
+                      ${item.status === '진행중' ? styles.start
+                        : item.status === '예정' ? styles.new
+                        : styles.end
+                        }`}
+                    >
+                      {item.status}
+                      {/* 진행중 */}
+                    </span>
+                  </td>
+                </>
+                }
 
                 <td>
                   <button
@@ -214,8 +302,8 @@ const NoticeEventAdminPage = () => {
                       e.stopPropagation();
                       window.open(
                         activeTab === 'event'
-                          ? `/admin/event/detail/${item.id}`
-                          : `/admin/notice/detail/${item.id}`,
+                          ? `/admin/${activeTab}/detail/${item.id}`
+                          : `/admin/${activeTab}/detail/${item.id}`,
                         '_blank',
                         'width=1000,height=800'
                       );

@@ -8,10 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
   // 모바일 전체 화면 높이 대응
   height: 100dvh; 
-  
+  &.fadeOut{opacity: 0;}
   .logo_container {
 
       img {

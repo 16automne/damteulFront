@@ -201,11 +201,26 @@
 	margin-top: 40px;
 	margin-bottom: 100px;
   // 하단 버튼서식
-	>.bottomBtn>button:first-child{
+	>.bottomBtn>a:first-child{
 		background: $colorEtcYellow;
+		display: inline-block;
+		line-height: 50px;
+		text-align: center;
+		&.disabled{
+			background: $colorMdGray !important;
+		}
+	}
+	>.bottomBtn>a:last-child{
+		background: $colorEtcRed;
+		display: inline-block;
+		line-height: 50px;
+		text-align: center;
+	}
+	>.bottomBtn>button:first-child{
+		background: $colorEtcRed;
 	}
 	>.bottomBtn>button:last-child{
-		background: $colorEtcRed;
+		background: $colorEtcLgGreen;
 	}
 }
 	

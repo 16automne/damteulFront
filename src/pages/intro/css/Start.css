@@ -9,6 +9,9 @@
   align-items: center;
   height: 100dvh;
 }
+.splashScreen.fadeOut {
+  opacity: 0;
+}
 .splashScreen .logo_container img {
   width: 250px;
   height: auto;

@@ -1,27 +1,15 @@
 import React, {useState} from 'react';
 import './styles/goodsTrade.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from 'app/api/axios';
+import { getUserId } from 'components/getUserId/getUserId';
+import { FaPlus } from "react-icons/fa";
+
 
 // 서버에 전송할 함수
-const createPost = async(formData, file) =>{
-	// 로그인 들어오면 주석풀기
-	// const token = localStorage.getItem('userToken');
-	// 이미지는 file로 따로 전송
-	const data = new FormData();
+const createPost = async(data) =>{
 
-	// 일반 텍스트 데이터 추가
-	Object.keys(formData).forEach(key =>{
-		data.append(key, formData[key]);
-	});
-
-	// 이미지 파일 데이터 추가
-	if(file && file.length>0){
-		file.forEach(f =>{
-			data.append('fileUpload',f);
-		})
-	}
-	const response = await axios.post('http://localhost:9070/api/goods',data,{
+	const response = await api.post('/api/goods',data,{
 		headers:{'Content-Type':'multipart/form-data'}
 	});
 	return response.data;
@@ -60,20 +48,42 @@ function GoodsTrade(props) {
 	};
 
 	// 폼 제출 시 실행될 함수
-	const handleSubmit = async(e)=>{
-		e.preventDefault();
+	const handleSubmit = async (e) => {
+  e.preventDefault();
 
-		// 유저 ID가져오기
-		const storeUserId = localStorage.getItem('user_id')
-		try{
-			// API 전송(JSON형태로)
-			const result = await createPost({
-				...formData,
-				user_id:storeUserId //ID 전송
-			}, file);
-			alert('글이 정상적으로 등록되었습니다.');
-			navigate(`/goodsdetail/${result.id}`);// 성공 시 상세 페이지로
-		}catch(error){
+  try {
+    const data = new FormData();
+    const userId = getUserId();
+
+    // 1. 기존 입력값들 넣기
+    Object.keys(formData).forEach((key) => {
+      // user_id는 여기서 처리하지 않고 건너뜀 (아래에서 명시적으로 넣기 위함)
+      if (key === 'user_id') return; 
+
+      if (key === 'category_id' || key === 'price') {
+        data.append(key, Number(formData[key]));
+      } else {
+        data.append(key, formData[key]);
+      }
+    });
+
+    // 2. 유저 ID 넣기 (중복 방지를 위해 위에서 제외하고 여기서 한 번만 넣음)
+    data.append('user_id', userId);
+
+    // 3. 파일 넣기
+    if (file && file.length > 0) {
+      file.forEach((f) => data.append('fileUpload', f));
+    }
+
+    // 4. 서버 전송
+    const result = await createPost(data);
+
+    if (result.ok) {
+      alert('글이 정상적으로 등록되었습니다.');
+      navigate(`/goodsdetail/${result.id}`);
+    }
+		} catch (error) {
+			console.error(error);
 			alert('등록에 실패했습니다.');
 		}
 	};
@@ -95,6 +105,9 @@ function GoodsTrade(props) {
 						<option value='2'>의류</option>
 						<option value='3'>뷰티/미용</option>
 						<option value='4'>유아용품</option>
+						<option value='5'>도서</option>
+						<option value='6'>스포츠레저</option>
+						<option value='7'>디지털기기</option>
 					</select>
 				</p>
 				<p>
@@ -133,19 +146,52 @@ function GoodsTrade(props) {
 					>
 					</textarea>
 				</p>
-				<label className='fileWrapper' 
-				htmlFor='fileUpload'>
-					<input 
-					type='file'
-					id='fileUpload'
-					name='fileUpload'
-					onChange={handleFileChange}
-					className='file'
-					multiple
-					/>
-						<img src='https://placehold.co/30x30' alt=''/>
-						n/10
-				</label>
+
+		{/* 이미지 선택 버튼과 미리보기 영역 */}
+		{/* 이미지 업로드 및 미리보기 영역 */}
+		<div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+  	{/* 업로드 버튼 */}
+		<label className='fileWrapper' htmlFor='fileUpload'>
+			<input 
+				type='file'
+				id='fileUpload'
+				name='fileUpload'
+				onChange={handleFileChange}
+				className='file'
+				multiple
+				accept="image/*"
+			/>
+			<FaPlus />
+    	{file.length}/10
+  	</label>
+
+  {/* 미리보기 리스트 */}
+  <div className="previewWrapper">
+    {file.map((f, index) => (
+      <div key={index} className="previewItem" style={{ position: 'relative' }}>
+        <img 
+          src={URL.createObjectURL(f)} 
+          alt={`preview-${index}`} 
+          style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} 
+        />
+        {/* 삭제 버튼: 필요하면 유지, 아니면 삭제 가능 */}
+        <button 
+          type="button"
+          onClick={() => setFile(file.filter((_, i) => i !== index))}
+          style={{ 
+            position: 'absolute', top: '-5px', right: '-5px', 
+            background: '#ff4d4f', color: '#fff', border: 'none', 
+            borderRadius: '50%', width: '18px', height: '18px', 
+            fontSize: '12px', cursor: 'pointer', display: 'flex',
+            justifyContent: 'center', alignItems: 'center'
+          }}
+        >
+          ✕
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
 				<p>
 					<label htmlFor='condition_type'>제품 상태</label>
 					<select className='inputForm'

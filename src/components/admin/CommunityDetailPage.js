@@ -2,44 +2,48 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../admin/styles/CommunityDetailPage.module.scss';
-import { sampleCommunityPosts } from './data/sampleCommunityPosts';
+
+import api from "app/api/axios";
+// 삭제 로직
+import { handleDelete } from "./delete/handleDelete";
 
 const CommunityDetailPage = () => {
     const { id } = useParams();
+    const [community, setCommunity] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    // 🔹 샘플 데이터 찾기
-    const post = sampleCommunityPosts.find(p => p.id === Number(id));
-
-    // 🔹 상태값 초기화 (Hooks는 항상 최상위에서 호출)
-    const [category, setCategory] = useState(post ? post.category : '');
-    const [title, setTitle] = useState(post ? post.title : '');
-    const [description, setDescription] = useState(post ? post.description : '');
-    const [date, setDate] = useState(post ? post.date : '');
-    const [status, setStatus] = useState(post ? post.status : '');
-
-    // 🔹 post가 바뀌면 상태 업데이트
+          // 서버에서 유저 상세 불러오기
     useEffect(() => {
-        if (post) {
-            setCategory(post.category);
-            setTitle(post.title);
-            setDescription(post.description);
-            setDate(post.date);
-            setStatus(post.status);
+        const getCommunityDetail = async () => {
+        try {
+            setLoading(true);
+            setError("");
+
+            const { data } = await api.get(`/api/admin/community/${id}`);
+
+            if (!data?.success) {
+                setError(data?.message || "게시판 정보를 불러오지 못했습니다.");
+                setCommunity(null);
+                return;
+            }
+
+            setCommunity(data.community);
+        } catch (err) {
+            console.error(err);
+            setError(err?.response?.data?.message || err?.message || "서버 오류 발생");
+        } finally {
+            setLoading(false);
         }
-    }, [post]);
+        };
 
-    if (!post) return <div>게시글을 찾을 수 없습니다.</div>;
+        if (id) getCommunityDetail();
+    }, [id]);
 
-    // 🔹 저장 버튼 클릭
-    const handleDelete = () => {
-        alert(`샘플 데이터 시뮬레이션:
-ID: ${post.id}
-카테고리: ${category}
-제목: ${title}
-내용: ${description}
-모임 날짜: ${date}
-상태: ${status}`);
-    };
+
+    if (loading) return <div className={styles.pageWrapper}>로딩중...</div>;
+    if (error) return <div className={styles.pageWrapper}>{error}</div>;
+    if (!community) return <div>게시글을 찾을 수 없습니다.</div>;
 
     return (
         <div className={styles.pageWrapper}>
@@ -48,7 +52,7 @@ ID: ${post.id}
                 <div className={styles.adminHeader}>
                     <h2 className={styles.adminTitle}>커뮤니티 상세 정보</h2>
                     <span className={styles.adminDesc}>
-                        커뮤니티 게시글 ID #{post.id} 상세 정보
+                        커뮤니티 게시글 ID #{id} 상세 정보
                     </span>
                 </div>
 
@@ -57,42 +61,41 @@ ID: ${post.id}
                     {/* 카테고리 */}
                     <div className={styles.inputGroup}>
                         <label>카테고리</label>
-                        <input value={category} onChange={(e) => setCategory(e.target.value)} readOnly />
+                        <input value={community.category} readOnly />
                     </div>
 
                     {/* 제목 */}
                     <div className={styles.inputGroup}>
                         <label>제목</label>
-                        <input value={title} onChange={(e) => setTitle(e.target.value)} readOnly />
+                        <input value={community.title} readOnly />
+                    </div>
+
+                    {/* 작성자 */}
+                    <div className={styles.inputGroup}>
+                        <label>작성자</label>
+                        <input value={community.author} readOnly />
                     </div>
 
                     {/* 내용 */}
                     <div className={styles.inputGroup}>
                         <label>내용</label>
                         <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)} readOnly
+                            value={community.content}
+                            readOnly
                             rows={6}
                         />
                     </div>
 
                     {/* 모임 날짜 */}
                     <div className={styles.inputGroup}>
-                        <label>모임 날짜</label>
-                        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} disabled />
+                        <label>작성일</label>
+                        <input type="text" value={community.created_at} readOnly />
                     </div>
 
-                    {/* 상태 */}
-                    <div className={styles.statusWrapper}>
-                        <strong>상태:</strong>
-                        <span className={`${styles.statusBadge} ${status === '진행중' ? styles.new : styles.end}`}>
-                            {status}
-                        </span>
-                    </div>
 
                     {/* 저장 버튼 */}
                     <div className={styles.actionButtons}>
-                        <button className={styles.danger} onClick={handleDelete}>
+                        <button className={styles.danger} onClick={()=>handleDelete(Number(id), '게시물을' ,setError, 'community')}>
                             삭제
                         </button>
                     </div>

@@ -1,52 +1,72 @@
 import GoodsList from 'components/GoodsList/GoodsList';
+import SearchBar from 'components/SearchBar/SearchBar';
 import WriteBtn from 'components/writeBtn/WriteBtn';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import api from 'app/api/axios';
 
 const Nanum = () => {
 
-  // 확인용 더미데이터 추후삭제예정
-  const dummyData = [
-  {
-    id: 1,
-    path: "/nanumdetail",
-    title: "한정판 피규어",
-    status: "진행중",
-    timer: "02:15:30"
-  },
-  {
-    id: 2,
-    path: "/nanumdetail",
-    title: "미개봉 나눔 이벤트",
-    status: "종료임박",
-    timer: "00:45:12"
-  },
-  {
-    id: 3,
-    path: "/nanumdetail",
-    title: "중고 노트북",
-    status: "진행중",
-    timer: "11:20:05"
-  }
-];
 
-  const [filter, setFilter] = useState('nanum');
+
+    // DB데이터 상태변수
+    const [list, setList] = useState([]);
+    // 나눔/이벤트 상태변수
+    const [filter, setFilter] = useState('nanum');
+  
+    // 서버에서 데이터 가져오기
+    useEffect(()=>{
+      const fetchData = async()=>{
+        try{
+          // filter값으로 나눔 or 이벤트 구분
+          const url = filter ==='nanum'
+          ?'/api/nanum'
+          :'/api/event';
+          const res = await api.get(url);
+          console.log(`${filter}데이터: `,res.data)
+          setList(res.data);
+        }catch(err){
+          console.error("목록 로드 실패 : ", err);
+          setList([]);
+        }
+      };
+      fetchData();
+    },[filter]);
+
+    // 타이머 설정
+    const getRemainingTime = (endTime) =>{
+      const remain = new Date(endTime) - new Date();
+      if (remain <= 0) return "종료됨";
+
+      const hours = Math.floor(remain / (1000*60*60));
+      const minutes = Math.floor((remain % (1000*60*60)) / (1000*60));
+      return `${hours}시간 ${minutes}분 남음`;
+    }
 
   return (
     <main>
       <section style={{marginTop:'60px', marginBottom:'80px'}}>
+        <SearchBar/>
           <div className='btnContainer'>
 						<button className={filter === 'nanum'?'btnActive':''}
-            onClick={()=>setFilter('nanum')}>나눔</button>
+            onClick={()=>{setList([]);setFilter('nanum');}}>나눔</button>
 						<button className={filter === 'event'?'btnActive':''}
-            onClick={()=>setFilter('event')}>이벤트</button>
+            onClick={()=>{setList([]);setFilter('event');}}>이벤트</button>
 					</div>
-          {dummyData.map((item)=>(
-            <GoodsList key={item.id}
-            linkTo={item.path}
-            title={item.title}
-            status={item.status}
-            timer={item.timer}/>
-          ))}
+          {list && list.length > 0 ? (
+          list.map((item) => (
+            <GoodsList
+              key={`${filter}-${filter === 'nanum' ? item.nanum_id : item.event_id}`}
+              linkTo={filter === 'nanum'
+                ? `/nanumdetail/${item.nanum_id}`
+                : `/eventdetail/${item.event_id}`} // 이벤트 상세 경로 분리 권장
+              title={item.title}
+              status={filter === 'nanum' ? '무료나눔' : '이벤트'}
+              timer={filter === 'nanum' ? getRemainingTime(item.end_nanum) : ""}
+            />
+          ))
+        ) : (
+          <p style={{ textAlign: 'center', marginTop: '20px' }}>등록된 글이 없습니다.</p>
+        )}
           <WriteBtn />
       </section>
     </main>

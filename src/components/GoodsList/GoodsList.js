@@ -9,7 +9,7 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 
 
 
-function GoodsList({linkTo, title, status, price,timer, soldout }) {
+function GoodsList({linkTo, title, status, price,timer, soldout,likeCount }) {
 	return (
 		<div>
 			<Link 
@@ -41,7 +41,7 @@ function GoodsList({linkTo, title, status, price,timer, soldout }) {
 								{/* 좋아요 / 댓글 */}
 								<div className='goodsReaction'>
 									<p><FaRegComment /><span>n</span></p>
-									<p><FaRegHeart /><span>n</span></p>
+									<p><FaRegHeart /><span>{likeCount || 0}</span></p>
 								</div>
 							</div>
 						</Link>

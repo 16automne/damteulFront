@@ -1,6 +1,14 @@
 @use '../../../styles/__config' as *;
 @use '../../../styles/__config2' as *;
 .bodyChild{position: relative;}
+.authPageHeaderStyle{
+  height: 80px;
+  h2{
+    @include fontHead01;
+    text-align: center;
+    line-height: 80px;
+  }
+}
 main{
   width: 100%;
 }
@@ -20,10 +28,15 @@ main{
       }
     }
     .formButtonWrapper{
+      background-color: $colorLgGray;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       position: absolute;
-      bottom: 70px;
+      padding-bottom: 15px;
+      bottom: 0px;
+      padding: 0 30px;
+      transform: translateX(-30px);
       align-items: center;
       height: 70px;
       width: 100%;

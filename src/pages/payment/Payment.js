@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useLocation } from 'react-router-dom';
 import './styles/payment.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +8,14 @@ const Payment = () => {
 
   const [payment, setPayment] = useState(false);
   const navigate = useNavigate();
+
+  const location = useLocation();
+  // GoodsDetail에서 state값으로 goods보냄
+  const goods = location.state?.goods;
+
+  if(!goods){
+    return <p>결제할 상품 정보가 없습니다.</p>
+  }
 
   return (
     <main>
@@ -28,8 +37,8 @@ const Payment = () => {
           <div className='productOrderForm'>
             <img src='https://placehold.co/600x400' alt='주문상품 이미지'/>
             <div>
-              <p>스트라이프 셔츠</p>
-              <span>23,000원</span>
+              <p>{goods.title}</p>
+              <span>{goods.price.toLocaleString()}원</span>
             </div>
           </div>
         </div>
@@ -81,7 +90,7 @@ const Payment = () => {
           <h3>결제금액</h3>
           <p>
             <span>상품금액</span>
-            <span>23,000원</span>
+            <span>{goods.price.toLocaleString()}원</span>
           </p>
           <p>
             <span>배송비</span>
@@ -90,7 +99,7 @@ const Payment = () => {
           <hr />
           <p>
             <span>총 결제 금액</span>
-            <span>27,000원</span>
+            <span>{(goods.price+4000).toLocaleString()}원</span>
           </p>
           <p>
             <span>주문 내용을 확인했으며 결제에 동의합니다.</span>

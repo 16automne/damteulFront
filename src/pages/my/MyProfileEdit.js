@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useEffect } from 'react';
 import './styles/myProfileEdit.css';
 import { useNavigate } from 'react-router-dom';
+import api from 'app/api/axios';
 
 function MyProfileEdit(props) {
 	const navigate = useNavigate();
@@ -8,6 +10,40 @@ function MyProfileEdit(props) {
 		e.preventDefault();
 		navigate(-1);
 	}
+  const [userData, setUserData] = useState({});
+	const [newNickname, setNewNickname] = useState("");
+	
+	// profile.controllers에서 유저정보 가져오기
+  useEffect(()=>{
+    const getProfile =async()=>{
+      try{
+        const res = await api.get('/api/profile/12'); //user_id변경필요
+        setUserData(res.data);
+      }catch(err){
+        console.error(err);
+      }
+    }; getProfile();
+  },[]);
+	
+	// 닉네임 변경 함수
+	const handleUpdateNickname = async () => {
+		if (!newNickname.trim()) return alert("닉네임을 입력해주세요.");
+
+		try {
+			const response = await api.put("/api/profile/nickname", {
+				user_id: 12, // 현재 테스트 중인 ID
+				newNickname: newNickname,
+			});
+
+			if (response.status === 200) {
+				alert("닉네임이 성공적으로 변경되었습니다!");
+				// 변경 후 마이페이지로 이동하거나 상태 업데이트
+			}
+		} catch (err) {
+			console.error("닉네임 변경 실패:", err);
+			alert("이미 존재하는 닉네임이거나 바꿀 수 없습니다.");
+		}
+	};
 	return (
 		<main>
 			<form className='myProfileEdit'
@@ -28,6 +64,8 @@ function MyProfileEdit(props) {
 					placeholder='사용할 닉네임을 입력해주세요'
 					id='username'
 					className='inputForm'
+					value={newNickname}
+					onChange={(e)=> setNewNickname(e.target.value)}
 					required/>
 				</p>
 				
@@ -45,19 +83,20 @@ function MyProfileEdit(props) {
 					<dl>
 						<div className='checkProfileItem'>
 						<dt>이름</dt>
-						<dd>김담뜰</dd>
+						<dd>{userData.user_name}</dd>
 						</div>
 						<div className='checkProfileItem'>
 						<dt>전화번호</dt>
-						<dd>010-1234-5678</dd>
+						<dd>{userData.user_phone}</dd>
 						</div>
 						<div className='checkProfileItem'>
 						<dt>내 동네</dt>
-						<dd>서울시 종로구</dd>
+						<dd>{userData.address}</dd>
 						</div>
 					</dl>
 				</div>
-				<button type='submit'>변경 완료</button>
+				<button type='submit'
+				onClick={handleUpdateNickname}>변경 완료</button>
 			</form>
 		</main>
 	);

@@ -30,7 +30,7 @@ const UserAdminPage = () => {
       setError(
         err?.response?.data?.message ||
         err?.message ||
-        "대시보드 데이터를 불러오지 못했어요."
+        "유저 데이터를 불러오지 못했어요."
       );
       setUsers([]);
     }
