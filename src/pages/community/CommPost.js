@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import App from 'app/api/axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import { getUserId } from 'components/getUserId/getUserId';
 
 import { IoIosMore } from 'react-icons/io'; 
 import { AiFillTag } from "react-icons/ai";
@@ -26,8 +27,6 @@ const gradeIcons = {
 const CommPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // 이미지 서버 절대 경로 (백엔드 9070 포트)
   const IMAGE_BASE_URL = "http://localhost:9070/uploads/community/";
 
   const [detail, setDetail] = useState(null);
@@ -40,20 +39,12 @@ const CommPost = () => {
   const fetchPostDetail = () => {
     App.get(`/api/community/${id}`)
       .then(res => {
-        console.log("서버 응답 데이터:", res.data); // 👈 1. 데이터가 오는지 확인
+        // 백엔드 commDetail 응답: { post: {...}, images: [...] }
         if (res.data && res.data.post) {
           setDetail(res.data);
-          setLikeCount(res.data.post.heart || 0);
-        } else {
-          console.error("데이터 구조 오류: res.data.post가 없습니다.");
-          alert("게시글 데이터를 찾을 수 없습니다.");
-          navigate('/community');
         }
       })
-      .catch(err => {
-        console.error("API 호출 실패:", err); // 👈 2. 네트워크 에러 확인
-        navigate('/community');
-      });
+      .catch(() => navigate('/community'));
   };
     useEffect(() => {
     fetchPostDetail();
@@ -99,7 +90,7 @@ const CommPost = () => {
 
           <div className='imageSection'>
             <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
-              {images && images.map((img, idx) => (
+              {detail.images && images.map((img, idx) => (
                 <SwiperSlide key={img.image_id || idx}>
                   <div className="imgWrap">
                     <img 

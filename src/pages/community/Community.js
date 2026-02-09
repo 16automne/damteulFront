@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import App from 'app/api/axios';
 import './styles/community.css';
 import WriteBtn from '../../components/writeBtn/WriteBtn';
+import { getUserId } from 'components/getUserId/getUserId';
 
 import { HiOutlineTicket, HiTicket } from "react-icons/hi2";
 import { TbShirt, TbShirtFilled } from "react-icons/tb";
@@ -20,6 +21,7 @@ const Community = () => {
   const [selectedCategory, setSelectedCategory] = useState('/ticket');
   const [feeds, setFeeds] = useState([]);
   const listRef = useRef(null);
+  const userId = Number(getUserId());
 
   const categoryMap = {
     "/ticket": "1",
@@ -33,7 +35,7 @@ const Community = () => {
 
   const fetchFeeds = () => {
     App.get("/api/community")
-      .then((res) => setFeeds(res.data))
+      .then((res) => { setFeeds(res.data); })
       .catch((err) => console.error("데이터 로딩 실패:", err));
   };
 
