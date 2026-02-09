@@ -98,12 +98,11 @@ import CommunityDetailPage from "components/admin/CommunityDetailPage"; // 새 �
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
   {
-    // element: (
-    //   <RequireUserAuth>
-    //     <TabsLayout />
-    //   </RequireUserAuth>
-    // ),
-    element: <TabsLayout />,
+    element: (
+      <RequireUserAuth>
+        <TabsLayout />
+      </RequireUserAuth>
+    ),
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/community", element: <Community /> },
@@ -118,12 +117,11 @@ export const routes = [
 
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
   {
-    // element: (
-    //   <RequireUserAuth>
-    //     <NoTabsTitleLayout />
-    //   </RequireUserAuth>
-    // ),
-    element: <NoTabsTitleLayout />,
+    element: (
+      <RequireUserAuth>
+        <NoTabsTitleLayout />
+      </RequireUserAuth>
+    ),
     children: [
       { path: "/mypage/support", element: <Support /> },
       { path: "/mypage/support/faq", element: <Faq /> },
@@ -134,8 +132,8 @@ export const routes = [
       { path: "/mypage/setting", element: <Setting /> },
       { path: "/chat/start/:goods_id", element: <ChatStart /> },
       { path: "/chat/chatroom/:chat_id", element: <ChatRoom /> },
-      
-      
+
+
     ],
   },
 
@@ -147,22 +145,22 @@ export const routes = [
       </RequireUserAuth>
     ),
     children: [
-      {path:"/community/write", element: <CommWrite />},
-      {path:"/community/post/:id", element: <CommPost />},
-      {path:"/goodstrade", element: <GoodsTrade />},
-      {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
-      {path:"/nanumpost", element:<NanumPost />},
-      {path:"/nanumdetail/:nanum_id", element:<NanumDetail />},
-      {path:"/eventdetail/:id", element:<EventDetail/>},
-      {path:"/myprofileedit", element:<MyProfileEdit/>},
-      {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
-      {path:"/mypage/myhistory", element:<MyHistory/>},
-      {path:"/mypage/mywishlist", element:<MyWishlist/>},
-      {path:"/search", element:<SearchPage />},
-      {path:"/alarm", element:<Alarm/>},
-      {path:"/submitreport", element:<SubmitReport/>},
-      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
-      { path:"/payment/:goods_id", element:<Payment />}
+      { path: "/community/write", element: <CommWrite /> },
+      { path: "/community/post/:id", element: <CommPost /> },
+      { path: "/goodstrade", element: <GoodsTrade /> },
+      { path: "/goodsdetail/:goods_id", element: <GoodsDetail /> },
+      { path: "/nanumpost", element: <NanumPost /> },
+      { path: "/nanumdetail/:nanum_id", element: <NanumDetail /> },
+      { path: "/eventdetail/:id", element: <EventDetail /> },
+      { path: "/myprofileedit", element: <MyProfileEdit /> },
+      { path: '/mypage/mybuynsell', element: <MyBuynSell /> },
+      { path: "/mypage/myhistory", element: <MyHistory /> },
+      { path: "/mypage/mywishlist", element: <MyWishlist /> },
+      { path: "/search", element: <SearchPage /> },
+      { path: "/alarm", element: <Alarm /> },
+      { path: "/submitreport", element: <SubmitReport /> },
+      { path: "/mypage/setting/deleteaccount", element: <DeleteAccount /> },
+      { path: "/payment/:goods_id", element: <Payment /> }
     ],
   },
 
@@ -182,51 +180,64 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      { path: "/introstart", element: (
-        <RedirectIfUserAuthed>
-          <Start />
-        </RedirectIfUserAuthed>), },
-      { path: "/intro", element: (
-        <RedirectIfUserAuthed>
-          <FirstPage />
-        </RedirectIfUserAuthed>), },
-      { path: "/login",       
+      {
+        path: "/introstart", element: (
+          <RedirectIfUserAuthed>
+            <Start />
+          </RedirectIfUserAuthed>),
+      },
+      {
+        path: "/intro", element: (
+          <RedirectIfUserAuthed>
+            <FirstPage />
+          </RedirectIfUserAuthed>),
+      },
+      {
+        path: "/login",
         element: (
-        <RedirectIfUserAuthed>
-          <Login />
-        </RedirectIfUserAuthed>
-      ), },
-      { path: "/register",       
+          <RedirectIfUserAuthed>
+            <Login />
+          </RedirectIfUserAuthed>
+        ),
+      },
+      {
+        path: "/register",
         element: (
-        <RedirectIfUserAuthed>
-          <Register />
-        </RedirectIfUserAuthed>
-      ), },
-      { path: "/address",       
+          <RedirectIfUserAuthed>
+            <Register />
+          </RedirectIfUserAuthed>
+        ),
+      },
+      {
+        path: "/address",
         element: (
-        <RedirectIfUserAuthed>
-          <AddressSearch />
-        </RedirectIfUserAuthed>
-      ), },
+          <RedirectIfUserAuthed>
+            <AddressSearch />
+          </RedirectIfUserAuthed>
+        ),
+      },
 
       // 로그인 없을시 진입 X
-      { path: '/community/tag/:id', 
+      {
+        path: '/community/tag/:id',
         element: (
           <RequireUserAuth>
             <CommTag />
           </RequireUserAuth>
-      ) 
+        )
       },
     ],
   },
 
   // 6) 관리자 페이지 (AdminPage)
-  { path: "/admin/login",   
+  {
+    path: "/admin/login",
     element: (
-    <RedirectIfAdminAuthed>
-      <AdminLogin />
-    </RedirectIfAdminAuthed>
-  ),},
+      <RedirectIfAdminAuthed>
+        <AdminLogin />
+      </RedirectIfAdminAuthed>
+    ),
+  },
   {
     path: "/admin",
     element: (
