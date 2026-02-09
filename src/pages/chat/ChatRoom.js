@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import "./styles/chatroom.css";
 import { getUserId } from "components/getUserId/getUserId";
 import api from "app/api/axios";
+import { API_ORIGIN } from "app/api/apiOrigin";
 
 /* =========================
    KST 포맷 유틸
@@ -74,19 +75,15 @@ function isGroupEnd(curr, next) {
 }
 
 const ChatRoom = () => {
-  const { chat_id } = useParams();   // /chat/chatRoom/:chat_id  ✅
+
+  // ✅ outlet context가 undefined여도 안 죽게 방어
+  const outlet = useOutletContext() || {};
+  const setTitle = outlet.setTitle;
+
+  const { chat_id } = useParams(); // /chat/chatroom/:chat_id
   const chatId = Number(chat_id);
   const myUserId = Number(getUserId());
-  
-  useEffect(() => {
-    if (!Number.isFinite(chatId) || chatId <= 0) return;
-    if (!myUserId) return;
-
-    // fetchMessages...
-  }, [chatId, myUserId]);
-
-
-
+  console.log(myUserId);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -109,10 +106,20 @@ const ChatRoom = () => {
     }
   };
   
+  // 제목 받아오기 기본값
+  useEffect(() => {
+    setTitle?.("채팅");
+  }, [setTitle, chatId]);
+
+
+
+
+  // ✅ chatId 바뀌면 초기 스크롤 플래그 리셋
   useEffect(() => {
     didInitialScrollRef.current = false;
   }, [chatId]);
 
+  // ✅ 첫 로딩 / chatId 변경 시: 강제 맨 아래
   useLayoutEffect(() => {
     if (messages.length === 0) return;
     scrollToBottom(false);
@@ -121,6 +128,7 @@ const ChatRoom = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatId, messages.length]);
 
+  // ✅ 이후 메시지 추가 시: 부드럽게 맨 아래
   useEffect(() => {
     if (messages.length === 0) return;
     if (!didInitialScrollRef.current) {
@@ -133,20 +141,19 @@ const ChatRoom = () => {
 
   const isSameKSTDate = (a, b) => getKSTYMD(a) === getKSTYMD(b);
 
+  // ✅ 메시지 불러오기
   useEffect(() => {
     const fetchMessages = async () => {
-      if (!chatId || !myUserId) return;
+      if (!Number.isFinite(chatId) || chatId <= 0) return;
+      if (!myUserId) return;
 
       try {
         const { data } = await api.get("/api/chat/messages", {
-          params: {
-            chat_id: chatId,
-            user_id: myUserId,
-          },
+          params: { chat_id: chatId, user_id: myUserId },
         });
 
         if (!data?.success) return;
-        setMessages(data.messages || []);
+        setMessages(Array.isArray(data.messages) ? data.messages : []);
       } catch (err) {
         console.error("fetchMessages error:", err);
       }
@@ -154,6 +161,7 @@ const ChatRoom = () => {
 
     fetchMessages();
   }, [chatId, myUserId]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -172,24 +180,23 @@ const ChatRoom = () => {
         alert(data?.message || "전송 실패");
         return;
       }
-
-      // ✅ 여기 수정: ...prev
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: data.message_id,
-          user_id: myUserId,
-          nickname: null,
-          text,
-          createdAt: data.createdAt || new Date().toISOString(),
-        },
-      ]);
+  setMessages((prev) => [
+    ...prev,
+    {
+      id: data.message_id ?? Date.now(),
+      user_id: myUserId,
+      nickname: null,
+      profile: "defaultProfile.png",
+      text,
+      createdAt: data.createdAt || new Date().toISOString(),
+    },
+  ]);
 
       setInput("");
       requestAnimationFrame(() => inputRef.current?.focus());
     } catch (err) {
       console.error(err);
-      alert("서버 오류");
+      alert(err?.response?.data?.message || err?.message || "서버 오류");
     } finally {
       setSending(false);
     }
@@ -204,13 +211,13 @@ const ChatRoom = () => {
               const prev = messages[idx - 1];
               const next = messages[idx + 1];
 
-              const isMine = msg.user_id === myUserId;
+              const isMine = Number(msg.user_id) === myUserId;
               const showDate = !prev || !isSameKSTDate(prev.createdAt, msg.createdAt);
               const showProfile = !isMine && isNewGroup(prev, msg);
               const showTime = isGroupEnd(msg, next);
 
               return (
-                <React.Fragment key={msg.id}>
+                <React.Fragment key={msg.id ?? `${idx}-${msg.createdAt}`}>
                   {showDate && (
                     <p className="chatDate">
                       <span>{formatKSTDateLabel(msg.createdAt)}</span>
@@ -221,7 +228,11 @@ const ChatRoom = () => {
                     {!isMine && showProfile && (
                       <div className="profile">
                         <img
-                          src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`}
+                          src={
+                            msg.profile && msg.profile !== "defaultProfile.png"
+                              ? `${API_ORIGIN}${msg.profile}`
+                              : `${process.env.PUBLIC_URL}/images/defaultProfile.png`
+                          }
                           alt="프로필"
                         />
                       </div>

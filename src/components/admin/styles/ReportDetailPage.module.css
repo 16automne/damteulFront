@@ -129,11 +129,13 @@
 ========================= */
 .actionButtons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 12px;
   margin-top: 20px;
+  width: 100%;
 }
 .actionButtons .buttonBase, .actionButtons button.danger, .actionButtons button.primary {
+  width: 48%;
   padding: 10px 50px;
   color: #fff;
   border: none;

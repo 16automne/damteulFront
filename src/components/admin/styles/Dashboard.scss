@@ -122,6 +122,12 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: $bottomShadow;
+
+    table {
+      tr > td:nth-child(2), tr> td:last-child {
+        text-align: center;
+      }
+    }
   }
 
   .summaryBox {

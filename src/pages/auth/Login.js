@@ -137,7 +137,7 @@ export default function Login() {
     <header className="authPageHeaderStyle">
       <h2>로그인</h2>
     </header>
-    <main>
+    <main className="authPageMainStyle">
       {/* 로그인 입력란 */}
       <form className="authForm" onSubmit={onSubmitLogin}>
         <legend>로그인폼</legend>

@@ -98,12 +98,6 @@ const PostDetailPage = () => {
 
                 {/* 3. 하단 버튼 */}
                 <div className={styles.actionButtons}>
-                    {/* <button
-                    className={styles.secondary}
-                    onClick={() => navigate("/admin/posts")}
-                >
-                    목록으로 가기
-                </button> */}
 
                     <button className={styles.danger}
                     onClick={()=>handleDelete(Number(id), '게시물을', setError, cate)}

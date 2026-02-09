@@ -99,7 +99,7 @@
   cursor: pointer;
 }
 
-.bodyChild {
+.bodyChild:has(.authPageMainStyle) {
   position: relative;
 }
 
@@ -116,7 +116,7 @@
   line-height: 80px;
 }
 
-main {
+.authPageMainStyle {
   width: 100%;
 }
 

@@ -5,7 +5,8 @@ import { TbBell } from "react-icons/tb";
 import { FaAngleLeft } from "react-icons/fa6";
 import { useScrollDirection } from './hooks/useScrollDirection'; 
 
-function TitleHeader() {
+function TitleHeader({title}) {
+  
   const isVisible = useScrollDirection();
   const navigate = useNavigate();
   
@@ -21,7 +22,7 @@ function TitleHeader() {
       
         {/* 제목 */}
         <div className='headerTitle'>
-          <h2>title</h2>
+          <h2>{title}</h2>
         </div>
 
         {/* 오른쪽: 알림 아이콘 */}

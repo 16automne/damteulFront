@@ -1,6 +1,6 @@
 @use '../../../styles/__config' as *;
 @use '../../../styles/__config2' as *;
-.bodyChild{position: relative;}
+.bodyChild:has(.authPageMainStyle){position: relative;}
 .authPageHeaderStyle{
   height: 80px;
   h2{
@@ -9,7 +9,7 @@
     line-height: 80px;
   }
 }
-main{
+.authPageMainStyle{
   width: 100%;
 }
 .authForm{

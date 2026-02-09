@@ -8,7 +8,7 @@ import { IoIosMore } from 'react-icons/io';
 import { AiFillTag } from "react-icons/ai";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { BiMessageSquareDetail } from "react-icons/bi";
-
+import { API_ORIGIN } from 'app/api/apiOrigin';
 
 import 'swiper/css';
 import 'swiper/css/pagination';

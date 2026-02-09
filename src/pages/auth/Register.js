@@ -162,7 +162,7 @@ export default function Register() {
     <header className="authPageHeaderStyle">
       <h2>내 정보 입력하기</h2>
     </header>
-    <main>
+    <main className="authPageMainStyle">
       <form className="authForm" onSubmit={onSubmitRegister}>
         <legend>회원가입폼</legend>
 

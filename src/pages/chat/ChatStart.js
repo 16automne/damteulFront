@@ -1,6 +1,6 @@
 // src/pages/chat/ChatStart.jsx (경로는 네 프로젝트 구조에 맞게 조정)
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useOutletContext } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import "./styles/chatroom.css";
@@ -8,6 +8,10 @@ import { getUserId } from "components/getUserId/getUserId";
 import api from "app/api/axios";
 
 const ChatStart = () => {
+  // ✅ outlet context가 undefined여도 안 죽게 방어
+  const outlet = useOutletContext() || {};
+  const setTitle = outlet.setTitle;
+
   const navigate = useNavigate();
   const { goods_id } = useParams(); // /chat/start/:goods_id
   const goodsId = Number(goods_id);
@@ -55,6 +59,11 @@ const ChatStart = () => {
 
     checkRoom();
   }, [goodsId, myUserId, navigate]);
+
+  // 제목 받아오기 기본값
+    useEffect(() => {
+      setTitle?.("채팅");
+    }, [setTitle]);
 
   // 2) 첫 메시지 전송 (방 생성 + 첫 메시지 저장)
   const handleSubmit = async (e) => {

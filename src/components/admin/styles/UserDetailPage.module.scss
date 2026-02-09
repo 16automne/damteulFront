@@ -22,7 +22,7 @@
 }
 
 /* ==============================
-   헤더 영역
+헤더 영역
 ============================== */
 .adminHeader {
     display: flex;
@@ -191,15 +191,15 @@
     text-align: center;
 
     /* 상태별 색상 */
-    &.활동중 {
+    &.ingUser {
         background-color: #4caf50;
     }
 
-    &.정지 {
+    &.stopUser {
         background-color: #f09824;
     }
 
-    &.탈퇴 {
+    &.noUser {
         background-color: #9e9e9e;
     }
 }
@@ -218,7 +218,9 @@
     justify-content: space-between;
     //space-around; 양끝 여백 조금 + 균등
     gap: 12px; // 버튼 간 간격
-    margin-top: 20px;}
+    margin-top: 20px;
+    width: 100%;
+}
 
 /* ==============================
    버튼 스타일
@@ -232,6 +234,7 @@
     border-radius: 6px;
     cursor: pointer;
     font-weight: $weightSemibold;
+    width: 48%;
 }
 
 
@@ -246,7 +249,8 @@ button {
         background-color: $colorPrimary;
 
         &:hover {
-            background-color: color.adjust($colorPrimary, -5%);
+            background-color: color.adjust($colorPrimary, $lightness: -5%);
+
 
         }
     }

@@ -51,7 +51,7 @@ import MyProfileEdit from 'pages/my/MyProfileEdit';
 import MyBuynSell from 'pages/my/MyBuynSell';
 import MyHistory from 'pages/my/MyHistory';
 import MyWishlist from 'pages/my/MyWishlist';
-import Search from 'pages/search/Search';
+import SearchPage from 'pages/search/SearchPage';
 import Alarm from 'pages/alarm/Alarm';
 import SubmitReport from 'pages/my/SubmitReport';
 import DeleteAccount from 'pages/my/DeleteAccount';
@@ -158,7 +158,7 @@ export const routes = [
       {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
       {path:"/mypage/myhistory", element:<MyHistory/>},
       {path:"/mypage/mywishlist", element:<MyWishlist/>},
-      {path:"/search", element:<Search />},
+      {path:"/search", element:<SearchPage />},
       {path:"/alarm", element:<Alarm/>},
       {path:"/submitreport", element:<SubmitReport/>},
       {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},

@@ -114,12 +114,25 @@ const ReportDetailPage = () => {
 
                     {/* 신고 상태 */}
                     <div className={styles.formGroup}>
-                        <label>신고 상태</label>
-                        <section className={styles.formSection}>
-                            <span className={`${styles.statusBadge} ${styles[selectedStatus]}`}>
-                                {selectedStatus}
-                            </span>
-                        </section>
+                        <div className={styles.fomrGroupWrap}>
+                            <label>신고 상태</label>
+                            <section className={styles.formSection}>
+                                <span className={`${styles.statusBadge} ${styles[selectedStatus]}`}>
+                                    {selectedStatus}
+                                </span>
+                            </section>
+                        </div>
+                        {/* 상태 선택 */}
+                        <select
+                            className={styles.statusSelect}
+                            value={selectedStatus}          // useState로 관리
+                            onChange={(e) => setSelectedStatus(e.target.value)}
+                        >
+                            <option value="처리중">처리중</option>
+                            <option value="무효">무효</option>
+                            <option value="경고">경고</option>
+                            <option value="정지">정지</option>
+                        </select>
                     </div>
 
                     <div className={styles.formGroup}>
@@ -130,17 +143,6 @@ const ReportDetailPage = () => {
 
                 {/* 하단 상태 변경 영역 */}
                 <div className={styles.actionButtons}>
-                    {/* 상태 선택 */}
-                    <select
-                        className={styles.statusSelect}
-                        value={selectedStatus}          // useState로 관리
-                        onChange={(e) => setSelectedStatus(e.target.value)}
-                    >
-                        <option value="처리중">처리중</option>
-                        <option value="무효">무효</option>
-                        <option value="경고">경고</option>
-                        <option value="정지">정지</option>
-                    </select>
 
                     {/* 적용 버튼 */}
                     <button

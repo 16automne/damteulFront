@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {API_ORIGIN} from "app/api/apiOrigin";
 
 function truncate(text, max = 28) {
   const s = (text ?? "").trim();
@@ -28,9 +29,10 @@ function badgeText(n) {
 }
 
 const ChatListItem = ({ room }) => {
+  // 프로필 주소
   const profileSrc =
     room?.otherProfile!=="defaultProfile.png"?
-        `http://localhost:9070${room.otherProfile}`
+        `${API_ORIGIN}${room.otherProfile}`
       : `${process.env.PUBLIC_URL}/images/defaultProfile.png`;
 
   const badge = badgeText(room?.unreadCount);

@@ -42,18 +42,7 @@ const UserDetailPage = () => {
 
 
   // 상태 배지 클래스
-  const getStatusClass = (status) => {
-    switch (status) {
-      case "활동중":
-        return styles.활동중;
-      case "정지":
-        return styles.정지;
-      case "탈퇴":
-        return styles.탈퇴;
-      default:
-        return "";
-    }
-  };
+
 
   if (loading) return <div className={styles.pageWrapper}>로딩중...</div>;
   if (error) return <div className={styles.pageWrapper}>{error}</div>;
@@ -65,12 +54,18 @@ const UserDetailPage = () => {
   const reportValue = user.reported_count ?? user.reportScore ?? 0;
   const createdAtValue = user.created_at ?? user.createdAt;
   const statusValue = user.status;
-
+  console.log(statusValue);
   // ✅ 등급 값 (level_code 기준)
   const levelCodeValue = String(user.level_code ?? user.grade ?? ""); // '0'~'5' 형태로 맞춤
   const currentGradeData = gradeInfo[levelCodeValue]; // 이미지/이름 가져오기
   const gradeNameValue = currentGradeData?.name ?? levelCodeValue; // 혹시 gradeInfo에 없으면 코드라도 표시
 
+  const statusKey =
+    statusValue === "활동중"
+      ? "ingUser"
+      : statusValue === "정지"
+        ? "stopUser"
+        : "noUser";
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.wrapper}>
@@ -90,8 +85,8 @@ const UserDetailPage = () => {
               className={styles.profileImg}
             />
             <div>
-              <strong>ID:</strong> {idValue} <br />
-              <strong>닉네임:</strong> {nicknameValue}
+              <strong>ID</strong> {idValue} <br />
+              <strong>닉네임</strong> {nicknameValue}
             </div>
           </div>
 
@@ -105,13 +100,13 @@ const UserDetailPage = () => {
             </div>
 
             <div className={styles.inputGroup}>
-              <strong>닉네임:</strong>
+              <strong>닉네임</strong>
               <input value={nicknameValue} disabled className={styles.disabledInput} />
             </div>
 
             {/* ✅ 등급: select 제거 → input으로 출력 */}
             <div className={styles.inputGroup}>
-              <strong>등급:</strong>
+              <strong>등급</strong>
               <input
                 type="text"
                 value={gradeNameValue}
@@ -131,7 +126,7 @@ const UserDetailPage = () => {
             </div>
 
             <div className={styles.inputGroup}>
-              <strong>신고 점수:</strong>
+              <strong>신고 점수</strong>
               <input
                 type="number"
                 value={reportValue}
@@ -141,7 +136,7 @@ const UserDetailPage = () => {
             </div>
 
             <div className={styles.inputGroup}>
-              <strong>가입일:</strong>
+              <strong>가입일</strong>
               <input
                 type="text"
                 value={(createdAtValue || "").slice(0, 10)}
@@ -153,9 +148,11 @@ const UserDetailPage = () => {
         </div>
 
         <section className={styles.formSection}>
-          <strong>계정 상태:</strong>
+          <strong>계정 상태</strong>
           <div className={styles.statusWrapper}>
-            <span className={`${styles.statusBadge} ${getStatusClass(statusValue)}`}>
+            <span
+              className={`${styles.statusBadge} ${styles[statusKey]}`}
+            >
               {statusValue}
             </span>
           </div>
@@ -163,15 +160,15 @@ const UserDetailPage = () => {
 
         {/* ✅ 하단 버튼: 저장 → 확인 */}
         <div className={styles.actionButtons}>
-            <button
+          <button
             className={styles.primary}
-            onClick={() => {window.close();}}
-            >
+            onClick={() => { window.close(); }}
+          >
             확인
-            </button>
+          </button>
 
           {/* 삭제 기능도 없앨 거면 이 버튼과 handleDelete 함수도 같이 삭제 */}
-          <button className={styles.danger} onClick={()=>handleDelete(Number(user_id), '유저정보를', setError, 'users')}>
+          <button className={styles.danger} onClick={() => handleDelete(Number(user_id), '유저정보를', setError, 'users')}>
             삭제
           </button>
         </div>
