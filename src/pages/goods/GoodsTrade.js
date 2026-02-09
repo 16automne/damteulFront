@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import api from 'app/api/axios';
 import { getUserId } from 'components/getUserId/getUserId';
 import { FaPlus } from "react-icons/fa";
+import { uploadMultiImages } from 'components/uploadImage/uploadMultiImages';
 
 
 // 서버에 전송할 함수
 const createPost = async(data) =>{
 
-	const response = await api.post('/api/goods',data,{
-		headers:{'Content-Type':'multipart/form-data'}
-	});
+	const response = await api.post('/api/goods',data);
 	return response.data;
 
 }
@@ -48,45 +47,46 @@ function GoodsTrade(props) {
 	};
 
 	// 폼 제출 시 실행될 함수
-	const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const data = new FormData();
     const userId = getUserId();
+    let savedImages = []; // 문자열 "" 대신 빈 배열 []로 초기화
 
-    // 1. 기존 입력값들 넣기
-    Object.keys(formData).forEach((key) => {
-      // user_id는 여기서 처리하지 않고 건너뜀 (아래에서 명시적으로 넣기 위함)
-      if (key === 'user_id') return; 
-
-      if (key === 'category_id' || key === 'price') {
-        data.append(key, Number(formData[key]));
-      } else {
-        data.append(key, formData[key]);
-      }
-    });
-
-    // 2. 유저 ID 넣기 (중복 방지를 위해 위에서 제외하고 여기서 한 번만 넣음)
-    data.append('user_id', userId);
-
-    // 3. 파일 넣기
+    // 이미지 먼저 업로드 후 경로 받아오기
     if (file && file.length > 0) {
-      file.forEach((f) => data.append('fileUpload', f));
+      const imagePaths = await uploadMultiImages(file, "goods");
+      
+      // ✅ .join(',')를 삭제하고 객체 배열 그대로 사용합니다.
+      // 만약 imagePaths가 [{url:'...'}, ...] 형태라면 그대로 넣습니다.
+      savedImages = imagePaths; 
     }
 
-    // 4. 서버 전송
-    const result = await createPost(data);
+    // 서버에 보낼 최종 데이터
+    const postData = {
+      ...formData,
+      user_id: userId,
+      images: savedImages, // ✅ 이제 데이터가 "[object Object]"가 아닌 진짜 배열로 날아갑니다.
+      category_id: Number(formData.category_id),
+      price: Number(formData.price),
+      conversation_type: Number(formData.conversation_type),
+      condition_type: Number(formData.condition_type)
+    };
+
+    // 서버전송
+    const result = await createPost(postData);
 
     if (result.ok) {
       alert('글이 정상적으로 등록되었습니다.');
       navigate(`/goodsdetail/${result.id}`);
     }
-		} catch (error) {
-			console.error(error);
-			alert('등록에 실패했습니다.');
-		}
-	};
+  } catch (error) {
+    console.error("등록 에러 상세:", error);
+    alert('등록에 실패했습니다.');
+  }
+};
+
 	return (
 		<main>
 			<form className='writeForm'

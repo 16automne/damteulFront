@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import api from 'app/api/axios';
+import { API_ORIGIN } from 'app/api/apiOrigin';
 import { getUserId } from 'components/getUserId/getUserId';
 import './styles/goodsDetail.css';
 // 더보기버튼
@@ -114,39 +115,73 @@ function GoodsDetail(props) {
 	}
 
   if (!goods) return <p>로딩 중...</p>;
+
+	// 1. 서버 주소 설정
+const imgBase = API_ORIGIN;
+
+// 2. 이미지 추출 (가장 확실한 방법으로 전면 교체)
+let goodsImages = [];
+
+if (goods && goods.images) {
+    // 혹시 모를 이중 배열이나 객체 덩어리를 완전히 해체합니다.
+    const raw = Array.isArray(goods.images) ? goods.images : [goods.images];
+    
+    goodsImages = raw.map(item => {
+        if (!item) return "";
+        
+        // 만약 아이템이 객체라면 ({image_url: "..."}) 그 안의 값을 꺼냄
+        if (typeof item === 'object') {
+            return item.image_url || item.url || "";
+        }
+        
+        // 만약 아이템이 이미 문자열이면 그대로 사용
+        return String(item);
+    })
+    .filter(url => url && typeof url === 'string' && !url.includes('[object Object]')) // 쓰레기값 필터링
+    .map(url => url.replace('/src/uploads', '/uploads')); // 경로 보정
+}
+
+// 3. 로그 확인 (여기서도 [object Object] 뜨면 DB 데이터가 글자로 오염된 것임)
+console.log('최종 주소 리스트:', goodsImages);
 	return (
 		<main>
 			<section className='goodsDetail'>
 
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
-					<img src='https://placehold.co/100x100' alt='사용자 프로필'/>
-					<p>{goods.user_nickname}</p>
-					<img src='https://placehold.co/100x100' alt='회원등급'/>
-					<IoIosMore className='moreBtn'
-					onClick={()=>{setIsOpen(!isOpen)}}/>
-					{isOpen && 
-					<div className='moreAction'>
-					<p>관심없음</p>
-					<span></span>
-					<Link to='' title='신고페이지로 이동'>신고하기</Link>
-				</div>
-					}
-				</div>
+          <img src={goods.profile ? `${imgBase}${goods.profile}` : 'https://placehold.co/100x100'} alt='사용자 프로필'/>
+          <p>{goods.user_nickname}</p>
+          <img src='https://placehold.co/100x100' alt='회원등급'/>
+          <IoIosMore className='moreBtn'
+          onClick={()=>{setIsOpen(!isOpen)}}/>
+          {isOpen && 
+          <div className='moreAction'>
+          <p>관심없음</p>
+          <span></span>
+          <Link to='' title='신고페이지로 이동'>신고하기</Link>
+        </div>
+          }
+        </div>
 
 
 				{/* 스와이퍼 이미지 영역 */}
 				<div className='mainImg swipeContainer'>
-					<div className='goodsItem'>
-						<img src='https://placehold.co/390x430' alt=''/>
-					</div>
-					<div className='goodsItem'>
-						<img src='https://placehold.co/390x430' alt=''/>
-					</div>
-					<div className='goodsItem'>
-						<img src='https://placehold.co/390x430' alt=''/>
-					</div>
-				</div>
+          {goodsImages.length > 0 ? (
+            goodsImages.map((img, idx) => (
+              <div className='goodsItem' key={idx}>
+                <img 
+  src={`${imgBase}${img}`} 
+  alt={`제품이미지 ${idx + 1}`}
+  onError={(e) => { e.target.src = 'https://placehold.co/390x430'; }} // 이미지 로드 실패 시 대체
+/>
+              </div>
+            ))
+          ) : (
+            <div className='goodsItem'>
+              <img src='https://placehold.co/390x430' alt='이미지 없음'/>
+            </div>
+          )}
+        </div>
 
 				{/* 제품상세정보 텍스트 영역 */}
 				<div className='goodsInfo'>
@@ -173,22 +208,16 @@ function GoodsDetail(props) {
 					<p>{goods.content}</p>
 				{/* 중고상품일시 표시될 영역 */}
 				{goods.condition_type === 0 &&
-				<div className='usedInfo'>
-					<h4>특이 사항</h4>
-					<p>중고상품일시 표시되는 영역으로 퍼블리싱 끝나면 데이터 받아올 자리입니다
-						
-						중고상품일시 표시되는 영역으로 퍼블리싱 끝나면 데이터 받아올 자리입니다
-					</p>
-					<div className='usedItem'> 
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-						<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
-					</div>
-				</div>
-				}
+        <div className='usedInfo'>
+          <h4>특이 사항</h4>
+          <p>{goods.used_defect_note || "특이사항 없음"}</p>
+          <div className='usedItem'> 
+            {goodsImages.map((img, idx) => (
+              <img key={idx} src={`${imgBase}${img}`} alt='제품상세이미지'/>
+            ))}
+          </div>
+        </div>
+        }
 				
 
 				{/* 관련상품 표시영역 */}
@@ -201,7 +230,7 @@ function GoodsDetail(props) {
 						<Link to={`/goods${item.goods_id}`}
 						key={item.goods_id}
 						className='relevanceItem'>
-							<img src='https://placehold.co/390x430' alt='제품상세이미지'/>
+							<img src={item.image ? `${imgBase}${item.image}` : 'https://placehold.co/390x430'} alt='제품상세이미지' onError={(e) => { e.target.src = 'https://placehold.co/390x430'; }}/>
 							<h3>{item.title}</h3>
 							<p>{item.price?.toLocaleString()}원</p>
 						</Link>

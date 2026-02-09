@@ -10,6 +10,9 @@
   width: 130px;
   height: 130px;
   border-radius: 7px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  flex-shrink: 0;
 }
 .goodsList .goodsListArea {
   width: 100%;

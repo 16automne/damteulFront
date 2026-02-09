@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import api from 'app/api/axios';
+import { API_ORIGIN } from 'app/api/apiOrigin';
 import { Link } from 'react-router-dom';
 import { IoIosMore } from 'react-icons/io';
 import { FaUser } from "react-icons/fa";
@@ -21,6 +22,57 @@ function NanumDetail(props) {
 
 		//응모 남은 시간 상태변수
 		const [timeLeft, setTimeLeft] = useState("");
+	// 남은 시간 타이머
+	const getRemainingTimer = (endTime) => {
+		const total = new Date(endTime) - new Date();
+		
+		if (total <= 0) return "00:00:00";
+
+		// 시, 분, 초 계산
+		const seconds = Math.floor((total / 1000) % 60);
+		const minutes = Math.floor((total / 1000 / 60) % 60);
+		const hours = Math.floor((total / (1000 * 60 * 60)));
+
+		// 두 자릿수 유지 (padStart 사용)
+		const h = String(hours).padStart(2, '0');
+		const m = String(minutes).padStart(2, '0');
+		const s = String(seconds).padStart(2, '0');
+
+		return `${h}:${m}:${s}`;
+	};
+
+	//게시 시간 타이머
+	const getTimeDiff = (date) => {
+		const start = new Date(date);
+		const now = new Date();
+		const diff = (now - start) / 1000 / 60; // 분 단위 차이
+
+		if (diff < 60) {
+			return `${Math.floor(diff)}분 전`;
+		} else if (diff < 1440) {
+			return `${Math.floor(diff / 60)}시간 전`;
+		}else{
+			return `${Math.floor(diff / 1440)}일 전`;
+		}
+	};
+
+	// 응모 처리 함수
+	const handleApply = async () => {
+		try {
+			const user_id = "11"; // 로그인 세션에서 가져오거나 임시 ID 사용
+			const response = await api.post("/api/nanum/apply", {
+				nanum_id: nanum_id,
+				user_id: user_id
+			});
+
+			if (response.status === 200) {
+				setClearIsOpen(true); // 성공 시 모달 오픈
+			}
+		} catch (err) {
+			console.error("응모 실패 : ", err);
+			alert("이미 응모했거나 응모 처리 중 오류가 발생했습니다.");
+		}
+	};
 		//남은 시간 갱신
 		useEffect(() => {
 			if (!post || isEvent || !post.end_nanum) return;
@@ -47,59 +99,29 @@ function NanumDetail(props) {
 		},[nanum_id]);
 		if(!post) return <div>로딩중...</div>;
 
-		//게시 시간 타이머
-		const getTimeDiff = (date) => {
-		const start = new Date(date);
-		const now = new Date();
-		const diff = (now - start) / 1000 / 60; // 분 단위 차이
+		// 이미지 설정
+		const imgBase = API_ORIGIN;
+		let nanumImages = [];
 
-		if (diff < 60) {
-			return `${Math.floor(diff)}분 전`;
-		} else if (diff < 1440) {
-			return `${Math.floor(diff / 60)}시간 전`;
-		}else{
-			return `${Math.floor(diff / 1440)}일 전`;
-		}
-	};
+		if (post && post.images) {
+		console.log("📥 API에서 받은 post.images:", post.images);
+		const raw = Array.isArray(post.images) ? post.images : [post.images];
+		
+		nanumImages = raw.map(item => {
+			if (!item) return "";
+			
+			if (typeof item === 'object') {
+				return item.image_url || item.url || "";
+			}
+			
+			return String(item);
+		})
+		.filter(url => url && typeof url === 'string' && !url.includes('[object Object]'))
+		.map(url => url.replace('/src/uploads', '/uploads'));
 
-	// 남은 시간 타이머
-	const getRemainingTimer = (endTime) => {
-  const total = new Date(endTime) - new Date();
-  
-  if (total <= 0) return "00:00:00";
-
-  // 시, 분, 초 계산
-  const seconds = Math.floor((total / 1000) % 60);
-  const minutes = Math.floor((total / 1000 / 60) % 60);
-  const hours = Math.floor((total / (1000 * 60 * 60)));
-
-  // 두 자릿수 유지 (padStart 사용)
-  const h = String(hours).padStart(2, '0');
-  const m = String(minutes).padStart(2, '0');
-  const s = String(seconds).padStart(2, '0');
-
-  return `${h}:${m}:${s}`;
-	};
-
-	// 응모 처리 함수 추가
-	const handleApply = async () => {
-  try {
-    const user_id = "11"; // 로그인 세션에서 가져오거나 임시 ID 사용
-    const response = await api.post("/api/nanum/apply", {
-      nanum_id: nanum_id,
-      user_id: user_id
-    });
-
-    if (response.status === 200) {
-      setClearIsOpen(true); // 성공 시 모달 오픈
-    }
-  } catch (err) {
-    console.error("응모 실패 : ", err);
-    alert("이미 응모했거나 응모 처리 중 오류가 발생했습니다.");
-  }
-	};
-
-
+		console.log("🎯 처리된 nanumImages:", nanumImages);
+		console.log("🔗 최종 이미지 URL:", nanumImages.map(img => `${imgBase}${img}`));
+	}
 
 	return (
 		<main>
@@ -112,7 +134,6 @@ function NanumDetail(props) {
 					</div>
 				</div>
 			}
-				
 			<section className='nanumDetail'>
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
@@ -132,44 +153,56 @@ function NanumDetail(props) {
 
 				{/* 스와이퍼 이미지 영역 */}
 				<div className='mainImg swipeContainer'>
+				{nanumImages.length > 0 ? (
+					nanumImages.map((img, idx) => {
+						const fullUrl = `${imgBase}${img}`;
+						console.log(`🖼️ 이미지 ${idx + 1} 최종 URL:`, fullUrl);
+						return (
+							<div className='goodsItem' key={idx}>
+								<img 
+									src={fullUrl} 
+									alt={`나눔이미지 ${idx + 1}`}
+									onError={(e) => { 
+										console.error(`❌ 이미지 ${idx + 1} 로드 실패:`, fullUrl);
+										e.target.src = 'https://placehold.co/390x430'; 
+									}}
+									onLoad={(e) => {
+										console.log(`✅ 이미지 ${idx + 1} 로드 성공:`, fullUrl);
+									}}
+								/>
+							</div>
+						);
+					})
+				) : (
 					<div className='goodsItem'>
-						<img src='https://placehold.co/390x430' alt=''/>
+						<img src='https://placehold.co/390x430' alt='이미지 없음'/>
 					</div>
-					<div className='goodsItem'>
-						<img src='https://placehold.co/390x430' alt=''/>
-					</div>
-					<div className='goodsItem'>
-						<img src='https://placehold.co/390x430' alt=''/>
-					</div>
-				</div>
-
-				{/* 제품상세정보 텍스트 영역 */}
-				<div className='goodsInfo'>
-					<h3>{post.title}</h3>
-					<p>{getTimeDiff(post.created_at)} &#10072; 나눔</p>
-					{!isEvent && <p>{timeLeft}</p>}
-					
-					{/* 좋아요/댓글 */}
-					<div className='reaction'>
-						<p>
-						<FaUser />nnn
-						</p>
-					</div>
-				</div>
-
-				<div className='usedInfo'>
+				)}
+			</div>
+			<div className='goodsInfo'>
+				<h3>{post.title}</h3>
+				<p>{getTimeDiff(post.created_at)} &#10072; 나눔</p>
+				{!isEvent && <p>{timeLeft}</p>}
+				
+				{/* 좋아요/댓글 */}
+				<div className='reaction'>
 					<p>
-						{post.content}
+					<FaUser />nnn
 					</p>
 				</div>
+			</div>
 
-				<div className='bottomBtn nanumBtnCustom'>
-					<button onClick={handleApply}>응모하기</button>
-					</div>
+			<div className='usedInfo'>
+				<p>
+					{post.content}
+				</p>
+			</div>
 
-				
-			</section>
-		</main>
+			<div className='bottomBtn nanumBtnCustom'>
+				<button onClick={handleApply}>응모하기</button>
+			</div>
+		</section>
+	</main>
 	);
 }
 

@@ -58,10 +58,11 @@ const Nanum = () => {
               key={`${filter}-${filter === 'nanum' ? item.nanum_id : item.event_id}`}
               linkTo={filter === 'nanum'
                 ? `/nanumdetail/${item.nanum_id}`
-                : `/eventdetail/${item.event_id}`} // 이벤트 상세 경로 분리 권장
+                : `/eventdetail/${item.event_id}`}
               title={item.title}
               status={filter === 'nanum' ? '무료나눔' : '이벤트'}
               timer={filter === 'nanum' ? getRemainingTime(item.end_nanum) : ""}
+              img={item.image}
             />
           ))
         ) : (

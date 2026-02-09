@@ -5,18 +5,22 @@ import './style/goodsList.css';
 import { FaRegComment } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaRegCalendarCheck } from "react-icons/fa6";
+import { API_ORIGIN } from 'app/api/apiOrigin';
 
 
 
 
-function GoodsList({linkTo, title, status, price,timer, soldout,likeCount }) {
+function GoodsList({linkTo, title, status, price,timer, soldout,likeCount, img }) 
+{
+	const imgBase = API_ORIGIN;
+	const imgSrc = img ? `${imgBase}${img}` : 'https://placehold.co/130x130';
 	return (
 		<div>
 			<Link 
 			to={linkTo}
 			className='goodsList'>
 							{/* 상품이미지 영역 */}
-							<img src='https://placehold.co/130x130' alt='product'/>
+						<img src={imgSrc} alt='product' onError={(e) => { e.target.src = 'https://placehold.co/130x130'; }}/>
 							<div className='goodsListArea'>
 								{/* 텍스트 영역 */}
 								<div className='goodsListInfo'>

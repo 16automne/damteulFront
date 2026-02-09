@@ -92,16 +92,13 @@ const HomePage = () => {
 							price={item.price.toLocaleString()}
 							linkTo={`/goodsdetail/${item.goods_id}`}
 							likeCount={item.like_count}
-							/>
-						))
-					):(
-						<p style={{textAlign: 'center', marginTop: '20px'}}>등록된 매물이 없습니다.</p>
-					)}
-					
-						{/* 글쓰기 버튼 */}
-            <WriteBtn />			
-			</section>
-		</main>
+						img={item.image}						/>
+					))
+				):(
+					<p style={{textAlign: 'center', marginTop: '20px'}}>등록된 매물이 없습니다.</p>
+				)}
+				<WriteBtn />
+			</section>		</main>
 	);
 };
 
