@@ -3,12 +3,15 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { AiFillTag } from "react-icons/ai";
 import App from 'app/api/axios';
 import './styles/commtag.scss';
+import { getUserId } from 'components/getUserId/getUserId';
 
 const CommTag = () => {
-  const { id } = useParams();
+  const { id } = useParams(); //사진
   const navigate = useNavigate();
   const location = useLocation();
   const currentImages = location.state?.currentImages || [];
+  const userId = Number(getUserId());
+  const [detail, setDetail] = useState(null);
   
   const imgUrl = location.state?.imgUrl || "https://via.placeholder.com/800";
 
@@ -21,17 +24,16 @@ const CommTag = () => {
   useEffect(() => {
     const fetchMyGoods = async () => {
       try {
-        const response = await App.get("/api/goods/my-list"); 
-        setMyGoods(response.data);
+        const response = await App.get(`/api/goods?user_id=${userId}`);
+        setMyGoods(response.data.list || []);
       } catch (err) {
         console.error("상품 목록 로딩 실패:", err);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchMyGoods();
-  }, []);
+    if (userId) fetchMyGoods(); // 유저 ID가 있을 때만 호출
+  }, [userId]);
 
   const handlePhotoClick = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
