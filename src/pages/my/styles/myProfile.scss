@@ -5,7 +5,8 @@
 .myProfile{
 	// 공통 div서식
 	margin-top: 60px;
-	margin-bottom: 80px;
+	padding-bottom: 3rem;
+	margin-bottom: 2rem;
 	.myContainer{
 		border-radius: 20px;
 		background: $colorWhite;
@@ -109,7 +110,9 @@
 		padding: 30px 5%;
 		margin: 20px auto;
 		>h3{
-			margin-bottom: 15px;
+			@include fontText02;
+			align-self: flex-start;
+			margin-bottom: 20px;
 		}
 		.userReview:last-child{border-bottom: none;}
 		.userReview{

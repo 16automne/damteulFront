@@ -13,7 +13,17 @@ import { API_ORIGIN } from 'app/api/apiOrigin';
 function GoodsList({linkTo, title, status, price,timer, soldout,likeCount, img }) 
 {
 	const imgBase = API_ORIGIN;
-	const imgSrc = img ? `${imgBase}${img}` : 'https://placehold.co/130x130';
+	// const imgSrc = img ? `${imgBase}${img}` : 'https://placehold.co/130x130';
+
+	const getImgSrc = () => {
+    if (!img) return 'https://placehold.co/130x130';
+    if (img.startsWith('http') || img.startsWith('/images') || img.startsWith('static')) {
+      return img;
+    }
+    return `${imgBase}${img}`;
+  };
+
+  const imgSrc = getImgSrc();
 	return (
 		<div>
 			<Link 

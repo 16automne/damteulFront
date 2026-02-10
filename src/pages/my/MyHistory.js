@@ -7,16 +7,16 @@ import GoodsList from 'components/GoodsList/GoodsList';
 const dummyData = {
   // 커뮤니티 작성글 (community)
   community: [
-    { num: 1, title: '오늘 하늘 보셨나요? 진짜 예쁘네요', category: '자유게시판', price: null },
-    { num: 2, title: '동네 맛집 추천해주세요!', category: '질문/답변', price: null },
-    { num: 3, title: '이번 주말에 플로깅 하실 분 구합니다', category: '모임', price: null }
+    { num: 1, title: '오늘 하늘 보셨나요? 진짜 예쁘네요', category: '자유게시판', price: null, img:`${process.env.PUBLIC_URL}/images/dummy/sky.jpg` },
+    { num: 2, title: '동네 맛집 추천해주세요!', category: '질문/답변', price: null, img:`${process.env.PUBLIC_URL}/images/dummy/pizza.jpg` },
+    { num: 3, title: '이번 주말에 플로깅 하실 분 구합니다', category: '모임', price: null, img:`${process.env.PUBLIC_URL}/images/dummy/jogging.jpg` }
   ],
   
   // 중고거래 작성글 (usedgoods)
   usedgoods: [
-    { num: 10, title: '에어팟 맥스 실버 풀박스 판매합니다', category: '디지털기기', price: '450,000' },
-    { num: 11, title: '이케아 서랍장 나눔해요', category: '가구/인테리어', price: '0' },
-    { num: 12, title: '캠핑용 의자 2개 세트', category: '스포츠/레저', price: '30,000' }
+    { num: 10, title: '에어팟 맥스 실버 풀박스 판매합니다', category: '디지털기기', price: '450,000',img:`${process.env.PUBLIC_URL}/images/dummy/airpods.jpg` },
+    { num: 11, title: '이케아 서랍장 나눔해요', category: '가구/인테리어', price: '0',img:`${process.env.PUBLIC_URL}/images/dummy/drawer.jpg` },
+    { num: 12, title: '캠핑용 의자 2개 세트', category: '스포츠/레저', price: '30,000',img:`${process.env.PUBLIC_URL}/images/dummy/camping.jpg` }
   ]
 };
 
@@ -56,6 +56,7 @@ function MyHistory(props) {
 						status={item.category}
 						title={item.title}
 						price={item.price}
+						img={item.img}
 						// 링크값은 수정필요
 						// linkTo={`/${item.num}`}
 						/>
@@ -66,14 +67,14 @@ function MyHistory(props) {
 					<Link to='/' title='작성 댓글'
 					className='myComment'>
 					<div>
-					<img src='https://placehold.co/130x130' alt='제품이미지'/>
+					<img src={`${process.env.PUBLIC_URL}/images/dummy/airpods.jpg`} alt='제품이미지'/>
 					<div>
-						<p>000님이 댓글을 남겼습니다</p>
+						<p>지은마켓님이 댓글을 남겼습니다</p>
 						<p>그거 어디서 구매가능?</p>
 					</div>
 					</div>
 					
-					<p>00분 전</p>
+					<p>36분 전</p>
 					</Link>					
 				}
 				

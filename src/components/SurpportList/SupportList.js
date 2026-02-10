@@ -42,8 +42,7 @@ function SupportList({data, type}) {
 							</div>
 							{/* 답변 영역 */}
 							<div className='faqAnswer'>
-							<p>관리자 답변 영역</p>
-							<p>{item.date}</p>
+							<p>{item.answer}</p>
 							</div>
 						</>
 						}

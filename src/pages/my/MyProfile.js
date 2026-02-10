@@ -40,12 +40,12 @@ function MyProfile(props) {
 	}
 	// 더미데이터 추후삭제예정
 	const dummyData = [
-  { id: 1, name: '빈티지 체어', price: '35,000원', img: 'https://placehold.co/600x400' },
-  { id: 2, name: '중고 게이밍 키보드', price: '42,000원', img: 'https://placehold.co/600x400' },
-  { id: 3, name: '감성 캠핑 랜턴', price: '18,500원', img: 'https://placehold.co/600x400' },
-  { id: 4, name: '미개봉 무선 이어폰', price: '89,000원', img: 'https://placehold.co/600x400' },
-  { id: 5, name: '원목 독서대', price: '12,000원', img: 'https://placehold.co/600x400' },
-  { id: 6, name: '스마트 워치 스트랩', price: '5,500원', img: 'https://placehold.co/600x400' },
+  { id: 1, name: '빈티지 체어', price: '35,000원', img:`${process.env.PUBLIC_URL}/images/dummy/chair.jpg` },
+  { id: 2, name: '중고 게이밍 키보드', price: '42,000원', img:`${process.env.PUBLIC_URL}/images/dummy/keyboard.jpg` },
+  { id: 3, name: '감성 캠핑 랜턴', price: '18,500원', img:`${process.env.PUBLIC_URL}/images/dummy/lanturn.jpg` },
+  { id: 4, name: '미개봉 무선 이어폰', price: '89,000원', img:`${process.env.PUBLIC_URL}/images/dummy/earset.jpg`},
+  { id: 5, name: '원목 독서대', price: '12,000원', img:`${process.env.PUBLIC_URL}/images/dummy/bookstand.jpg`},
+  { id: 6, name: '스마트 워치 스트랩', price: '5,500원', img:`${process.env.PUBLIC_URL}/images/dummy/watch.jpg`},
 	];
 
 	return (
@@ -98,7 +98,7 @@ function MyProfile(props) {
 					<h3>거래후기</h3>
 					{/* CLASS userReview MAP */}
 					<div className='userReview'>
-						<img src='https://placehold.co/600x400' alt='리뷰어 이미지'/>
+						<img src={`${process.env.PUBLIC_URL}/images/dummy/profile1.jpg`} alt='리뷰어 이미지'/>
 						<div className='userReviewContent'>
 							<h4>유저네임</h4>
 							<span>구매자</span>
@@ -106,11 +106,11 @@ function MyProfile(props) {
 						</div>
 					</div>
 					<div className='userReview'>
-						<img src='https://placehold.co/600x400' alt='리뷰어 이미지'/>
+						<img src={`${process.env.PUBLIC_URL}/images/dummy/profile2.jpg`} alt='리뷰어 이미지'/>
 						<div className='userReviewContent'>
 							<h4>유저네임</h4>
 							<span>구매자</span>
-							<p>온라인 티켓구매가 처음이었는데. 자세히 설명해주셔서 감사했어요.</p>
+							<p>다음번에도 구매할게요!</p>
 						</div>
 					</div>
 				</div>
