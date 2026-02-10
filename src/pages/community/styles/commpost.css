@@ -229,6 +229,10 @@
   font-weight: 700;
   white-space: nowrap;
 }
+.commPostPage .imageSection .imgWrap .postTagMarker .tagBox small {
+  color: #fff;
+  white-space: nowrap;
+}
 .commPostPage .imageSection .imgWrap .postTagMarker .tagBox::after {
   content: " >";
   font-size: 0.8rem;
@@ -272,7 +276,7 @@
   color: #1A1C19;
   line-height: 1.4;
   color: #1A1C19;
-  margin-bottom: 4px;
+  margin: 1.5rem 0;
 }
 .commPostPage .goodsInfo .meta {
   font-family: "Inter", sans-serif;
@@ -281,7 +285,6 @@
   color: #1A1C19;
   line-height: 1.4;
   color: #6B6B6B;
-  margin-bottom: 16px;
 }
 .commPostPage .goodsInfo .postMainText {
   margin-bottom: 24px;
@@ -325,10 +328,8 @@
 .commPostPage .bottomInteractionBar {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
-  max-width: 767px;
   background: #fff;
   border-top: 1px solid #F2F5F2;
   padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
@@ -375,4 +376,89 @@
   color: #1A1C19;
   line-height: 1.4;
   padding: 5px;
+}
+.commPostPage .commentListSection {
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 70px;
+}
+.commPostPage .commentListSection .commentItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #fafafa;
+}
+.commPostPage .commentListSection .commentItem .commentUser {
+  font-weight: 700;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+}
+.commPostPage .commentListSection .commentItem .commentUser::after {
+  content: "";
+  width: 3px;
+  height: 3px;
+  background: #ccc;
+  border-radius: 50%;
+  margin: 0 8px;
+}
+.commPostPage .commentListSection .commentItem .commentText {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.commPostPage .bottomInteractionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 10px 16px;
+  z-index: 100;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+.commPostPage .bottomInteractionBar .bottomInner {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 25px;
+  padding: 5px 15px;
+}
+.commPostPage .bottomInteractionBar .bottomInner .commentInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 10px;
+  font-size: 14px;
+  outline: none;
+}
+.commPostPage .bottomInteractionBar .bottomInner .commentInput::-moz-placeholder {
+  color: #bbb;
+}
+.commPostPage .bottomInteractionBar .bottomInner .commentInput::placeholder {
+  color: #bbb;
+}
+.commPostPage .bottomInteractionBar .bottomInner .sendBtn {
+  background: transparent;
+  border: none;
+  color: #5ba661;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: color 0.2s;
+}
+.commPostPage .bottomInteractionBar .bottomInner .sendBtn:hover {
+  color: rgb(72.4664031621, 133.5335968379, 77.3517786561);
+}
+.commPostPage .bottomInteractionBar .bottomInner .sendBtn:disabled {
+  color: #ccc;
 }/*# sourceMappingURL=commpost.css.map */

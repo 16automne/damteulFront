@@ -69,7 +69,7 @@
           background: rgba(0, 0, 0, 0.7); // 반투명 검정 배경
           padding: 6px 12px;
           border-radius: 20px;
-          display: flex;
+          display: flex; 
           align-items: center;
           gap: 4px;
           box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -78,6 +78,11 @@
             @include fontText04; // 12px 정도의 폰트
             color: $colorWhite;
             font-weight: $weightBold;
+            white-space: nowrap;
+          }
+
+          small {
+            color: $colorWhite;
             white-space: nowrap;
           }
 
@@ -127,8 +132,8 @@
   /* 게시글 텍스트 영역 */
   .goodsInfo {
     padding: 20px 0;
-    h3 { @include fontText01; color: $colorDKGray; margin-bottom: 4px; }
-    .meta { @include fontText04; color: $colorMdGray; margin-bottom: 16px; }
+    h3 { @include fontText01; color: $colorDKGray; margin: 1.5rem 0; }
+    .meta { @include fontText04; color: $colorMdGray; }
     
     .postMainText {
       margin-bottom: 24px;
@@ -148,8 +153,8 @@
   /* ✅ 1. 하단 등록 버튼 디자인 (고정 및 중앙 정렬) */
   .bottomInteractionBar {
     position: fixed;
-    bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: $mobileMaxWidth; // 767px 제한
+    bottom: 0; left: 0;
+    width: 100%;
     background: $colorWhite; border-top: 1px solid $colorLgGray;
     padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
     z-index: 100;
@@ -168,6 +173,102 @@
       .sendBtn {
         background: none; border: none; color: $colorPrimary;
         font-weight: bold; @include fontText03; padding: 5px;
+      }
+    }
+  }
+
+  // 1. 댓글 리스트 섹션
+  .commentListSection {
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+    margin-bottom: 70px; // 입력바 높이만큼 여백
+
+    .commentItem {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #fafafa;
+
+      .commentUser {
+        font-weight: 700;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+
+        &::after {
+          content: "";
+          width: 3px;
+          height: 3px;
+          background: #ccc;
+          border-radius: 50%;
+          margin: 0 8px;
+        }
+      }
+
+      .commentText {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        word-break: break-all;
+      }
+    }
+  }
+
+  // 2. 하단 댓글 입력바 (플로팅 스타일)
+  .bottomInteractionBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 10px 16px;
+    z-index: 100;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+
+    .bottomInner {
+      max-width: 600px; // 모바일/웹 적정 너비
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      background: #f8f8f8;
+      border-radius: 25px;
+      padding: 5px 15px;
+
+      .commentInput {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 8px 10px;
+        font-size: 14px;
+        outline: none;
+
+        &::placeholder {
+          color: #bbb;
+        }
+      }
+
+      .sendBtn {
+        background: transparent;
+        border: none;
+        color: #5ba661; // 포인트 컬러 (초록계열)
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 0 5px;
+        transition: color 0.2s;
+
+        &:hover {
+          color: darken(#5ba661, 10%);
+        }
+
+        &:disabled {
+          color: #ccc;
+        }
       }
     }
   }

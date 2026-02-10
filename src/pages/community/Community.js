@@ -11,7 +11,7 @@ import { IoDiamondOutline, IoDiamond, IoBookOutline, IoBookSharp } from "react-i
 import { PiBaby ,PiBabyFill, PiMonitor, PiMonitorFill } from "react-icons/pi";
 import { CiDumbbell } from "react-icons/ci";
 import { FaDumbbell } from "react-icons/fa6";
-import { IoMdHeart, IoMdMore } from "react-icons/io";
+import { IoMdHeart } from "react-icons/io";
 import { PiChatCircleTextFill } from "react-icons/pi";
 
 const IMAGE_BASE_URL = "http://localhost:9070/uploads/community/";
@@ -21,7 +21,6 @@ const Community = () => {
   const [selectedCategory, setSelectedCategory] = useState('/ticket');
   const [feeds, setFeeds] = useState([]);
   const listRef = useRef(null);
-  const userId = Number(getUserId());
 
   const categoryMap = {
     "/ticket": "1",
@@ -31,25 +30,6 @@ const Community = () => {
     "/book": "5",
     "/sports": "6",
     "/digit": "7"
-  };
-
-  const fetchFeeds = () => {
-    App.get("/api/community")
-      .then((res) => { setFeeds(res.data); })
-      .catch((err) => console.error("데이터 로딩 실패:", err));
-  };
-
-  useEffect(() => {
-    fetchFeeds();
-  }, []);
-
-  const handleFeedClick = (feed) => {
-    console.log("클릭한 피드 데이터:", feed); // 데이터에 id가 들어오는지 확인용
-    if (feed.id) {
-      navigate(`/community/post/${feed.id}`); 
-    } else {
-      console.error("게시글 ID가 없습니다. 백엔드 쿼리의 'AS id'를 확인하세요.");
-    }
   };
 
   const commCatea = [
@@ -62,14 +42,43 @@ const Community = () => {
     { to: "/digit", label: "디지털기기", icon: <PiMonitor />, activeIcon: <PiMonitorFill /> }
   ];
 
+  // ✅ 현재 선택된 카테고리의 라벨(이름)을 찾는 로직
+  const currentCategoryLabel = commCatea.find(item => item.to === selectedCategory)?.label || "커뮤니티";
+
+  const fetchFeeds = () => {
+    App.get("/api/community")
+      .then((res) => { 
+        setFeeds(Array.isArray(res.data) ? res.data : []); 
+      })
+      .catch((err) => console.error("데이터 로딩 실패:", err));
+  };
+
+  useEffect(() => {
+    fetchFeeds();
+  }, []);
+
+  const handleFeedClick = (e, feed) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    if (feed && feed.id) {
+      navigate(`/community/post/${feed.id}`); 
+    } else {
+      console.error("ID missing in feed data:", feed);
+      alert("게시글 정보를 불러올 수 없습니다.");
+    }
+  };
+
   const filteredFeeds = feeds.filter(feed => String(feed.cate) === categoryMap[selectedCategory]);
   
-
   return (
     <main className="communityContainer">
       <div className="commBaseLayout">
         <section className="commRecSection">
-          <h2><span style={{fontWeight:'bold'}}>사용자</span>님에게 추천드리는 커뮤니티</h2>
+          {/* ✅ "커뮤니티 추천 게시글" 대신 선택된 카테고리 이름 표시 */}
+          <h2>{currentCategoryLabel} 추천 게시글</h2>
         </section>
         
         <nav className='commCateList'>
@@ -92,33 +101,33 @@ const Community = () => {
 
       <section className="comFeedSection" ref={listRef}>
         <ul className="comFeedWrap">
-          {filteredFeeds.map(feed => (
-            <li 
-              key={feed.id} 
-              className="comFeedItem" 
-              onClick={() => handleFeedClick(feed)}
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="imgBox">
-                <img 
-                  src={`${IMAGE_BASE_URL}${feed.image_url}`}
-                  alt={feed.title} 
-                />
-                
-                {/* 1. 더보기 아이콘 (상단 우측) */}
-                <div className="moreIcon">
-                  <span><IoMdMore /></span>
-                </div>
+          {filteredFeeds.length > 0 ? (
+            filteredFeeds.map(feed => {
+              if (!feed.image_url) return null;
 
-                {/* 2. 피드 정보 (하트 및 댓글 개수 - 하단) */}
-                <div className="feedInfo">
-                  {/* 하트와 댓글은 현재 DB에서 안 가져오므로 임시로 0 또는 feed 속성 연결 */}
-                  <span><IoMdHeart /> {feed.heart || 0}</span>
-                  <span><PiChatCircleTextFill /> {feed.chat || 0}</span>
-                </div>
-              </div>
-            </li>
-))}
+              return (
+                <li 
+                  key={feed.id} 
+                  className="comFeedItem" 
+                  onClick={(e) => handleFeedClick(e, feed)}
+                >
+                  <div className="imgBox">
+                    <img 
+                      src={`${IMAGE_BASE_URL}${feed.image_url}`}
+                      alt={feed.title}
+                      onError={(e) => { e.target.src = "/images/defaultPost.png"; }}
+                    />
+                    <div className="feedInfo">
+                      <span><IoMdHeart /> {feed.heart || 0}</span>
+                      <span><PiChatCircleTextFill /> {feed.chat || 0}</span>
+                    </div>
+                  </div>
+                </li>
+              );
+            })
+          ) : (
+            <p className="noFeed">게시글이 없습니다.</p>
+          )}
         </ul>
       </section>
       <WriteBtn />

@@ -4,7 +4,7 @@
 .commTagPage {
   // 1. 전체 레이아웃 고정 (화면 꽉 차게)
   @include mobileParentLayout;
-  background-color: #000;
+  background-color: $colorDKGray;
   display: flex;
   flex-direction: column;
   height: 100dvh; // 동적 뷰포트 높이 대응
