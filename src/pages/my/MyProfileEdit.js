@@ -4,6 +4,8 @@ import './styles/myProfileEdit.css';
 import { useNavigate } from 'react-router-dom';
 import api from 'app/api/axios';
 import { getUserId } from '../../components/getUserId/getUserId';
+import { FaCamera } from "react-icons/fa";
+
 
 function MyProfileEdit(props) {
 	const navigate = useNavigate();
@@ -71,10 +73,10 @@ function MyProfileEdit(props) {
 					<img src={`${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='내 프로필'/>
 					<label htmlFor='editProfile'
 					className='fileWrapper'>
-					<img src='https://placehold.co/30x30' alt='변경할 프로필 선택하기'/>
 					<input type='file'
 					id='editProfile'
 					className='file'/>
+					<FaCamera />
 					</label>
 				</div>
 				<p>

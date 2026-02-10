@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from 'app/api/axios';
 import { getUserId } from 'components/getUserId/getUserId';
+import { FaPlus } from "react-icons/fa";
 
 function NanumPost(props) {
 
@@ -112,7 +113,7 @@ function NanumPost(props) {
 						multiple
 						onChange={handleFileChange}
 						/>
-							<img src='https://placehold.co/30x30' alt='선택한 이미지'/>
+							<FaPlus />
 							{file.length}/10
 					</label>
 

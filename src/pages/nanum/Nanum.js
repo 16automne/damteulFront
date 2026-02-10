@@ -44,7 +44,7 @@ const Nanum = () => {
 
   return (
     <main>
-      <section style={{marginTop:'60px', marginBottom:'80px'}}>
+      <section style={{marginTop:'60px', marginBottom:'80px', paddingBottom:'60px'}}>
         <SearchBar/>
           <div className='btnContainer'>
 						<button className={filter === 'nanum'?'btnActive':''}
