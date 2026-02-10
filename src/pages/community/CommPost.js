@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import App from 'app/api/axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,151 +9,225 @@ import { IoIosMore } from 'react-icons/io';
 import { AiFillTag } from "react-icons/ai";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { BiMessageSquareDetail } from "react-icons/bi";
-import { API_ORIGIN } from 'app/api/apiOrigin';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './styles/commpost.scss';
 
-// 사용자 등급 아이콘 매핑 (DB의 level_code 또는 userGrade 기준)
 const gradeIcons = {
-  '1': '/images/level01.png',
-  '2': '/images/level02.png',
-  '3': '/images/level03.png',
-  '4': '/images/level04.png',
-  '5': '/images/level05.png'
+  '1': '/images/level01.png', '2': '/images/level02.png', '3': '/images/level03.png',
+  '4': '/images/level04.png', '5': '/images/level05.png'
 };
 
+const IMAGE_BASE_URL = "http://localhost:9070/uploads/community/";
+
 const CommPost = () => {
-  const { id } = useParams();
+  const { id } = useParams(); 
   const navigate = useNavigate();
-  const IMAGE_BASE_URL = "http://localhost:9070/uploads/community/";
+  const userId = getUserId() ? Number(getUserId()) : null;
 
+  // --- [1] 모든 State 선언 ---
   const [detail, setDetail] = useState(null);
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-  const [showTags, setShowTags] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
-  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isLiked, setIsLiked] = useState(false); 
+  const [likeCount, setLikeCount] = useState(0); 
+  const [showTags, setShowTags] = useState(true); 
+  const [isOpen, setIsOpen] = useState(false); 
+  const [comments, setComments] = useState([]); 
+  const [newComment, setNewComment] = useState("");
 
-  const fetchPostDetail = () => {
-    App.get(`/api/community/${id}`)
-      .then(res => {
-        // 백엔드 commDetail 응답: { post: {...}, images: [...] }
-        if (res.data && res.data.post) {
-          setDetail(res.data);
-        }
-      })
-      .catch(() => navigate('/community'));
-  };
-    useEffect(() => {
-    fetchPostDetail();
+  // --- [2] 모든 Hook 선언 (반드시 Early Return 위에 위치) ---
+  
+  // 댓글 목록 조회
+  const fetchComments = useCallback(() => {
+    App.get(`/api/community/${id}/comments`)
+      .then(res => setComments(res.data || []))
+      .catch(err => console.error("댓글 로드 실패", err));
   }, [id]);
 
-  const handleLike = () => {
-    setIsLiked(!isLiked);
-    setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
+  // 좋아요 상태 조회
+  const fetchLikeStatus = useCallback(() => {
+    if (!userId || !id) return;
+    App.get(`/api/community/${id}/likes`, { params: { user_id: userId } })
+      .then(res => setIsLiked(res.data.isLiked || false))
+      .catch(err => console.error("좋아요 확인 실패", err));
+  }, [id, userId]);
+
+  // 게시글 상세 조회
+  const fetchPostDetail = useCallback(() => {
+    setLoading(true);
+    App.get(`/api/community/${id}`)
+      .then(res => {
+        if (res.data && res.data.post) {
+          if (!res.data.images || res.data.images.length === 0) {
+            alert("유효하지 않은 게시글입니다.");
+            navigate('/community');
+            return;
+          }
+          setDetail(res.data);
+          setLikeCount(res.data.post.initial_like_count || 0); 
+        }
+      })
+      .catch(() => navigate('/community'))
+      .finally(() => setLoading(false));
+  }, [id, navigate]);
+
+  useEffect(() => {
+    fetchPostDetail();
+    fetchComments();
+    fetchLikeStatus();
+  }, [fetchPostDetail, fetchComments, fetchLikeStatus]);
+
+  // --- [3] 이벤트 핸들러 ---
+
+  // 댓글 등록
+  const handleCommentSubmit = () => {
+    if (!userId) return alert("로그인이 필요합니다.");
+    if (!newComment.trim()) return;
+
+    App.post('/api/community/comments', { post_id: id, user_id: userId, content: newComment })
+      .then(() => {
+        setNewComment("");
+        fetchComments(); // ✅ 즉시 갱신
+      })
+      .catch(() => alert("댓글 등록 실패"));
   };
 
-  if (!detail) return <div className="loading">로딩 중...</div>;
+  // ✅ 댓글 삭제 기능 추가
+  const handleCommentDelete = (commentId) => {
+    if (window.confirm("댓글을 삭제하시겠습니까?")) {
+      App.delete(`/api/community/comments/${commentId}`)
+        .then(() => fetchComments()) // ✅ 삭제 후 즉시 갱신
+        .catch(() => alert("삭제 실패"));
+    }
+  };
+
+  const handleLikeToggle = () => {
+    if (!userId) return alert("로그인이 필요합니다.");
+    App.post(`/api/community/likes/toggle`, { post_id: id, user_id: userId })
+      .then(() => {
+        fetchPostDetail(); 
+        fetchLikeStatus();
+      });
+  };
+
+  const handleReport = () => {
+    if (!userId) return alert("로그인이 필요합니다.");
+    if (window.confirm("이 게시글을 신고하시겠습니까?")) {
+      alert("신고 접수가 완료되었습니다.");
+      setIsOpen(false);
+    }
+  };
+
+  // --- [4] 조건부 렌더링 (Hook 아래에 위치) ---
+  if (loading) return <div className="loading">데이터를 불러오는 중...</div>;
+  if (!detail || !detail.post) return <div className="loading">데이터가 없습니다.</div>;
 
   const { post, images } = detail;
 
   return (
-    <div className='bodyParent'>
-      <div className='bodyChild'>
-        <main className="commPostPage">
-          <header className="postHeader">
-            <div className="userInfo">
-              {/* 유저 프로필 이미지가 DB에 있다면 post.profile 사용 */}
-              <img src={post.profile || "/images/defaultProfile.png"} alt="profile" /> 
-              <div className="nameWrap">
-                {/* DB의 user_nickname 필드 연결 */}
-                <span className="nickname">{post.user_nickname || "익명"}</span>
-                <img 
-                  src={gradeIcons[post.level_code] || gradeIcons['1']} 
-                  alt="grade" 
-                  className="gradeBadge" 
-                />
+    <div className="bodyParent">
+      <main className="commPostPage">
+        {/* 사용자 헤더 */}
+        <header className="postHeader">
+          <div className="userInfo">
+            <img src={post.profile || "/images/defaultProfile.png"} alt="profile" onError={(e) => { e.target.src = "/images/defaultProfile.png"; }} />
+            <div className="nameWrap">
+              <span className="nickname">{post.user_nickname}</span>
+              <img src={gradeIcons[String(post.level_code)] || gradeIcons['1']} alt="lv" className="gradeBadge" />
+            </div>
+          </div>
+          <div className="menuWrap">
+            <IoIosMore onClick={() => setIsOpen(!isOpen)} />
+            {isOpen && (
+              <div className="adminMenu">
+                {post.user_id === userId ? (
+                  <>
+                    <button onClick={() => navigate(`/community/write`, { state: { editData: detail } })}>수정하기</button>
+                    <button className="deleteText" onClick={() => { if(window.confirm("정말 삭제하시겠습니까?")) App.put(`/api/community/delete/${id}`).then(() => navigate('/community')); }}>삭제하기</button>
+                  </>
+                ) : (
+                  <button onClick={handleReport}>신고하기</button>
+                )}
               </div>
-            </div>
-            <div className="menuWrap">
-              <IoIosMore onClick={() => setIsOpen(!isOpen)} />
-              {isOpen && (
-                <div className="adminMenu">
-                  <button onClick={() => navigate(`/community/edit/${id}`)}>수정하기</button>
-                  <button className="deleteText" onClick={() => alert('삭제 기능 준비중')}>삭제하기</button>
-                </div>
-              )}
-            </div>
-          </header>
+            )}
+          </div>
+        </header>
 
-          <div className='imageSection'>
-            <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
-              {detail.images && images.map((img, idx) => (
-                <SwiperSlide key={img.image_id || idx}>
-                  <div className="imgWrap">
-                    <img 
-                      src={`${IMAGE_BASE_URL}${img.image_url}`} 
-                      alt={`post-${idx}`} 
-                    />
-                    
-                    <button className="tagToggleBtn" onClick={() => setShowTags(!showTags)}>
-                      <AiFillTag />
-                    </button>
-
-                    {showTags && img.tags?.map((tag) => (
-                      <div 
-                        key={tag.tag_id} 
-                        className="postTagMarker" 
-                        style={{ left: `${tag.x}%`, top: `${tag.y}%` }}
-                        onClick={() => navigate(`/goods/detail/${tag.goods_id}`)}
-                      >
-                        <div className="tagBox">
-                          {/* DB JOIN을 통해 가져온 상품명과 가격 표시 */}
-                          <span>{tag.name}</span>
-                          <small>{Number(tag.price).toLocaleString()}원</small>
-                        </div>
+        {/* 이미지 및 태그 */}
+        <section className="imageSection">
+          <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
+            {images.map((img, idx) => (
+              <SwiperSlide key={img.image_id || idx}>
+                <div className="imgWrap">
+                  <img src={`${IMAGE_BASE_URL}${img.image_url}`} alt="post" />
+                  <button className="tagToggleBtn" onClick={() => setShowTags(!showTags)}><AiFillTag /></button>
+                  {showTags && img.tags?.map((tag, tIdx) => (
+                    <div 
+                      key={tag.tag_id || tIdx} 
+                      className="postTagMarker" 
+                      style={{ left: `${tag.x_pos || tag.x}%`, top: `${tag.y_pos || tag.y}%` }}
+                      onClick={() => navigate(`/goodsdetail/${tag.goods_id}`)}
+                    >
+                      <div className="tagBox">
+                        <span>{tag.name}</span>
+                        <small>{Number(tag.price).toLocaleString()}원</small>
                       </div>
-                    ))}
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+                    </div>
+                  ))}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
 
-          <div className='goodsInfo'>
-            <h3>{post.title}</h3>
-            <p className="meta">{new Date(post.created_at).toLocaleDateString()} &#10072; 커뮤니티</p>
-            
-            <div className='postMainText'>
-              <p>{post.content}</p>
+        {/* 본문 정보 */}
+        <div className='goodsInfo'>
+          <div className='interactionBar'>
+            <div className='iconItem' onClick={handleLikeToggle} style={{cursor:'pointer'}}>
+              {isLiked ? <FaHeart className="active" /> : <FaRegHeart />}
+              <span>{likeCount}</span>
             </div>
+            <div className='iconItem'>
+              <BiMessageSquareDetail />
+              <span>{comments.length}</span>
+            </div>
+          </div>
+          <h3>{post.title}</h3>
+          <div className='postMainText'><p>{post.content}</p></div>
+        </div>
 
-            <div className='interactionBar'>
-              <div className='iconItem' onClick={handleLike}>
-                {isLiked ? <FaHeart className="active" /> : <FaRegHeart />}
-                <span>{likeCount}</span>
+        {/* 댓글 리스트 섹션 */}
+        <section className="commentListSection">
+          {comments.map((comment) => (
+            <div key={comment.comment_id} className="commentItem">
+              <div className="commentHeader">
+                <span className="commentUser">{comment.user_nickname}</span>
+                {/* 본인 댓글일 때만 삭제 버튼 노출 */}
+                {comment.user_id === userId && (
+                  <button className="commDelBtn" onClick={() => handleCommentDelete(comment.comment_id)}>삭제</button>
+                )}
               </div>
-              <div className='iconItem'>
-                <BiMessageSquareDetail />
-                <span>{comments.length}</span>
-              </div>
+              <p className="commentText">{comment.content}</p>
             </div>
+          ))}
+        </section>
+
+        {/* 하단 댓글 입력바 */}
+        <div className="bottomInteractionBar">
+          <div className="bottomInner">
+            <input 
+              type="text" 
+              className="commentInput" 
+              placeholder="댓글을 남겨보세요" 
+              value={newComment} 
+              onChange={(e) => setNewComment(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleCommentSubmit()}
+            />
+            <button className="sendBtn" onClick={handleCommentSubmit} disabled={!newComment.trim()}>등록</button>
           </div>
-          
-          {/* 댓글 입력 영역 */}
-          <div className='bottomInteractionBar'>
-            <div className="bottomInner">
-              <div className='commentInputPlaceholder' onClick={() => alert('댓글 작성 페이지로 이동')}>
-                <img src="/images/defaultProfile.png" alt="me" />
-                <span>따뜻한 댓글을 남겨주세요...</span>
-              </div>
-              <button className='sendBtn'>등록</button>
-            </div>
-          </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 };

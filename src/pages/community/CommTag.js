@@ -6,12 +6,11 @@ import './styles/commtag.scss';
 import { getUserId } from 'components/getUserId/getUserId';
 
 const CommTag = () => {
-  const { id } = useParams(); //사진
+  const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const currentImages = location.state?.currentImages || [];
   const userId = Number(getUserId());
-  const [detail, setDetail] = useState(null);
   
   const imgUrl = location.state?.imgUrl || "https://via.placeholder.com/800";
 
@@ -21,9 +20,11 @@ const CommTag = () => {
   const [myGoods, setMyGoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // 1. 내 상품 목록 가져오기
   useEffect(() => {
     const fetchMyGoods = async () => {
       try {
+        // 백엔드의 post 함수(GET /api/goods)가 응답하는 { list: [...] } 구조에 맞춤
         const response = await App.get(`/api/goods?user_id=${userId}`);
         setMyGoods(response.data.list || []);
       } catch (err) {
@@ -32,7 +33,7 @@ const CommTag = () => {
         setLoading(false);
       }
     };
-    if (userId) fetchMyGoods(); // 유저 ID가 있을 때만 호출
+    if (userId) fetchMyGoods();
   }, [userId]);
 
   const handlePhotoClick = (e) => {
@@ -44,14 +45,15 @@ const CommTag = () => {
     setShowModal(true);
   };
 
+  // 2. 상품 선택 시 태그 객체 생성
   const selectProduct = (product) => {
     const newTag = {
       id: Date.now(),
-      goods_id: product.id, // DB의 goods_id
+      goods_id: product.goods_id, // 테이블 PK: goods_id
       x: tempPos.x,
       y: tempPos.y,
-      name: product.name,   // DB의 title
-      price: product.price  // DB의 price
+      name: product.title,       // 테이블 컬럼명: title
+      price: product.price       // 테이블 컬럼명: price
     };
     setTags([...tags, newTag]);
     setShowModal(false);
@@ -60,22 +62,25 @@ const CommTag = () => {
   const handleComplete = () => {
     navigate('/community/write', { 
       state: { 
-        updatedTag: {
-          image_id: location.state?.image_id, 
-          tags: tags 
-        },
-        currentImages: currentImages
+        updatedTag: { id, tags },
+        currentImages: currentImages 
       } 
     });
   };
 
   const handleGoBack = () => {
     if (tags.length !== (location.state?.existingTags?.length || 0)) {
-      if (!window.confirm("변경 사항이 저장되지 않습니다. 정말 돌아가시겠어요?")) {
-        return;
-      }
+      if (!window.confirm("변경 사항이 저장되지 않습니다. 정말 돌아가시겠어요?")) return;
     }
     navigate(-1);
+  };
+
+  // 태그 삭제함수
+  const removeTag = (e, tagId) => {
+    e.stopPropagation(); // 부모(이미지 컨테이너)의 클릭 이벤트 전파 방지
+    if (window.confirm("이 태그를 삭제하시겠습니까?")) {
+      setTags(tags.filter(tag => tag.id !== tagId));
+    }
   };
 
   return (
@@ -86,14 +91,19 @@ const CommTag = () => {
 
       <div className="tagImageContainer" onClick={handlePhotoClick}>
         <img src={imgUrl} alt="편집" className="fullImage" />
-        <div className="tagIconOverlay">
-          <AiFillTag />
-        </div>
+        <div className="tagIconOverlay"><AiFillTag /></div>
+        
+        {/* 이미지 위에 찍힌 태그 마커 표시 */}
         {tags.map((tag) => (
-          <div key={tag.id} className="addedTagMarker" style={{ left: `${tag.x}%`, top: `${tag.y}%` }}>
+          <div 
+            key={tag.id} 
+            className="addedTagMarker" 
+            style={{ left: `${tag.x}%`, top: `${tag.y}%` }}
+            onClick={(e) => removeTag(e, tag.id)}
+          >
             <div className="tagLabel">
               <span className="name">{tag.name}</span>
-              <span className="price">{tag.price} 원</span>
+              <span className="price">{Number(tag.price).toLocaleString()}원</span>
             </div>
           </div>
         ))}
@@ -104,6 +114,7 @@ const CommTag = () => {
         <button className="doneBtn" onClick={handleComplete}>완료</button>
       </footer>
 
+      {/* 상품 선택 모달 */}
       {showModal && (
         <div className="modalOverlay" onClick={() => setShowModal(false)}>
           <div className="tagModalContent" onClick={(e) => e.stopPropagation()}>
@@ -112,17 +123,18 @@ const CommTag = () => {
                 <h3>등록할 상품을 정해주세요</h3>
                 <div className="goodsListSwipe">
                   {myGoods.map((item) => (
-                    <div key={item.id} className="goodsItem" onClick={() => selectProduct(item)}>
-                      <img src={item.img} alt={item.name} />
+                    <div key={item.goods_id} className="goodsItem" onClick={() => selectProduct(item)}>
+                      {/* 이미지 필드가 테이블에 정의된 이름인지 확인 필요 */}
+                      <img src={item.image_url || "/images/defaultPost.png"} alt={item.title} />
                       <div className="info">
-                        <p className="name">{item.name}</p>
-                        <p className="price">{item.price}원</p>
+                        {/* ✅ name 대신 title 사용 */}
+                        <p className="name">{item.title}</p> 
+                        <p className="price">{Number(item.price).toLocaleString()}원</p>
                       </div>
                       <div className="radioCircle"></div>
                     </div>
                   ))}
                 </div>
-                <button className="registerActionBtn">등록하기</button>
               </>
             ) : (
               <div className="noGoodsBox">
