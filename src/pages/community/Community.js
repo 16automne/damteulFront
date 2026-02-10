@@ -20,7 +20,21 @@ const Community = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('/ticket');
   const [feeds, setFeeds] = useState([]);
+  const [userName, setUserName] = useState("사용자");
   const listRef = useRef(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("userToken");
+    if (token) {
+      App.get(`/api/profile/${getUserId()}`)
+        .then(res => {
+          if (res.data && res.data.user_nickname) {
+            setUserName(res.data.user_nickname);
+          }
+        })
+        .catch(err => console.error("사용자 정보 로딩 실패:", err));
+    }
+  }, []);
 
   const categoryMap = {
     "/ticket": "1",
@@ -42,7 +56,6 @@ const Community = () => {
     { to: "/digit", label: "디지털기기", icon: <PiMonitor />, activeIcon: <PiMonitorFill /> }
   ];
 
-  // ✅ 현재 선택된 카테고리의 라벨(이름)을 찾는 로직
   const currentCategoryLabel = commCatea.find(item => item.to === selectedCategory)?.label || "커뮤니티";
 
   const fetchFeeds = () => {
@@ -77,8 +90,7 @@ const Community = () => {
     <main className="communityContainer">
       <div className="commBaseLayout">
         <section className="commRecSection">
-          {/* ✅ "커뮤니티 추천 게시글" 대신 선택된 카테고리 이름 표시 */}
-          <h2>{currentCategoryLabel} 추천 게시글</h2>
+          <h2><span style={{fontWeight: 'bold'}}>{userName}</span>님에게 추천드리는 {currentCategoryLabel}</h2>
         </section>
         
         <nav className='commCateList'>

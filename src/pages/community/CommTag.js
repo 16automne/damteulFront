@@ -10,6 +10,7 @@ const CommTag = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentImages = location.state?.currentImages || [];
+  
   const userId = Number(getUserId());
   
   const imgUrl = location.state?.imgUrl || "https://via.placeholder.com/800";
@@ -20,11 +21,11 @@ const CommTag = () => {
   const [myGoods, setMyGoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 1. 내 상품 목록 가져오기
+  // 1. 내 상품 목록 가져오기 (getUserId로 얻은 userId 활용)
   useEffect(() => {
     const fetchMyGoods = async () => {
       try {
-        // 백엔드의 post 함수(GET /api/goods)가 응답하는 { list: [...] } 구조에 맞춤
+        // 서버 API 구조에 맞춰 내 상품 리스트 호출
         const response = await App.get(`/api/goods?user_id=${userId}`);
         setMyGoods(response.data.list || []);
       } catch (err) {
@@ -49,11 +50,11 @@ const CommTag = () => {
   const selectProduct = (product) => {
     const newTag = {
       id: Date.now(),
-      goods_id: product.goods_id, // 테이블 PK: goods_id
+      goods_id: product.goods_id,
       x: tempPos.x,
       y: tempPos.y,
-      name: product.title,       // 테이블 컬럼명: title
-      price: product.price       // 테이블 컬럼명: price
+      name: product.title,
+      price: product.price
     };
     setTags([...tags, newTag]);
     setShowModal(false);
@@ -75,9 +76,8 @@ const CommTag = () => {
     navigate(-1);
   };
 
-  // 태그 삭제함수
   const removeTag = (e, tagId) => {
-    e.stopPropagation(); // 부모(이미지 컨테이너)의 클릭 이벤트 전파 방지
+    e.stopPropagation();
     if (window.confirm("이 태그를 삭제하시겠습니까?")) {
       setTags(tags.filter(tag => tag.id !== tagId));
     }
@@ -93,7 +93,6 @@ const CommTag = () => {
         <img src={imgUrl} alt="편집" className="fullImage" />
         <div className="tagIconOverlay"><AiFillTag /></div>
         
-        {/* 이미지 위에 찍힌 태그 마커 표시 */}
         {tags.map((tag) => (
           <div 
             key={tag.id} 
@@ -114,7 +113,6 @@ const CommTag = () => {
         <button className="doneBtn" onClick={handleComplete}>완료</button>
       </footer>
 
-      {/* 상품 선택 모달 */}
       {showModal && (
         <div className="modalOverlay" onClick={() => setShowModal(false)}>
           <div className="tagModalContent" onClick={(e) => e.stopPropagation()}>
@@ -124,10 +122,8 @@ const CommTag = () => {
                 <div className="goodsListSwipe">
                   {myGoods.map((item) => (
                     <div key={item.goods_id} className="goodsItem" onClick={() => selectProduct(item)}>
-                      {/* 이미지 필드가 테이블에 정의된 이름인지 확인 필요 */}
                       <img src={item.image_url || "/images/defaultPost.png"} alt={item.title} />
                       <div className="info">
-                        {/* ✅ name 대신 title 사용 */}
                         <p className="name">{item.title}</p> 
                         <p className="price">{Number(item.price).toLocaleString()}원</p>
                       </div>

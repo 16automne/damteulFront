@@ -2,7 +2,6 @@
 @use "../../../styles/_config2" as *;
 
 
-.bodyParent:has(.commWritePage) {background-color: $colorWhite !important;}
 .commWritePage {
   padding: 3.5rem 0;
 
@@ -21,6 +20,7 @@
       gap: 0.8rem;
       padding: 1rem;
       width: 100%;
+      color: $colorWhite;
       
       &::-webkit-scrollbar { display: none; }
 
@@ -29,22 +29,38 @@
           flex-shrink: 0;
           
           .uploadLabel {
-            width: 4rem; height: 4rem;
+            width: 4rem; 
+            height: 4rem;
             margin-right: 0.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: $colorSmGray;
+            background-color: $colorPrimary;
             border-radius: 0.5rem;
             box-shadow: $bottomShadow;
+            cursor: pointer; // 마우스 커서 추가
             
-              svg { font-size: 1.4rem; }
-              p { font-size: 0.8rem; padding-top: 0.1rem; }
+            svg { 
+              font-size: 1.4rem; 
+              color: $colorWhite;
+              fill: $colorWhite;
             }
-            
-            input { display: none; }
+
+            // ✅ 숫자(0/10) 텍스트 색상을 흰색으로 변경
+            p { 
+              font-size: 0.8rem; 
+              padding-top: 0.1rem; 
+              color: $colorWhite; // 숫자 색상 강제 지정
+              
+              span {
+                color: $colorWhite; // 내부 span(현재 장수)도 흰색으로
+              }
+            }
           }
+          
+          input { display: none; }
+        }
 
         /* 미리보기 아이템 */
         .previewItem {

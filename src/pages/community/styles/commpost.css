@@ -117,6 +117,7 @@
   /* 이미지 섹션 */
   /* 게시글 텍스트 영역 */
   /* ✅ 1. 하단 등록 버튼 디자인 (고정 및 중앙 정렬) */
+  /* [4] 댓글 목록 - 우측 상단 삭제 버튼 적용 */
 }
 .commPostPage .postHeader {
   display: flex;
@@ -378,39 +379,46 @@
   padding: 5px;
 }
 .commPostPage .commentListSection {
-  padding: 20px;
-  background-color: #fff;
-  border-top: 1px solid #f0f0f0;
-  margin-bottom: 70px;
+  padding: 1rem;
+  border-top: 1px solid #F2F5F2;
 }
 .commPostPage .commentListSection .commentItem {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #fafafa;
+  position: relative;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #fff;
+  padding-right: 3.5rem;
+  /* ✅ 우측 상단 삭제 버튼 스타일 */
 }
-.commPostPage .commentListSection .commentItem .commentUser {
-  font-weight: 700;
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
+.commPostPage .commentListSection .commentItem .commentHeader {
+  margin-bottom: 0.3rem;
 }
-.commPostPage .commentListSection .commentItem .commentUser::after {
-  content: "";
-  width: 3px;
-  height: 3px;
-  background: #ccc;
-  border-radius: 50%;
-  margin: 0 8px;
+.commPostPage .commentListSection .commentItem .commentHeader .commentUser {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #1A1C19;
 }
 .commPostPage .commentListSection .commentItem .commentText {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
-  word-break: break-all;
+  font-size: 0.85rem;
+  color: #1A1C19;
+  line-height: 1.4;
+}
+.commPostPage .commentListSection .commentItem .commDelBtn {
+  position: absolute;
+  top: 1.2rem;
+  right: 0;
+  background: transparent;
+  border: 1px solid #F2F5F2;
+  color: #D7D7D7;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.commPostPage .commentListSection .commentItem .commDelBtn:hover {
+  color: #E06868;
+  border-color: #E06868;
+  background-color: #fff;
 }
 .commPostPage .bottomInteractionBar {
   position: fixed;
@@ -418,7 +426,7 @@
   left: 0;
   width: 100%;
   background: #fff;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #F2F5F2;
   padding: 10px 16px;
   z-index: 100;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
@@ -449,7 +457,7 @@
 .commPostPage .bottomInteractionBar .bottomInner .sendBtn {
   background: transparent;
   border: none;
-  color: #5ba661;
+  color: #58A563;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
@@ -457,7 +465,7 @@
   transition: color 0.2s;
 }
 .commPostPage .bottomInteractionBar .bottomInner .sendBtn:hover {
-  color: rgb(72.4664031621, 133.5335968379, 77.3517786561);
+  color: rgb(70.2608695652, 131.7391304348, 79.0434782609);
 }
 .commPostPage .bottomInteractionBar .bottomInner .sendBtn:disabled {
   color: #ccc;

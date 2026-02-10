@@ -177,43 +177,47 @@
     }
   }
 
-  // 1. 댓글 리스트 섹션
+  /* [4] 댓글 목록 - 우측 상단 삭제 버튼 적용 */
   .commentListSection {
-    padding: 20px;
-    background-color: #fff;
-    border-top: 1px solid #f0f0f0;
-    margin-bottom: 70px; // 입력바 높이만큼 여백
+    padding: 1rem;
+    border-top: 1px solid $colorLgGray;
 
     .commentItem {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #fafafa;
+      position: relative; // ✅ 버튼 배치의 기준
+      padding: 1.2rem 0;
+      border-bottom: 1px solid $colorWhite;
+      padding-right: 3.5rem;
 
-      .commentUser {
-        font-weight: 700;
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 4px;
-        display: flex;
-        align-items: center;
-
-        &::after {
-          content: "";
-          width: 3px;
-          height: 3px;
-          background: #ccc;
-          border-radius: 50%;
-          margin: 0 8px;
-        }
+      .commentHeader {
+        margin-bottom: 0.3rem;
+        .commentUser { font-weight: bold; font-size: 0.85rem; color: $colorDKGray; }
       }
 
       .commentText {
-        font-size: 14px;
-        color: #555;
-        line-height: 1.5;
-        word-break: break-all;
+        font-size: 0.85rem;
+        color: $colorDKGray;
+        line-height: 1.4;
+      }
+
+      /* ✅ 우측 상단 삭제 버튼 스타일 */
+      .commDelBtn {
+        position: absolute;
+        top: 1.2rem;
+        right: 0;
+        background: transparent;
+        border: 1px solid $colorLgGray;
+        color: $colorSmGray;
+        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          color: $colorEtcRed;
+          border-color: $colorEtcRed;
+          background-color: $colorWhite;
+        }
       }
     }
   }
@@ -224,14 +228,14 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #fff;
-    border-top: 1px solid #eee;
+    background: $colorWhite;
+    border-top: 1px solid $colorLgGray;
     padding: 10px 16px;
     z-index: 100;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 
     .bottomInner {
-      max-width: 600px; // 모바일/웹 적정 너비
+      max-width: 600px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -255,7 +259,7 @@
       .sendBtn {
         background: transparent;
         border: none;
-        color: #5ba661; // 포인트 컬러 (초록계열)
+        color: $colorPrimary;
         font-weight: 700;
         font-size: 14px;
         cursor: pointer;
@@ -263,7 +267,7 @@
         transition: color 0.2s;
 
         &:hover {
-          color: darken(#5ba661, 10%);
+          color: darken($colorPrimary, 10%);
         }
 
         &:disabled {

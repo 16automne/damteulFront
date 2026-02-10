@@ -100,10 +100,6 @@
   cursor: pointer;
 }
 
-.bodyParent:has(.commWritePage) {
-  background-color: #fff !important;
-}
-
 .commWritePage {
   padding: 3.5rem 0;
 }
@@ -123,6 +119,7 @@
   gap: 0.8rem;
   padding: 1rem;
   width: 100%;
+  color: #fff;
   /* 등록 버튼 */
   /* 미리보기 아이템 */
 }
@@ -140,16 +137,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #D7D7D7;
+  background-color: #58A563;
   border-radius: 0.5rem;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 .commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel svg {
   font-size: 1.4rem;
+  color: #fff;
+  fill: #fff;
 }
 .commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel p {
   font-size: 0.8rem;
   padding-top: 0.1rem;
+  color: #fff;
+}
+.commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox .uploadLabel p span {
+  color: #fff;
 }
 .commWritePage .commWriteContainer .imageUploadSection .uploadBtnBox input {
   display: none;

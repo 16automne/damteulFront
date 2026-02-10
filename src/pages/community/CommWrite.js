@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import App from 'app/api/axios';
 import './styles/commwrite.css';
-import { getUserId } from '../../components/getUserId/getUserId';
+import { getUserId } from 'components/getUserId/getUserId';
 import { uploadMultiImages } from '../../components/uploadImage/uploadMultiImages';
 
 import { TiPlus } from "react-icons/ti";
@@ -18,6 +18,7 @@ const CommWrite = () => {
   const [title, setTitle] = useState(editData?.post?.title || "");
   const [content, setContent] = useState(editData?.post?.content || "");
   const [selectedCate, setSelectedCate] = useState(editData?.post?.cate || ""); 
+  
   const userId = getUserId();
 
   const IMAGE_BASE_URL = "http://localhost:9070/uploads/community/";
@@ -76,10 +77,18 @@ const CommWrite = () => {
   const deleteImage = (id) => setImages((prev) => prev.filter((img) => img.id !== id));
 
   const handleRegister = () => {
-    if (!selectedCate || !title.trim() || !content.trim()) return alert("모든 항목을 입력해주세요.");
+    // ✅ 유효성 검사: 로그인 여부 확인 추가
+    if (!userId) {
+      alert("로그인이 필요한 서비스입니다.");
+      navigate('/login');
+      return;
+    }
+
+    if (!selectedCate || !title.trim() || !content.trim()) {
+      return alert("모든 항목을 입력해주세요.");
+    }
     
     const isEdit = !!editData;
-    // ✅ 수정 시에는 PUT /api/community/:id, 등록 시에는 POST /api/community
     const apiPath = isEdit ? `/api/community/${editData.post.post_id}` : "/api/community";
     const method = isEdit ? "put" : "post";
 
@@ -89,8 +98,10 @@ const CommWrite = () => {
       const allImageUrls = [...existingUrls, ...newUploadedUrls];
 
       const postData = {
-        user_id: Number(userId),
-        title, content, cate: selectedCate,
+        user_id: Number(userId), // ✅ getUserId로부터 받은 ID 사용
+        title, 
+        content, 
+        cate: selectedCate,
         image_urls: allImageUrls, 
         tags: JSON.stringify(images.map(img => img.tags || []))
       };
@@ -159,11 +170,11 @@ const CommWrite = () => {
           </div>
           <div className="inputGroup">
             <label>제목</label>
-            <input type="text" className="writeTitle" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" className="writeTitle" value={title} onChange={(e) => setTitle(e.target.value)} placeholder='제목을 입력해주세요.' />
           </div>
           <div className="inputGroup">
             <label>자세한 설명</label>
-            <textarea className="writeContent" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+            <textarea className="writeContent" value={content} onChange={(e) => setContent(e.target.value)} placeholder='자세한 설명을 입력해주세요.'></textarea>
           </div>
         </section>
       </div>
