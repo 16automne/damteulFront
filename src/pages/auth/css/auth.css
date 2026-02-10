@@ -99,11 +99,24 @@
   cursor: pointer;
 }
 
-.bodyChild {
+.bodyChild:has(.authPageMainStyle) {
   position: relative;
 }
 
-main {
+.authPageHeaderStyle {
+  height: 80px;
+}
+.authPageHeaderStyle h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A1C19;
+  line-height: 1.4;
+  text-align: center;
+  line-height: 80px;
+}
+
+.authPageMainStyle {
   width: 100%;
 }
 
@@ -141,10 +154,15 @@ main {
   line-height: 30px;
 }
 .authForm > fieldset .formButtonWrapper {
+  background-color: #F2F5F2;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 70px;
+  padding-bottom: 15px;
+  bottom: 0px;
+  padding: 0 30px;
+  transform: translateX(-30px);
   align-items: center;
   height: 70px;
   width: 100%;

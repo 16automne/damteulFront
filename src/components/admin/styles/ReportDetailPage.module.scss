@@ -175,11 +175,13 @@
 ========================= */
 .actionButtons {
     display: flex;
-    justify-content: flex-end; // 오른쪽 정렬
+    justify-content: space-between; // 오른쪽 정렬
     gap: 12px; // 버튼 간 간격
     margin-top: 20px;
+    width: 100%;
 
     .buttonBase {
+        width: 48%;
         padding: 10px 50px;
         color: $colorWhite;
         border: none;
@@ -207,9 +209,9 @@
         &.danger {
             @extend .buttonBase;
             background-color: $colorEtcRed;
- 
-    
-        
+
+
+
 
             &:hover {
                 background-color: darken($colorEtcRed, 5%);

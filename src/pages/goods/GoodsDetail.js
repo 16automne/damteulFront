@@ -256,7 +256,7 @@ console.log('최종 주소 리스트:', goodsImages);
 						{goods.conversation_type === 0?(
 							<Link className={goods.conversation_type === 0?'disabled':''}>채팅불가</Link>
 						):(
-							<Link>채팅하기</Link>
+							<Link to={`/chat/start/${goods.goods_id}`}>채팅하기</Link>
 						)}
 						
 						<Link to={`/payment/${goods.goods_id}`} state={{goods:goods}}>결제하기</Link>

@@ -1,0 +1,123 @@
+@charset "utf-8";
+@use "../../../styles/_config" as *;
+
+
+.searchPage{
+  width: 100%;
+  padding-top: 60px;
+  form{
+    position: relative;
+    height: 100%;
+    label{display: none;}
+    input{
+      width: 100%; 
+      height: 45px;
+      border-radius: 50px;
+      border: 2px solid $colorPrimary;
+      text-indent: 20px;
+    }
+    button{
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      font-size: 18px;
+    }
+  }
+
+  .searchToggle{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+
+    li{
+      width: 50%;
+      button{
+        width: 100%;height: 50px;
+        border: none;
+        background-color: $colorLgGray;
+        color: #ccc;
+      }
+    }
+    &::before{
+      content: '';
+      width: 100%;
+      background-color: #ccc;
+      height: 1px;
+      position: absolute;
+      top: 50px;
+      padding: 0 30px;
+      transform: translateX(-30px);
+    }
+
+    // ✅ after는 기본으로 "항상" 만들어두기
+    &::after{
+      content: '';
+      background-color: $colorDKGray;
+      height: 2px;
+      width: 50%;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      transform: translateX(0%);
+      transition: transform 0.3s;
+    }
+
+    // 왼쪽(중고)
+    &.leftAct{
+      &::after{
+        transform: translateX(0%);
+      }
+      .goodsBtn{color: $colorDKGray;}
+    }
+
+    // 오른쪽(나눔)
+    &.rightAct{
+      &::after{
+        transform: translateX(100%);
+      }
+      .nanumBtn{color: $colorDKGray;}
+    }
+  }
+
+
+  .searchRecent{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: end;
+    padding-bottom: 20px;
+    p{
+      @include fontText02;
+    }
+    button{border: none; background: none; @include fontText04; text-decoration: underline;}
+  }
+
+  .searchContent{
+    width: 100%;
+    height: 50px;
+    display: flex; align-items: center;
+    position: relative;
+    justify-content: space-between;
+    &::after{
+      content: '';
+      position: absolute;
+      padding: 0 30px;
+      transform: translateX(-30px);
+      left: 0px;
+      top: 50px;
+      background-color: #ccc;
+      width: 100%;
+      height: 1px;
+    }
+    &:last-child::after{
+      content:''
+    }
+
+    svg{font-size: 16px;}
+    span{width: 95%;}
+  }
+}

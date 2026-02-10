@@ -6,7 +6,7 @@ import './css/addressSearch.css';
 import { FaSearch } from "react-icons/fa";
 // 체크 아이콘
 import { FaCheck } from "react-icons/fa";
-
+import {closeMobileKeyboard} from "components/closeMobileKeyboard/closeMobileKeyboard";
 /** ✅ 디바운스: 타이핑 멈춘 뒤에만 서버 호출 */
 function useDebouncedValue(value, delay = 250) {
   const [debounced, setDebounced] = useState(value);
@@ -20,6 +20,9 @@ function useDebouncedValue(value, delay = 250) {
 }
 
 export default function AddressSearch() {
+
+
+
   const navitgate = useNavigate();
   /** ✅ input 값 */
   const [query, setQuery] = useState("");
@@ -75,7 +78,7 @@ export default function AddressSearch() {
     if (fixedMode) setFixedMode(false);
     if (selected) setSelected(null);
   };
-
+  
   /**
    * ✅ 자동완성 호출
    * - 선택 확정(fixedMode=true) 상태에서는 서버 호출 안 함
@@ -144,8 +147,9 @@ export default function AddressSearch() {
 
     // exact match가 없으면 아무것도 확정하지 않음 (리스트는 그대로 유지)
     // 즉, 사용자가 계속 보고 클릭해서 선택하도록 유도
+    closeMobileKeyboard();
   };
-
+  
   // ✅ "연관검색어가 없습니다"를 보여줄지 결정
   // - 첫 화면(hasTyped=false)에서는 숨김
   // - 입력했고(hasTyped=true), 검색어가 있고, 로딩도 아니고, 결과가 0개면 표시
@@ -155,57 +159,61 @@ export default function AddressSearch() {
     debouncedQuery.trim().length > 0 &&
     !loading &&
     listToShow.length === 0;
-
   return (
-    <main>
-      {/* ✅ 검색창 */}
-      <form onSubmit={onSubmit} className="addressSearchBox">
-        <label htmlFor="searchBox">검색</label>
-        <input
-          id='searchBox'
-          value={query}
-          onChange={onChangeQuery}
-          placeholder="동네를 입력해주세요"
-        />
-        <button type="submit" className="searchBtn"><FaSearch /></button>
-      </form>
+    <>
+    <header className="authPageHeaderStyle">
+      <h2>내 동네 찾기</h2>
+    </header>
+      <main>
+        {/* ✅ 검색창 */}
+        <form onSubmit={onSubmit} className="addressSearchBox">
+          <label htmlFor="searchBox">검색</label>
+          <input
+            id='searchBox'
+            value={query}
+            onChange={onChangeQuery}
+            placeholder="동네를 입력해주세요"
+          />
+          <button type="submit" className="searchBtn"><FaSearch /></button>
+        </form>
 
-      {/* ✅ “연관검색어 영역”은 항상 화면에 고정되어 존재 (드롭다운 X) */}
-      <div className="addressValueWrap">
-        <p className="neighbor">근처 동네</p>
+        {/* ✅ “연관검색어 영역”은 항상 화면에 고정되어 존재 (드롭다운 X) */}
+        <div className="addressValueWrap">
+          <p className="neighbor">근처 동네</p>
 
-        <div className="addressValue">
-          {/* 로딩(선택 확정 모드에서는 안 뜸) */}
-          {/* {!fixedMode && loading && (
-          <div className="searchMessage">검색 중...</div>
-        )} */}
+          <div className="addressValue">
+            {/* 로딩(선택 확정 모드에서는 안 뜸) */}
+            {/* {!fixedMode && loading && (
+            <div className="searchMessage">검색 중...</div>
+          )} */}
 
-          {/* ✅ 첫 화면에서는 아무것도 안 뜸 */}
-          {showEmptyMessage && <div className="searchMessage">연관검색어가 없습니다.</div>}
-          <ul>
-            {/* 보여줄 항목이 없을 때 */}
-            {listToShow.length > 0 &&
-              listToShow.map((item) => (
-                <li className="value" key={item.addr_id ?? item.full_name}>
-                  <button
-                    type="button"
-                    onClick={() => onPickSuggestion(item)}
-                  >
-                    {item.full_name}
-                  </button>
-                  {fixedMode && <div className="checkBtn"><FaCheck /></div>}
-                </li>
-              ))
-            }
-          </ul>
+            {/* ✅ 첫 화면에서는 아무것도 안 뜸 */}
+            {showEmptyMessage && <div className="searchMessage">연관검색어가 없습니다.</div>}
+            <ul>
+              {/* 보여줄 항목이 없을 때 */}
+              {listToShow.length > 0 &&
+                listToShow.map((item) => (
+                  <li className="value" key={item.addr_id ?? item.full_name}>
+                    <button
+                      type="button"
+                      onClick={() => onPickSuggestion(item)}
+                    >
+                      {item.full_name}
+                    </button>
+                    {fixedMode && <div className="checkBtn"><FaCheck /></div>}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
-      </div>
 
-      {/* 뒤로가기, 다음버튼 */}
-      <div className="formButtonWrapper">
-        <Link to='/intro' title='처음으로 돌아가기' replace>처음으로</Link>
-        <button onClick={()=>navitgate("/register",{state:{address:query}})} style={fixedMode ? { color: '#fff', background: '#58A563' } : { color: '#fff', background: '#D7D7D7' }} disabled={fixedMode ? false : true}>완료</button>
-      </div>
-    </main>
+        {/* 뒤로가기, 다음버튼 */}
+        <div className="formButtonWrapper">
+          <Link to='/intro' title='처음으로 돌아가기' replace>처음으로</Link>
+          <button onClick={()=>navitgate("/register",{state:{address:query}})} style={fixedMode ? { color: '#fff', background: '#58A563' } : { color: '#fff', background: '#D7D7D7' }} disabled={fixedMode ? false : true}>완료</button>
+        </div>
+      </main>
+    </>
   );
 }

@@ -20,6 +20,7 @@ function Setting(props) {
 	const handleLogout = () =>{
 		// 로컬스토리지 지우기
 		localStorage.removeItem('user_id');
+		localStorage.removeItem('loginWelcomeShown');
 		// user_id가져오면 삭제
 		localStorage.clear();
 		alert('로그아웃 되었습니다.');

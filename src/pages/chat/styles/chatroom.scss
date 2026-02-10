@@ -8,21 +8,21 @@
   position: relative;
   margin-left: -50vw;
   left: 50%;
-  background-color: $colorPrimary;
+  background-color: $colorEtcOrange;
   top: 0px;
 
   .chatRoomOut {
     width: 100%;
     max-width: 767px;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-top: 30px;
 
     .chatRoomIn {
       position: relative;
       width: 92%;
       min-width: 360px;
       margin: 0 auto;
-
+      .chating{.bottomSpacer { height: 80px; }}
       // 날짜
       .chatDate {
         text-align: center;
@@ -40,7 +40,7 @@
 
       // 판매자
       .chatSeller {
-        padding-top: 10px;
+        padding: 10px 0;
         display: flex;
         align-items: flex-end;
 
@@ -63,7 +63,7 @@
         .messageBox {
           max-width: 200px;
           border-radius: 8px 8px 8px 0;
-          background-color: $colorLgGray;
+          background-color: $colorWhite;
           margin-right: 20px;
 
           >p {
@@ -77,7 +77,7 @@
 
         .time {
           @include fontText04;
-          color: $colorWhite;
+          color: $colorDKGray;
 
         }
 
@@ -85,7 +85,7 @@
 
       // 구매자
       .chatBuyer {
-        padding-top: 10px;
+        padding: 10px 0;
         display: flex;
         align-items: flex-end;
         justify-content: end;
@@ -93,8 +93,8 @@
         .messageBox {
           max-width: 200px;
           border-radius: 8px 8px 0 8px;
-          background-color: $colorLgGray;
-          margin: 0 20px;
+          background-color: $colorWhite;
+          margin-left: 20px;
 
           >p {
             @include fontText03;
@@ -107,7 +107,7 @@
 
         .time {
           @include fontText04;
-          color: $colorWhite;
+          color: $colorDKGray;
         }
       }
 
@@ -122,7 +122,7 @@
           max-width: 767px;
           margin: 0 auto;
           min-width: 390px;
-          background-color: $colorPrimary;
+          background-color: $colorWhite;
 
           .chatingBoxInner {
             width: 92%;
@@ -131,32 +131,40 @@
             display: flex;
             align-items: center;
             margin: 0 auto;
-            padding: 20px 0;
+            padding: 10px 0;
             justify-content: space-between;
-
-            svg {
-              @include fontHead01;
-              fill: $colorLgGray;
-
-            }
 
             label {
               display: none;
             }
 
             input {
-              width: 85%;
-              height: 40px;
+              width: 80%;
+              height: 35px;
               border-radius: 50px;
               border: none;
               box-sizing: border-box;
+              text-indent: 15px;
+              background-color: $colorLgGray;
+            
             }
 
             button {
-              background: none;
+              background: $colorLgGray;
               border: none;
+              border-radius: 50%;
               cursor: pointer;
-
+              width: 30px;
+              height: 30px;
+              position: relative;
+              svg {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 20px;
+                fill: $colorDKGray;
+              }
               &:disabled {
                 cursor: default;
               }

@@ -1,5 +1,13 @@
 // src/app/router/routes.js
 
+// 로그인 가드
+import {
+  RequireUserAuth,
+  RedirectIfUserAuthed,
+  RequireAdminAuth,
+  RedirectIfAdminAuthed,
+} from "app/router/guards";
+
 // 고정할 헤더 푸터 (경우의 수)
 import TabsLayout from "layouts/TabsLogoLayout";
 import NoTabsTitleLayout from "layouts/NoTabsTitleLayout";
@@ -29,6 +37,7 @@ import Notice from 'pages/my/Notice';
 import NoticeDetail from 'pages/my/NoticeDetail';
 import Setting from 'pages/my/Setting';
 import ChatRoom from "pages/chat/ChatRoom";
+import ChatStart from "pages/chat/ChatStart";
 
 // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
 import CommWrite from "pages/community/CommWrite";
@@ -42,7 +51,7 @@ import MyProfileEdit from 'pages/my/MyProfileEdit';
 import MyBuynSell from 'pages/my/MyBuynSell';
 import MyHistory from 'pages/my/MyHistory';
 import MyWishlist from 'pages/my/MyWishlist';
-import Search from 'pages/search/Search';
+import SearchPage from 'pages/search/SearchPage';
 import Alarm from 'pages/alarm/Alarm';
 import SubmitReport from 'pages/my/SubmitReport';
 import DeleteAccount from 'pages/my/DeleteAccount';
@@ -52,11 +61,12 @@ import DeleteAccount from 'pages/my/DeleteAccount';
 
 // 5) 상단헤더X + 하단탭X (FullLayout)
 import FirstPage from "pages/intro/FirstPage";
+import Start from "pages/intro/Start";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 import AddressSearch from "pages/auth/AddressSearch";
 import CommTag from "pages/community/CommTag";
-import Start from "pages/intro/Start";
+
 
 
 
@@ -88,7 +98,11 @@ import CommunityDetailPage from "components/admin/CommunityDetailPage"; // 새 �
 export const routes = [
   // 1) 상단헤더(로고) + 하단탭O (TabsLayout)
   {
-    element: <TabsLayout />,
+    element: (
+      <RequireUserAuth>
+        <TabsLayout />
+      </RequireUserAuth>
+    ),
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/community", element: <Community /> },
@@ -103,7 +117,11 @@ export const routes = [
 
   // 2) 상단헤더(뒤로가기+제목) + 하단탭X (NoTabsTitleLayout)
   {
-    element: <NoTabsTitleLayout />,
+    element: (
+      <RequireUserAuth>
+        <NoTabsTitleLayout />
+      </RequireUserAuth>
+    ),
     children: [
       { path: "/mypage/support", element: <Support /> },
       { path: "/mypage/support/faq", element: <Faq /> },
@@ -112,36 +130,47 @@ export const routes = [
       { path: "/mypage/support/notice", element: <Notice /> },
       { path: "/mypage/support/notice/noticedetail", element: <NoticeDetail /> },
       { path: "/mypage/setting", element: <Setting /> },
-      { path: "/chat/chatRoom", element: <ChatRoom /> }
+      { path: "/chat/start/:goods_id", element: <ChatStart /> },
+      { path: "/chat/chatroom/:chat_id", element: <ChatRoom /> },
+
+
     ],
   },
 
   // 3) 상단헤더(뒤로가기) + 하단탭X (NoTabsBackLayout)
   {
-    element: <NoTabsBackLayout />,
+    element: (
+      <RequireUserAuth>
+        <NoTabsBackLayout />
+      </RequireUserAuth>
+    ),
     children: [
-      {path:"/community/write", element: <CommWrite />},
-      {path:"/community/post", element: <CommPost />},
-      {path:"/goodstrade", element: <GoodsTrade />},
-      {path:"/goodsdetail/:goods_id", element: <GoodsDetail />},
-      {path:"/nanumpost", element:<NanumPost />},
-      {path:"/nanumdetail/:nanum_id", element:<NanumDetail />},
-      {path:"/eventdetail/:id", element:<EventDetail/>},
-      {path:"/myprofileedit", element:<MyProfileEdit/>},
-      {path:'/mypage/mybuynsell', element:<MyBuynSell/>},
-      {path:"/mypage/myhistory", element:<MyHistory/>},
-      {path:"/mypage/mywishlist", element:<MyWishlist/>},
-      {path:"/search", element:<Search />},
-      {path:"/alarm", element:<Alarm/>},
-      {path:"/submitreport", element:<SubmitReport/>},
-      {path:"/mypage/setting/deleteaccount", element:<DeleteAccount/>},
-      { path:"/payment/:goods_id", element:<Payment />}
+      { path: "/community/write", element: <CommWrite /> },
+      { path: "/community/post/:id", element: <CommPost /> },
+      { path: "/goodstrade", element: <GoodsTrade /> },
+      { path: "/goodsdetail/:goods_id", element: <GoodsDetail /> },
+      { path: "/nanumpost", element: <NanumPost /> },
+      { path: "/nanumdetail/:nanum_id", element: <NanumDetail /> },
+      { path: "/eventdetail/:id", element: <EventDetail /> },
+      { path: "/myprofileedit", element: <MyProfileEdit /> },
+      { path: '/mypage/mybuynsell', element: <MyBuynSell /> },
+      { path: "/mypage/myhistory", element: <MyHistory /> },
+      { path: "/mypage/mywishlist", element: <MyWishlist /> },
+      { path: "/search", element: <SearchPage /> },
+      { path: "/alarm", element: <Alarm /> },
+      { path: "/submitreport", element: <SubmitReport /> },
+      { path: "/mypage/setting/deleteaccount", element: <DeleteAccount /> },
+      { path: "/payment/:goods_id", element: <Payment /> }
     ],
   },
 
   // 4) 상단헤더X + 하단탭O (NoHeaderLayout)
   {
-    element: <NoHeaderLayout />,
+    element: (
+      <RequireUserAuth>
+        <NoTabsBackLayout />
+      </RequireUserAuth>
+    ),
     children: [
 
     ],
@@ -151,21 +180,71 @@ export const routes = [
   {
     element: <FullLayout />,
     children: [
-      { path: "/intro", element: <FirstPage /> },
-      { path: "/login", element: <Login /> },
-      { path: "/register", element: <Register /> },
-      { path: "/address", element: <AddressSearch /> },
-      { path: '/community/tag/:id', element: <CommTag /> },
+      {
+        path: "/introstart", element: (
+          <RedirectIfUserAuthed>
+            <Start />
+          </RedirectIfUserAuthed>),
+      },
+      {
+        path: "/intro", element: (
+          <RedirectIfUserAuthed>
+            <FirstPage />
+          </RedirectIfUserAuthed>),
+      },
+      {
+        path: "/login",
+        element: (
+          <RedirectIfUserAuthed>
+            <Login />
+          </RedirectIfUserAuthed>
+        ),
+      },
+      {
+        path: "/register",
+        element: (
+          <RedirectIfUserAuthed>
+            <Register />
+          </RedirectIfUserAuthed>
+        ),
+      },
+      {
+        path: "/address",
+        element: (
+          <RedirectIfUserAuthed>
+            <AddressSearch />
+          </RedirectIfUserAuthed>
+        ),
+      },
 
-      {path: '/start', element: <Start />}
+      // 로그인 없을시 진입 X
+      {
+        path: '/community/tag/:id',
+        element: (
+          <RequireUserAuth>
+            <CommTag />
+          </RequireUserAuth>
+        )
+      },
     ],
   },
 
   // 6) 관리자 페이지 (AdminPage)
-  { path: "/admin/login", element: <AdminLogin />},
+  {
+    path: "/admin/login",
+    element: (
+      <RedirectIfAdminAuthed>
+        <AdminLogin />
+      </RedirectIfAdminAuthed>
+    ),
+  },
   {
     path: "/admin",
-    element: <AdminIndex />,
+    element: (
+      <RequireAdminAuth>
+        <AdminIndex />
+      </RequireAdminAuth>
+    ),
     children: [
       // /admin 접속 시 처음 보여줄 페이지 (index: true 사용)
       // { index: true, element: <AdminDashboard /> }, 
@@ -181,13 +260,76 @@ export const routes = [
   },
 
   // ⭐ 사이드바 없는 "단독 관리자 페이지"
-  { path: "/admin/users/detail/:user_id", element: <UserDetailPage /> },
-  { path: "/admin/reports/detail/:id", element: <ReportDetailPage /> },
-  { path: "/admin/trades/detail/:id", element: <TradeDetailPage /> },
-  { path: "/admin/notice/detail/:id", element: <NoticeDetailPage /> },
-  { path: "/admin/event/detail/:id", element: <EventDetailPage /> },
-  { path: "/admin/community/detail/:id", element: <CommunityDetailPage /> },
-  { path: '/admin/notice/write', element: <NoticeEventWritePage defaultTab="notice" /> },
-  { path: '/admin/event/write', element: <NoticeEventWritePage defaultTab="event" /> },
-  { path: "/admin/:cate/detail/:id", element: <PostDetailPage /> },
+  {
+    path: "/admin/users/detail/:user_id",
+    element: (
+      <RequireAdminAuth>
+        <UserDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/reports/detail/:id",
+    element: (
+      <RequireAdminAuth>
+        <ReportDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/trades/detail/:id",
+    element: (
+      <RequireAdminAuth>
+        <TradeDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/notice/detail/:id",
+    element: (
+      <RequireAdminAuth>
+        <NoticeDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/event/detail/:id",
+    element: (
+      <RequireAdminAuth>
+        <EventDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/community/detail/:id",
+    element: (
+      <RequireAdminAuth>
+        <CommunityDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/notice/write",
+    element: (
+      <RequireAdminAuth>
+        <NoticeEventWritePage defaultTab="notice" />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/event/write",
+    element: (
+      <RequireAdminAuth>
+        <NoticeEventWritePage defaultTab="event" />
+      </RequireAdminAuth>
+    ),
+  },
+  {
+    path: "/admin/:cate/detail/:id",
+    element: (
+      <RequireAdminAuth>
+        <PostDetailPage />
+      </RequireAdminAuth>
+    ),
+  },
 ];

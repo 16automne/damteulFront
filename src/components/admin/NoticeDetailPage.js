@@ -184,13 +184,13 @@ const NoticeDetailPage = () => {
                     
                     <div className={styles.inputGroup}>
                         <label htmlFor='created_at'>게시일</label>
-                        <input type='text' id='created_at' value={notice.created_at} />
+                        <input type='text' id='created_at' value={notice.created_at} readOnly />
                     </div>
 
                     {/* 액션 버튼 */}
                     <div className={styles.actionButtons}>
                         <button type='submit' className={styles.primary}>저장</button>
-                        <button type='button' className={styles.danger} onClick={()=>handleDelete()}>삭제</button>
+                        <button type='button' className={styles.danger} onClick={()=>handleDelete(Number(id), '공지사항을', setError, 'notice')}>삭제</button>
                     </div>
                 </div>
                 </form>

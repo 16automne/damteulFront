@@ -5,20 +5,23 @@
   position: relative;
   margin-left: -50vw;
   left: 50%;
-  background-color: #58A563;
+  background-color: #EE955E;
   top: 0px;
 }
 .chatRoomWrap .chatRoomOut {
   width: 100%;
   max-width: 767px;
   margin: 0 auto;
-  padding-top: 70px;
+  padding-top: 30px;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn {
   position: relative;
   width: 92%;
   min-width: 360px;
   margin: 0 auto;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chating .bottomSpacer {
+  height: 80px;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatDate {
   text-align: center;
@@ -37,7 +40,7 @@
   border-radius: 30px;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller {
-  padding-top: 10px;
+  padding: 10px 0;
   display: flex;
   align-items: flex-end;
 }
@@ -57,7 +60,7 @@
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .messageBox {
   max-width: 200px;
   border-radius: 8px 8px 8px 0;
-  background-color: #F2F5F2;
+  background-color: #fff;
   margin-right: 20px;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatSeller .messageBox > p {
@@ -77,10 +80,10 @@
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-  color: #fff;
+  color: #1A1C19;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer {
-  padding-top: 10px;
+  padding: 10px 0;
   display: flex;
   align-items: flex-end;
   justify-content: end;
@@ -88,8 +91,8 @@
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer .messageBox {
   max-width: 200px;
   border-radius: 8px 8px 0 8px;
-  background-color: #F2F5F2;
-  margin: 0 20px;
+  background-color: #fff;
+  margin-left: 20px;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatBuyer .messageBox > p {
   font-family: "Inter", sans-serif;
@@ -108,7 +111,7 @@
   font-weight: 400;
   color: #1A1C19;
   line-height: 1.4;
-  color: #fff;
+  color: #1A1C19;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox {
   position: fixed;
@@ -121,7 +124,7 @@
   max-width: 767px;
   margin: 0 auto;
   min-width: 390px;
-  background-color: #58A563;
+  background-color: #fff;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner {
   width: 92%;
@@ -130,31 +133,37 @@
   display: flex;
   align-items: center;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 10px 0;
   justify-content: space-between;
-}
-.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner svg {
-  font-family: "Inter", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1A1C19;
-  line-height: 1.4;
-  fill: #F2F5F2;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner label {
   display: none;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner input {
-  width: 85%;
-  height: 40px;
+  width: 80%;
+  height: 35px;
   border-radius: 50px;
   border: none;
   box-sizing: border-box;
+  text-indent: 15px;
+  background-color: #F2F5F2;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner button {
-  background: none;
+  background: #F2F5F2;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+.chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner button svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  fill: #1A1C19;
 }
 .chatRoomWrap .chatRoomOut .chatRoomIn .chatingBox .chatingBoxOuter .chatingBoxInner button:disabled {
   cursor: default;
