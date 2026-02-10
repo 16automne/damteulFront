@@ -57,7 +57,10 @@ const HomePage = () => {
     const fetchGoods = async () => {
       try {
         const res = await api.get('/api/goods');
-        if (res.data.ok) setList(res.data.list);
+        if (res.data.ok) {
+          console.log('API /api/goods 응답 샘플:', res.data.list && res.data.list.length ? res.data.list[0] : res.data.list);
+          setList(res.data.list);
+        }
       } catch (err) {
         console.error("목록 로드 실패 : ", err);
       }
@@ -112,6 +115,7 @@ const HomePage = () => {
               status={item.condition_type === '0' ? '중고상품' : '새상품'}
               price={Number(item.price).toLocaleString()}
               linkTo={`/goodsdetail/${item.goods_id}`}
+              img={item.image}
             />
           ))
         ) : (

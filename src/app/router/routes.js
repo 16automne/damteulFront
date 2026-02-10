@@ -12,7 +12,6 @@ import {
 import TabsLayout from "layouts/TabsLogoLayout";
 import NoTabsTitleLayout from "layouts/NoTabsTitleLayout";
 import NoTabsBackLayout from "layouts/NoTabsBackLayout";
-import NoHeaderLayout from "layouts/NoHeaderLayout";
 import FullLayout from "layouts/FullLayout";
 import AdminIndex from "pages/admin/AdminIndex";
 

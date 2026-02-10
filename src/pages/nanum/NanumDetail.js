@@ -157,9 +157,9 @@ function NanumDetail(props) {
 				{/* 게시자 정보 영역 */}
 				<div className='postUser'>
 					<img src={post.profile ? `${imgBase}${post.profile}` : `${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='사용자 프로필' onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/defaultProfile.png`; }}/>
-					<p>{isEvent?'관리자':post.user_nickname}</p>
+					<p>{isEvent ? '관리자' : post.user_nickname}</p>
 					<img
-						src={post.level_code ? `${process.env.PUBLIC_URL}/images/level0${post.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+						src={`${process.env.PUBLIC_URL}/images/level0${Number(post.level_code || 0) + 1}.png`}
 						alt='회원등급'
 						onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
 					/>

@@ -141,8 +141,7 @@ if (goods && goods.images) {
     .map(url => url.replace('/src/uploads', '/uploads')); // 경로 보정
 }
 
-// 3. 로그 확인 (여기서도 [object Object] 뜨면 DB 데이터가 글자로 오염된 것임)
-console.log('최종 주소 리스트:', goodsImages);
+
 	return (
 		<main>
 			<section className='goodsDetail'>
@@ -152,7 +151,7 @@ console.log('최종 주소 리스트:', goodsImages);
 				  <img src={goods.profile ? `${imgBase}${goods.profile}` : `${process.env.PUBLIC_URL}/images/defaultProfile.png`} alt='사용자 프로필' onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/defaultProfile.png`; }}/>
 				  <p>{goods.user_nickname}</p>
 				  <img
-					  src={goods.level_code ? `${process.env.PUBLIC_URL}/images/level0${goods.level_code}.png` : `${process.env.PUBLIC_URL}/images/level01.png`}
+					src={`${process.env.PUBLIC_URL}/images/level0${Number(goods.level_code || 0) + 1}.png`}
 					  alt='회원등급'
 					  onError={(e) => { e.target.src = `${process.env.PUBLIC_URL}/images/level01.png`; }}
 				  />
