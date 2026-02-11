@@ -6,7 +6,7 @@ import './css/addressSearch.css';
 import { FaSearch } from "react-icons/fa";
 // 체크 아이콘
 import { FaCheck } from "react-icons/fa";
-import {closeMobileKeyboard} from "components/closeMobileKeyboard/closeMobileKeyboard";
+import { closeMobileKeyboard } from "components/closeMobileKeyboard/closeMobileKeyboard";
 /** ✅ 디바운스: 타이핑 멈춘 뒤에만 서버 호출 */
 function useDebouncedValue(value, delay = 250) {
   const [debounced, setDebounced] = useState(value);
@@ -78,7 +78,7 @@ export default function AddressSearch() {
     if (fixedMode) setFixedMode(false);
     if (selected) setSelected(null);
   };
-  
+
   /**
    * ✅ 자동완성 호출
    * - 선택 확정(fixedMode=true) 상태에서는 서버 호출 안 함
@@ -149,7 +149,7 @@ export default function AddressSearch() {
     // 즉, 사용자가 계속 보고 클릭해서 선택하도록 유도
     closeMobileKeyboard();
   };
-  
+
   // ✅ "연관검색어가 없습니다"를 보여줄지 결정
   // - 첫 화면(hasTyped=false)에서는 숨김
   // - 입력했고(hasTyped=true), 검색어가 있고, 로딩도 아니고, 결과가 0개면 표시
@@ -161,10 +161,10 @@ export default function AddressSearch() {
     listToShow.length === 0;
   return (
     <>
-    <header className="authPageHeaderStyle">
-      <h2>내 동네 찾기</h2>
-    </header>
-      <main>
+      <header className="authPageHeaderStyle">
+        <h2>내 동네 찾기</h2>
+      </header>
+      <main className="authPageMainStyle">
         {/* ✅ 검색창 */}
         <form onSubmit={onSubmit} className="addressSearchBox">
           <label htmlFor="searchBox">검색</label>
@@ -211,7 +211,7 @@ export default function AddressSearch() {
         {/* 뒤로가기, 다음버튼 */}
         <div className="formButtonWrapper">
           <Link to='/intro' title='처음으로 돌아가기' replace>처음으로</Link>
-          <button onClick={()=>navitgate("/register",{state:{address:query}})} style={fixedMode ? { color: '#fff', background: '#58A563' } : { color: '#fff', background: '#D7D7D7' }} disabled={fixedMode ? false : true}>완료</button>
+          <button onClick={() => navitgate("/register", { state: { address: query } })} style={fixedMode ? { color: '#fff', background: '#58A563' } : { color: '#fff', background: '#D7D7D7' }} disabled={fixedMode ? false : true}>완료</button>
         </div>
       </main>
     </>
