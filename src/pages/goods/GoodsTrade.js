@@ -234,7 +234,7 @@ const handleSubmit = async (e) => {
 				</p>
 				<p>
 					<label htmlFor='price'>금액</label>
-					<div className='tradePrice'>
+					<span className='tradePrice'>
 					<input type='number'
 					className='inputForm'
 					id='price'
@@ -243,7 +243,7 @@ const handleSubmit = async (e) => {
 					onChange={handleChange}
 					required/>
 					<span>원</span>
-					</div>
+					</span>
 				</p>
 
 				<div className='bottomBtn'>

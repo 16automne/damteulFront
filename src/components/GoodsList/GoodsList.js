@@ -15,8 +15,8 @@ function GoodsList({linkTo, title, status, price,timer, soldout,likeCount, img }
 	// const imgSrc = img ? `${imgBase}${img}` : 'https://placehold.co/130x130';
 
 	const getImgSrc = () => {
-    if (!img) return 'https://placehold.co/130x130';
-    if (img.startsWith('http') || img.startsWith('/images') || img.startsWith('static')) {
+		if (!img) return 'https://placehold.co/130x130';
+		if (img.startsWith('http') || img.startsWith('/images') || img.startsWith('static') || img.startsWith('/uploads')) {
       return img;
     }
     return `${imgBase}${img}`;
