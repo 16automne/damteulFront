@@ -1,9 +1,10 @@
 @use "../../../styles/_config" as *;
 // 채팅 페이지
 .chatPageWrap {
-  margin-top: 70px;
+  padding-top: 70px;
   width: 100%;
   min-width: 360px;
+  padding-bottom: 150px;
   // 상단 토글버튼 서식
   .title {
     @include fontHead02;

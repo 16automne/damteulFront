@@ -1,8 +1,9 @@
 @charset "UTF-8";
 .chatPageWrap {
-  margin-top: 70px;
+  padding-top: 70px;
   width: 100%;
   min-width: 360px;
+  padding-bottom: 150px;
 }
 .chatPageWrap .title {
   font-family: "Inter", sans-serif;
